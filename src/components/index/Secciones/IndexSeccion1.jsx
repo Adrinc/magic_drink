@@ -73,17 +73,15 @@ const IndexSeccion1 = () => {
           </div>
 
           <h1 className={styles.heroTitle}>
-            {t.h1.split(' ').map((word, idx) => (
-              <>
-                <span 
-                  key={idx} 
-                  className={styles.titleWord}
-                  style={{ animationDelay: `${idx * 0.1}s` }}
-                >
-                  {word}
-                </span>
-                {idx < t.h1.split(' ').length - 1 && ' '}
-              </>
+            {t.h1.split(' ').map((word, idx, arr) => (
+              <span 
+                key={idx} 
+                className={styles.titleWord}
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                {word}
+                {idx < arr.length - 1 ? ' ' : ''}
+              </span>
             ))}
           </h1>
           

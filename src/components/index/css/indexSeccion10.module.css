@@ -2,10 +2,12 @@
 
 .faqsContainer {
   max-width: 1000px;
+  width: 100%;
   height: auto;
   margin: 0 auto;
   padding: 20px;
   position: relative;
+  overflow: hidden; /* CRÍTICO: previene desbordamiento horizontal */
 }
 
 /* Fondo decorativo sutil con animación */
@@ -13,7 +15,8 @@
   content: '';
   position: absolute;
   top: 10%;
-  left: -15%;
+  left: 0;
+  transform: translateX(-30%);
   width: 500px;
   height: 500px;
   background: radial-gradient(circle, rgba(103,46,146,0.12), rgba(126,43,127,0.06) 50%, transparent 70%);
@@ -26,7 +29,8 @@
   content: '';
   position: absolute;
   bottom: 15%;
-  right: -15%;
+  right: 0;
+  transform: translateX(30%);
   width: 600px;
   height: 600px;
   background: radial-gradient(circle, rgba(62,200,247,0.10), rgba(98,213,255,0.05) 50%, transparent 70%);
@@ -41,7 +45,7 @@
     opacity: 0.7;
   }
   50% { 
-    transform: translate(30px, -30px) scale(1.15); 
+    transform: translate(20px, -20px) scale(1.1); 
     opacity: 1;
   }
 }

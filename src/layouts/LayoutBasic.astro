@@ -217,7 +217,7 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 
 	html {
 	position: relative;
-	overflow-x: hidden;
+	overflow-x: hidden; /* CRÍTICO: Previene scroll horizontal */
 	-webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select:none;
@@ -225,7 +225,7 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 	box-sizing: border-box;
 	scroll-behavior: smooth;
 	background-color: var(--em-bg-offwhite);
-	
+	max-width: 100vw; /* CRÍTICO: Limita ancho máximo */
     overflow-y: scroll;
 	scrollbar-width: thin; /* Firefox: Scrollbar más delgado */
 	scrollbar-color: var(--em-purple-primary) var(--em-border-light); /* Firefox: Color morado */
@@ -256,6 +256,9 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		z-index: 0;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		overflow-x: hidden; /* CRÍTICO: Previene scroll horizontal en body */
+		max-width: 100vw; /* CRÍTICO: Limita ancho máximo */
+		position: relative;
 	}
 	
 
@@ -263,7 +266,9 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		position: relative;
 		z-index: 0;
 		min-height: calc(100vh - 70px);
-		
+		overflow-x: hidden; /* CRÍTICO: Previene scroll horizontal en main */
+		max-width: 100vw; /* CRÍTICO: Limita ancho máximo */
+		width: 100%;
 /* 		background-color: #00000000 */
 
 	}

@@ -7,12 +7,12 @@ const LangContext = createContext();
 
 export const LangProvider = ({ children }) => {
   const browserLang = typeof window !== "undefined"
-    ? (localStorage.getItem("lang") || navigator.language.slice(0, 2))
-    : "es";
+    ? (localStorage.getItem("lang") || "en") // Cambio: "en" como idioma por defecto
+    : "en"; // Cambio: "en" en servidor también
 
   const [lang, setLang] = useState(browserLang);
 
-  const t = translations[lang] || translations.es;
+  const t = translations[lang] || translations.en; // Cambio: fallback a translations.en
 
   const changeLang = (newLang) => {
     setLang(newLang);

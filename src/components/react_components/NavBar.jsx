@@ -17,6 +17,29 @@ const NavBar = () => {
   const ingles = useStore(isEnglish);
   const textosNavbar = ingles ? translations.en.navbar : translations.es.navbar;
 
+  // Sincronización inicial del idioma con el país seleccionado
+  useEffect(() => {
+    // Asegurar que el idioma y el país estén sincronizados al cargar
+    const currentCountry = selectedCountry.get();
+    const currentIsEnglish = isEnglish.get();
+    
+    // Si no hay valor en localStorage, establecer valores por defecto (inglés/USA)
+    if (!localStorage.getItem('selectedCountry')) {
+      selectedCountry.set('usa');
+      isEnglish.set(true);
+      changeLang('en');
+    } else {
+      // Sincronizar estado si hay desincronización
+      if (currentCountry === 'usa' && !currentIsEnglish) {
+        isEnglish.set(true);
+        changeLang('en');
+      } else if (currentCountry === 'mex' && currentIsEnglish) {
+        isEnglish.set(false);
+        changeLang('es');
+      }
+    }
+  }, []); // Solo al montar el componente
+
   // Función para navegar al inicio
   const handleLogoClick = (e) => {
     e.preventDefault();

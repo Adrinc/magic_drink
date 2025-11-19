@@ -76,33 +76,34 @@ El diseño de Energy Media fusiona:
 ### Paleta de Colores y Atmósferas
 
 #### **Uso por Sección**
-- **Base clara** (secciones informativas): `--em-bg-offwhite` (#F7F5FA) con grises lavanda
-- **Bloques "cine" oscuros** (emocionales): `--em-purple-primary` (#672E92) con negro suave
-- **Acentos estratégicos**: Cian/naranja/ámbar SOLO en highlights y métricas
+- **Base clara** (secciones informativas): `--em-bg-offwhite` (#F6F6F6) con grises lavanda
+- **Bloques "cine" oscuros** (emocionales): `--em-purple-primary` (#6F26A9) con negro puro
+- **Acentos estratégicos**: Cian/amarillo/naranja SOLO en highlights y métricas
 
 #### **Variables CSS Disponibles** (en `LayoutBasic.astro`):
 ```css
-/* PALETA CORE */
---em-purple-primary: #672E92;      /* Morado Energy (marca, botones) */
+/* PALETA CORE (REDISEÑO 2025) */
+--em-purple-primary: #6F26A9;      /* Morado Energy vibrante (marca, botones) */
 --em-purple-light: #A47EB9;        /* Lavanda (fondos suaves) */
 --em-purple-deep: #7E2B7F;         /* Morado profundo (gradientes) */
 
 /* ACENTOS */
---em-cyan-accent: #3EC8F7;         /* Cian (highlights, métricas) */
---em-orange-accent: #F56831;       /* Naranja (badges, micro-llamadas) */
---em-amber-accent: #FAB03D;        /* Ámbar (etiquetas) */
---em-red-accent: #EF1D25;          /* Rojo (alertas, énfasis) */
+--em-cyan-accent: #3DBBFF;         /* Azul cian puro (highlights, métricas) */
+--em-orange-accent: #FF7A45;       /* Naranja/salmón vivo (badges, micro-llamadas) */
+--em-amber-accent: #FFB638;        /* Amarillo/dorado suave (etiquetas) */
+--em-red-accent: #F12A2A;          /* Rojo brillante (alertas, énfasis) */
 
 /* NEUTROS */
---em-bg-offwhite: #F7F5FA;         /* Fondo de página */
+--em-bg-offwhite: #F6F6F6;         /* Off-white/gris muy claro (fondo de página) */
 --em-border-light: #E1DDEC;        /* Bordes, dividers */
---em-text-primary: #1A1024;        /* Texto principal */
---em-text-light: #FFFFFF;          /* Texto sobre morado */
+--em-text-primary: #1A1A1A;        /* Negro puro (texto principal) */
+--em-text-light: #FFFFFF;          /* Blanco puro (texto sobre oscuro) */
 
 /* GRADIENTES */
---em-gradient-purple-cyan: linear-gradient(135deg, #672E92, #3EC8F7);
---em-gradient-purple-black: linear-gradient(180deg, #672E92, #1A1024);
---em-gradient-cta: linear-gradient(135deg, #672E92, #A47EB9);
+--em-gradient-purple-cyan: linear-gradient(135deg, #6F26A9, #3DBBFF);
+--em-gradient-purple-black: linear-gradient(180deg, #6F26A9, #1A1A1A);
+--em-gradient-cta: linear-gradient(135deg, #2BC7FF, #F5C15C);  /* 🔥 Turquesa → Amarillo */
+--em-gradient-cta-hover: linear-gradient(135deg, #1FB5ED, #E3AF4A);  /* Hover más oscuro */
 ```
 
 ### Tipografía con Carácter

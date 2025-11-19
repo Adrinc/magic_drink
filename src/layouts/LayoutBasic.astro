@@ -105,32 +105,33 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		   ENERGY MEDIA - SISTEMA "CINE-DATA MULTICULTURAL"
 		   ======================================== */
 		
-		/* === PALETA CORE === */
-		--em-purple-primary: #672E92;        /* Morado Energy (marca, botones principales) */
+		/* === PALETA CORE (REDISEÑO 2025) === */
+		--em-purple-primary: #6F26A9;        /* Morado Energy vibrante (marca, botones principales) */
 		--em-purple-light: #A47EB9;          /* Lavanda medio (fondos suaves, tarjetas) */
 		--em-purple-deep: #7E2B7F;           /* Morado profundo (gradientes, secciones dark) */
 		
 		/* === ACENTOS === */
-		--em-cyan-accent: #3EC8F7;           /* Cian brillante (estados activos, highlights) */
-		--em-orange-accent: #F56831;         /* Naranja cálido (badges, micro-llamadas) */
-		--em-amber-accent: #FAB03D;          /* Ámbar (etiquetas, indicadores) */
-		--em-red-accent: #EF1D25;            /* Rojo (alertas/errores, énfasis puntual) */
+		--em-cyan-accent: #3DBBFF;           /* Azul cian puro (estados activos, highlights) */
+		--em-orange-accent: #FF7A45;         /* Naranja/salmón vivo (badges, micro-llamadas) */
+		--em-amber-accent: #FFB638;          /* Amarillo/dorado suave (etiquetas, indicadores) */
+		--em-red-accent: #F12A2A;            /* Rojo brillante (alertas/errores, énfasis puntual) */
 		
-		/* === NEUTROS CON TINTE LAVANDA === */
-		--em-bg-offwhite: #F7F5FA;           /* Off-white (fondo de página) */
+		/* === NEUTROS === */
+		--em-bg-offwhite: #F6F6F6;           /* Off-white/gris muy claro (fondo de página) */
 		--em-border-light: #E1DDEC;          /* Gris lavanda claro (bordes, dividers) */
 		--em-border-medium: #DDCDDC;         /* Gris lavanda medio (fills sutiles) */
-		--em-text-primary: #1A1024;          /* Ink (texto principal) */
-		--em-text-light: #FFFFFF;            /* Blanco (texto sobre morado) */
+		--em-text-primary: #1A1A1A;          /* Negro puro (texto principal) */
+		--em-text-light: #FFFFFF;            /* Blanco puro (texto sobre oscuro) */
 		--em-text-gray: #6B6B7B;             /* Gris para textos secundarios */
 		
-		/* === GRADIENTES CINEMATOGRÁFICOS === */
-		--em-gradient-purple-cyan: linear-gradient(135deg, #672E92, #3EC8F7);
-		--em-gradient-purple-black: linear-gradient(180deg, #672E92, #1A1024);
-		--em-gradient-purple-magenta: linear-gradient(135deg, #7E2B7F, #672E92);
-		--em-gradient-dark-purple: linear-gradient(180deg, #1A1024 0%, #672E92 100%);
-		--em-gradient-light-lavender: linear-gradient(180deg, #F7F5FA 0%, #E1DDEC 100%);
-		--em-gradient-cta: linear-gradient(135deg, #672E92 0%, #A47EB9 100%);
+		/* === GRADIENTES CINEMATOGRÁFICOS (REDISEÑO 2025) === */
+		--em-gradient-purple-cyan: linear-gradient(135deg, #6F26A9, #3DBBFF);
+		--em-gradient-purple-black: linear-gradient(180deg, #6F26A9, #1A1A1A);
+		--em-gradient-purple-magenta: linear-gradient(135deg, #7E2B7F, #6F26A9);
+		--em-gradient-dark-purple: linear-gradient(180deg, #1A1A1A 0%, #6F26A9 100%);
+		--em-gradient-light-lavender: linear-gradient(180deg, #F6F6F6 0%, #E1DDEC 100%);
+		--em-gradient-cta: linear-gradient(135deg, #2BC7FF 0%, #F5C15C 100%);  /* 🔥 Turquesa → Amarillo */
+		--em-gradient-cta-hover: linear-gradient(135deg, #1FB5ED 0%, #E3AF4A 100%);  /* Hover más oscuro */
 		
 		/* === TIPOGRAFÍA CINE-DATA === */
 		--em-font-headline: 'Poppins', 'Plus Jakarta Sans', 'Inter', sans-serif;
@@ -280,9 +281,17 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		top: 0;
 		left: 0;
 		width: 100vw;
-		height: 70px;
+		height: auto; /* CAMBIO: Permitir altura dinámica del navbar */
 		z-index: 1000;
 		font-family: var(--font-family-primary);
+		/* CRÍTICO: No bloquear backdrop-filter */
+		pointer-events: none;
+		overflow: visible;
+	}
+	
+	/* Los hijos del header SÍ deben ser clickeables */
+	header * {
+		pointer-events: auto;
 	}
 
 	footer {
@@ -369,15 +378,8 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 	}
 
 	/* Transición especial para el navbar - se mantiene fijo */
-	header {
-		view-transition-name: navbar;
-	}
-
-	::view-transition-old(navbar),
-	::view-transition-new(navbar) {
-		animation: none;
-	}
-
+	/* NOTA: view-transition-name eliminado porque bloquea backdrop-filter en Chrome/Edge */
+	
 	/* Transición especial para el footer */
 	footer {
 		view-transition-name: footer;
@@ -394,14 +396,5 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		animation: page-initial-load 0.3s ease-out;
 	}
 
-/* 	@keyframes page-initial-load {
-		from {
-			opacity: 0;
-			transform: translateY(10px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	} */
+
 </style>

@@ -7,28 +7,16 @@ const IndexSeccion1 = () => {
 
   const content = {
     es: {
-      h1: "Transforma tu negocio en líder digital con resultados garantizados",
-      subtitle: "Marketing digital + desarrollo web + IA. Todo en un solo lugar. Primeros resultados en 30 días o reembolso completo.",
-      ctaPrimary: "Agenda tu consultoría gratuita",
-      ctaValue: "($5,000 MXN de valor)",
-      ctaSecondary: "Ver nuestros resultados",
-      trustBadges: {
-        results: "Primeros resultados en 30 días",
-        guarantee: "Garantía 90 días",
-        response: "Respuesta <2 horas"
-      }
+      h1Line1: "Digital by design.",
+      h1Line2: "Creative con corazón.",
+      subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward.",
+      cta: "Book a Free Strategy Call"
     },
     en: {
-      h1: "Transform your business into a digital leader with guaranteed results",
-      subtitle: "Digital marketing + web development + AI. All in one place. First results in 30 days or full refund.",
-      ctaPrimary: "Schedule your free consultation",
-      ctaValue: "($5,000 MXN value)",
-      ctaSecondary: "View our results",
-      trustBadges: {
-        results: "First results in 30 days",
-        guarantee: "90-day guarantee",
-        response: "Response <2 hours"
-      }
+      h1Line1: "Digital by design.",
+      h1Line2: "Creative con corazón.",
+      subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward.",
+      cta: "Book a Free Strategy Call"
     }
   };
 
@@ -64,54 +52,24 @@ const IndexSeccion1 = () => {
 
         {/* Contenido Principal */}
         <div className={styles.heroContent}>
-          {/* Badge Superior Premium */}
-          <div className={styles.topBadge}>
-            <span className={styles.badgeIcon}>⚡</span>
-            <span className={styles.badgeTextTop}>
-              {ingles ? 'DIGITAL TRANSFORMATION EXPERTS' : 'EXPERTOS EN TRANSFORMACIÓN DIGITAL'}
-            </span>
-          </div>
-
           <h1 className={styles.heroTitle}>
-            {t.h1.split(' ').map((word, idx, arr) => (
-              <span 
-                key={idx} 
-                className={styles.titleWord}
-                style={{ animationDelay: `${idx * 0.1}s` }}
-              >
-                {word}
-                {idx < arr.length - 1 ? ' ' : ''}
-              </span>
-            ))}
+            <span className={styles.titleLine1}>{t.h1Line1}</span>
+            <span className={styles.titleLine2}>{t.h1Line2}</span>
           </h1>
           
           <p className={styles.heroSubtitle}>{t.subtitle}</p>
 
           <div className={styles.ctaGroup}>
             <button className={styles.btnPrimary}>
-              <span className={styles.ctaText}>{t.ctaPrimary}</span>
-              <span className={styles.ctaValue}>{t.ctaValue}</span>
+              <span className={styles.ctaText}>{t.cta}</span>
               <span className={styles.ctaArrow}>→</span>
-            </button>
-            <button className={styles.btnSecondary}>
-              {t.ctaSecondary}
-              <span className={styles.playIcon}>▶</span>
             </button>
           </div>
 
-          <div className={styles.trustBadges}>
-            <div className={styles.trustBadge}>
-              <span className={styles.badgeIcon}>✓</span>
-              <span className={styles.badgeText}>{t.trustBadges.results}</span>
-            </div>
-            <div className={styles.trustBadge}>
-              <span className={styles.badgeIcon}>🛡️</span>
-              <span className={styles.badgeText}>{t.trustBadges.guarantee}</span>
-            </div>
-            <div className={styles.trustBadge}>
-              <span className={styles.badgeIcon}>⚡</span>
-              <span className={styles.badgeText}>{t.trustBadges.response}</span>
-            </div>
+          <div className={styles.energyBrand}>
+            <span className={styles.brandLine}>Let's Start Your Story with </span>
+            <span className={styles.brandName}>Energy</span>
+            <span className={styles.brandExclaim}>!</span>
           </div>
         </div>
 

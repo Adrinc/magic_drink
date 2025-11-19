@@ -1,12 +1,12 @@
-﻿/* INDEX SECCIÓN 1 - HERO ULTRA PREMIUM */
-/* Sistema "Digital Performance" - Energy Media */
+﻿/* INDEX SECCIÓN 1 - HERO REDISEÑO 2025 */
+/* Sistema "Digital by Design" - Energy Media */
 
 .heroSection {
   position: relative;
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: #1A1024; /* Fallback */
+  background: #1A1A1A; /* Negro puro del rediseño */
 }
 
 .heroContainer {
@@ -37,10 +37,10 @@
   inset: 0;
   background: linear-gradient(
     180deg, 
-    rgba(26, 16, 36, 0.85) 0%, 
-    rgba(103, 46, 146, 0.7) 40%,
-    rgba(126, 43, 127, 0.6) 60%,
-    rgba(26, 16, 36, 0.75) 100%
+    rgba(26, 26, 26, 0.85) 0%, 
+    rgba(111, 38, 169, 0.5) 40%,
+    rgba(61, 187, 255, 0.3) 60%,
+    rgba(26, 26, 26, 0.75) 100%
   );
   z-index: 1;
 }
@@ -86,7 +86,7 @@
 .heroContent {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 clamp(20px, 5vw, 40px);
   text-align: center;
@@ -98,84 +98,32 @@
   gap: 2rem;
 }
 
-/* ========== BADGE SUPERIOR PREMIUM ========== */
-.topBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(62, 200, 247, 0.15);
-  border: 1px solid rgba(62, 200, 247, 0.3);
-  border-radius: 50px;
-  backdrop-filter: blur(20px);
-  animation: badgeFloat 3s ease-in-out infinite, badgeGlow 2s ease-in-out infinite;
-}
-
-.badgeIcon {
-  font-size: 1.25rem;
-  filter: drop-shadow(0 0 10px rgba(62, 200, 247, 0.8));
-}
-
-.badgeTextTop {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #3EC8F7;
-  white-space: nowrap; /* CRÍTICO: Evita que el texto se parta en múltiples líneas */
-}
-
-@keyframes badgeFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-@keyframes badgeGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(62, 200, 247, 0.2); }
-  50% { box-shadow: 0 0 30px rgba(62, 200, 247, 0.4); }
-}
-
-/* ========== TÍTULO CON ANIMACIÓN POR PALABRA ========== */
+/* ========== TÍTULO REDISEÑO 2025 ========== */
 .heroTitle {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   margin: 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   text-shadow: 
     0 4px 20px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(103, 46, 146, 0.3);
-  white-space: normal; /* Permite saltos de línea naturales */
-  word-wrap: break-word; /* Previene overflow en palabras largas */
-}
-
-.titleWord {
-  display: inline-block;
+    0 0 40px rgba(111, 38, 169, 0.3);
   opacity: 0;
-  animation: wordFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  white-space: pre; /* CRÍTICO: Preserva el espacio después de cada palabra */
+  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
 }
 
-@keyframes wordFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.titleLine1 {
+  font-weight: 300;
+  display: block;
 }
 
-/* ========== SUBTITLE ========== */
-.heroSubtitle {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
-  line-height: 1.7;
-  max-width: 850px;
-  margin: 0;
-  opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+.titleLine2 {
+  font-weight: 300;
+  display: block;
 }
 
 @keyframes fadeInUp {
@@ -189,35 +137,48 @@
   }
 }
 
-/* ========== BOTONES CTA MEJORADOS ========== */
+/* ========== SUBTITLE ========== */
+.heroSubtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  max-width: 750px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== BOTÓN CTA REDISEÑO 2025 ========== */
 .ctaGroup {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
+  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
 }
 
 .btnPrimary {
   position: relative;
-  background: linear-gradient(135deg, #672E92, #A47EB9);
-  color: white;
-  padding: 1.25rem 3rem;
+  background: linear-gradient(135deg, #2BC7FF 0%, #F5C15C 100%);
+  color: #1A1A1A;
+  padding: 1rem 2.5rem;
   border-radius: 50px;
   border: none;
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 
-    0 10px 30px rgba(103, 46, 146, 0.4),
-    0 0 40px rgba(103, 46, 146, 0.2);
+    0 10px 30px rgba(43, 199, 255, 0.3),
+    0 0 40px rgba(245, 193, 92, 0.2);
   overflow: hidden;
 }
 
@@ -225,7 +186,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #3EC8F7, #672E92);
+  background: linear-gradient(135deg, #1FB5ED 0%, #E3AF4A 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -237,30 +198,22 @@
 .btnPrimary:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 
-    0 20px 50px rgba(103, 46, 146, 0.5),
-    0 0 60px rgba(62, 200, 247, 0.3);
+    0 20px 50px rgba(43, 199, 255, 0.4),
+    0 0 60px rgba(245, 193, 92, 0.3);
 }
 
-.ctaText, .ctaValue, .ctaArrow {
+.ctaText, .ctaArrow {
   position: relative;
   z-index: 1;
 }
 
 .ctaText {
-  font-size: 1.125rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.ctaValue {
-  font-size: 0.8rem;
-  opacity: 0.85;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .ctaArrow {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   transition: transform 0.4s ease;
 }
 
@@ -268,76 +221,31 @@
   transform: translateX(5px);
 }
 
-.btnSecondary {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  padding: 1.25rem 3rem;
-  border-radius: 50px;
-  font-size: 1.125rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  backdrop-filter: blur(10px);
-}
-
-.btnSecondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: white;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-}
-
-.playIcon {
-  font-size: 0.875rem;
-  transition: transform 0.3s ease;
-}
-
-.btnSecondary:hover .playIcon {
-  transform: scale(1.2);
-}
-
-/* ========== TRUST BADGES MEJORADOS ========== */
-.trustBadges {
-  display: flex;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
+/* ========== ENERGY BRAND LINE ========== */
+.energyBrand {
   margin-top: 2rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
   opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 1.1s forwards;
+  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+  text-align: center;
 }
 
-.trustBadge {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 50px;
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.3s ease;
+.brandLine {
+  font-weight: 400;
 }
 
-.trustBadge:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(62, 200, 247, 0.5);
-  transform: translateY(-3px);
+.brandName {
+  font-weight: 700;
+  color: #FFB638; /* Amarillo dorado del diseño */
+  text-shadow: 0 0 20px rgba(255, 182, 56, 0.5);
 }
 
-.trustBadge .badgeIcon {
-  font-size: 1.25rem;
-  filter: drop-shadow(0 0 8px rgba(62, 200, 247, 0.6));
-}
-
-.badgeText {
-  font-size: 0.9rem;
-  font-weight: 500;
-  white-space: nowrap;
+.brandExclaim {
+  font-weight: 700;
+  color: #FFB638;
+  text-shadow: 0 0 20px rgba(255, 182, 56, 0.5);
 }
 
 /* ========== DEGRADADO DE TRANSICIÓN A SIGUIENTE SECCIÓN (BLANCO) ========== */
@@ -425,7 +333,7 @@
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
   .heroTitle {
-    font-size: clamp(2.25rem, 7vw, 3.5rem);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
   }
 
   .transitionGradient {
@@ -435,37 +343,28 @@
 
 @media (max-width: 768px) {
   .heroTitle {
-    font-size: clamp(2rem, 8vw, 3rem);
+    font-size: clamp(2rem, 9vw, 3.5rem);
   }
   
   .heroSubtitle {
     font-size: 1rem;
   }
 
-  .topBadge {
-    padding: 0.6rem 1.2rem;
-  }
-
-  .badgeTextTop {
-    font-size: 0.65rem;
-  }
-  
   .ctaGroup {
     flex-direction: column;
     width: 100%;
     gap: 1rem;
   }
   
-  .btnPrimary, .btnSecondary {
+  .btnPrimary {
     width: 100%;
     max-width: 350px;
     padding: 1rem 2rem;
     justify-content: center;
   }
-  
-  .trustBadges {
-    flex-direction: column;
-    gap: 1rem;
+
+  .energyBrand {
+    font-size: 1.25rem;
   }
 
   .transitionGradient {
@@ -482,17 +381,13 @@
     font-size: 1.75rem;
   }
 
-  .btnPrimary, .btnSecondary {
-    font-size: 1rem;
+  .btnPrimary {
+    font-size: 0.9rem;
     padding: 0.875rem 1.75rem;
   }
 
-  .trustBadge {
-    padding: 0.6rem 1.2rem;
-  }
-
-  .badgeText {
-    font-size: 0.8rem;
+  .energyBrand {
+    font-size: 1.1rem;
   }
 }
 

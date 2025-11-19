@@ -1,584 +1,243 @@
-/* Variables CSS para Energy Media */
-:root {
-  --primary-purple: #672E92;
-  --primary-purple-light: #A47EB9;
-  --accent-cyan: #3EC8F7;
-  --accent-orange: #F56831;
-  --accent-amber: #FAB03D;
-  --text-light: #FFFFFF;
-  --text-dark: #1A1024;
-  --bg-off-white: #F7F5FA;
-  --bg-dark: rgba(26, 16, 36, 0.95);
-  --bg-glass: rgba(164, 126, 185, 0.1);
-  --border-lavender: #E1DDEC;
-  --shadow-light: 0 4px 32px rgba(103, 46, 146, 0.15);
-  --shadow-heavy: 0 20px 60px rgba(103, 46, 146, 0.3);
-  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: all 0.2s ease-out;
+/* NAVBAR REDISEÑO 2025 - Energy Media */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem clamp(20px, 3vw, 40px);
+  background: transparent;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  /* CRÍTICO: Permitir que backdrop-filter vea contenido debajo */
+  overflow: visible;
+  pointer-events: none;
 }
 
-/* Navbar principal con glassmorphism avanzado */
-.navbar {
+.navbar * {
+  pointer-events: auto;
+}
+
+.navbar.scrolled {
+  background: transparent;
+}
+
+/* ========== CONTENEDOR CENTRAL CON BLUR ========== */
+.navContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, rgba(26, 16, 36, 0.85) 0%, rgba(103, 46, 146, 0.75) 50%, rgba(26, 16, 36, 0.85) 100%);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  color: var(--text-light);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  border-bottom: 2px solid transparent;
-  border-image: linear-gradient(90deg, rgba(103, 46, 146, 0.5), rgba(62, 200, 247, 0.8), rgba(245, 104, 49, 0.5)) 1;
-  box-shadow: 
-    0 4px 24px rgba(103, 46, 146, 0.3),
-    0 1px 0 rgba(62, 200, 247, 0.2) inset;
-  max-height: 80px;
-  transition: var(--transition-smooth);
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+  gap: 2rem;
+  padding: 0.5rem 1.5rem;
+  /* Fallback para navegadores sin backdrop-filter */
+  background: rgba(0, 0, 0, 0.4);
+  /* Blur ultra intenso para mejor visibilidad */
+  backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50px;
+  max-width: fit-content;
+  transition: all 0.3s ease;
+  /* Crear stacking context apropiado */
   position: relative;
+  isolation: isolate;
+  /* FIX CRÍTICO PARA CHROME/EDGE: forzar aceleración GPU sin contain */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform, backdrop-filter;
+  /* Box shadow sutil para separación visual */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-/* Efecto de luz animado en el fondo */
-.navbar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(62, 200, 247, 0.1), transparent);
-  animation: navbarShine 8s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
+.navbar.scrolled .navContainer {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(50px) saturate(200%) brightness(1.15);
+  -webkit-backdrop-filter: blur(50px) saturate(200%) brightness(1.15);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
-@keyframes navbarShine {
-  0%, 100% {
-    left: -100%;
+/* Fix para Chrome/Edge: asegurar que backdrop-filter esté soportado */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .navContainer {
+    /* En navegadores con soporte, usar fondo MÁS transparente para ver el blur */
+    background: rgba(0, 0, 0, 0.2) !important;
   }
-  50% {
-    left: 100%;
+  
+  .navbar.scrolled .navContainer {
+    background: rgba(0, 0, 0, 0.3) !important;
   }
 }
 
-/* Efecto cuando se hace scroll */
-.navbar.scrolled {
-  background: linear-gradient(135deg, rgba(26, 16, 36, 0.95) 0%, rgba(103, 46, 146, 0.85) 50%, rgba(26, 16, 36, 0.95) 100%);
-  backdrop-filter: blur(25px) saturate(200%);
-  -webkit-backdrop-filter: blur(25px) saturate(200%);
-  box-shadow: 
-    0 8px 32px rgba(103, 46, 146, 0.4),
-    0 1px 0 rgba(62, 200, 247, 0.3) inset;
-  border-image: linear-gradient(90deg, rgba(103, 46, 146, 0.7), rgba(62, 200, 247, 1), rgba(245, 104, 49, 0.7)) 1;
+/* Fallback para navegadores SIN soporte de backdrop-filter */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navContainer {
+    background: rgba(0, 0, 0, 0.85) !important;
+  }
 }
 
-/* Overlay para móvil */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
-  z-index: 998;
-  animation: fadeIn 0.3s ease-out;
-}
-
-/* Logo mejorado con efectos */
+/* ========== LOGO ========== */
 .logoLink {
-  display: block;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  z-index: 10;
-  position: relative;
 }
 
 .logopic {
-  position: relative;
-  width: 160px;
-  height: 3.5rem;
-  z-index: 10;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  background: #FFFFFF;
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 2px solid var(--primary-purple);
-}
-
-.logopic:hover {
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 6px 20px rgba(103, 46, 146, 0.3);
-  border-color: var(--accent-cyan);
+  height: 40px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
 }
 
 .logopic img {
-  width: 100%;
   height: 100%;
+  width: auto;
   object-fit: contain;
-  transition: var(--transition-smooth);
 }
 
-.logoGlow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 140%;
-  height: 140%;
-  background: radial-gradient(circle, rgba(62, 200, 247, 0.2) 0%, transparent 70%);
-  border-radius: 50%;
-  transition: var(--transition-smooth);
-  pointer-events: none;
-  z-index: -1;
+.logopic:hover {
+  transform: scale(1.05);
 }
 
-.logopic:hover .logoGlow {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* Menú de navegación con efectos premium */
+/* ========== MENÚ DE NAVEGACIÓN ========== */
 .navMenu {
   display: flex;
-  gap: 2rem;
   list-style: none;
   margin: 0;
   padding: 0;
-  position: relative;
-  z-index: 10;
+  gap: 2.5rem;
+  align-items: center;
 }
 
 .navItem {
-  display: inline-block;
-  position: relative;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navLink {
-  color: var(--text-light);
+  color: white;
   text-decoration: none;
-  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
   position: relative;
-  font-weight: 500;
-  letter-spacing: 0.025em;
-  font-size: 0.95rem;
-  border-radius: 12px;
-  transition: var(--transition-smooth);
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
-  outline: none;
-  overflow: hidden;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Efecto de fondo en hover */
-.navLink::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(62, 200, 247, 0.15), rgba(103, 46, 146, 0.2));
-  border-radius: 12px;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: var(--transition-smooth);
-  z-index: -1;
-  border: 1px solid rgba(62, 200, 247, 0.3);
-}
-
-.navLink:hover::before {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Línea indicadora inferior */
 .navLink::after {
-  content: "";
+  content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: -5px;
+  left: 0;
   width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-amber));
-  border-radius: 3px;
-  transition: var(--transition-smooth);
-  box-shadow: 0 0 8px rgba(62, 200, 247, 0.5);
+  height: 2px;
+  background: #FF7A45;
+  transition: width 0.3s ease;
 }
 
-.navLink:hover::after {
-  width: 80%;
+.navLink:hover,
+.navLink.activeLink {
+  color: #FF7A45;
 }
 
-.navLink:hover {
-  color: var(--accent-cyan);
+.navLink:hover::after,
+.navLink.activeLink::after {
+  width: 100%;
+}
+
+/* ========== BOTÓN CONTACT US ========== */
+.contactButton {
+  background: white;
+  color: #1A1A1A;
+  padding: 0.65rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+  white-space: nowrap;
+}
+
+.contactButton:hover {
+  background: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
-  text-shadow: 0 0 10px rgba(62, 200, 247, 0.5);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
-/* Indicador para enlace activo */
-.activeLink {
-  color: var(--accent-cyan) !important;
-  background: rgba(62, 200, 247, 0.1);
-  border: 1px solid rgba(62, 200, 247, 0.4);
-  text-shadow: 0 0 10px rgba(62, 200, 247, 0.6);
-  box-shadow: 0 0 15px rgba(62, 200, 247, 0.2);
+/* ========== DROPDOWN GROUP (Fuera del contenedor central) ========== */
+.dropdownGroup {
+  position: absolute;
+  right: clamp(20px, 3vw, 40px);
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }
 
-.activeLink::after {
-  width: 80% !important;
+.dropdown {
+  position: relative;
 }
 
-/* Hamburger menu animado - ESPACIADO MANUAL */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 4px; /* Espaciado fijo entre barras */
-  width: 30px;
+.dropdownToggle {
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.6rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
   cursor: pointer;
-  padding: 6px;
-  border-radius: 12px;
-  transition: var(--transition-smooth);
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
-  position: relative;
-  z-index: 1001;
-  background: transparent;
-  border: 1px solid transparent;
-}
-
-/* Efectos hover mejorados */
-.hamburger:hover {
-  background: var(--bg-glass);
-  border-color: rgba(122, 229, 130, 0.3);
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(122, 229, 130, 0.2);
-}
-
-/* Glow effect en hover */
-.hamburger::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 120%;
-  height: 120%;
-  background: radial-gradient(circle, rgba(122, 229, 130, 0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  transition: var(--transition-smooth);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.hamburger:hover::before {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.bar {
-  width: 100%;
-  height: 2px; /* Altura fija para las barras */
-  background: var(--text-light);
-  border-radius: 1px;
-  transition: var(--transition-smooth);
-  transform-origin: center;
-  position: relative;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  flex-shrink: 0; /* Evita que las barras se contraigan */
-}
-
-/* Efectos hover en las barras individualmente */
-.hamburger:hover .bar {
-  background: var(--primary-green);
-  box-shadow: 0 0 8px rgba(122, 229, 130, 0.4);
-}
-
-.hamburger:hover .bar:nth-child(1) {
-  transform: translateX(2px);
-}
-
-.hamburger:hover .bar:nth-child(2) {
-  transform: scaleX(0.9);
-}
-
-.hamburger:hover .bar:nth-child(3) {
-  transform: translateX(-2px);
-}
-
-/* Estado activo del hamburger - mantener como está */
-.hamburger.active .bar:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-  background: var(--primary-green);
-}
-
-.hamburger.active .bar:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-.hamburger.active .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
-  background: var(--primary-green);
-}
-
-/* Estado activo con hover - efectos combinados */
-.hamburger.active:hover {
-  background: rgba(122, 229, 130, 0.1);
-  border-color: rgba(122, 229, 130, 0.5);
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(122, 229, 130, 0.3);
-}
-
-.hamburger.active:hover .bar {
-  box-shadow: 0 0 12px rgba(122, 229, 130, 0.6);
-}
-
-/* Animación de pulso sutil cuando está cerrado - CORREGIDA */
-.hamburger:not(.active):hover .bar:nth-child(1) {
-  animation: pulseBar 1.5s ease-in-out infinite;
-}
-
-.hamburger:not(.active):hover .bar:nth-child(2) {
-  animation: pulseBar 1.5s ease-in-out infinite 0.1s;
-}
-
-.hamburger:not(.active):hover .bar:nth-child(3) {
-  animation: pulseBar 1.5s ease-in-out infinite 0.2s;
-}
-
-@keyframes pulseBar {
-  0%, 100% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(1.3);
-  }
-}
-
-/* Efecto de rotación sutil en hover cuando está activo */
-.hamburger.active:hover {
-  animation: rotateGlow 2s ease-in-out infinite;
-}
-
-@keyframes rotateGlow {
-  0%, 100% {
-    filter: hue-rotate(0deg);
-  }
-  50% {
-    filter: hue-rotate(20deg);
-  }
-}
-
-/* Íconos sociales mejorados */
-.socialIconsGroup {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  z-index: 10;
-  position: relative;
-}
-
-.socialLink {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: rgba(62, 200, 247, 0.05);
-  border: 1px solid rgba(62, 200, 247, 0.2);
-  transition: var(--transition-smooth);
-  overflow: hidden;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-    color: #e2e8f0;
-}
-
-.socialLink:hover {
-  transform: translateY(-3px) scale(1.05);
-  background: rgba(62, 200, 247, 0.15);
-  border-color: var(--accent-cyan);
-  box-shadow: 
-    0 8px 25px rgba(62, 200, 247, 0.4),
-    0 0 20px rgba(62, 200, 247, 0.3) inset;
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-  transition: var(--transition-smooth);
-  z-index: 2;
-    color: #e2e8f0;
-}
-
-.socialLink:hover .icon {
-  filter: brightness(0) saturate(100%) invert(71%) sepia(98%) saturate(2000%) hue-rotate(167deg) brightness(98%) contrast(93%) drop-shadow(0 0 8px rgba(62, 200, 247, 0.8));
-}
-
-.iconRipple {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(62, 200, 247, 0.4) 0%, transparent 70%);
-  border-radius: 50%;
-  transition: var(--transition-smooth);
-  pointer-events: none;
-}
-
-.socialLink:hover .iconRipple {
-  transform: translate(-50%, -50%) scale(1.5);
-}
-
-/* Switch de países premium */
-.countrySwitch {
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--bg-glass);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 0.5rem;
+  /* Blur más intenso en dropdowns también */
+  backdrop-filter: blur(40px) saturate(180%) brightness(1.1);
+  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.1);
   position: relative;
-  backdrop-filter: blur(10px);
-  transition: var(--transition-smooth);
-  z-index: 10;
+  isolation: isolate;
+  /* Fix para Chrome/Edge */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform, backdrop-filter;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-.switchIconContainer {
-  width: 36px;
-  height: 36px;
+.dropdownToggle:hover {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(45px) saturate(200%) brightness(1.15);
+  -webkit-backdrop-filter: blur(45px) saturate(200%) brightness(1.15);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
+  -webkit-backdrop-filter: blur(40px) saturate(180%) brightness(1.05);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 12px;
-  overflow: hidden;
-  transition: var(--transition-smooth);
-  border: 2px solid transparent;
-  cursor: pointer;
-  position: relative;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 0;
+  min-width: 150px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  animation: dropdownFadeIn 0.2s ease;
+  /* Stacking context para el menu */
+  isolation: isolate;
+  /* Fix para Chrome/Edge */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform, backdrop-filter;
 }
 
-.switchIconContainer:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.switchIcon {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition-smooth);
-}
-
-.active {
-  border-color: var(--accent-cyan);
-  background: rgba(62, 200, 247, 0.1);
-  box-shadow: 0 0 20px rgba(62, 200, 247, 0.3);
-}
-
-.active .switchIcon {
-  filter: brightness(1.1) saturate(1.2);
-}
-
-.inactive {
-  filter: brightness(0.6) grayscale(0.3);
-}
-
-.switchIndicator {
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary-purple), var(--accent-cyan));
-  border-radius: 3px;
-  transition: var(--transition-smooth);
-}
-
-/* Botón CTA premium */
-.buyButton {
-  position: relative;
-  background: linear-gradient(135deg, #672E92 0%, #A47EB9 100%);
-  color: white;
-  padding: 0.875rem 2rem;
-  border-radius: 16px;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-  font-size: 0.95rem;
-  transition: var(--transition-smooth);
-  border: 2px solid rgba(164, 126, 185, 0.4);
-  box-shadow: 
-    0 4px 20px rgba(103, 46, 146, 0.4),
-    0 0 30px rgba(103, 46, 146, 0.2) inset;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.buyButton:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 
-    0 8px 30px rgba(62, 200, 247, 0.6),
-    0 0 40px rgba(62, 200, 247, 0.3) inset;
-  background: linear-gradient(135deg, #3EC8F7 0%, #672E92 100%);
-  border-color: rgba(62, 200, 247, 0.6);
-}
-
-.buttonText {
-  position: relative;
-  z-index: 2;
-  transition: var(--transition-fast);
-}
-
-.buttonShine {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transform: translateX(-100%) translateY(-100%) rotate(45deg);
-  transition: transform 0.6s ease;
-  pointer-events: none;
-}
-
-.buyButton:hover .buttonShine {
-  transform: translateX(100%) translateY(100%) rotate(45deg);
-}
-
-.desktopOnly {
-  display: block;
-}
-
-.mobileOnly {
-  display: none;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
+@keyframes dropdownFadeIn {
   from {
     opacity: 0;
     transform: translateY(-10px);
@@ -589,167 +248,371 @@
   }
 }
 
-@keyframes slideDown {
+.dropdownItem {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  color: white;
+  border: none;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFB638;
+}
+
+.dropdownItem.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropdownItem.disabled:hover {
+  background: transparent;
+  color: white;
+}
+
+/* ========== BOTÓN HAMBURGUESA ========== */
+.hamburgerButton {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  margin-left: 1rem;
+}
+
+.hamburgerLine {
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburgerButton:hover .hamburgerLine {
+  background: #FF7A45;
+}
+
+/* Animación de hamburguesa a X */
+.hamburgerLine:first-child.hamburgerLineActive {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.hamburgerLine:nth-child(2).hamburgerLineActive {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.hamburgerLine:last-child.hamburgerLineActive {
+  transform: rotate(-45deg) translateY(-10px);
+}
+
+/* ========== MENÚ MÓVIL OVERLAY ========== */
+.mobileMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: overlayFadeIn 0.3s ease;
+  overflow-y: auto;
+}
+
+@keyframes overlayFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-100%);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-/* Responsive Design Mejorado */
-@media (max-width: 900px) {
-  .navbar {
-    padding: 1rem 1.5rem;
-  }
+.mobileMenuContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  animation: menuSlideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
 
+@keyframes menuSlideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ========== BOTÓN CERRAR ========== */
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1002;
+}
+
+.closeButton:hover {
+  background: rgba(255, 122, 69, 0.2);
+  border-color: #FF7A45;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.closeIcon {
+  color: white;
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 300;
+  transition: color 0.3s ease;
+}
+
+.closeButton:hover .closeIcon {
+  color: #FF7A45;
+}
+
+/* ========== NAVEGACIÓN MÓVIL ========== */
+.mobileNavMenu {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
+  width: 100%;
+}
+
+.mobileNavItem {
+  margin: 0;
+  padding: 0;
+}
+
+.mobileNavLink {
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileNavLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 69, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.mobileNavLink:hover::before {
+  left: 100%;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink.activeLink {
+  background: rgba(255, 122, 69, 0.2);
+  border-color: #FF7A45;
+  color: #FF7A45;
+  transform: translateX(10px);
+}
+
+/* ========== BOTÓN CONTACT MÓVIL ========== */
+.mobileContactButton {
+  width: 100%;
+  background: linear-gradient(135deg, #2BC7FF, #F5C15C);
+  color: #1A1A1A;
+  padding: 1.25rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 10px 30px rgba(43, 199, 255, 0.3);
+}
+
+.mobileContactButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(43, 199, 255, 0.5);
+}
+
+/* ========== DROPDOWNS MÓVIL ========== */
+.mobileDropdowns {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.mobileDropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+}
+
+.mobileDropdownLabel {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mobileLanguageButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mobileLangButton {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobileLangButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.mobileLangButton.mobileLangButtonActive {
+  background: #FF7A45;
+  border-color: #FF7A45;
+  color: white;
+}
+
+.mobileLangButton.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mobileLangButton.disabled:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
   .navMenu {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background: rgba(10, 10, 15, 0.98);
-    backdrop-filter: blur(25px) saturate(200%);
-    -webkit-backdrop-filter: blur(25px) saturate(200%);
-    flex-direction: column;
-    width: 100%;
+    gap: 2rem;
+  }
+
+  .navContainer {
+    gap: 1.5rem;
+    padding: 0.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Ocultar elementos desktop */
+  .navMenu {
     display: none;
-    padding: 2rem 1.5rem;
-    border-bottom: 1px solid rgba(37, 99, 235, 0.3);
-    box-shadow: var(--shadow-heavy);
-    height: auto;
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    gap: 0;
   }
 
-  .navMenu.active {
-    display: flex;
-    animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  .contactButton {
+    display: none;
   }
 
-  .navItem {
-    text-align: center;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    width: 100%;
+  .dropdownGroup {
+    display: none;
   }
 
-  .navItem:last-child {
-    border-bottom: none;
-  }
-
-  .navLink {
-    font-size: 1.1rem;
-    padding: 1rem 1.5rem;
-    width: 100%;
-    display: block;
-    border-radius: 12px;
-    margin: 0 auto;
-    max-width: 300px;
-  }
-
-  .hamburger {
+  /* Mostrar botón hamburguesa */
+  .hamburgerButton {
     display: flex;
   }
 
-  .socialIconsGroup {
-    display: none;
-  }
-
-  .countrySwitch {
-    padding: 0.375rem;
-    gap: 0.375rem;
-  }
-
-  .switchIconContainer {
-    width: 32px;
-    height: 32px;
-  }
-
-  .buyButton {
-    width: auto;
-    text-align: center;
-    margin: 1rem auto 0;
-    display: block;
-    max-width: 250px;
-    padding: 1rem 1.5rem;
-  }
-
-  .logopic {
-    width: 120px;
-    height: 3rem;
-  }
-
-  .desktopOnly {
-    display: none;
-  }
-
-  .mobileOnly {
-    display: block;
-  }
-
-  /* Mostrar botón en móvil dentro del menú */
-  .navMenu .buyButton {
-    display: block;
-    margin-top: 2rem;
-  }
-
-  /* Estilos específicos para el item de login en móvil */
-  .mobileLoginItem {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem !important;
-    border-top: 1px solid rgba(122, 229, 130, 0.2) !important;
-    border-bottom: none !important;
-  }
-
-  .mobileLoginButton {
-    width: 80%;
-    max-width: 280px;
-    margin: 0 auto;
-    display: block;
-    text-align: center;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    transform: none;
-    transition: var(--transition-smooth);
-  }
-
-  .mobileLoginButton:hover {
-    transform: translateY(-2px) scale(1.02);
+  .navContainer {
+    gap: 1rem;
+    padding: 0.6rem 1.25rem;
   }
 }
 
 @media (max-width: 480px) {
   .navbar {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 15px;
+  }
+
+  .navContainer {
+    padding: 0.5rem 1rem;
   }
 
   .logopic {
-    width: 100px;
-    height: 2.5rem;
+    height: 35px;
   }
 
-  .navMenu {
-    padding: 1.5rem 1rem;
+  .mobileNavLink {
+    font-size: 1.5rem;
+    padding: 0.85rem;
   }
 
-  .navLink {
-    font-size: 1rem;
-    padding: 0.875rem 1rem;
+  .mobileContactButton {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
   }
 
-  .countrySwitch {
-    padding: 0.25rem;
-    gap: 0.25rem;
-  }
-
-  .switchIconContainer {
-    width: 28px;
-    height: 28px;
+  .mobileMenuContent {
+    padding: 1.5rem;
   }
 }

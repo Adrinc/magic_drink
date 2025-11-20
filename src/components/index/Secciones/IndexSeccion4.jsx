@@ -74,48 +74,51 @@ const IndexSeccion4 = () => {
           <button className={styles.seeMoreBtn}>{t.header.seeMore}</button>
         </div>
 
-        {/* Carrusel 1: Derecha → Izquierda (Rápido) */}
-        <div className={styles.carouselContainer}>
-          <div 
-            className={`${styles.carouselTrack} ${styles.rowOne} ${pausedRow === 1 ? styles.paused : ''}`}
-            onMouseEnter={() => setPausedRow(1)}
-            onMouseLeave={() => setPausedRow(null)}
-          >
-            {duplicatedRowOne.map((image, index) => (
-              <div key={`row1-${index}`} className={styles.imageCard}>
-                <img src={image} alt={`Story ${index + 1}`} className={styles.image} />
-              </div>
-            ))}
+        {/* Contenedor 3D con perspectiva + skew */}
+        <div className={styles.carouselsWrapper}>
+          {/* Carrusel 1: Derecha → Izquierda (Rápido) */}
+          <div className={styles.carouselContainer}>
+            <div 
+              className={`${styles.carouselTrack} ${styles.rowOne} ${pausedRow === 1 ? styles.paused : ''}`}
+              onMouseEnter={() => setPausedRow(1)}
+              onMouseLeave={() => setPausedRow(null)}
+            >
+              {duplicatedRowOne.map((image, index) => (
+                <div key={`row1-${index}`} className={styles.imageCard}>
+                  <img src={image} alt={`Story ${index + 1}`} className={styles.image} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Carrusel 2: Izquierda → Derecha (Medio) */}
-        <div className={styles.carouselContainer}>
-          <div 
-            className={`${styles.carouselTrack} ${styles.rowTwo} ${pausedRow === 2 ? styles.paused : ''}`}
-            onMouseEnter={() => setPausedRow(2)}
-            onMouseLeave={() => setPausedRow(null)}
-          >
-            {duplicatedRowTwo.map((image, index) => (
-              <div key={`row2-${index}`} className={styles.imageCard}>
-                <img src={image} alt={`Story ${index + 1}`} className={styles.image} />
-              </div>
-            ))}
+          {/* Carrusel 2: Izquierda → Derecha (Medio) */}
+          <div className={styles.carouselContainer}>
+            <div 
+              className={`${styles.carouselTrack} ${styles.rowTwo} ${pausedRow === 2 ? styles.paused : ''}`}
+              onMouseEnter={() => setPausedRow(2)}
+              onMouseLeave={() => setPausedRow(null)}
+            >
+              {duplicatedRowTwo.map((image, index) => (
+                <div key={`row2-${index}`} className={styles.imageCard}>
+                  <img src={image} alt={`Story ${index + 1}`} className={styles.image} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Carrusel 3: Derecha → Izquierda (Lento) */}
-        <div className={styles.carouselContainer}>
-          <div 
-            className={`${styles.carouselTrack} ${styles.rowThree} ${pausedRow === 3 ? styles.paused : ''}`}
-            onMouseEnter={() => setPausedRow(3)}
-            onMouseLeave={() => setPausedRow(null)}
-          >
-            {duplicatedRowThree.map((image, index) => (
-              <div key={`row3-${index}`} className={styles.imageCard}>
-                <img src={image} alt={`Story ${index + 1}`} className={styles.image} />
-              </div>
-            ))}
+          {/* Carrusel 3: Derecha → Izquierda (Lento) */}
+          <div className={styles.carouselContainer}>
+            <div 
+              className={`${styles.carouselTrack} ${styles.rowThree} ${pausedRow === 3 ? styles.paused : ''}`}
+              onMouseEnter={() => setPausedRow(3)}
+              onMouseLeave={() => setPausedRow(null)}
+            >
+              {duplicatedRowThree.map((image, index) => (
+                <div key={`row3-${index}`} className={styles.imageCard}>
+                  <img src={image} alt={`Story ${index + 1}`} className={styles.image} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

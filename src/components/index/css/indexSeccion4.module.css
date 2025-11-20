@@ -9,9 +9,73 @@
   overflow: hidden;
 }
 
+/* Esfera radial gris en el centro */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1500px;
+  height: 1500px;
+  background: radial-gradient(
+    circle at center,
+    rgb(80, 80, 80) 0%,
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(40, 40, 40, 0.2) 40%,
+    rgba(30, 30, 30, 0.12) 60%,
+    #0a0a0a03 100%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(40px);
+}
+
 .wrapper {
   max-width: 100%;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ========== Contenedor con Overlay para Carruseles ========== */
+.carouselsOverlay {
+  position: relative;
+  width: 100%;
+  
+}
+
+/* Fade Masks solo sobre los carruseles */
+.carouselsOverlay::before,
+.carouselsOverlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 450px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.carouselsOverlay::before {
+  left: 0;
+  background: linear-gradient(to right, 
+    #0A0A0A 0%, 
+    #0A0A0A 15%, 
+    rgba(10, 10, 10, 0.8) 50%, 
+    rgba(10, 10, 10, 0.3) 80%, 
+    rgba(10, 10, 10, 0) 100%);
+}
+
+.carouselsOverlay::after {
+  right: 0;
+  background: linear-gradient(to left, 
+    #0A0A0A 0%, 
+    #0A0A0A 15%, 
+    rgba(10, 10, 10, 0.8) 50%, 
+    rgba(10, 10, 10, 0.3) 80%, 
+    rgba(10, 10, 10, 0) 100%);
 }
 
 /* ========== 3D Container (Plano Inclinado) ========== */
@@ -21,12 +85,12 @@
   /* Perspectiva 3D + Skew para efecto de plano inclinado */
   transform: perspective(1200px) skewX(4deg) skewY(4deg);
   transform-style: preserve-3d;
-  padding: 2rem 0;
+  padding: 6rem 0;
 }
 
 /* ========== Header ========== */
 .header {
-  max-width: 1400px;
+  max-width: 1800px;
   margin: 0 auto 6rem;
   padding: 0 2rem;
   display: flex;
@@ -82,8 +146,9 @@
 .carouselContainer {
   position: relative;
   width: 100%;
-  overflow: hidden;
+ /*  overflow: hidden; */
   margin-bottom: 2rem;
+
 }
 
 /* ========== Carousel Tracks con Animaciones Parallax ========== */
@@ -91,6 +156,9 @@
   display: flex;
   gap: 24px;
   width: fit-content;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .carouselTrack.paused {
@@ -99,38 +167,40 @@
 
 /* ROW 1: Derecha → Izquierda (Rápido) */
 .rowOne {
-  animation: scrollRight 30s linear infinite;
+  animation: scrollRight 65s linear infinite;
   opacity: 1;
-  transform: scale(1);
 }
 
 /* ROW 2: Izquierda → Derecha (Medio - efecto inverso) */
 .rowTwo {
-  animation: scrollLeft 45s linear infinite;
+  animation: scrollLeft 85s linear infinite;
   opacity: 0.95;
-  transform: scale(0.98);
 }
 
 /* ROW 3: Derecha → Izquierda (Lento - más profundidad) */
 .rowThree {
-  animation: scrollRight 60s linear infinite;
+  animation: scrollRight 90s linear infinite;
   opacity: 0.9;
-  transform: scale(0.96);
 }
 
-/* ========== Keyframes ========== */
+/* Profundidad mediante scale en los contenedores (no en los tracks animados) */
+.carouselContainer:nth-child(1) { transform: scale(1); }
+.carouselContainer:nth-child(2) { transform: scale(0.98); }
+.carouselContainer:nth-child(3) { transform: scale(0.96); }
+
+/* ========== Keyframes (ajustados para compensar el gap) ========== */
 @keyframes scrollRight {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% - 10px));
   }
 }
 
 @keyframes scrollLeft {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-50% - 10px));
   }
   100% {
     transform: translateX(0);
@@ -140,19 +210,19 @@
 /* ========== Image Cards ========== */
 .imageCard {
   position: relative;
-  width: 500px;
-  height: 320px;
+  width: 420px;
+  height: 280px;
   border-radius: 20px;
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+/*   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); */
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
 }
 
 .imageCard:hover {
   transform: scale(1.05);
-  box-shadow: 0 15px 50px rgba(43, 199, 255, 0.3);
+  box-shadow: 0 1px 10px rgba(43, 199, 255, 0.3);
   z-index: 10;
 }
 
@@ -208,8 +278,8 @@
   }
 
   .imageCard {
-    width: 420px;
-    height: 280px;
+    width: 360px;
+    height: 240px;
   }
 
   .carouselTrack {
@@ -222,15 +292,37 @@
 
   /* Ajustar velocidades en tablet */
   .rowOne {
-    animation-duration: 35s;
+    animation-duration: 55s;
   }
 
   .rowTwo {
-    animation-duration: 50s;
+    animation-duration: 75s;
   }
 
   .rowThree {
-    animation-duration: 65s;
+    animation-duration: 95s;
+  }
+
+  /* Fade masks fortalecidos en tablet */
+  .carouselsOverlay::before,
+  .carouselsOverlay::after {
+    width: 250px;
+  }
+
+  .carouselsOverlay::before {
+    background: linear-gradient(to right, 
+      #0A0A0A 0%, 
+      #0A0A0A 20%, 
+      rgba(10, 10, 10, 0.7) 50%, 
+      rgba(10, 10, 10, 0) 100%);
+  }
+
+  .carouselsOverlay::after {
+    background: linear-gradient(to left, 
+      #0A0A0A 0%, 
+      #0A0A0A 20%, 
+      rgba(10, 10, 10, 0.7) 50%, 
+      rgba(10, 10, 10, 0) 100%);
   }
 }
 
@@ -241,14 +333,31 @@
     padding: 5rem 0 2rem;
   }
 
+  /* Esfera radial más pequeña en móvil */
+  .section::before {
+    width: 300px;
+    height: 300px;
+  }
+
   .header {
     padding: 0 1.5rem;
     margin-bottom: 3rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    max-width: 100%;
   }
 
   .imageCard {
-    width: 340px;
-    height: 240px;
+    width: 300px;
+    height: 200px;
   }
 
   .carouselTrack {
@@ -261,26 +370,54 @@
 
   /* Velocidades más lentas en móvil */
   .rowOne {
-    animation-duration: 40s;
+    animation-duration: 60s;
   }
 
   .rowTwo {
-    animation-duration: 55s;
+    animation-duration: 80s;
   }
 
   .rowThree {
-    animation-duration: 70s;
+    animation-duration: 100s;
   }
+
+  /* Fade masks suaves en móvil (no tan oscuros) */
+  .carouselsOverlay::before,
+  .carouselsOverlay::after {
+    width: 100px;
+  }
+
+  .carouselsOverlay::before {
+    background: linear-gradient(to right, 
+      #0A0A0A 0%, 
+      rgba(10, 10, 10, 0.8) 30%, 
+      rgba(10, 10, 10, 0.5) 60%, 
+      rgba(10, 10, 10, 0.2) 85%, 
+      transparent 100%);
+  }
+
+  .carouselsOverlay::after {
+    background: linear-gradient(to left, 
+      #0A0A0A 0%, 
+      rgba(10, 10, 10, 0.8) 30%, 
+      rgba(10, 10, 10, 0.5) 60%, 
+      rgba(10, 10, 10, 0.2) 85%, 
+      transparent 100%);
+  }
+
+  
 }
 
 /* Small mobile */
 @media (max-width: 480px) {
   .title {
     font-size: 2rem;
+    text-align: center;
   }
 
   .subtitle {
     font-size: 0.875rem;
+    text-align: center;
   }
 
   .seeMoreBtn {
@@ -292,6 +429,12 @@
     width: 280px;
     height: 200px;
     border-radius: 16px;
+  }
+
+  /* Esfera radial aún más pequeña en móviles pequeños */
+  .section::before {
+    width: 100px;
+    height: 100px;
   }
 }
 

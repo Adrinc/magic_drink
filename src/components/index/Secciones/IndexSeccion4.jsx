@@ -39,7 +39,7 @@ const IndexSeccion4 = () => {
     "https://images.unsplash.com/photo-1557853197-aefb550b6fdc?w=600&h=400&q=80", // Gradient design
     "https://images.unsplash.com/photo-1558655146-d09347e92766?w=600&h=400&q=80", // Office desk
     "https://images.unsplash.com/photo-1586717799252-bd134ad00e26?w=600&h=400&q=80", // Device mockups
-    "https://images.unsplash.com/photo-1610465299996-e4558eecb4d7?w=600&h=400&q=80", // MacBook Air
+    "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=400&q=80", // Workspace
     "https://images.unsplash.com/photo-1555421689-d68471e189f2?w=600&h=400&q=80", // Code on screen
     "https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=600&h=400&q=80", // Modern workspace
     "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&h=400&q=80", // MacBook setup
@@ -74,9 +74,11 @@ const IndexSeccion4 = () => {
           <button className={styles.seeMoreBtn}>{t.header.seeMore}</button>
         </div>
 
-        {/* Contenedor 3D con perspectiva + skew */}
-        <div className={styles.carouselsWrapper}>
-          {/* Carrusel 1: Derecha → Izquierda (Rápido) */}
+        {/* Contenedor con overlay para fade masks */}
+        <div className={styles.carouselsOverlay}>
+          {/* Contenedor 3D con perspectiva + skew */}
+          <div className={styles.carouselsWrapper}>
+            {/* Carrusel 1: Derecha → Izquierda (Rápido) */}
           <div className={styles.carouselContainer}>
             <div 
               className={`${styles.carouselTrack} ${styles.rowOne} ${pausedRow === 1 ? styles.paused : ''}`}
@@ -120,6 +122,8 @@ const IndexSeccion4 = () => {
               ))}
             </div>
           </div>
+        </div>
+        {/* Cierre de carouselsOverlay */}
         </div>
       </div>
     </section>

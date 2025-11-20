@@ -3,7 +3,7 @@
 /* ========== Section Container ========== */
 .section {
   position: relative;
-  min-height: 75vh;
+  min-height: 70vh;
   background: #0a0a0a;
   display: flex;
   align-items: center;

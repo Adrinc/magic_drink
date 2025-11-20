@@ -258,9 +258,8 @@
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(232, 228, 240, 0.3) 40%,
-    rgba(232, 228, 240, 0.7) 70%,
-    #E8E4F0 100%  /* Color exacto de IndexSeccion4 */
+    #0a0a0a 50%,
+    #0a0a0a 100%  /* Color exacto de IndexSeccion4 */
   );
   z-index: 2;
   pointer-events: none;

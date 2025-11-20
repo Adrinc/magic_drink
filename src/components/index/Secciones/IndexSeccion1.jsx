@@ -74,7 +74,7 @@ const IndexSeccion1 = () => {
         </div>
 
         {/* Degradado de Transición a Siguiente Sección (BLANCO) */}
-       {/*  <div className={styles.transitionGradient}></div> */}
+        <div className={styles.transitionGradient}></div>
 
         {/* Scroll Indicator */}
         <div className={styles.scrollIndicator}>

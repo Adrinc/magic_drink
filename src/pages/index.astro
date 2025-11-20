@@ -2,53 +2,20 @@
 import LayoutBasic from '../layouts/LayoutBasic.astro';
 
 // NUEVA ESTRUCTURA 11 SECCIONES (Problema→Solución→Prueba)
-import IndexSeccion1 from '../components/index/Secciones/IndexSeccion1.jsx';  // Hero
-import IndexSeccion2 from '../components/index/Secciones/IndexSeccion2.jsx';  // ¿Por Qué Elegirnos? (6 razones)
-import IndexSeccion3 from '../components/index/Secciones/IndexSeccion3.jsx';  // Resultados Garantizados (métricas + garantía)
-import IndexSeccion4 from '../components/index/Secciones/IndexSeccion4.jsx';  // Servicios Integrales (6 servicios)
-import IndexSeccionIA from '../components/index/Secciones/IndexSeccionIA.jsx'; // ⚡ IA que Potencia Todo (NUEVA)
-import IndexSeccion5 from '../components/index/Secciones/IndexSeccion5.jsx';  // Paquetes (3 planes)
-import IndexSeccion6 from '../components/index/Secciones/IndexSeccion6.jsx';  // Proceso (6 pasos)
-import IndexSeccion7 from '../components/index/Secciones/IndexSeccion7.jsx';  // Video Showcase
-import IndexSeccion8 from '../components/index/Secciones/IndexSeccion8.jsx';  // Certificaciones (partners)
-import IndexSeccion9 from '../components/index/Secciones/IndexSeccion9.jsx';  // Testimonios + Stats
-import IndexSeccion10 from '../components/index/Secciones/IndexSeccion10.jsx'; // FAQs
-import IndexSeccion11 from '../components/index/Secciones/IndexSeccion11.jsx'; // CTA Final + Newsletter
-
+import IndexSeccion1 from '../components/index/Secciones/IndexSeccion1.jsx'; 
+import IndexSeccion2 from '../components/index/Secciones/IndexSeccion2.jsx'; 
+import IndexSeccion3 from '../components/index/Secciones/IndexSeccion3.jsx';  
 ---
 
 <LayoutBasic title="Energy Media - Creatividad multicultural + performance digital" showFooter={true}>
     <!-- SECCIÓN 1: HERO - "Transforma tu Negocio" -->
     <IndexSeccion1 transition:persist client:only/>
-    
-    <!-- SECCIÓN 2: SERVICIOS INTEGRALES (6 servicios con IA + Web/Apps) - CLARO ✅ -->
-    <IndexSeccion4 transition:persist client:only/>
-    
-    <!-- SECCIÓN 3: RESULTADOS GARANTIZADOS (métricas + garantía 90 días) - CLARO ✅ -->
+
+
+    <IndexSeccion2 transition:persist client:only/>
     <IndexSeccion3 transition:persist client:only/>
+
     
-    <!-- SECCIÓN 4: 🤖 IA QUE POTENCIA TODO (NUEVA - Bloque Tech) - OSCURO ⭐ -->
-    <IndexSeccionIA transition:persist client:only/>
-    
-    <!-- SECCIÓN 5: PAQUETES & SOLUCIONES (3 planes con pricing MXN) - OSCURO ⭐ -->
-    <IndexSeccion5 transition:persist client:only/>
-    
-    <!-- SECCIÓN 6: PROCESO DE TRABAJO (6 pasos) - OSCURO ⭐ -->
-    <IndexSeccion6 transition:persist client:only/>
-    
-    <!-- SECCIÓN 7: 🎬 VIDEO SHOWCASE - CLARO ✅ -->
-    <IndexSeccion7 transition:persist client:only/>
-    
-    <!-- SECCIÓN 8: CERTIFICACIONES & PARTNERS - CLARO ✅ -->
-    <IndexSeccion8 transition:persist client:only/>
-    
-    <!-- SECCIÓN 9: TESTIMONIOS + ESTADÍSTICAS - CLARO ✅ -->
-    <IndexSeccion9 transition:persist client:only/>
-    
-    <!-- SECCIÓN 10: FAQS - PREGUNTAS FRECUENTES - CLARO ✅ -->
-    <IndexSeccion10 transition:persist client:only/>
-    
-    <!-- SECCIÓN 11: CTA FINAL + OFERTA ESPECIAL - OSCURO ⭐  s-->
-    <IndexSeccion11 transition:persist client:only/>
+
 </LayoutBasic>
 

@@ -1,367 +1,228 @@
-﻿/* indexSeccion2.module.css - ¿POR QUÉ ELEGIRNOS? - ULTRA PREMIUM */
+﻿/* indexSeccion2.module.css - OUR STORY SECTION */
 
+/* ========== Section Container ========== */
 .section {
   position: relative;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #0A0612 0%, #1A1024 50%, #2A1434 100%);
-  padding: 10rem 2rem;
-  overflow: hidden;
-}
-
-/* ========== Fondo Animado ========== */
-.section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(103, 46, 146, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 60%, rgba(62, 200, 247, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(245, 104, 49, 0.08) 0%, transparent 50%);
-  animation: float 20s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
-}
-
-/* ========== Partículas Flotantes ========== */
-.section::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.3), transparent),
-    radial-gradient(2px 2px at 60% 70%, rgba(62, 200, 247, 0.4), transparent),
-    radial-gradient(1px 1px at 50% 50%, rgba(103, 46, 146, 0.3), transparent),
-    radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.2), transparent);
-  background-size: 200px 200px, 300px 300px, 150px 150px, 250px 250px;
-  animation: sparkle 30s linear infinite;
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-@keyframes sparkle {
-  0% { background-position: 0 0, 0 0, 0 0, 0 0; }
-  100% { background-position: 200px 200px, -300px 300px, 150px -150px, -250px 250px; }
+  min-height: 75vh;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(4rem, 8vw, 8rem) 2rem;
+  overflow-x: hidden;
 }
 
 .container {
-  max-width: 1400px;
+  width: 100%;
+  max-width: 1800px;
   margin: 0 auto;
-  position: relative;
-  z-index: 1;
 }
 
-/* ========== Header Épico ========== */
-.header {
-  text-align: center;
-  margin-bottom: 6rem;
-  opacity: 0;
-  transform: translateY(40px);
+/* ========== Content Card ========== */
+.content {
+  background: linear-gradient(135deg, #151515 0%, #0d0d0d 100%);
+  border-radius: 32px;
+  padding: clamp(3rem, 6vw, 5rem);
+  box-shadow: 
+    0 20px 60px #151515,
+    0 8px 16px #0d0d0d;
+  display: flex;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+  border: 1.25px solid rgba(255, 255, 255, 0.124);
 }
 
-.header.fadeInUp {
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, rgba(103, 46, 146, 0.2), rgba(62, 200, 247, 0.2));
-  border: 1px solid rgba(103, 46, 146, 0.3);
-  border-radius: 50px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #3EC8F7;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 2rem;
-  backdrop-filter: blur(10px);
+/* ========== Left Column ========== */
+.leftColumn {
+  flex: 1;
+  min-width: 0;
 }
 
 .title {
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  font-weight: 800;
-  background: linear-gradient(135deg, #FFFFFF 0%, #A47EB9 100%);
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(4rem, 6vw, 5.5rem);
+  font-weight: 700;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(211, 211, 211, 0) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  transform: scaleY(0.9);
+  transform-origin: center;
+}
+
+.description {
+  margin-bottom: 3.5rem;
+}
+
+.paragraph {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.paragraphHighlight {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.75;
+  background: linear-gradient(135deg,#F5C15C, #2BC7FF, #F5C15C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 1.5rem;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.subtitle {
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 400;
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* ========== Reasons Grid Premium ========== */
-.reasonsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  perspective: 1000px;
-}
-
-.reasonCard {
-  position: relative;
-  padding: 3rem 2.5rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
-  backdrop-filter: blur(20px);
-  border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.3),
-    0 8px 16px rgba(103, 46, 146, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  overflow: hidden;
-}
-
-/* Glow Border Top Animado */
-.reasonCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #3EC8F7, #672E92, transparent);
-  background-size: 200% 100%;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.reasonCard:hover::before {
-  transform: scaleX(1);
-}
-
-/* Gradientes únicos por card */
-.reasonCard:nth-child(1) {
-  background: linear-gradient(135deg, rgba(103, 46, 146, 0.08), rgba(103, 46, 146, 0.02));
-}
-
-.reasonCard:nth-child(2) {
-  background: linear-gradient(135deg, rgba(62, 200, 247, 0.08), rgba(62, 200, 247, 0.02));
-}
-
-.reasonCard:nth-child(3) {
-  background: linear-gradient(135deg, rgba(245, 104, 49, 0.08), rgba(245, 104, 49, 0.02));
-}
-
-.reasonCard:nth-child(4) {
-  background: linear-gradient(135deg, rgba(250, 176, 61, 0.08), rgba(250, 176, 61, 0.02));
-}
-
-.reasonCard:nth-child(5) {
-  background: linear-gradient(135deg, rgba(126, 43, 127, 0.08), rgba(126, 43, 127, 0.02));
-}
-
-.reasonCard:nth-child(6) {
-  background: linear-gradient(135deg, rgba(239, 29, 37, 0.08), rgba(239, 29, 37, 0.02));
-}
-
-.reasonCard:hover {
-  transform: translateY(-15px) scale(1.02);
-  border-color: rgba(103, 46, 146, 0.3);
-  box-shadow: 
-    0 30px 80px rgba(0, 0, 0, 0.4),
-    0 15px 30px rgba(103, 46, 146, 0.3),
-    0 0 40px rgba(62, 200, 247, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-/* ========== Number Badge Premium ========== */
-.numberBadge {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(103, 46, 146, 0.2), rgba(62, 200, 247, 0.2));
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #FFFFFF;
-  backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.reasonCard:hover .numberBadge {
-  transform: scale(1.2) rotate(15deg);
-  background: linear-gradient(135deg, rgba(103, 46, 146, 0.4), rgba(62, 200, 247, 0.4));
-  box-shadow: 0 0 30px rgba(62, 200, 247, 0.6);
-}
-
-/* ========== Icon Container Épico ========== */
-.iconContainer {
-  position: relative;
-  width: 90px;
-  height: 90px;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 24px;
-  background: linear-gradient(135deg, rgba(103, 46, 146, 0.15), rgba(62, 200, 247, 0.15));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  overflow: hidden;
-}
-
-/* Glow interno */
-.iconContainer::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(62, 200, 247, 0.3), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.reasonCard:hover .iconContainer::before {
-  opacity: 1;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.2); opacity: 0.6; }
-}
-
-.reasonCard:hover .iconContainer {
-  transform: scale(1.1) rotate(-5deg);
-  background: linear-gradient(135deg, rgba(103, 46, 146, 0.25), rgba(62, 200, 247, 0.25));
-  box-shadow: 0 0 40px rgba(62, 200, 247, 0.4);
-}
-
-.icon {
-  font-size: 3rem;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  filter: drop-shadow(0 0 10px rgba(62, 200, 247, 0.5));
-}
-
-.reasonCard:hover .icon {
-  transform: scale(1.15) rotateY(360deg);
-}
-
-/* ========== Content Premium ========== */
-.reasonTitle {
-  font-size: 1.5rem;
+  padding-left: 1.5rem;
+  border-left: 4px solid #3DBBFF;
   font-weight: 700;
-  color: #FFFFFF;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-  transition: color 0.3s ease;
 }
 
-.reasonCard:hover .reasonTitle {
-  color: #3EC8F7;
-  text-shadow: 0 0 20px rgba(62, 200, 247, 0.5);
+/* ========== Stats Grid ========== */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
 }
 
-.reasonDescription {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.75;
-  transition: color 0.3s ease;
+.statCard {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
 }
 
-.reasonCard:hover .reasonDescription {
-  color: rgba(255, 255, 255, 0.9);
+.statLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* ========== Animations ========== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.statNumber {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(212, 212, 212, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transform: scaleY(0.9);
+  transform-origin: center;
 }
 
-/* ========== Responsive Ultra ========== */
+/* ========== Right Column ========== */
+.rightColumn {
+  flex: 0 0 auto;
+  width: clamp(300px, 35vw, 700px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rainbowImage {
+  width: 85%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 15px 40px rgba(61, 187, 255, 0.15));
+}
+
+/* ========== Responsive ========== */
 @media (max-width: 1024px) {
-  .reasonsGrid {
-    grid-template-columns: repeat(2, 1fr);
+  .content {
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .rightColumn {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 8vw, 4.5rem);
+    margin-bottom: 2rem;
+  }
+
+  .statsGrid {
     gap: 2rem;
   }
 }
 
 @media (max-width: 768px) {
   .section {
-    padding: 6rem 1.5rem;
+    padding: clamp(3rem, 6vw, 4rem) 1.5rem;
   }
 
-  .header {
-    margin-bottom: 4rem;
+  .content {
+    padding: clamp(2.5rem, 5vw, 3rem) 1.5rem;
+    border-radius: 24px;
+  }
+
+  .title {
+    font-size: clamp(3rem, 8vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    margin-bottom: 2.5rem;
+  }
+
+  .paragraph,
+  .paragraphHighlight {
+    font-size: 1rem;
+  }
+
+  .paragraphHighlight {
+    padding-left: 1rem;
+    border-left-width: 3px;
+  }
+}
+
+@media (max-width: 600px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .statCard {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .statNumber {
+    font-size: clamp(3rem, 10vw, 4rem);
+  }
+
+  .rainbowImage {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 2rem 1.25rem;
+    gap: 3rem;
   }
 
   .title {
     font-size: 2.5rem;
   }
 
-  .reasonsGrid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .reasonCard {
-    padding: 2.5rem 2rem;
-  }
-
-  .iconContainer {
-    width: 80px;
-    height: 80px;
-  }
-
-  .icon {
+  .statNumber {
     font-size: 2.5rem;
-  }
-
-  .numberBadge {
-    width: 55px;
-    height: 55px;
-    font-size: 1.25rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .section::before,
-  .section::after,
-  .reasonCard::before,
-  .iconContainer::before,
-  * {
-    animation: none !important;
-    transition: none !important;
   }
 }

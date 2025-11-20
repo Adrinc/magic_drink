@@ -32,7 +32,23 @@ export const translationsIndex = {
     },
 
     // ==========================================
-    // SECCIÓN 2: DIFERENCIADORES CLAVE
+    // SECCIÓN 2: OUR STORY
+    // ==========================================
+    ourStory: {
+      title: "Our Story",
+      paragraph1: "Born in San Diego and raised on both sides of the border, Energy Media fuses nearly 40 years of broadcast experience with today's digital precision. We specialize in Digital Marketing, Social Media, and Mobile App Development, powered by our Emmy-winning Creative and Production teams that make brands stand out in a noisy world.",
+      highlightText: "From viral videos to programmatic campaigns, we deliver in-budget solutions that resonate, not evaporate—because connection matters more than clicks.",
+      paragraph2: "Across the U.S. and Mexico, we've helped healthcare, automotive, and consumer brands tell stories with impact, culture, and the unmistakable pulse of Latino energy.",
+      stats: [
+        { label: "YEARS OF EXPERIENCE", number: "39" },
+        { label: "REPEATED CLIENTS", number: "25" },
+        { label: "COMPLETED PROJECTS", number: "475" },
+        { label: "HAPPY CLIENTS", number: "335" }
+      ]
+    },
+
+    // ==========================================
+    // SECCIÓN 3: DIFERENCIADORES CLAVE
     // ==========================================
     differentiators: {
       title: "Por qué Energy Media",
@@ -570,7 +586,23 @@ export const translationsIndex = {
     },
 
     // ==========================================
-    // SECTION 2: WHY CHOOSE US?
+    // SECTION 2: OUR STORY
+    // ==========================================
+    ourStory: {
+      title: "Our Story",
+      paragraph1: "Born in San Diego and raised on both sides of the border, Energy Media fuses nearly 40 years of broadcast experience with today's digital precision. We specialize in Digital Marketing, Social Media, and Mobile App Development, powered by our Emmy-winning Creative and Production teams that make brands stand out in a noisy world.",
+      highlightText: "From viral videos to programmatic campaigns, we deliver in-budget solutions that resonate, not evaporate—because connection matters more than clicks.",
+      paragraph2: "Across the U.S. and Mexico, we've helped healthcare, automotive, and consumer brands tell stories with impact, culture, and the unmistakable pulse of Latino energy.",
+      stats: [
+        { label: "YEARS OF EXPERIENCE", number: "39" },
+        { label: "REPEATED CLIENTS", number: "25" },
+        { label: "COMPLETED PROJECTS", number: "475" },
+        { label: "HAPPY CLIENTS", number: "335" }
+      ]
+    },
+
+    // ==========================================
+    // SECTION 3: WHY CHOOSE US?
     // ==========================================
     whyUs: {
       title: "Why Choose Us?",

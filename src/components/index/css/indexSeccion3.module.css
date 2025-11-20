@@ -1,20 +1,81 @@
-/* indexSeccion3.module.css - OUR SERVICES CAROUSEL */
+/* indexSeccion3.module.css - OUR SERVICES CAROUSEL INFINITO */
 
 /* ========== Section ========== */
 .section {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   background: #0A0A0A;
   padding: 8rem 0 6rem;
   overflow: hidden;
 }
 
-.container {
-  max-width: 100%;
-  position: relative;
+.wrapper {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-/* ========== Fade Masks (Overlays laterales) ========== */
+/* ========== Header ========== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(160, 160, 160, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: scaleY(0.9);
+  transform-origin: center;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.seeMoreBtn {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #2BC7FF, #F5C15C);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(43, 199, 255, 0.3);
+  white-space: nowrap;
+}
+
+.seeMoreBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(43, 199, 255, 0.5);
+}
+
+/* ========== Carousel Container ========== */
+.container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 4rem;
+}
+
+/* Fade masks en los bordes */
 .container::before,
 .container::after {
   content: '';
@@ -36,72 +97,41 @@
   background: linear-gradient(270deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%);
 }
 
-/* ========== Header ========== */
-.header {
-  max-width: 1800px;
-  margin: 0 auto 4rem;
-  padding: 0 2rem;
+/* Track del carrusel con animación infinita CSS */
+.carouselTrack {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 3rem;
+  gap: 24px;
+  width: fit-content;
+  animation: scroll 40s linear infinite;
 }
 
-.title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(3.5rem, 6vw, 5.5rem);
-  font-weight: 700;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(160, 160, 160, 0.7) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  transform: scaleY(0.9);
-  transform-origin: center;
-  margin: 0 0 1rem 0;
+.carouselTrack.paused {
+  animation-play-state: paused;
 }
 
-.subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0;
-  max-width: 600px;
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Se mueve exactamente la mitad porque duplicamos items */
+  }
 }
 
-.seeMoreBtn {
-  padding: 14px 32px;
-  background: linear-gradient(135deg, #2BC7FF, #F5C15C);
-  border: none;
-  border-radius: 50px;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #FFFFFF;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 10px 30px rgba(43, 199, 255, 0.3);
-}
-
-.seeMoreBtn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(43, 199, 255, 0.5);
-}
-
-/* ========== Service Cards ========== */
+/* ========== Service Card ========== */
 .serviceCard {
   position: relative;
+  width: 450px;
   height: 500px;
   border-radius: 24px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
 }
 
 .serviceCard:hover {
   transform: scale(1.05);
-  box-shadow: 0 20px 60px rgba(43, 199, 255, 0.4);
 }
 
 .cardImage {
@@ -112,7 +142,7 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .serviceCard:hover .cardImage {
@@ -125,54 +155,50 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.85) 100%);
-  transition: background 0.3s ease;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 0.85) 100%);
+  transition: background 0.4s ease;
 }
 
 .serviceCard:hover .overlay {
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 0.92) 100%);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0.9) 100%);
 }
 
+/* ========== Card Content ========== */
 .cardContent {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 2rem;
-  z-index: 2;
+  z-index: 5;
 }
 
 .cardTitle {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.5rem, 2vw, 1.875rem);
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
   font-weight: 700;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(200, 200, 200, 0.85) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 0.75rem 0;
+  color: #FFFFFF;
+  margin: 0 0 0.5rem 0;
   line-height: 1.2;
-  transform: scaleY(0.9);
-  transform-origin: center;
 }
 
 .cardTagline {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(0.875rem, 1vw, 1rem);
-  color: rgba(255, 255, 255, 0.75);
-  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
+  margin: 0;
 }
 
-/* ========== Modal ========== */
+/* ========== Modal Overlay ========== */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(10, 10, 10, 0.92);
-  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(8px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -186,21 +212,21 @@
   to { opacity: 1; }
 }
 
-.modal {
+/* ========== Modal Card ========== */
+.modalCard {
   position: relative;
   max-width: 900px;
   width: 100%;
-  background: linear-gradient(135deg, #151515 0%, #0E0E0E 100%);
-  border-radius: 32px;
+  background: #1A1A1A;
+  border-radius: 24px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-  animation: modalSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   max-height: 90vh;
   overflow-y: auto;
 }
 
-@keyframes modalSlideUp {
+@keyframes slideUp {
   from {
     opacity: 0;
     transform: translateY(50px);
@@ -211,50 +237,51 @@
   }
 }
 
-.modalClose {
+/* Close Button */
+.modalCloseBtn {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
+  border: none;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  font-size: 1.5rem;
   color: #FFFFFF;
+  font-size: 1.5rem;
+  border-radius: 50%;
   cursor: pointer;
-  transition: all 0.3s ease;
   z-index: 10;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
 }
 
-.modalClose:hover {
+.modalCloseBtn:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: rotate(90deg);
 }
 
+/* Modal Image */
 .modalImage {
   width: 100%;
-  height: 350px;
+  height: 300px;
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-.modalImage::after {
-  content: '';
+.modalImageOverlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(180deg, transparent 0%, #151515 100%);
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%);
 }
 
+/* Modal Content */
 .modalContent {
   padding: 3rem;
 }
@@ -263,134 +290,186 @@
   font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 3vw, 2.5rem);
   font-weight: 700;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(160, 160, 160, 0.7) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFFFFF;
   margin: 0 0 1rem 0;
   line-height: 1.2;
-  transform: scaleY(0.9);
-  transform-origin: center;
 }
 
 .modalTagline {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-size: 1.25rem;
   background: linear-gradient(135deg, #2BC7FF, #F5C15C);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 500;
   margin: 0 0 2rem 0;
-  line-height: 1.5;
+  font-weight: 600;
 }
 
+/* Modal Bullets */
 .modalBullets {
   list-style: none;
   padding: 0;
   margin: 0 0 2.5rem 0;
 }
 
-.modalBullet {
+.modalBulletItem {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modalBulletItem:last-child {
+  border-bottom: none;
+}
+
+.bulletCheck {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2BC7FF, #F5C15C);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0A0A0A;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+}
+
+.modalBulletItem span {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex: 1;
 }
 
-.modalBullet:last-child {
-  border-bottom: none;
-}
-
-.bulletIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(135deg, #2BC7FF, #F5C15C);
-  border-radius: 50%;
-  color: #FFFFFF;
-  font-size: 0.875rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
+/* Modal CTA */
 .modalCta {
   width: 100%;
   padding: 16px 32px;
-  background: linear-gradient(135deg, #2BC7FF, #F5C15C);
   border: none;
   border-radius: 50px;
+  background: linear-gradient(135deg, #2BC7FF, #F5C15C);
+  color: #FFFFFF;
   font-family: 'Inter', sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
-  color: #FFFFFF;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 10px 30px rgba(43, 199, 255, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(43, 199, 255, 0.3);
 }
 
 .modalCta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(43, 199, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(43, 199, 255, 0.5);
 }
 
 /* ========== Responsive ========== */
+
+/* Tablets */
 @media (max-width: 1024px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
-    text-align: left;
+    gap: 2rem;
   }
 
-  .seeMoreBtn {
-    align-self: flex-start;
+  .title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
   }
 
   .serviceCard {
+    width: 380px;
     height: 450px;
   }
-}
 
-@media (max-width: 768px) {
-  .section {
-    padding: 6rem 0 4rem;
-  }
-
-  .header {
-    margin-bottom: 3rem;
-    padding: 0 1.5rem;
-  }
-
-  .serviceCard {
-    height: 400px;
+  .carouselTrack {
+    gap: 20px;
   }
 
   .modalContent {
     padding: 2rem;
   }
-
-  .modalImage {
-    height: 250px;
-  }
 }
 
-@media (max-width: 480px) {
+/* Mobile */
+@media (max-width: 768px) {
+  .section {
+    padding: 6rem 0 4rem;
+  }
+
+  .wrapper {
+    padding: 0 1.5rem;
+  }
+
+  .container::before,
+  .container::after {
+    width: 100px;
+  }
+
   .serviceCard {
-    height: 350px;
+    width: 320px;
+    height: 400px;
+  }
+
+  .carouselTrack {
+    gap: 16px;
   }
 
   .cardContent {
     padding: 1.5rem;
   }
 
+  .cardTitle {
+    font-size: 1.25rem;
+  }
+
+  .cardTagline {
+    font-size: 0.875rem;
+  }
+
+  .modalImage {
+    height: 200px;
+  }
+
   .modalContent {
     padding: 1.5rem;
+  }
+
+  .modalTitle {
+    font-size: 1.75rem;
+  }
+
+  .modalTagline {
+    font-size: 1rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+  }
+
+  .seeMoreBtn {
+    padding: 12px 24px;
+    font-size: 0.875rem;
+  }
+
+  .serviceCard {
+    width: 280px;
+    height: 360px;
+  }
+
+  .modalCard {
+    border-radius: 16px;
   }
 }

@@ -1,419 +1,184 @@
-/* indexSeccionBanner.module.css - BANNER PARALLAX TECH TRANSITION */
-/* Transición Premium: Blanco (Sec3) → Oscuro (SecIA) */
+/* indexSeccionBanner.module.css - BRANDS CAROUSEL (LOGOS CLIENTES) */
 
-.bannerSection {
+/* ========== Section ========== */
+.section {
   position: relative;
-  width: 100%;
-  min-height: 30vh;
-  overflow: hidden;
-  background: linear-gradient(180deg, #E8E4F0 0%, #1A1024 100%);
-}
-
-/* ========== FONDO PARALLAX ========== */
-.parallaxBg {
-  position: absolute;
-  inset: -10%;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(103, 46, 146, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(62, 200, 247, 0.2) 0%, transparent 50%);
-  will-change: transform;
-  transition: transform 0.1s ease-out;
-}
-
-/* Pattern de circuitos (SVG simulado con CSS) */
-.circuitPattern {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 50px,
-      rgba(103, 46, 146, 0.05) 50px,
-      rgba(103, 46, 146, 0.05) 51px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 50px,
-      rgba(62, 200, 247, 0.05) 50px,
-      rgba(62, 200, 247, 0.05) 51px
-    );
-  background-size: 100px 100px;
-  opacity: 0.6;
-  animation: circuitFlow 20s linear infinite;
-}
-
-@keyframes circuitFlow {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
-}
-
-/* ========== OVERLAY OSCURO ========== */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(232, 228, 240, 0.7) 0%,
-    rgba(26, 16, 36, 0.6) 50%,
-    rgba(26, 16, 36, 0.85) 100%
-  );
-  z-index: 1;
-}
-
-/* ========== SNIPPETS DE CÓDIGO FLOTANTES ========== */
-.codeSnippets {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
+  background: #0A0A0A;
+  padding: 6rem 0;
   overflow: hidden;
 }
 
-.codeSnippet {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  font-family: 'Courier New', monospace;
-  font-size: 0.875rem;
-  color: rgba(62, 200, 247, 0.4);
-  white-space: nowrap;
-  opacity: 0;
-  animation: codeFloat var(--duration) var(--delay) ease-in-out infinite;
-}
-
-@keyframes codeFloat {
-  0%, 100% {
-    opacity: 0;
-    transform: translateY(0) rotate(0deg);
-  }
-  10% {
-    opacity: 0.6;
-  }
-  90% {
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-100px) rotate(5deg);
-  }
-}
-
-/* ========== PARTÍCULAS DE DATOS ========== */
-.dataParticles {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: var(--size);
-  height: var(--size);
-  background: radial-gradient(circle, rgba(62, 200, 247, 0.8), transparent);
-  border-radius: 50%;
-  opacity: 0;
-  animation: particleRise var(--duration) var(--delay) ease-in-out infinite;
-}
-
-@keyframes particleRise {
-  0%, 100% {
-    opacity: 0;
-    transform: translateY(0) scale(0.5);
-  }
-  10% {
-    opacity: 0.7;
-  }
-  90% {
-    opacity: 0.2;
-  }
-  50% {
-    transform: translateY(-150px) scale(1.2);
-  }
-}
-
-/* ========== CONTENIDO CENTRAL ========== */
-.content {
-  position: relative;
-  z-index: 3;
-  max-width: 1000px;
+.wrapper {
+  max-width: 100%;
   margin: 0 auto;
-  padding: 8rem 2rem;
-  text-align: center;
-  color: white;
 }
 
+/* ========== Title ========== */
 .title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #FFFFFF 0%, #3EC8F7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  animation: titleReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  font-family: 'Syne', sans-serif;
+   font-size: clamp(3.5rem, 3vw, 4.5rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin: 0 0 4rem 0;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 
-@keyframes titleReveal {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.subtitle {
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  line-height: 1.7;
-  margin-bottom: 3rem;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: subtitleReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
-  opacity: 0;
-}
-
-@keyframes subtitleReveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========== CTA ========== */
-.ctaContainer {
-  opacity: 0;
-  animation: ctaReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
-}
-
-@keyframes ctaReveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.25rem 3rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 50px;
-  color: white;
-  font-size: 1.125rem;
-  font-weight: 600;
-  text-decoration: none;
-  backdrop-filter: blur(20px);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+/* ========== Carousel Container ========== */
+.container {
   position: relative;
+  width: 50%;
   overflow: hidden;
+  margin-top: 4rem;
+  transform: translateX(50%);
 }
 
-.cta::before {
+/* Fade masks en los bordes */
+.container::before,
+.container::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(62, 200, 247, 0.3), rgba(103, 46, 146, 0.3));
-  transform: translateY(100%);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  z-index: 10;
+  pointer-events: none;
 }
 
-.cta:hover::before {
-  transform: translateY(0);
+.container::before {
+  left: 0;
+  background: linear-gradient(90deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%);
 }
 
-.cta:hover {
-  border-color: white;
-  transform: translateY(-5px);
-  box-shadow: 
-    0 15px 40px rgba(62, 200, 247, 0.3),
-    0 0 60px rgba(62, 200, 247, 0.2);
+.container::after {
+  right: 0;
+  background: linear-gradient(270deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%);
 }
 
-.arrow {
-  font-size: 1.5rem;
-  transition: transform 0.4s ease;
+/* Track del carrusel con animación infinita CSS */
+.carouselTrack {
+  display: flex;
+  gap: 4rem;
+  width: fit-content;
+  animation: scrollLogos 35s linear infinite;
+  padding: 0 2rem;
+}
+
+.carouselTrack.paused {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ========== Logo Card ========== */
+.logoCard {
   position: relative;
-  z-index: 1;
+  width: 180px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
 }
 
-.cta:hover .arrow {
-  transform: translateY(5px);
-  animation: arrowBounce 1s ease-in-out infinite;
+.logoImage {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.7);
+  opacity: 0.6;
+  transition: all 0.4s ease;
 }
 
-@keyframes arrowBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+.logoCard:hover .logoImage {
+  filter: grayscale(0%) brightness(1);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
-/* ========== DEGRADADO DE TRANSICIÓN (Blanco → Oscuro) ========== */
-.transitionGradient {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(26, 16, 36, 0.3) 30%,
-    rgba(26, 16, 36, 0.7) 60%,
-    #1A1024 100%  /* Color exacto de IndexSeccionIA */
-  );
-  z-index: 4;
-  pointer-events: none;
-}
+/* ========== Responsive ========== */
 
-/* ========== LÍNEA DIVISORIA TECH ========== */
-.techDivider {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.dividerLine {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(62, 200, 247, 0.8) 50%,
-    transparent 100%
-  );
-}
-
-.dividerGlow {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(62, 200, 247, 0.4) 50%,
-    transparent 100%
-  );
-  filter: blur(8px);
-  animation: glowPulse 3s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-/* ========== RESPONSIVE ========== */
-
+/* Tablets */
 @media (max-width: 1024px) {
-  .bannerSection {
-    min-height: 60vh;
-  }
-
-  .content {
-    padding: 6rem 2rem;
-  }
-
-  .transitionGradient {
-    height: 150px;
-  }
-}
-
-@media (max-width: 768px) {
-  .bannerSection {
-    min-height: 50vh;
-  }
-
-  .content {
-    padding: 5rem 1.5rem;
+  .section {
+    padding: 5rem 0;
   }
 
   .title {
-    font-size: 2rem;
+    margin: 0 0 3rem 0;
   }
 
-  .subtitle {
-    font-size: 1rem;
+  .carouselTrack {
+    gap: 3rem;
   }
 
-  .cta {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-  }
-
-  .transitionGradient {
-    height: 120px;
-  }
-
-  /* Reducir partículas en mobile */
-  .codeSnippet:nth-child(n+5) {
-    display: none;
-  }
-
-  .particle:nth-child(n+11) {
-    display: none;
+  .logoCard {
+    width: 160px;
+    height: 70px;
   }
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .title {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    margin: 0 0 2.5rem 0;
+    padding: 0 1.5rem;
+  }
+
+  .container::before,
+  .container::after {
+    width: 120px;
+  }
+
+  .carouselTrack {
+    gap: 2.5rem;
+    padding: 0 1rem;
+  }
+
+  .logoCard {
+    width: 140px;
+    height: 60px;
+  }
+
+  .logoImage {
+    filter: grayscale(100%) brightness(0.6);
+    opacity: 0.5;
+  }
+}
+
+/* Small mobile */
 @media (max-width: 480px) {
   .title {
-    font-size: 1.75rem;
+    font-size: clamp(1.125rem, 5vw, 1.25rem);
   }
 
-  .subtitle {
-    font-size: 0.95rem;
+  .carouselTrack {
+    gap: 2rem;
   }
 
-  .cta {
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
-  }
-}
-
-/* ========== Animaciones con Reduced Motion ========== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .logoCard {
+    width: 120px;
+    height: 50px;
   }
 
-  .parallaxBg {
-    transform: none !important;
-  }
-
-  .codeSnippet,
-  .particle {
-    display: none;
-  }
-
-  .circuitPattern {
-    animation: none;
+  .container::before,
+  .container::after {
+    width: 80px;
   }
 }

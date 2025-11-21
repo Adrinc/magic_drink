@@ -3,7 +3,7 @@
 /* ========== Section ========== */
 .section {
   position: relative;
-  min-height: 130vh;
+  min-height: 120vh;
   background: #0A0A0A;
   padding: 8rem 0 4rem;
   overflow: hidden;

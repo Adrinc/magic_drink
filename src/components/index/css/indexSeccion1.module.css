@@ -115,9 +115,11 @@
     0 0 40px rgba(111, 38, 169, 0.3);
   opacity: 0;
   
-  background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 80%, rgba(255, 255, 255, 0.167) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(120deg, #FFFFFF 90%, rgba(255, 255, 255, 0) 95%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+
   background-clip: text;
   transform: scaleY(0.9);
   transform-origin: center;
@@ -235,7 +237,7 @@
 /* ========== ENERGY BRAND LINE ========== */
 .energyBrand {
   margin-top: 2rem;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
   opacity: 0;
@@ -244,10 +246,11 @@
 }
 
 .brandLine {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .brandName {
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   color: #FFB638; /* Amarillo dorado del diseño */
   text-shadow: 0 0 20px rgba(255, 182, 56, 0.5);

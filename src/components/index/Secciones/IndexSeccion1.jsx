@@ -7,7 +7,7 @@ const IndexSeccion1 = () => {
 
   const content = {
     es: {
-      h1Line1: "Digital by design.",
+      h1Line1: "Digital by design,",
       h1Line2: "Creative con corazón.",
       subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward.",
       cta: "Book a Free Strategy Call"
@@ -57,21 +57,24 @@ const IndexSeccion1 = () => {
             <span className={styles.titleLine2}>{t.h1Line2}</span>
           </h1>
           
-          <p className={styles.heroSubtitle}>{t.subtitle}</p>
+      {/*     <p className={styles.heroSubtitle}>{t.subtitle}</p> */}
 
+
+          <div className={styles.energyBrand}>
+            <span className={styles.brandLine}>Let's Start Your Story with </span>
+            <span className={styles.brandName}>Energy!</span>
+          </div>
+
+          
           <div className={styles.ctaGroup}>
             <button className={styles.btnPrimary}>
               <span className={styles.ctaText}>{t.cta}</span>
               <span className={styles.ctaArrow}>→</span>
             </button>
           </div>
-
-          <div className={styles.energyBrand}>
-            <span className={styles.brandLine}>Let's Start Your Story with </span>
-            <span className={styles.brandName}>Energy</span>
-            <span className={styles.brandExclaim}>!</span>
-          </div>
         </div>
+
+        
 
         {/* Degradado de Transición a Siguiente Sección (BLANCO) */}
         <div className={styles.transitionGradient}></div>

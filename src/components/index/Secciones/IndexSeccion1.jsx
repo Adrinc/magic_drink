@@ -10,13 +10,13 @@ const IndexSeccion1 = () => {
       h1Line1: "Digital by design,",
       h1Line2: "Creative con corazón.",
       subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward.",
-      cta: "Book a Free Strategy Call"
+      cta: "Book a Free Strategy Session"
     },
     en: {
       h1Line1: "Digital by design.",
       h1Line2: "Creative con corazón.",
       subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward.",
-      cta: "Book a Free Strategy Call"
+      cta: "Book a Free Strategy Session"
     }
   };
 

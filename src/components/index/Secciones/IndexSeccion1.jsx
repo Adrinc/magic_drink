@@ -28,26 +28,9 @@ const IndexSeccion1 = () => {
         {/* Video de Fondo */}
         <div className={styles.videoBackground}>
           <video autoPlay muted loop playsInline className={styles.video}>
-            <source src='/videos/v_bg_1.mp4' type='video/mp4' />
+            <source src='/videos/v_bg_3.mp4' type='video/mp4' />
           </video>
-          <div className={styles.videoOverlay}></div>
-        </div>
-
-        {/* Partículas Flotantes de Fondo */}
-        <div className={styles.particlesContainer}>
-          {[...Array(30)].map((_, i) => (
-            <div 
-              key={i} 
-              className={styles.particle}
-              style={{
-                '--x': `${Math.random() * 100}%`,
-                '--y': `${Math.random() * 100}%`,
-                '--duration': `${15 + Math.random() * 15}s`,
-                '--delay': `${Math.random() * 5}s`,
-                '--size': `${2 + Math.random() * 4}px`
-              }}
-            ></div>
-          ))}
+          <div className={styles.transitionGradient}></div>
         </div>
 
         {/* Contenido Principal */}
@@ -77,7 +60,7 @@ const IndexSeccion1 = () => {
         
 
         {/* Degradado de Transición a Siguiente Sección (BLANCO) */}
-        <div className={styles.transitionGradient}></div>
+    
 
         {/* Scroll Indicator */}
         <div className={styles.scrollIndicator}>

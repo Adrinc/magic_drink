@@ -103,7 +103,7 @@
 
 .statNumber {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(3.5rem, 5vw, 4.5rem);
+  font-size: clamp(3.5rem, 5.2vw, 4.7rem);
   font-weight: 700;
   background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(212, 212, 212, 0.7) 100%);
   -webkit-background-clip: text;

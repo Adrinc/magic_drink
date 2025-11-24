@@ -28,65 +28,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.5;
-  filter: brightness(0.6) contrast(1.2) saturate(1.1);
-}
-
-.videoOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg, 
-    rgba(26, 26, 26, 0.85) 0%, 
-    rgba(111, 38, 169, 0.5) 40%,
-    rgba(61, 187, 255, 0.3) 60%,
-    rgba(26, 26, 26, 0.75) 100%
-  );
-  z-index: 1;
-}
-
-/* ========== PARTÍCULAS FLOTANTES ========== */
-.particlesContainer {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  background: radial-gradient(circle, rgba(62, 200, 247, 0.8), transparent);
-  border-radius: 50%;
-  left: var(--x);
-  top: var(--y);
-  animation: particleDrift var(--duration) var(--delay) ease-in-out infinite;
-  opacity: 0;
-}
-
-@keyframes particleDrift {
-  0%, 100% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.5);
-  }
-  10% {
-    opacity: 0.6;
-  }
-  90% {
-    opacity: 0.3;
-  }
-  50% {
-    transform: translate(calc(var(--x) * 0.2), -50vh) scale(1);
-  }
+  opacity: 1;
+  filter: brightness(0.7) contrast(1.1);
 }
 
 /* ========== CONTENIDO ========== */
 .heroContent {
   position: relative;
   z-index: 2;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 clamp(20px, 5vw, 40px);
   text-align: center;
@@ -101,7 +51,7 @@
 /* ========== TÍTULO REDISEÑO 2025 ========== */
 .heroTitle {
 
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 700;
   line-height: 1.1;
    letter-spacing: -0.02em;
@@ -134,7 +84,7 @@ background-clip: text;
 }
 
 .titleLine2 {
-  
+     font-family: 'Syne', sans-serif;
   font-weight: 700;
   display: block;
 }
@@ -265,17 +215,19 @@ background-clip: text;
 /* ========== DEGRADADO DE TRANSICIÓN A SIGUIENTE SECCIÓN (BLANCO) ========== */
 .transitionGradient {
   position: absolute;
-  bottom: 0;
+  top: 40%;
   left: 0;
   right: 0;
-  height: 250px;
+  bottom: 0;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    #0a0a0a 50%,
-    #0a0a0a 100%  /* Color exacto de IndexSeccion4 */
+    rgba(10, 10, 10, 0.3) 20%,
+    rgba(10, 10, 10, 0.6) 40%,
+    rgba(10, 10, 10, 0.85) 70%,
+    #0a0a0a 100%
   );
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -350,7 +302,7 @@ background-clip: text;
   }
 
   .transitionGradient {
-    height: 150px;
+    top: 50%;
   }
 }
 
@@ -378,10 +330,6 @@ background-clip: text;
 
   .energyBrand {
     font-size: 1.25rem;
-  }
-
-  .transitionGradient {
-    height: 120px;
   }
 
   .scrollIndicator {
@@ -412,9 +360,5 @@ background-clip: text;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .particle {
-    display: none;
   }
 }

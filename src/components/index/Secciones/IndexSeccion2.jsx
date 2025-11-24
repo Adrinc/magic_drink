@@ -18,7 +18,7 @@ const IndexSeccion2 = () => {
             
             <div className={styles.description}>
               <p className={styles.paragraph}>{t.paragraph1}</p>
-              <p className={styles.paragraphHighlight}>{t.highlightText}</p>
+              <p className={styles.paragraph}>{t.highlightText}</p>
               <p className={styles.paragraph}>{t.paragraph2}</p>
             </div>
             

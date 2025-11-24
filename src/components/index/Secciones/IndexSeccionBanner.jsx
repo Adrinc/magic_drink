@@ -1,11 +1,9 @@
-﻿import { useState } from 'react';
-import { useStore } from '@nanostores/react';
+﻿import { useStore } from '@nanostores/react';
 import { isEnglish } from '../../../data/variables';
 import styles from '../css/indexSeccionBanner.module.css';
 
 const IndexSeccionBanner = () => {
   const ingles = useStore(isEnglish);
-  const [isPaused, setIsPaused] = useState(false);
 
   const content = ingles ? {
     title: "Services trusted by companies like"
@@ -33,9 +31,6 @@ const IndexSeccionBanner = () => {
     { name: 'Shopify', logo: '/image/brands/shopyfy.png' }
   ];
 
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
-
   const duplicatedBrands = [...brands, ...brands];
 
   return (
@@ -44,9 +39,7 @@ const IndexSeccionBanner = () => {
         <h2 className={styles.title}>{t.title}</h2>
         <div className={styles.container}>
           <div 
-            className={`${styles.carouselTrack} ${isPaused ? styles.paused : ''}`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            className={styles.carouselTrack}
           >
             {duplicatedBrands.map((brand, index) => (
               <div key={`brand-${index}`} className={styles.logoCard}>

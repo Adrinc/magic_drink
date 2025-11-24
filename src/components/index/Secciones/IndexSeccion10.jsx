@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useStore } from '@nanostores/react';
 import { isEnglish } from '../../../data/variables';
-import CinematicSection from '../../global/CinematicSection';
 import styles from '../css/indexSeccion10.module.css';
 
 /**

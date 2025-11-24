@@ -4,6 +4,7 @@ import styles from "./navbar.module.css";
 import { useStore } from "@nanostores/react";
 import { isEnglish } from "../../data/variables"; 
 import { useLang } from "../../data/signals";
+import { translationsGlobal } from "../../data/translationsGlobal";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,6 +15,9 @@ const NavBar = () => {
   
   const { t, changeLang, lang } = useLang();
   const ingles = useStore(isEnglish);
+  
+  // Traducciones del navbar
+  const navTranslations = ingles ? translationsGlobal.en.navbar : translationsGlobal.es.navbar;
 
   // Función para navegar al inicio
   const handleLogoClick = (e) => {
@@ -103,7 +107,7 @@ const NavBar = () => {
               href="/" 
               className={`${styles.navLink} ${isActiveLink("/") ? styles.activeLink : ""}`}
             >
-              Home
+              {navTranslations.home}
             </a>
           </li>
           <li className={styles.navItem}>
@@ -111,7 +115,7 @@ const NavBar = () => {
               href="/servicios" 
               className={`${styles.navLink} ${isActiveLink("/servicios") ? styles.activeLink : ""}`}
             >
-              Services
+              {navTranslations.services}
             </a>
           </li>
           <li className={styles.navItem}>
@@ -119,14 +123,14 @@ const NavBar = () => {
               href="/portfolio" 
               className={`${styles.navLink} ${isActiveLink("/portfolio") ? styles.activeLink : ""}`}
             >
-              Our Work
+              {navTranslations.ourWork}
             </a>
           </li>
         </ul>
 
         {/* Botón Contact Us */}
         <a className={styles.contactButton} href="/contacto">
-          Contact Us
+          {navTranslations.contactUs}
         </a>
 
         {/* Botón Hamburguesa (solo móvil) */}
@@ -169,21 +173,21 @@ const NavBar = () => {
           )}
         </div>
 
-        {/* Theme Dropdown (hardcoded por ahora) */}
+        {/* Theme Dropdown */}
         <div className={styles.dropdown}>
           <button 
             className={styles.dropdownToggle}
             onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
           >
-            Dark Mode ▼
+            {navTranslations.darkMode} ▼
           </button>
           {themeDropdownOpen && (
             <div className={styles.dropdownMenu}>
               <button className={styles.dropdownItem}>
-                Dark Mode (Current)
+                {navTranslations.darkModeCurrent}
               </button>
               <button className={`${styles.dropdownItem} ${styles.disabled}`}>
-                Light Mode (Coming Soon)
+                {navTranslations.lightModeComingSoon}
               </button>
             </div>
           )}
@@ -193,12 +197,12 @@ const NavBar = () => {
       {/* Menú Móvil Overlay */}
       {mobileMenuOpen && (
         <div className={styles.mobileMenuOverlay} onClick={closeMobileMenu}>
-          <div className={styles.mobileMenuContent} onClick={(e) => e.stopPropagation()}>
-            {/* Botón Cerrar */}
-            <button className={styles.closeButton} onClick={closeMobileMenu}>
-              <span className={styles.closeIcon}>×</span>
-            </button>
+          {/* Botón Cerrar - FUERA del content */}
+          <button className={styles.closeButton} onClick={closeMobileMenu}>
+            <span className={styles.closeIcon}>X</span>
+          </button>
 
+          <div className={styles.mobileMenuContent} onClick={(e) => e.stopPropagation()}>
             {/* Navegación Móvil */}
             <ul className={styles.mobileNavMenu}>
               <li className={styles.mobileNavItem}>
@@ -207,7 +211,7 @@ const NavBar = () => {
                   className={`${styles.mobileNavLink} ${isActiveLink("/") ? styles.activeLink : ""}`}
                   onClick={closeMobileMenu}
                 >
-                  Home
+                  {navTranslations.home}
                 </a>
               </li>
               <li className={styles.mobileNavItem}>
@@ -216,7 +220,7 @@ const NavBar = () => {
                   className={`${styles.mobileNavLink} ${isActiveLink("/servicios") ? styles.activeLink : ""}`}
                   onClick={closeMobileMenu}
                 >
-                  Services
+                  {navTranslations.services}
                 </a>
               </li>
               <li className={styles.mobileNavItem}>
@@ -225,7 +229,7 @@ const NavBar = () => {
                   className={`${styles.mobileNavLink} ${isActiveLink("/portfolio") ? styles.activeLink : ""}`}
                   onClick={closeMobileMenu}
                 >
-                  Our Work
+                  {navTranslations.ourWork}
                 </a>
               </li>
             </ul>
@@ -236,14 +240,14 @@ const NavBar = () => {
               href="/contacto"
               onClick={closeMobileMenu}
             >
-              Contact Us
+              {navTranslations.contactUs}
             </a>
 
             {/* Dropdowns Móvil */}
             <div className={styles.mobileDropdowns}>
               {/* Language Selector */}
               <div className={styles.mobileDropdown}>
-                <span className={styles.mobileDropdownLabel}>Language</span>
+                <span className={styles.mobileDropdownLabel}>{navTranslations.language}</span>
                 <div className={styles.mobileLanguageButtons}>
                   <button 
                     className={`${styles.mobileLangButton} ${!ingles ? styles.mobileLangButtonActive : ''}`}
@@ -262,13 +266,13 @@ const NavBar = () => {
 
               {/* Theme Selector */}
               <div className={styles.mobileDropdown}>
-                <span className={styles.mobileDropdownLabel}>Theme</span>
+                <span className={styles.mobileDropdownLabel}>{navTranslations.theme}</span>
                 <div className={styles.mobileLanguageButtons}>
                   <button className={`${styles.mobileLangButton} ${styles.mobileLangButtonActive}`}>
-                    Dark
+                    {navTranslations.darkMode}
                   </button>
                   <button className={`${styles.mobileLangButton} ${styles.disabled}`}>
-                    Light
+                    {navTranslations.lightMode}
                   </button>
                 </div>
               </div>

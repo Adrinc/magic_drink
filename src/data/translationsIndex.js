@@ -35,15 +35,15 @@ export const translationsIndex = {
     // SECCIÓN 2: OUR STORY
     // ==========================================
     ourStory: {
-      title: "Our Story",
-      paragraph1: "Born in San Diego and raised on both sides of the border, Energy Media fuses nearly 40 years of broadcast experience with today's digital precision. We specialize in Digital Marketing, Social Media, and Mobile App Development, powered by our Emmy-winning Creative and Production teams that make brands stand out in a noisy world.",
-      highlightText: "From viral videos to programmatic campaigns, we deliver in-budget solutions that resonate, not evaporate—because connection matters more than clicks.",
-      paragraph2: "Across the U.S. and Mexico, we've helped healthcare, automotive, and consumer brands tell stories with impact, culture, and the unmistakable pulse of Latino energy.",
+      title: "Nuestra Historia",
+      paragraph1: "Nacidos en San Diego y criados en ambos lados de la frontera, Energy Media fusiona casi 40 años de experiencia en broadcast con la precisión digital de hoy. Nos especializamos en Marketing Digital, Redes Sociales y Desarrollo de Apps Móviles, impulsados por nuestros equipos Creativos y de Producción galardonados con un Emmy que hacen que las marcas destaquen en un mundo ruidoso.",
+      highlightText: "Desde videos virales hasta campañas programáticas, entregamos soluciones dentro del presupuesto que resuenan, no se evaporan—porque la conexión importa más que los clics.",
+      paragraph2: "A través de EE.UU. y México, hemos ayudado a marcas de salud, automotriz y de consumo a contar historias con impacto, cultura y el pulso inconfundible de la energía latina.",
       stats: [
-        { label: "YEARS OF EXPERIENCE", number: "39" },
-        { label: "REPEATED CLIENTS", number: "25" },
-        { label: "COMPLETED PROJECTS", number: "475" },
-        { label: "HAPPY CLIENTS", number: "335" }
+        { label: "AÑOS DE EXPERIENCIA", number: "39" },
+        { label: "CLIENTES RECURRENTES", number: "25" },
+        { label: "PROYECTOS COMPLETADOS", number: "475" },
+        { label: "CLIENTES FELICES", number: "335" }
       ]
     },
 

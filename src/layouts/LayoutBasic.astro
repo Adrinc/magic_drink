@@ -112,6 +112,8 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		/* ========================================
 		   ENERGY MEDIA - SISTEMA "CINE-DATA MULTICULTURAL"
 		   ======================================== */
+
+		--main--background-color-dark: #0a0a0a;
 		
 		/* === PALETA CORE (REDISEÑO 2025) === */
 		--em-purple-primary: #6F26A9;        /* Morado Energy vibrante (marca, botones principales) */
@@ -302,17 +304,7 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		pointer-events: auto;
 	}
 
-	footer {
-		position: relative;
-		width: 100%;
-		min-height: fit-content;
-		height: auto;
-		font-family: var(--em-font-body);
-		background: var(--em-gradient-purple-black);
-		z-index: 1;
-		overflow: hidden;
-	}
-	
+
 	/* === UTILITY CLASSES CINEMATOGRÁFICAS === */
 	.cinematic-grain::before {
 		content: '';
@@ -389,15 +381,8 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 	/* NOTA: view-transition-name eliminado porque bloquea backdrop-filter en Chrome/Edge */
 	
 	/* Transición especial para el footer */
-	footer {
-		view-transition-name: footer;
-	}
 
-	::view-transition-old(footer),
-	::view-transition-new(footer) {
-		animation-duration: 0.4s;
-		animation-timing-function: ease-out;
-	}
+
 
 	/* Animación de carga para mejorar la percepción */
 	html:not(.astro-route-transition) {

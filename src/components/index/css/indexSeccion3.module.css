@@ -22,6 +22,10 @@
   align-items: flex-end;
   gap: 3rem;
   margin-bottom: 4rem;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
 }
 
 .title {
@@ -52,7 +56,7 @@
   border: none;
   border-radius: 50px;
   background: linear-gradient(135deg, #2BC7FF, #F5C15C);
-  color: #FFFFFF;
+  color: #0A0A0A;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -70,7 +74,8 @@
 /* ========== Carousel Container ========== */
 .container {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   overflow: hidden;
   margin-top: 4rem;
 }
@@ -379,7 +384,11 @@
   }
 
   .title {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: clamp(2.75rem, 5vw, 3.5rem);
+  }
+
+  .subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
   }
 
   .serviceCard {
@@ -404,6 +413,32 @@
 
   .wrapper {
     padding: 0 1.5rem;
+  }
+
+  .header {
+    text-align: center;
+    align-items: center;
+    padding: 0 1.5rem;
+  }
+
+  .title,
+  .subtitle {
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(3rem, 7vw, 3.5rem);
+  }
+
+  .subtitle {
+    max-width: 100%;
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+  }
+
+  .seeMoreBtn {
+    width: 100%;
+    max-width: 280px;
+    font-size: 1.125rem;
   }
 
   .container::before,

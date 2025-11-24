@@ -127,7 +127,7 @@
   border: none;
   border-radius: 50px;
   background: linear-gradient(135deg, #2BC7FF, #F5C15C);
-  color: #FFFFFF;
+  color: #0A0A0A;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -348,11 +348,13 @@
 
   .title {
     text-align: center;
+    font-size: clamp(3rem, 7vw, 3.5rem);
   }
 
   .subtitle {
     text-align: center;
     max-width: 100%;
+    font-size: clamp(1.25rem, 3.5vw, 1.5rem);
   }
 
   .imageCard {
@@ -421,8 +423,10 @@
   }
 
   .seeMoreBtn {
-    padding: 12px 24px;
-    font-size: 0.875rem;
+    padding: 14px 28px;
+    font-size: 1.125rem;
+    width: 100%;
+    max-width: 280px;
   }
 
   .imageCard {

@@ -132,7 +132,7 @@
   }
 
   .title {
-    font-size: clamp(1.25rem, 4vw, 1.5rem);
+    font-size: clamp(1.75rem, 5vw, 2rem);
     margin: 0 0 2.5rem 0;
     padding: 0 1.5rem;
   }
@@ -148,8 +148,8 @@
   }
 
   .logoCard {
-    width: 140px;
-    height: 60px;
+    width: 160px;
+    height: 70px;
   }
 
   .logoImage {
@@ -161,7 +161,7 @@
 /* Small mobile */
 @media (max-width: 480px) {
   .title {
-    font-size: clamp(1.125rem, 5vw, 1.25rem);
+    font-size: clamp(1.5rem, 6vw, 1.75rem);
   }
 
   .carouselTrack {
@@ -169,8 +169,8 @@
   }
 
   .logoCard {
-    width: 120px;
-    height: 50px;
+    width: 140px;
+    height: 60px;
   }
 
   .container::before,

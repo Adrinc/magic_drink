@@ -174,16 +174,15 @@ const IndexSeccion3 = () => {
 
   return (
     <section className={styles.section}>
-      <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <div>
-            <h2 className={styles.title}>{t.header.title}</h2>
-            <p className={styles.subtitle}>{t.header.subtitle}</p>
-          </div>
-          <button className={styles.seeMoreBtn}>{t.header.seeMore}</button>
+      <div className={styles.header}>
+        <div>
+          <h2 className={styles.title}>{t.header.title}</h2>
+          <p className={styles.subtitle}>{t.header.subtitle}</p>
         </div>
+        <button className={styles.seeMoreBtn}>{t.header.seeMore}</button>
+      </div>
 
-        <div className={styles.container}>
+      <div className={styles.container}>
           <div 
             className={`${styles.carouselTrack} ${isPaused ? styles.paused : ''}`}
             onMouseEnter={handleMouseEnter}
@@ -209,7 +208,6 @@ const IndexSeccion3 = () => {
             ))}
           </div>
         </div>
-      </div>
 
       {/* Modal */}
       {selectedService && (

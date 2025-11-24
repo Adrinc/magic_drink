@@ -151,12 +151,12 @@
   }
 
   .dot {
-    width: 8px;
-    height: 8px;
+    width: 16px;
+    height: 16px;
   }
 
   .text {
-    font-size: clamp(0.875rem, 2vw, 1.25rem);
+    font-size: clamp(2rem, 6vw, 2.75rem);
   }
 }
 
@@ -181,12 +181,12 @@
   }
 
   .dot {
-    width: 6px;
-    height: 6px;
+    width: 14px;
+    height: 14px;
   }
 
   .text {
-    font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
   }
 }
 

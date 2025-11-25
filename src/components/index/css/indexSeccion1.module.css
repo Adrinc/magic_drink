@@ -366,6 +366,45 @@ background-clip: text;
   }
 }
 
+/* ========== CTA Card - Desktop (Esquina Inferior Derecha) ========== */
+.ctaCardDesktop {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+}
+
+/* CTA Card - Mobile (Centrado debajo del botón) */
+.ctaCardMobile {
+  display: none; /* Oculto en desktop */
+}
+
+/* Responsive para CTA Card */
+@media (max-width: 1024px) {
+  .ctaCardDesktop {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ocultar versión desktop */
+  .ctaCardDesktop {
+    display: none;
+  }
+
+  /* Mostrar versión mobile centrada */
+  .ctaCardMobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+  }
+}
+
 @media (max-width: 480px) {
   .heroTitle {
     font-size: 1.75rem;

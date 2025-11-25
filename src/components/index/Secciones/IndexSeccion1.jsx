@@ -1,6 +1,7 @@
 ﻿import { useStore } from '@nanostores/react';
 import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccion1.module.css';
+import CtaCard from '../../global/CtaCard';
 
 const IndexSeccion1 = () => {
   const ingles = useStore(isEnglish);
@@ -56,6 +57,11 @@ const IndexSeccion1 = () => {
               <span className={styles.ctaArrow}>→</span>
             </button>
           </div>
+
+          {/* CTA Card - Mobile: Aparece aquí debajo del botón */}
+          <div className={styles.ctaCardMobile}>
+            <CtaCard />
+          </div>
         </div>
 
         
@@ -67,6 +73,11 @@ const IndexSeccion1 = () => {
         <div className={styles.scrollIndicator}>
           <span className={styles.scrollText}>{ingles ? 'Scroll down' : 'Desliza hacia abajo'}</span>
           <div className={styles.scrollIcon}></div>
+        </div>
+
+        {/* CTA Card - Desktop: Esquina Inferior Derecha */}
+        <div className={styles.ctaCardDesktop}>
+          <CtaCard />
         </div>
       </div>
     </section>

@@ -6,6 +6,11 @@
   background: #0A0A0A;
   padding: 8rem 0 4rem;
   overflow: hidden;
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight {
+  background: #f7f7f9;
 }
 
 .faqsContainer {
@@ -16,6 +21,11 @@
   padding: 6rem 20px;
   position: relative;
   background-color: #0A0A0A;
+  transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight .faqsContainer {
+  background-color: #f7f7f9;
 }
 
 .sectionHeader {
@@ -33,6 +43,11 @@
   color: #FFFFFF;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight .sectionTitle {
+  color: #000000;
 }
 
 .sectionSubtitle {
@@ -60,6 +75,12 @@
   transform: translateY(20px);
 }
 
+.sectionLight .faqItem {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
 .faqItem.visible {
   opacity: 1;
   transform: translateY(0);
@@ -68,6 +89,12 @@
 .faqItem:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.3);
+}
+
+.sectionLight .faqItem:hover {
+  background: #FFFFFF;
+  border-color: rgba(103, 46, 146, 0.3);
+  box-shadow: 0 6px 30px rgba(103, 46, 146, 0.1);
 }
 
 .faqQuestion {
@@ -88,6 +115,10 @@
   gap: 1rem;
 }
 
+.sectionLight .faqQuestion {
+  color: #000000;
+}
+
 .faqQuestion span:first-child {
   flex: 1;
 }
@@ -96,7 +127,11 @@
   font-size: 1.5rem;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.sectionLight .faqIcon {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .faqAnswer {
@@ -106,6 +141,11 @@
   line-height: 1.6;
   font-weight: 300;
   animation: slideDown 0.3s ease-out forwards;
+  transition: color 0.3s ease;
+}
+
+.sectionLight .faqAnswer {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .faqAnswer p {

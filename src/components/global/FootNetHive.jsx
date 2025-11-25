@@ -1,11 +1,12 @@
 import React from "react";
-import { isEnglish } from '../../data/variables';
+import { isEnglish, isDarkMode } from '../../data/variables';
 import { useStore } from '@nanostores/react';
 import styles from "./css/footnethive.module.css";
 import { useState, useEffect, useRef } from 'react';
 const FootNetHive = () => {
  
   const ingles = useStore(isEnglish);
+  const darkMode = useStore(isDarkMode);
   
   const content = {
     es: {
@@ -66,13 +67,17 @@ const FootNetHive = () => {
   
   const sectionRef = useRef(null);
   return (
-    <footer ref={sectionRef} className={styles.footer}>
+    <footer ref={sectionRef} className={`${styles.footer} ${!darkMode ? styles.footerLight : ''}`}>
  <div className={styles.container}>
         
         {/* Top CTA Box */}
         <div className={styles.ctaBox}>
           <div className={styles.logoWrapper}>
-            <img src="/logo.png" alt="Energy Media" className={styles.logo} />
+            <img 
+              src={darkMode ? "/logo.png" : "/logo_light.png"} 
+              alt="Energy Media" 
+              className={styles.logo} 
+            />
           </div>
           <h2 className={styles.title}>{t.title}</h2>
           <p className={styles.subtitle}>{t.subtitle}</p>

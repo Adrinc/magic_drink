@@ -1,10 +1,11 @@
 ﻿import { useState, useEffect, useRef } from 'react';
 import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../../data/variables';
+import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccion5.module.css';
 
 const IndexSeccion5 = () => {
    const ingles = useStore(isEnglish);
+   const darkMode = useStore(isDarkMode);
   
   const content = {
     es: {
@@ -110,7 +111,7 @@ const IndexSeccion5 = () => {
   };
 
   return (
-   <section className={styles.section}>
+   <section className={`${styles.section} ${!darkMode ? styles.sectionLight : ''}`}>
       <div ref={sectionRef} className={styles.faqsContainer}>
         {/* Header */}
         <div className={`${styles.sectionHeader} ${isVisible ? styles.visible : ''}`}>

@@ -1,9 +1,10 @@
 ﻿import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../../data/variables';
+import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccionBanner.module.css';
 
 const IndexSeccionBanner = () => {
   const ingles = useStore(isEnglish);
+  const darkMode = useStore(isDarkMode);
 
   const content = ingles ? {
     title: "Services trusted by companies like"
@@ -34,7 +35,7 @@ const IndexSeccionBanner = () => {
   const duplicatedBrands = [...brands, ...brands];
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${!darkMode ? styles.sectionLight : ''}`}>
       <div className={styles.wrapper}>
         <h2 className={styles.title}>{t.title}</h2>
         <div className={styles.container}>

@@ -6,6 +6,11 @@
   background: #0A0A0A;
   padding: 6rem 0;
   overflow: hidden;
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight {
+  background: #f7f7f9;
 }
 
 .wrapper {
@@ -23,6 +28,11 @@
   margin: 0 0 4rem 0;
   letter-spacing: 0.02em;
   text-transform: none;
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight .title {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 /* ========== Carousel Container ========== */
@@ -49,11 +59,21 @@
 .container::before {
   left: 0;
   background: linear-gradient(90deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%);
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .container::after {
   right: 0;
   background: linear-gradient(270deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%);
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight .container::before {
+  background: linear-gradient(90deg, #f7f7f9 0%, rgba(247, 247, 249, 0.8) 40%, transparent 100%);
+}
+
+.sectionLight .container::after {
+  background: linear-gradient(270deg, #f7f7f9 0%, rgba(247, 247, 249, 0.8) 40%, transparent 100%);
 }
 
 /* Track del carrusel con animación infinita CSS */

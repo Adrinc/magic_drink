@@ -4,9 +4,15 @@
 .section {
   position: relative;
   min-height: 80vh;
-  background: #0A0A0A;
+  background: #0A0A0A; /* Modo oscuro */
   padding: 8rem 0 6rem;
   overflow: hidden;
+  transition: background-color 0.3s var(--em-ease-smooth);
+}
+
+/* MODO CLARO */
+.sectionLight {
+  background: #f7f7f9; /* Color oficial modo claro */
 }
 
 .wrapper {
@@ -35,20 +41,35 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0 0 1rem 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(160, 160, 160, 0.7) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(160, 160, 160, 0.7) 100%); /* Modo oscuro */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   transform: scaleY(0.9);
   transform-origin: center;
+  transition: all 0.3s var(--em-ease-smooth);
+}
+
+/* Título en modo claro: negro con gradiente */
+.sectionLight .title {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(74, 74, 74, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
   font-family: 'Inter', sans-serif;
   font-size: clamp(1rem, 1.5vw, 1.125rem);
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7); /* Modo oscuro */
   max-width: 600px;
   line-height: 1.6;
+  transition: color 0.3s var(--em-ease-smooth);
+}
+
+/* Subtitle en modo claro: negro */
+.sectionLight .subtitle {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .seeMoreBtn {
@@ -90,16 +111,26 @@
   width: 200px;
   z-index: 10;
   pointer-events: none;
+  transition: background 0.3s var(--em-ease-smooth);
 }
 
 .container::before {
   left: 0;
-  background: linear-gradient(90deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%);
+  background: linear-gradient(90deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%); /* Modo oscuro */
 }
 
 .container::after {
   right: 0;
-  background: linear-gradient(270deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%);
+  background: linear-gradient(270deg, #0A0A0A 0%, rgba(10, 10, 10, 0.8) 40%, transparent 100%); /* Modo oscuro */
+}
+
+/* Fade masks en modo claro */
+.sectionLight .container::before {
+  background: linear-gradient(90deg, #f7f7f9 0%, rgba(247, 247, 249, 0.8) 40%, transparent 100%);
+}
+
+.sectionLight .container::after {
+  background: linear-gradient(270deg, #f7f7f9 0%, rgba(247, 247, 249, 0.8) 40%, transparent 100%);
 }
 
 /* Track del carrusel con animación infinita CSS */
@@ -202,7 +233,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 10, 10, 0.85);
+  background: rgba(10, 10, 10, 0.85); /* Modo oscuro */
   backdrop-filter: blur(8px);
   z-index: 9999;
   display: flex;
@@ -210,6 +241,11 @@
   justify-content: center;
   padding: 2rem;
   animation: fadeIn 0.3s ease;
+}
+
+/* Modal overlay en modo claro */
+.sectionLight .modalOverlay {
+  background: rgba(247, 247, 249, 0.9);
 }
 
 @keyframes fadeIn {
@@ -222,13 +258,20 @@
   position: relative;
   max-width: 900px;
   width: 100%;
-  background: #1A1A1A;
+  background: #1A1A1A; /* Modo oscuro */
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   max-height: 90vh;
   overflow-y: auto;
+  transition: background 0.3s var(--em-ease-smooth), box-shadow 0.3s var(--em-ease-smooth);
+}
+
+/* Modal card en modo claro: fondo blanco */
+.sectionLight .modalCard {
+  background: #FFFFFF;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes slideUp {
@@ -250,9 +293,9 @@
   width: 40px;
   height: 40px;
   border: none;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1); /* Modo oscuro */
   backdrop-filter: blur(10px);
-  color: #FFFFFF;
+  color: #FFFFFF; /* Modo oscuro */
   font-size: 1.5rem;
   border-radius: 50%;
   cursor: pointer;
@@ -264,8 +307,18 @@
 }
 
 .modalCloseBtn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2); /* Modo oscuro */
   transform: rotate(90deg);
+}
+
+/* Close button en modo claro */
+.sectionLight .modalCloseBtn {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.sectionLight .modalCloseBtn:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* Modal Image */
@@ -283,7 +336,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%); /* Modo oscuro */
+  transition: background 0.3s var(--em-ease-smooth);
+}
+
+/* Modal image overlay en modo claro */
+.sectionLight .modalImageOverlay {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.9) 100%);
 }
 
 /* Modal Content */
@@ -295,9 +354,15 @@
   font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 3vw, 2.5rem);
   font-weight: 700;
-  color: #FFFFFF;
+  color: #FFFFFF; /* Modo oscuro */
   margin: 0 0 1rem 0;
   line-height: 1.2;
+  transition: color 0.3s var(--em-ease-smooth);
+}
+
+/* Modal title en modo claro: negro */
+.sectionLight .modalTitle {
+  color: #000000;
 }
 
 .modalTagline {
@@ -323,11 +388,17 @@
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Modo oscuro */
+  transition: border-color 0.3s var(--em-ease-smooth);
 }
 
 .modalBulletItem:last-child {
   border-bottom: none;
+}
+
+/* Bullet items en modo claro: borde negro */
+.sectionLight .modalBulletItem {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .bulletCheck {
@@ -347,9 +418,15 @@
 .modalBulletItem span {
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.85); /* Modo oscuro */
   line-height: 1.6;
   flex: 1;
+  transition: color 0.3s var(--em-ease-smooth);
+}
+
+/* Bullet text en modo claro: negro */
+.sectionLight .modalBulletItem span {
+  color: rgba(0, 0, 0, 0.85);
 }
 
 /* Modal CTA */

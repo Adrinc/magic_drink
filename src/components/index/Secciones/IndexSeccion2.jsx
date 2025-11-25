@@ -1,15 +1,16 @@
 ﻿import React from 'react';
 import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../../data/variables';
+import { isEnglish, isDarkMode } from '../../../data/variables';
 import { translationsIndex } from '../../../data/translationsIndex';
 import styles from '../css/indexSeccion2.module.css';
 
 const IndexSeccion2 = () => {
   const ingles = useStore(isEnglish);
+  const darkMode = useStore(isDarkMode);
   const t = ingles ? translationsIndex.en.ourStory : translationsIndex.es.ourStory;
   
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${!darkMode ? styles.sectionLight : ''}`}>
       <div className={styles.container}>
         <div className={styles.content}>
           {/* Left Column: Text and Stats */}

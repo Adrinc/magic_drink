@@ -266,6 +266,18 @@
   color: #FFB638;
 }
 
+.dropdownItem.active,
+.dropdownItem:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dropdownItem.active {
+  color: #3DBBFF;
+  font-weight: 600;
+}
+
 .dropdownItem.disabled {
   opacity: 0.5;
   cursor: not-allowed;

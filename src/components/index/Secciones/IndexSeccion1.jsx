@@ -1,9 +1,10 @@
 ﻿import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../../data/variables';
+import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccion1.module.css';
 
 const IndexSeccion1 = () => {
   const ingles = useStore(isEnglish);
+  const darkMode = useStore(isDarkMode);
 
   const content = {
     es: {
@@ -23,7 +24,7 @@ const IndexSeccion1 = () => {
   const t = ingles ? content.en : content.es;
 
   return (
-    <section className={styles.heroSection}>
+    <section className={`${styles.heroSection} ${!darkMode ? styles.heroSectionLight : ''}`}>
       <div className={styles.heroContainer}>
         {/* Video de Fondo */}
         <div className={styles.videoBackground}>

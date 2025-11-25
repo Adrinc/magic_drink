@@ -7,6 +7,11 @@
   background: #0A0A0A;
   padding: 8rem 0 4rem;
   overflow: hidden;
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight {
+  background: #f7f7f9;
 }
 
 /* Esfera radial gris en el centro */
@@ -30,6 +35,18 @@
   pointer-events: none;
   z-index: 1;
   filter: blur(40px);
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight::before {
+  background: radial-gradient(
+    circle at center,
+    rgba(200, 200, 200, 0.4) 0%,
+    rgba(180, 180, 180, 0.2) 20%,
+    rgba(160, 160, 160, 0.1) 40%,
+    rgba(140, 140, 140, 0.05) 60%,
+    transparent 100%
+  );
 }
 
 .wrapper {
@@ -66,6 +83,7 @@
     rgba(10, 10, 10, 0.8) 50%, 
     rgba(10, 10, 10, 0.3) 80%, 
     rgba(10, 10, 10, 0) 100%);
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .carouselsOverlay::after {
@@ -76,6 +94,25 @@
     rgba(10, 10, 10, 0.8) 50%, 
     rgba(10, 10, 10, 0.3) 80%, 
     rgba(10, 10, 10, 0) 100%);
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight .carouselsOverlay::before {
+  background: linear-gradient(to right, 
+    #f7f7f9 0%, 
+    #f7f7f9 15%, 
+    rgba(247, 247, 249, 0.8) 50%, 
+    rgba(247, 247, 249, 0.3) 80%, 
+    rgba(247, 247, 249, 0) 100%);
+}
+
+.sectionLight .carouselsOverlay::after {
+  background: linear-gradient(to left, 
+    #f7f7f9 0%, 
+    #f7f7f9 15%, 
+    rgba(247, 247, 249, 0.8) 50%, 
+    rgba(247, 247, 249, 0.3) 80%, 
+    rgba(247, 247, 249, 0) 100%);
 }
 
 /* ========== 3D Container (Plano Inclinado) ========== */
@@ -112,6 +149,14 @@
   background-clip: text;
   transform: scaleY(0.9);
   transform-origin: center;
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight .title {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(74, 74, 74, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
@@ -120,6 +165,11 @@
   color: rgba(255, 255, 255, 0.7);
   max-width: 600px;
   line-height: 1.6;
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight .subtitle {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .seeMoreBtn {
@@ -140,6 +190,19 @@
 .seeMoreBtn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 25px rgba(43, 199, 255, 0.5);
+}
+
+.sectionLight .seeMoreBtn {
+  background: #FFFFFF;
+  color: #672E92;
+  border: 2px solid #672E92;
+  box-shadow: 0 4px 15px rgba(103, 46, 146, 0.15);
+}
+
+.sectionLight .seeMoreBtn:hover {
+  background: #672E92;
+  color: #FFFFFF;
+  box-shadow: 0 6px 25px rgba(103, 46, 146, 0.3);
 }
 
 /* ========== Carousel Containers ========== */
@@ -226,6 +289,14 @@
   z-index: 10;
 }
 
+.sectionLight .imageCard {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sectionLight .imageCard:hover {
+  box-shadow: 0 8px 30px rgba(103, 46, 146, 0.15);
+}
+
 .image {
   width: 100%;
   height: 100%;
@@ -255,6 +326,10 @@
 
 .imageCard:hover::after {
   opacity: 1;
+}
+
+.sectionLight .imageCard::after {
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.7) 100%);
 }
 
 /* ========== Responsive ========== */
@@ -323,6 +398,22 @@
       #0A0A0A 20%, 
       rgba(10, 10, 10, 0.7) 50%, 
       rgba(10, 10, 10, 0) 100%);
+  }
+
+  .sectionLight .carouselsOverlay::before {
+    background: linear-gradient(to right, 
+      #f7f7f9 0%, 
+      #f7f7f9 20%, 
+      rgba(247, 247, 249, 0.7) 50%, 
+      rgba(247, 247, 249, 0) 100%);
+  }
+
+  .sectionLight .carouselsOverlay::after {
+    background: linear-gradient(to left, 
+      #f7f7f9 0%, 
+      #f7f7f9 20%, 
+      rgba(247, 247, 249, 0.7) 50%, 
+      rgba(247, 247, 249, 0) 100%);
   }
 }
 
@@ -404,6 +495,24 @@
       rgba(10, 10, 10, 0.8) 30%, 
       rgba(10, 10, 10, 0.5) 60%, 
       rgba(10, 10, 10, 0.2) 85%, 
+      transparent 100%);
+  }
+
+  .sectionLight .carouselsOverlay::before {
+    background: linear-gradient(to right, 
+      #f7f7f9 0%, 
+      rgba(247, 247, 249, 0.8) 30%, 
+      rgba(247, 247, 249, 0.5) 60%, 
+      rgba(247, 247, 249, 0.2) 85%, 
+      transparent 100%);
+  }
+
+  .sectionLight .carouselsOverlay::after {
+    background: linear-gradient(to left, 
+      #f7f7f9 0%, 
+      rgba(247, 247, 249, 0.8) 30%, 
+      rgba(247, 247, 249, 0.5) 60%, 
+      rgba(247, 247, 249, 0.2) 85%, 
       transparent 100%);
   }
 

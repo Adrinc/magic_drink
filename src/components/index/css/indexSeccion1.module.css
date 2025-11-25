@@ -6,7 +6,24 @@
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: #1A1A1A; /* Negro puro del rediseño */
+  background: #1A1A1A; /* Negro puro del rediseño - MODO OSCURO */
+  transition: background-color 0.3s var(--em-ease-smooth);
+}
+
+/* MODO CLARO - Solo cambia el transitionGradient y scroll indicator */
+/* Los textos H1, subtitle, brandLine, brandName se MANTIENEN BLANCOS/DORADOS */
+
+/* SOLO el scroll indicator cambia a negro en modo claro */
+.heroSectionLight .scrollText {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.heroSectionLight .scrollIcon {
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.heroSectionLight .scrollIcon::before {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .heroContainer {
@@ -210,13 +227,14 @@ background-clip: text;
   text-shadow: 0 0 20px rgba(255, 182, 56, 0.5);
 }
 
-/* ========== DEGRADADO DE TRANSICIÓN A SIGUIENTE SECCIÓN (BLANCO) ========== */
+/* ========== DEGRADADO DE TRANSICIÓN A SIGUIENTE SECCIÓN ========== */
 .transitionGradient {
   position: absolute;
   top: 40%;
   left: 0;
   right: 0;
   bottom: 0;
+  /* MODO OSCURO (default): transparente → negro oscuro */
   background: linear-gradient(
     180deg,
     transparent 0%,
@@ -227,6 +245,19 @@ background-clip: text;
   );
   z-index: 1;
   pointer-events: none;
+  transition: background 0.3s var(--em-ease-smooth);
+}
+
+/* MODO CLARO: transparente → #f7f7f9 */
+.heroSectionLight .transitionGradient {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(247, 247, 249, 0.3) 20%,
+    rgba(247, 247, 249, 0.6) 40%,
+    rgba(247, 247, 249, 0.85) 70%,
+    #f7f7f9 100%
+  );
 }
 
 /* ========== SCROLL INDICATOR MEJORADO ========== */

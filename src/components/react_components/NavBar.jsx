@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./navbar.module.css";
 
 import { useStore } from "@nanostores/react";
-import { isEnglish } from "../../data/variables"; 
+import { isEnglish, isDarkMode } from "../../data/variables"; 
 import { useLang } from "../../data/signals";
 import { translationsGlobal } from "../../data/translationsGlobal";
 
@@ -15,6 +15,7 @@ const NavBar = () => {
   
   const { t, changeLang, lang } = useLang();
   const ingles = useStore(isEnglish);
+  const darkMode = useStore(isDarkMode);
   
   // Traducciones del navbar
   const navTranslations = ingles ? translationsGlobal.en.navbar : translationsGlobal.es.navbar;
@@ -65,6 +66,12 @@ const NavBar = () => {
       changeLang('es');
     }
     setLangDropdownOpen(false);
+  };
+
+  // Función para cambiar tema
+  const handleThemeToggle = () => {
+    isDarkMode.set(!darkMode);
+    setThemeDropdownOpen(false);
   };
 
   // Función para toggle del menú móvil
@@ -179,15 +186,23 @@ const NavBar = () => {
             className={styles.dropdownToggle}
             onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
           >
-            {navTranslations.darkMode} ▼
+            {darkMode ? '🌙' : '☀️'} {darkMode ? navTranslations.darkMode : navTranslations.lightMode} ▼
           </button>
           {themeDropdownOpen && (
             <div className={styles.dropdownMenu}>
-              <button className={styles.dropdownItem}>
-                {navTranslations.darkModeCurrent}
+              <button 
+                className={`${styles.dropdownItem} ${darkMode ? styles.active : ''}`}
+                onClick={handleThemeToggle}
+                disabled={darkMode}
+              >
+                🌙 {navTranslations.darkMode}
               </button>
-              <button className={`${styles.dropdownItem} ${styles.disabled}`}>
-                {navTranslations.lightModeComingSoon}
+              <button 
+                className={`${styles.dropdownItem} ${!darkMode ? styles.active : ''}`}
+                onClick={handleThemeToggle}
+                disabled={!darkMode}
+              >
+                ☀️ {navTranslations.lightMode}
               </button>
             </div>
           )}
@@ -268,11 +283,19 @@ const NavBar = () => {
               <div className={styles.mobileDropdown}>
                 <span className={styles.mobileDropdownLabel}>{navTranslations.theme}</span>
                 <div className={styles.mobileLanguageButtons}>
-                  <button className={`${styles.mobileLangButton} ${styles.mobileLangButtonActive}`}>
-                    {navTranslations.darkMode}
+                  <button 
+                    className={`${styles.mobileLangButton} ${darkMode ? styles.mobileLangButtonActive : ''}`}
+                    onClick={handleThemeToggle}
+                    disabled={darkMode}
+                  >
+                    🌙 {navTranslations.darkMode}
                   </button>
-                  <button className={`${styles.mobileLangButton} ${styles.disabled}`}>
-                    {navTranslations.lightMode}
+                  <button 
+                    className={`${styles.mobileLangButton} ${!darkMode ? styles.mobileLangButtonActive : ''}`}
+                    onClick={handleThemeToggle}
+                    disabled={!darkMode}
+                  >
+                    ☀️ {navTranslations.lightMode}
                   </button>
                 </div>
               </div>

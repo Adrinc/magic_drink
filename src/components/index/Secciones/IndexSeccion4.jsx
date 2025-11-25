@@ -1,10 +1,11 @@
 ﻿import { useState } from 'react';
 import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../../data/variables';
+import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccion4.module.css';
 
 const IndexSeccion4 = () => {
   const ingles = useStore(isEnglish);
+  const darkMode = useStore(isDarkMode);
   const [pausedRow, setPausedRow] = useState(null);
 
   const content = ingles ? {
@@ -63,7 +64,7 @@ const IndexSeccion4 = () => {
   const duplicatedRowThree = [...rowThreeImages, ...rowThreeImages];
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${!darkMode ? styles.sectionLight : ''}`}>
       <div className={styles.wrapper}>
         {/* Header */}
         <div className={styles.header}>

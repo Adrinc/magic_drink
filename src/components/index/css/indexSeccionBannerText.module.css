@@ -6,6 +6,11 @@
   background: #0A0A0A;
   padding: 4rem 0;
   overflow: hidden;
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight {
+  background: #f7f7f9;
 }
 
 /* ========== Carousel Container ========== */
@@ -31,11 +36,21 @@
 .container::before {
   left: 0;
   background: linear-gradient(90deg, #0A0A0A 0%, rgba(10, 10, 10, 0.95) 40%, rgba(10, 10, 10, 0.5) 70%, transparent 100%);
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .container::after {
   right: 0;
   background: linear-gradient(270deg, #0A0A0A 0%, rgba(10, 10, 10, 0.95) 40%, rgba(10, 10, 10, 0.5) 70%, transparent 100%);
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sectionLight .container::before {
+  background: linear-gradient(90deg, #f7f7f9 0%, rgba(247, 247, 249, 0.95) 40%, rgba(247, 247, 249, 0.5) 70%, transparent 100%);
+}
+
+.sectionLight .container::after {
+  background: linear-gradient(270deg, #f7f7f9 0%, rgba(247, 247, 249, 0.95) 40%, rgba(247, 247, 249, 0.5) 70%, transparent 100%);
 }
 
 /* ========== Carousel Track ========== */
@@ -87,6 +102,13 @@
   background-clip: text;
   letter-spacing: -0.01em;
   transition: all 0.3s ease;
+}
+
+.sectionLight .text {
+  background: radial-gradient(37.2% 50% at 50% 50%, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .textItem:hover {

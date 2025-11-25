@@ -4,12 +4,18 @@
 .section {
   position: relative;
   min-height: 70vh;
-  background: #0a0a0a;
+  background: #0a0a0a; /* Modo oscuro */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(4rem, 8vw, 8rem) 2rem;
   overflow-x: hidden;
+  transition: background-color 0.3s var(--em-ease-smooth);
+}
+
+/* MODO CLARO */
+.sectionLight {
+  background: #f7f7f9; /* Color oficial modo claro */
 }
 
 .container {
@@ -21,13 +27,19 @@
 
 /* ========== Content Card ========== */
 .content {
-  background: linear-gradient(270deg, #0a0a0a 0.02%, #161616 60.31%);
+  background: linear-gradient(270deg, #0a0a0a 0.02%, #161616 60.31%); /* Modo oscuro */
   border-radius: 50px;
   padding: clamp(3rem, 6vw, 5rem);
   display: flex;
   gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
+  transition: background 0.3s var(--em-ease-smooth), box-shadow 0.3s var(--em-ease-smooth);
+}
 
+/* Card en modo claro: fondo blanco con sombra sutil */
+.sectionLight .content {
+  background: #FFFFFF;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 /* ========== Left Column ========== */
@@ -40,7 +52,7 @@
   font-family: 'Syne', sans-serif;
   font-size: clamp(4rem, 6vw, 5.5rem);
   font-weight: 700;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(211, 211, 211, 0) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(211, 211, 211, 0) 100%); /* Modo oscuro */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -49,6 +61,15 @@
   letter-spacing: -0.02em;
   transform: scaleY(0.9);
   transform-origin: center;
+  transition: all 0.3s var(--em-ease-smooth);
+}
+
+/* Título en modo claro: negro con gradiente */
+.sectionLight .title {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(74, 74, 74, 0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .description {
@@ -59,8 +80,14 @@
   font-family: 'Inter', sans-serif;
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.85); /* Modo oscuro */
   margin-bottom: 1.5rem;
+  transition: color 0.3s var(--em-ease-smooth);
+}
+
+/* Párrafos en modo claro: negro */
+.sectionLight .paragraph {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .paragraphHighlight {
@@ -76,6 +103,9 @@
   border-left: 4px solid #3DBBFF;
   font-weight: 700;
 }
+
+/* Highlight se mantiene con gradiente en ambos modos */
+/* El gradiente colorido es visible en ambos temas */
 
 /* ========== Stats Grid ========== */
 .statsGrid {
@@ -96,14 +126,20 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6); /* Modo oscuro */
+  transition: color 0.3s var(--em-ease-smooth);
+}
+
+/* Stat labels en modo claro: gris oscuro */
+.sectionLight .statLabel {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .statNumber {
   font-family: 'Syne', sans-serif;
   font-size: clamp(3.5rem, 5.2vw, 4.7rem);
   font-weight: 700;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(212, 212, 212, 0.7) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(212, 212, 212, 0.7) 100%); /* Modo oscuro */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -111,6 +147,15 @@
   letter-spacing: -0.02em;
   transform: scaleY(0.9);
   transform-origin: center;
+  transition: all 0.3s var(--em-ease-smooth);
+}
+
+/* Stat numbers en modo claro: negro con gradiente */
+.sectionLight .statNumber {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(74, 74, 74, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ========== Right Column ========== */
@@ -195,10 +240,17 @@
   }
 
   .statCard {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.05); /* Modo oscuro */
     padding: 1.5rem;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s var(--em-ease-smooth), border-color 0.3s var(--em-ease-smooth);
+  }
+
+  /* Stat cards en modo claro (móvil) */
+  .sectionLight .statCard {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .statNumber {

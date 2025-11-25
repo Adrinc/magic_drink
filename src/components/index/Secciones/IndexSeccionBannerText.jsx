@@ -1,9 +1,10 @@
 ﻿import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../../data/variables';
+import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccionBannerText.module.css';
 
 const IndexSeccionBannerText = () => {
   const ingles = useStore(isEnglish);
+  const darkMode = useStore(isDarkMode);
 
   // Contenido bilingüe de servicios
   const itemsEn = [
@@ -30,7 +31,7 @@ const IndexSeccionBannerText = () => {
   const duplicatedItems = [...items, ...items];
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${!darkMode ? styles.sectionLight : ''}`}>
       <div className={styles.container}>
         <div className={styles.carouselTrack}>
           {duplicatedItems.map((item, index) => (

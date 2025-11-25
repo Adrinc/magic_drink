@@ -15,16 +15,16 @@ const IndexSeccionBanner = () => {
   const t = ingles ? content : content;
 
   const brands = [
-    { name: 'Alvarado Hospital', logo: '/image/brands/alvaradohospital.avif' },
-    { name: 'Cox', logo: '/image/brands/cox.avif' },
-    { name: 'Disneyland', logo: '/image/brands/disneyland.avif' },
-    { name: 'Health Coalition', logo: '/image/brands/healthcoali.avif' },
-    { name: 'McDonalds', logo: '/image/brands/macdonals.avif' },
-    { name: 'Meta', logo: '/image/brands/meta.jfif' },
-    { name: 'Nissan', logo: '/image/brands/nissan.avif' },
-    { name: 'Sharp', logo: '/image/brands/sharp.avif' },
-    { name: 'SWC', logo: '/image/brands/swc.avif' },
-    { name: 'Televisa', logo: '/image/brands/televisa.avif' },
+/*     { name: 'Alvarado Hospital', logo: '/image/brands/alvaradohospital.avif' }, */
+    { name: 'Cox', logo: '/image/brands/cox.png' },
+    { name: 'Disneyland', logo: '/image/brands/disneyland.png' },
+/*     { name: 'Health Coalition', logo: '/image/brands/healthcoali.avif' }, */
+    { name: 'McDonalds', logo: '/image/brands/macdonals.png' },
+    { name: 'Meta', logo: '/image/brands/meta.png' },
+    { name: 'Nissan', logo: '/image/brands/nissan.png' },
+/*     { name: 'Sharp', logo: '/image/brands/sharp.avif' },
+    { name: 'SWC', logo: '/image/brands/swc.avif' }, */
+    { name: 'Televisa', logo: '/image/brands/televisa.png' },
     { name: 'Google', logo: '/image/brands/google.png' },
     { name: 'HubSpot', logo: '/image/brands/hubspot.png' },
     { name: 'LinkedIn', logo: '/image/brands/linkelin.png' },

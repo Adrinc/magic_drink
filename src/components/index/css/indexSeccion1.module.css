@@ -60,12 +60,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  text-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(111, 38, 169, 0.3);
+
   opacity: 0;
   
-  background: linear-gradient(120deg, #FFFFFF 90%, rgba(255, 255, 255, 0) 95%);
+background: linear-gradient(117.43deg, #FFFFFF 60%, rgba(255, 255, 255, 0.149) 100%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;

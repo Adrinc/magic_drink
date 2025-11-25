@@ -186,7 +186,7 @@ const NavBar = () => {
             className={styles.dropdownToggle}
             onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
           >
-            {darkMode ? '🌙' : '☀️'} {darkMode ? navTranslations.darkMode : navTranslations.lightMode} ▼
+            {/* {darkMode ? '🌙' : '☀️'}  */}{darkMode ? navTranslations.darkMode : navTranslations.lightMode} ▼
           </button>
           {themeDropdownOpen && (
             <div className={styles.dropdownMenu}>

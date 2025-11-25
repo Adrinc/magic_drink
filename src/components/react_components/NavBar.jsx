@@ -195,14 +195,14 @@ const NavBar = () => {
                 onClick={handleThemeToggle}
                 disabled={darkMode}
               >
-                🌙 {navTranslations.darkMode}
+                {navTranslations.darkMode}
               </button>
               <button 
                 className={`${styles.dropdownItem} ${!darkMode ? styles.active : ''}`}
                 onClick={handleThemeToggle}
                 disabled={!darkMode}
               >
-                ☀️ {navTranslations.lightMode}
+                {navTranslations.lightMode}
               </button>
             </div>
           )}

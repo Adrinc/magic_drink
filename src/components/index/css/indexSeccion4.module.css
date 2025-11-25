@@ -270,7 +270,124 @@
   }
 }
 
-/* ========== Image Cards ========== */
+/* ========== Video Cards (reemplazan .imageCard) ========== */
+.videoCard {
+  position: relative;
+  width: 420px;
+  height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.videoCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 1px 10px rgba(43, 199, 255, 0.3);
+  z-index: 10;
+}
+
+.sectionLight .videoCard {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sectionLight .videoCard:hover {
+  box-shadow: 0 8px 30px rgba(103, 46, 146, 0.15);
+}
+
+.videoThumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.videoCard:hover .videoThumbnail {
+  transform: scale(1.1);
+  filter: brightness(1) contrast(1.2);
+}
+
+/* ========== Play Overlay ========== */
+.playOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.7) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.videoCard:hover .playOverlay {
+  opacity: 1;
+}
+
+.playIcon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(43, 199, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(43, 199, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: #2BC7FF;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: scale(0.9);
+}
+
+.videoCard:hover .playIcon {
+  transform: scale(1.1);
+  background: rgba(43, 199, 255, 0.35);
+  box-shadow: 0 0 25px rgba(43, 199, 255, 0.5);
+}
+
+/* ========== Video Info (category badge) ========== */
+.videoInfo {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.videoCard:hover .videoInfo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.videoCategory {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(43, 199, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(43, 199, 255, 0.4);
+  color: #2BC7FF;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sectionLight .playOverlay {
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.7) 100%);
+}
+
+/* ========== Legacy .imageCard and .image (mantener para compatibilidad si es necesario) ========== */
+/* ========== Legacy .imageCard and .image (mantener para compatibilidad si es necesario) ========== */
 .imageCard {
   position: relative;
   width: 420px;
@@ -278,7 +395,6 @@
   border-radius: 20px;
   overflow: hidden;
   flex-shrink: 0;
-/*   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); */
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
 }
@@ -355,6 +471,17 @@
   .imageCard {
     width: 360px;
     height: 240px;
+  }
+
+  .videoCard {
+    width: 360px;
+    height: 240px;
+  }
+
+  .playIcon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
   }
 
   .carouselTrack {
@@ -453,6 +580,22 @@
     height: 200px;
   }
 
+  .videoCard {
+    width: 300px;
+    height: 200px;
+  }
+
+  .playIcon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.25rem;
+  }
+
+  .videoCategory {
+    font-size: 0.7rem;
+    padding: 5px 12px;
+  }
+
   .carouselTrack {
     gap: 16px;
   }
@@ -544,6 +687,23 @@
     border-radius: 16px;
   }
 
+  .videoCard {
+    width: 280px;
+    height: 200px;
+    border-radius: 16px;
+  }
+
+  .playIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.125rem;
+  }
+
+  .videoCategory {
+    font-size: 0.65rem;
+    padding: 4px 10px;
+  }
+
   /* Esfera radial aún más pequeña en móviles pequeños */
   .section::before {
     width: 100px;
@@ -557,11 +717,18 @@
     animation: none !important;
   }
 
-  .imageCard:hover {
+  .imageCard:hover,
+  .videoCard:hover {
     transform: none;
   }
 
-  .image {
+  .image,
+  .videoThumbnail {
+    transition: none;
+  }
+
+  .playIcon,
+  .videoInfo {
     transition: none;
   }
 }

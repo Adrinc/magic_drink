@@ -1,0 +1,301 @@
+/* videoLightbox.module.css - Modal para reproducción de videos de Vimeo */
+
+/* ========== Backdrop ========== */
+.lightboxBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* ========== Content Container ========== */
+.lightboxContent {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* ========== Close Button ========== */
+.closeButton {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+/* ========== Navigation Buttons ========== */
+.navButtonPrev,
+.navButtonNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(43, 199, 255, 0.3);
+  background: rgba(43, 199, 255, 0.1);
+  color: #2BC7FF;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.navButtonPrev {
+  left: -28px;
+}
+
+.navButtonNext {
+  right: -28px;
+}
+
+.navButtonPrev:hover,
+.navButtonNext:hover {
+  background: rgba(43, 199, 255, 0.25);
+  border-color: rgba(43, 199, 255, 0.6);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(43, 199, 255, 0.4);
+}
+
+/* ========== Layout ========== */
+.lightboxLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ========== Video Header ========== */
+.videoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding-right: 4rem; /* Espacio para botón de cierre */
+}
+
+.videoTitle {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.videoCounter {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
+}
+
+/* ========== Player Wrapper ========== */
+.playerWrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  background: #000000;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.videoIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ========== Video Description ========== */
+.videoDescription {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.videoDescription p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.categoryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(43, 199, 255, 0.15), rgba(245, 193, 92, 0.15));
+  color: #2BC7FF;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+/* ========== Responsive ========== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .lightboxContent {
+    padding: 2rem;
+    max-width: 90%;
+  }
+
+  .navButtonPrev {
+    left: -20px;
+  }
+
+  .navButtonNext {
+    right: -20px;
+  }
+
+  .videoHeader {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .videoCounter {
+    align-self: flex-start;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .lightboxBackdrop {
+    padding: 1rem;
+  }
+
+  .lightboxContent {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .closeButton {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .navButtonPrev,
+  .navButtonNext {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+
+  .navButtonPrev {
+    left: -10px;
+  }
+
+  .navButtonNext {
+    right: -10px;
+  }
+
+  .videoTitle {
+    font-size: 1.25rem;
+    padding-right: 2rem;
+  }
+
+  .videoDescription {
+    padding: 1rem;
+  }
+
+  .videoDescription p {
+    font-size: 0.875rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .lightboxContent {
+    padding: 1rem;
+  }
+
+  .videoHeader {
+    gap: 0.75rem;
+  }
+
+  .navButtonPrev,
+  .navButtonNext {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .navButtonPrev {
+    left: -5px;
+  }
+
+  .navButtonNext {
+    right: -5px;
+  }
+}
+
+/* Reducir movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .closeButton:hover,
+  .navButtonPrev:hover,
+  .navButtonNext:hover {
+    transform: none;
+  }
+
+  .lightboxBackdrop,
+  .lightboxContent {
+    animation: none !important;
+  }
+}

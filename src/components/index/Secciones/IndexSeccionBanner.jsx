@@ -18,7 +18,7 @@ const IndexSeccionBanner = () => {
     { name: 'Alvarado Hospital', logo: '/image/brands/alvaradohospital.png' },
     { name: 'Cox', logo: '/image/brands/cox.png' },
     { name: 'Disneyland', logo: '/image/brands/disneyland.png' },
-/*     { name: 'Health Coalition', logo: '/image/brands/healthcoali.avif' }, */
+    { name: 'Health Coalition', logo: '/image/brands/healthcoali.png' },
     { name: 'McDonalds', logo: '/image/brands/macdonals.png' },
     { name: 'Meta', logo: '/image/brands/meta.png' },
     { name: 'Nissan', logo: '/image/brands/nissan.png' },

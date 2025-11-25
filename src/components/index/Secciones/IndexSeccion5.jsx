@@ -9,70 +9,70 @@ const IndexSeccion5 = () => {
   
   const content = {
     es: {
-      title: "¿Curioso? ¡Entérate de todo! (FAQs)",
+      title: "¿Preguntas? ¡Tenemos respuestas!",
       subtitle: "Respuestas a las preguntas más comunes sobre nuestros servicios",
       items: [
         {
-          question: "¿Qué servicios ofrecen?",
-          answer: "Ofrecemos una gama completa de servicios digitales que incluyen producción de video, marketing digital, branding, desarrollo web y soluciones impulsadas por IA para ayudar a crecer tu negocio."
+          question: "¿En qué industrias se especializan?",
+          answer: "Trabajamos en múltiples verticales—desde salud y educación hasta hospitalidad, automotriz, tecnología y legal. Nuestro equipo se adapta a la voz de tu marca, regulaciones de la industria y comportamiento de la audiencia para ofrecer contenido que funciona."
         },
         {
-          question: "¿Cuánto cuesta la producción de video?",
-          answer: "Los costos varían según la complejidad, duración y requisitos específicos del proyecto. Ofrecemos paquetes flexibles desde clips básicos para redes sociales hasta producciones comerciales a gran escala."
+          question: "¿Cómo determinan el precio de los proyectos?",
+          answer: "Cada proyecto se cotiza de manera personalizada según complejidad, entregables, plazos y recursos. Después de una breve llamada de descubrimiento, proporcionamos una estimación transparente y opciones que se ajustan a tus objetivos y presupuesto."
         },
         {
-          question: "¿Cuánto tiempo toma producir un video?",
-          answer: "Un cronograma de producción típico oscila entre 2 y 6 semanas, dependiendo del alcance. Esto incluye preproducción, filmación y edición de postproducción."
+          question: "¿Cuál es su tiempo de entrega típico?",
+          answer: "Los plazos varían según el tipo de proyecto—videos, campañas completas, aplicaciones móviles o contenido creativo. Después del descubrimiento, te damos un cronograma claro que cubre preproducción, producción y revisiones para que no haya sorpresas."
         },
         {
-          question: "¿Pueden ayudar con la redacción de guiones y storyboards?",
-          answer: "¡Absolutamente! Nuestro equipo creativo se especializa en elaborar guiones convincentes y storyboards detallados para asegurar que tu mensaje se transmita efectivamente."
+          question: "¿Ofrecen soporte continuo después de completar un proyecto?",
+          answer: "¡Sí! Ya sea que necesites gestión mensual de redes sociales, creación continua de contenido, actualizaciones de aplicaciones, reportes de analítica o estrategia de marketing a largo plazo, ofrecemos opciones de retención y soporte continuo."
         },
         {
-          question: "¿Cómo es el proceso de producción?",
-          answer: "Nuestro proceso implica tres etapas principales: Preproducción (planificación), Producción (filmación) y Postproducción (edición). Te mantenemos involucrado en cada paso."
+          question: "¿Pueden trabajar con mi equipo existente de branding o marketing?",
+          answer: "Absolutamente. Colaboramos sin problemas con equipos internos, agencias y socios de marca. También podemos desarrollar nuevas estrategias creativas, branding o bases de campaña si es necesario."
         },
         {
-          question: "¿Ofrecen servicios de video marketing?",
-          answer: "Sí, ayudamos a distribuir tus videos con estrategias que incluyen optimización SEO, campañas de anuncios en redes sociales y análisis para maximizar tu ROI."
+          question: "¿Cómo miden el éxito de sus campañas o contenido?",
+          answer: "Nuestro trabajo está basado en datos. Rastreamos el rendimiento usando analítica, KPIs adaptados a tu proyecto e insights en tiempo real para optimizar resultados—ya sea engagement, conversiones, instalaciones o conocimiento de marca."
         },
         {
-          question: "¿Pueden trabajar con un presupuesto específico?",
-          answer: "Entendemos que cada negocio tiene diferentes limitaciones financieras. Estamos encantados de discutir tu presupuesto y adaptar una solución que ofrezca el mejor valor."
+          question: "¿Cómo es el proceso de incorporación?",
+          answer: "Después de una consulta inicial, comenzamos con una sesión de descubrimiento para entender tus objetivos, audiencia, tono y entregables. Desde ahí, creamos un roadmap del proyecto, recopilamos activos, iniciamos el desarrollo creativo y te mantenemos actualizado en cada etapa."
         }
       ]
     },
     en: {
-      title: "Curious? Check Out the Scoop! (FAQs)",
+      title: "Questions? We Have Answers!",
       subtitle: "Answers to the most common questions about our services",
       items: [
         {
-          question: "What services do you offer?",
-          answer: "We offer a comprehensive range of digital services including video production, digital marketing, branding, web development, and AI-powered solutions to help your business grow."
+          question: "What industries do you specialize in?",
+          answer: "We work across multiple verticals—from healthcare and education to hospitality, automotive, tech, and legal. Our team adapts to your brand's voice, industry regulations, and audience behavior to deliver content that performs."
         },
         {
-          question: "How much does video production cost?",
-          answer: "Costs vary depending on the project's complexity, length, and specific requirements. We offer flexible packages starting from basic social media clips to full-scale commercial productions."
+          question: "How do you determine pricing for projects?",
+          answer: "Every project is custom-scoped based on complexity, deliverables, timelines, and resources. After a quick discovery call, we provide a transparent estimate and options that match your goals and budget."
         },
         {
-          question: "How long does it take to produce a video?",
-          answer: "A typical production timeline ranges from 2 to 6 weeks, depending on the scope. This includes pre-production, filming, and post-production editing."
+          question: "What is your typical turnaround time?",
+          answer: "Timelines vary by project type—videos, full campaigns, mobile apps, or creative content. After discovery, we give you a clear schedule that covers pre-production, production, and revisions so there are no surprises."
         },
         {
-          question: "Can you help with scriptwriting and storyboarding?",
-          answer: "Absolutely! Our creative team specializes in crafting compelling scripts and detailed storyboards to ensure your message is conveyed effectively."
+          question: "Do you offer ongoing support after a project is completed?",
+          answer: "Yes! Whether you need monthly social media management, ongoing content creation, app updates, analytics reporting, or long-term marketing strategy, we provide retainer options and ongoing support."
         },
         {
-          question: "What is the production process like?",
-          answer: "Our process involves three main stages: Pre-production (planning), Production (filming), and Post-production (editing). We keep you involved at every step."
+          question: "Can you work with my existing branding or marketing team?",
+          answer: "Absolutely. We seamlessly collaborate with internal teams, agencies, and brand partners. We can also develop fresh creative strategies, branding, or campaign foundations if needed."
         },
         {
-          question: "Do you provide video marketing services?",
-          answer: "Yes, we help distribute your videos with strategies including SEO optimization, social media ad campaigns, and analytics to maximize your ROI."
+          question: "How do you measure success for your campaigns or content?",
+          answer: "Our work is data-driven. We track performance using analytics, KPIs tailored to your project, and real-time insights to optimize results—whether it's engagement, conversions, installs, or brand awareness."
         },
         {
-          question: "Can you work with a specific budget?",
-          answer: "We understand that every business has different financial constraints. We are happy to discuss your budget and tailor a solution that delivers the best possible value."
+          question: "What does the onboarding process look like?",
+          answer: "After an initial consultation, we kick off with a discovery session to understand your goals, audience, tone, and deliverables. From there, we create a project roadmap, gather assets, begin creative development, and keep you updated throughout each stage."
         }
       ]
     }

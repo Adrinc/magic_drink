@@ -10,7 +10,7 @@ const IndexSeccionBannerText = () => {
   const itemsEn = [
     { text: 'Motion Graphics', color: '#F12A2A' },
     { text: 'VFX', color: '#3DBBFF' },
-    { text: 'Filming', color: '#FFB638' },
+    { text: 'Video Production', color: '#FFB638' },
     { text: 'App Creation', color: '#6F26A9' },
     { text: 'Scriptwriting', color: '#FF7A45' },
     { text: 'Sound Design', color: '#A47EB9' }
@@ -19,7 +19,7 @@ const IndexSeccionBannerText = () => {
   const itemsEs = [
     { text: 'Motion Graphics', color: '#F12A2A' },
     { text: 'VFX', color: '#3DBBFF' },
-    { text: 'Filmación', color: '#FFB638' },
+    { text: 'Producción de Video', color: '#FFB638' },
     { text: 'Creación de Apps', color: '#6F26A9' },
     { text: 'Escritura de Guiones', color: '#FF7A45' },
     { text: 'Diseño de Sonido', color: '#A47EB9' }

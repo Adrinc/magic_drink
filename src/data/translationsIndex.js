@@ -40,7 +40,7 @@ export const translationsIndex = {
       highlightText: "Desde videos virales hasta campañas programáticas, entregamos soluciones dentro del presupuesto que resuenan, no se evaporan—porque la conexión importa más que los clics.",
       paragraph2: "A través de EE.UU. y México, hemos ayudado a marcas de salud, automotriz y de consumo a contar historias con impacto, cultura y el pulso inconfundible de la energía latina.",
       stats: [
-        { label: "AÑOS DE EXPERIENCIA", number: "39" },
+        { label: "AÑOS DE EXPERIENCIA", number: "37+" },
         { label: "CLIENTES RECURRENTES", number: "25" },
         { label: "PROYECTOS COMPLETADOS", number: "475" },
         { label: "CLIENTES FELICES", number: "335" }
@@ -594,7 +594,7 @@ export const translationsIndex = {
       highlightText: "From viral videos to programmatic campaigns, we deliver in-budget solutions that resonate, not evaporate—because connection matters more than clicks.",
       paragraph2: "Across the U.S. and Mexico, we've helped healthcare, automotive, and consumer brands tell stories with impact, culture, and the unmistakable pulse of Latino energy.",
       stats: [
-        { label: "YEARS OF EXPERIENCE", number: "39" },
+        { label: "YEARS OF EXPERIENCE", number: "37+" },
         { label: "REPEATED CLIENTS", number: "25" },
         { label: "COMPLETED PROJECTS", number: "475" },
         { label: "HAPPY CLIENTS", number: "335" }

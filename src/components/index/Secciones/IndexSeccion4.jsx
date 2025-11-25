@@ -72,7 +72,7 @@ const IndexSeccion4 = () => {
             <h2 className={styles.title}>{t.header.title}</h2>
             <p className={styles.subtitle}>{t.header.subtitle}</p>
           </div>
-          <button className={styles.seeMoreBtn}>{t.header.seeMore}</button>
+         {/*  <button className={styles.seeMoreBtn}>{t.header.seeMore}</button> */}
         </div>
 
         {/* Contenedor con overlay para fade masks */}

@@ -22,7 +22,7 @@ const FootNetHive = () => {
       hoursLabel: "Horario:",
       hours: "Domingo - Jueves : 9am a 5pm",
       newsletterText: "¡Comparte tu email para contactarte!",
-      subscribeBtn: "Suscribirse",
+      subscribeBtn: "Colaboremos",
       quickLinksTitle: "Enlaces Rápidos",
       legalTitle: "Legal",
       socialTitle: "Redes Sociales",
@@ -48,7 +48,7 @@ const FootNetHive = () => {
       hoursLabel: "Business Hours:",
       hours: "Sunday - Thursday : 9am to 5pm",
       newsletterText: "Share your email to contact you!",
-      subscribeBtn: "Subscribe",
+      subscribeBtn: "Let's Collaborate",
       quickLinksTitle: "Quick Links",
       legalTitle: "Legal",
       socialTitle: "Social Medias",
@@ -93,7 +93,7 @@ const FootNetHive = () => {
               <p><span className={styles.label}>{t.addressLabel}</span> {t.address}</p>
               <p><span className={styles.label}>{t.emailLabel}</span> {t.email}</p>
               <p><span className={styles.label}>{t.phoneLabel}</span> {t.phone}</p>
-              <p><span className={styles.label}>{t.hoursLabel}</span> {t.hours}</p>
+             {/*  <p><span className={styles.label}>{t.hoursLabel}</span> {t.hours}</p> */}
             </div>
             
             <div className={styles.newsletter}>

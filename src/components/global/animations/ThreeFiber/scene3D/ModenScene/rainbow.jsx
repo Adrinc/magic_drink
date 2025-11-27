@@ -30,6 +30,21 @@ export default function Rainbow(props) {
       reflectivity: 0.5,
     });
   }, []);
+
+  // Material para el Cubo - MeshStandardMaterial con FrontSide
+  const cubeMaterial = useMemo(() => {
+    return new THREE.MeshPhysicalMaterial({
+      color:  '#1a1a1a',
+      metalness: 0,
+      roughness: 1,
+        transmission: 1, // Transparencia
+      thickness: 0.2, // Grosor del vidrio
+      clearcoat: 2, // Capa brillante exterior
+      side: THREE.DoubleSide,
+      opacity: 0.7,
+      transparent: true,
+    });
+  }, []);
   
   // Animación parallax suave del Cubo con GSAP
   useEffect(() => {
@@ -45,13 +60,13 @@ export default function Rainbow(props) {
       });
 
       // Rotación suave continua
-      gsap.to(cubeRef.current.rotation, {
+ /*      gsap.to(cubeRef.current.rotation, {
         x: cubeRef.current.rotation.x + Math.PI * 0.1,
         duration: 5,
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
-      });
+      }); */
     }
   }, []);
 
@@ -98,15 +113,15 @@ export default function Rainbow(props) {
    /*        castShadow
           receiveShadow */
           geometry={nodes.Cubo.geometry}
-          material={materials['Material.002']}
+          material={cubeMaterial}
           position={[-5.95, -1, -1.783]}
-          scale={[6, 6, 1]}
+          scale={[5, 5, 1]}
           
         />
         <mesh
           name="Cilindro"
-     /*      castShadow
-          receiveShadow */
+          castShadow
+          receiveShadow
           geometry={nodes.Cilindro.geometry}
           material={frostedGlassMaterial}
           position={[-1.452, 0, 3.919]}

@@ -2,15 +2,15 @@ import {Sparkles,  BakeShadows, Environment, PerspectiveCamera, PresentationCont
 import { Suspense } from 'react'
 import { useControls } from 'leva';
 
-import { ToneMapping , ChromaticAberration, Bloom, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
+import { ToneMapping , ChromaticAberration, Bloom, EffectComposer, Noise, Vignette, DepthOfField } from '@react-three/postprocessing'
 import { enviromentConfig, pointLightConfig } from '../scene_config.js';
-import { vignetteConfig, chromaticAberrationConfig, bloomConfig, toneMappingConfig,noiseConfig  } from '../scene_config.js';
+import { initCamera, vignetteConfig, chromaticAberrationConfig, bloomConfig, toneMappingConfig,noiseConfig, depthOfFieldConfig  } from '../scene_config.js';
 import Rainbow from './rainbow.jsx';
 
 import { useThree, useFrame } from '@react-three/fiber';
 export default function Scene()
 {
-    let initCamera={far:2000, near: 0.1, fov: 35, position:[0, 0,20], rotation:[0, 0, 0]}
+
 
     const { viewport } = useThree();
   
@@ -32,7 +32,7 @@ const maxAzimuthAngle = Math.PI / 4;
            const polarAngle = (maxPolarAngle - minPolarAngle) * pointer.y + minPolarAngle;
            const azimuthAngle = (maxAzimuthAngle - minAzimuthAngle) * pointer.x + minAzimuthAngle;
          
-           const radius = 6.5;
+           const radius = 2.5;
            const offsetX = radius * Math.sin(polarAngle) * Math.cos(azimuthAngle);
            const offsetY = radius * Math.cos(polarAngle);
            const lerpFactor = 1;
@@ -49,6 +49,7 @@ const maxAzimuthAngle = Math.PI / 4;
     <Suspense fallback={null}>
         <EffectComposer multisampling={1}>
             <ToneMapping {...toneMappingConfig}/>
+            <DepthOfField {...depthOfFieldConfig} />
             <Bloom {...bloomConfig} />
             
             <ChromaticAberration {...chromaticAberrationConfig} />

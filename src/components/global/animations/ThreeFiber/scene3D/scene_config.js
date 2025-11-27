@@ -23,6 +23,13 @@ import * as THREE from 'three'
       color: '#fff',
     };
 
+  export const initCamera={
+    far:2000, 
+    near: 0.1, 
+    fov: 35, 
+    position:[0, 0,20], 
+    rotation:[0, 0, 0]}
+
 export const vignetteConfig = {
     offset: 0.1,
     darkness: 1,
@@ -56,4 +63,11 @@ export const vignetteConfig = {
     blendFunction: BlendFunction.NORMAL,
     mode: 1
     };
+
+  export const depthOfFieldConfig = {
+    focusDistance: 0.4, // Enfoca objetos cercanos (~12-15 unidades), desenfoca la esfera (30 unidades)
+    focalLength: 0.05, // Mayor focalLength = más bokeh/desenfoque
+    bokehScale: 3, // Mayor bokeh = más desenfoque pronunciado
+    height: 480,
+  };
 

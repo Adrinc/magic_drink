@@ -29,10 +29,12 @@
 .content {
   background: linear-gradient(270deg, #0a0a0a 0.02%, #161616 60.31%); /* Modo oscuro */
   border-radius: 50px;
-  padding: clamp(3rem, 6vw, 5rem);
+  padding: 0;
   display: flex;
-  gap: clamp(3rem, 6vw, 6rem);
-  align-items: center;
+  gap: 0;
+  align-items: stretch;
+  min-height: 70vh;
+  overflow: hidden;
   transition: background 0.3s var(--em-ease-smooth), box-shadow 0.3s var(--em-ease-smooth);
 }
 
@@ -44,8 +46,12 @@
 
 /* ========== Left Column ========== */
 .leftColumn {
-  flex: 1;
+  flex: 0 0 55%;
   min-width: 0;
+  padding: clamp(3rem, 6vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title {
@@ -160,18 +166,34 @@
 
 /* ========== Right Column ========== */
 .rightColumn {
-  flex: 0 0 auto;
-  width: clamp(300px, 35vw, 700px);
+  flex: 0 0 45%;
+  width: 45%;
+  height: 100%;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .imageWrapper {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
+  min-height: 70vh;
+  display: block;
+  position: relative;
+}
+
+.imageWrapper > div {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 70vh !important;
+}
+
+.imageWrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .rainbowImage {
@@ -185,12 +207,24 @@
 @media (max-width: 1024px) {
   .content {
     flex-direction: column;
-    gap: 4rem;
+    gap: 0;
+    min-height: auto;
+  }
+
+  .leftColumn {
+    flex: 1 1 auto;
+    padding: clamp(2.5rem, 5vw, 4rem);
   }
 
   .rightColumn {
+    flex: 0 0 auto;
     width: 100%;
-    max-width: 450px;
+    height: 400px;
+    max-width: 100%;
+  }
+
+  .imageWrapper {
+    position: relative;
   }
 
   .title {
@@ -209,8 +243,16 @@
   }
 
   .content {
-    padding: clamp(2.5rem, 5vw, 3rem) 1.5rem;
+    padding: 0;
     border-radius: 24px;
+  }
+
+  .leftColumn {
+    padding: clamp(2rem, 4vw, 3rem) 1.5rem;
+  }
+
+  .rightColumn {
+    height: 350px;
   }
 
   .title {
@@ -234,6 +276,14 @@
 }
 
 @media (max-width: 600px) {
+  .leftColumn {
+    padding: 2rem 1.5rem;
+  }
+
+  .rightColumn {
+    height: 300px;
+  }
+
   .statsGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -264,8 +314,16 @@
 
 @media (max-width: 480px) {
   .content {
+    padding: 0;
+    gap: 0;
+  }
+
+  .leftColumn {
     padding: 2rem 1.25rem;
-    gap: 3rem;
+  }
+
+  .rightColumn {
+    height: 280px;
   }
 
   .title {

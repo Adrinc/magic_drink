@@ -3,6 +3,8 @@ import { useStore } from '@nanostores/react';
 import { isEnglish, isDarkMode } from '../../../data/variables';
 import { translationsIndex } from '../../../data/translationsIndex';
 import styles from '../css/indexSeccion2.module.css';
+import Rainbow from '../../global/animations/ThreeFiber/scene3D/ModenScene/Main3D';
+
 
 const IndexSeccion2 = () => {
   const ingles = useStore(isEnglish);
@@ -35,12 +37,8 @@ const IndexSeccion2 = () => {
           
           {/* Right Column: Rainbow Image */}
           <div className={styles.rightColumn}>
-            <div className={styles.imageWrapper}>
-              <img 
-                src="/image/global/rainbow.png" 
-                alt="Energy Media Rainbow" 
-                className={styles.rainbowImage}
-              />
+            <div className={styles.imageWrapper} style={{ width: '100%', height: '100%' }}>
+              <Rainbow/>
             </div>
           </div>
         </div>

@@ -218,7 +218,12 @@ background-clip: text;
   font-family: 'Syne', sans-serif;
   font-weight: 700;
   color: #FFB638; /* Amarillo dorado del diseño */
-  text-shadow: 0 0 20px rgba(255, 182, 56, 0.5);
+  text-shadow: 
+    0 0 20px rgba(255, 182, 56, 0.8),
+    0 0 40px rgba(255, 182, 56, 0.6),
+    0 0 60px rgba(255, 182, 56, 0.4),
+    0 0 80px rgba(255, 182, 56, 0.2);
+  filter: brightness(1.2);
 }
 
 .brandExclaim {

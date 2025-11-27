@@ -98,15 +98,17 @@ const NavBar = () => {
 
   return (
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}>
-      {/* Contenedor central con blur (Logo + Links + Contact) */}
-      <div className={styles.navContainer}>
-        {/* Logo */}
+      {/* Logo en esquina izquierda - Contenedor independiente */}
+      <div className={styles.logoContainer}>
         <a href="/" onClick={handleLogoClick} className={styles.logoLink}>
           <div className={styles.logopic}>
-            <img src="/logo.png" alt="Energy Media Logo" />
+            <img src="/logo_light.png" alt="Energy Media Logo" />
           </div>
         </a>
+      </div>
 
+      {/* Contenedor central con blur (Links + Contact) */}
+      <div className={styles.navContainer}>
         {/* Menú de navegación */}
         <ul className={styles.navMenu}>
           <li className={styles.navItem}>
@@ -139,18 +141,18 @@ const NavBar = () => {
         <a className={styles.contactButton} href="/contacto">
           {navTranslations.contactUs}
         </a>
-
-        {/* Botón Hamburguesa (solo móvil) */}
-        <button 
-          className={styles.hamburgerButton}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
-          <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
-          <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
-        </button>
       </div>
+
+      {/* Botón Hamburguesa (solo móvil) - FUERA del contenedor central */}
+      <button 
+        className={styles.hamburgerButton}
+        onClick={toggleMobileMenu}
+        aria-label="Toggle menu"
+      >
+        <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
+        <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
+        <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
+      </button>
 
       {/* Dropdowns (Idioma y Dark Mode) - FUERA del contenedor */}
       <div className={styles.dropdownGroup}>
@@ -213,9 +215,7 @@ const NavBar = () => {
       {mobileMenuOpen && (
         <div className={styles.mobileMenuOverlay} onClick={closeMobileMenu}>
           {/* Botón Cerrar - FUERA del content */}
-          <button className={styles.closeButton} onClick={closeMobileMenu}>
-            <span className={styles.closeIcon}>X</span>
-          </button>
+      
 
           <div className={styles.mobileMenuContent} onClick={(e) => e.stopPropagation()}>
             {/* Navegación Móvil */}
@@ -288,14 +288,14 @@ const NavBar = () => {
                     onClick={handleThemeToggle}
                     disabled={darkMode}
                   >
-                    🌙 {navTranslations.darkMode}
+                    {navTranslations.darkMode}
                   </button>
                   <button 
                     className={`${styles.mobileLangButton} ${!darkMode ? styles.mobileLangButtonActive : ''}`}
                     onClick={handleThemeToggle}
                     disabled={!darkMode}
                   >
-                    ☀️ {navTranslations.lightMode}
+                    {navTranslations.lightMode}
                   </button>
                 </div>
               </div>

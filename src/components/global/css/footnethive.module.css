@@ -357,36 +357,99 @@
 }
 
 .socialBtn {
-  background-color: #141414; /* Slightly lighter than bg */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #141414;
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: 30px;
   padding: 1.5rem;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 0.1em;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.socialIcon {
+  width: 32px;
+  height: 32px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: grayscale(100%);
+  opacity: 0.5;
 }
 
 .footerLight .socialBtn {
   background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.4);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
 }
 
+/* Hover Effects - Cada red social con su color */
 .socialBtn:hover {
-  background-color: #151515;
-  color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+.socialBtn:hover .socialIcon {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Twitter - Azul */
+.socialBtn:nth-child(1):hover {
+  border-color: #1DA1F2;
+  background: rgba(29, 161, 242, 0.1);
+  color: #1DA1F2;
+}
+
+.socialBtn:nth-child(1):hover .socialIcon {
+  color: #1DA1F2;
+}
+
+/* LinkedIn - Azul profesional */
+.socialBtn:nth-child(2):hover {
+  border-color: #0A66C2;
+  background: rgba(10, 102, 194, 0.1);
+  color: #0A66C2;
+}
+
+.socialBtn:nth-child(2):hover .socialIcon {
+  color: #0A66C2;
+}
+
+/* YouTube - Rojo */
+.socialBtn:nth-child(3):hover {
+  border-color: #FF0000;
+  background: rgba(255, 0, 0, 0.1);
+  color: #FF0000;
+}
+
+.socialBtn:nth-child(3):hover .socialIcon {
+  color: #FF0000;
+}
+
+/* Instagram - Gradiente (simulado con rosa/naranja) */
+.socialBtn:nth-child(4):hover {
+  border-color: #E1306C;
+  background: linear-gradient(135deg, rgba(225, 48, 108, 0.1), rgba(253, 29, 29, 0.1), rgba(245, 96, 64, 0.1));
+  color: #E1306C;
+}
+
+.socialBtn:nth-child(4):hover .socialIcon {
+  color: #E1306C;
+}
+
+/* Modo Claro */
 .footerLight .socialBtn:hover {
-  background-color: #672E92;
-  color: #FFFFFF;
-  border-color: #672E92;
-  box-shadow: 0 4px 15px rgba(103, 46, 146, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* --- Responsive --- */
@@ -413,6 +476,12 @@
   
   .socialGrid {
     grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .socialIcon {
+    width: 30px;
+    height: 30px;
   }
   
   .ctaBox {
@@ -542,15 +611,22 @@
   
   .socialGrid {
     grid-template-columns: 1fr;
+    gap: 1rem;
     width: 100%;
     box-sizing: border-box;
   }
   
   .socialBtn {
-    padding: 1.2rem;
-    font-size: 0.85rem;
+    padding: 1.25rem;
+    font-size: 0.8rem;
     border-radius: 20px;
     margin: 0;
+    gap: 0.6rem;
+  }
+
+  .socialIcon {
+    width: 28px;
+    height: 28px;
   }
   
   .nameInput,

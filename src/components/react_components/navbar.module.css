@@ -8,7 +8,7 @@
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 1rem clamp(20px, 3vw, 40px);
   background: transparent;
   z-index: 1000;
@@ -26,7 +26,25 @@
   background: transparent;
 }
 
-/* ========== CONTENEDOR CENTRAL CON BLUR ========== */
+/* ========== LOGO CONTAINER (Esquina Izquierda) ========== */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.25rem;
+  background: white;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.logoContainer:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ========== CONTENEDOR CENTRAL CON BLUR (Solo Links + Contact) ========== */
 .navContainer {
   display: flex;
   align-items: center;
@@ -88,7 +106,7 @@
 }
 
 .logopic {
-  height: 40px;
+  height: 36px;
   width: auto;
   display: flex;
   align-items: center;
@@ -101,7 +119,7 @@
   object-fit: contain;
 }
 
-.logopic:hover {
+.logoContainer:hover .logopic {
   transform: scale(1.05);
 }
 
@@ -170,10 +188,8 @@
   box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
-/* ========== DROPDOWN GROUP (Fuera del contenedor central) ========== */
+/* ========== DROPDOWN GROUP (Esquina Derecha) ========== */
 .dropdownGroup {
-  position: absolute;
-  right: clamp(20px, 3vw, 40px);
   display: flex;
   gap: 0.75rem;
   align-items: center;
@@ -300,7 +316,6 @@
   cursor: pointer;
   padding: 0;
   z-index: 1001;
-  margin-left: 1rem;
 }
 
 .hamburgerLine {
@@ -580,15 +595,25 @@
 }
 
 @media (max-width: 900px) {
-  /* Ocultar elementos desktop */
-  .navMenu {
+  .navbar {
+    justify-content: space-between;
+  }
+
+  /* Logo container en móvil */
+  .logoContainer {
+    padding: 0.5rem 1rem;
+  }
+
+  .logopic {
+    height: 32px;
+  }
+
+  /* Ocultar contenedor central completo */
+  .navContainer {
     display: none;
   }
 
-  .contactButton {
-    display: none;
-  }
-
+  /* Ocultar dropdowns en móvil */
   .dropdownGroup {
     display: none;
   }
@@ -597,11 +622,6 @@
   .hamburgerButton {
     display: flex;
   }
-
-  .navContainer {
-    gap: 1rem;
-    padding: 0.6rem 1.25rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -609,12 +629,12 @@
     padding: 0.75rem 15px;
   }
 
-  .navContainer {
-    padding: 0.5rem 1rem;
+  .logoContainer {
+    padding: 0.4rem 0.85rem;
   }
 
   .logopic {
-    height: 35px;
+    height: 28px;
   }
 
   .mobileNavLink {

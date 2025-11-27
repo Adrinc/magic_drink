@@ -32,7 +32,7 @@ const maxAzimuthAngle = Math.PI / 4;
            const polarAngle = (maxPolarAngle - minPolarAngle) * pointer.y + minPolarAngle;
            const azimuthAngle = (maxAzimuthAngle - minAzimuthAngle) * pointer.x + minAzimuthAngle;
          
-           const radius = 2.5;
+           const radius = 6.5;
            const offsetX = radius * Math.sin(polarAngle) * Math.cos(azimuthAngle);
            const offsetY = radius * Math.cos(polarAngle);
            const lerpFactor = 1;
@@ -68,7 +68,7 @@ const maxAzimuthAngle = Math.PI / 4;
    <ambientLight intensity={1} color={"#5d5d5d"} /> 
     <Suspense>
 
-    <PresentationControls
+{/*     <PresentationControls
   
     config={{ mass: 2, tension: 500 }}
     snap={{ mass: 4, tension: 1500 }}
@@ -76,9 +76,9 @@ const maxAzimuthAngle = Math.PI / 4;
     polar={[-Math.PI / 10, Math.PI / 10]}
     azimuth={[-Math.PI / 1, Math.PI / 1]}
 
->
+> */}
 <Rainbow  position={[0,-1,-10]} rotation={[0,0,0]}  />
-</PresentationControls>
+{/* </PresentationControls> */}
 
 
 

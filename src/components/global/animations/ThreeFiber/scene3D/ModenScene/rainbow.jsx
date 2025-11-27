@@ -1,9 +1,13 @@
 import { useRef, useEffect, useMemo } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
+import gsap from 'gsap';
 
 export default function Rainbow(props) {
   const group = useRef();
+  const cubeRef = useRef();
+  const sphereRef = useRef();
   const { nodes, materials, animations } = useGLTF('models/rainbow.glb')
   const { actions } = useAnimations(animations, group);
   
@@ -27,6 +31,45 @@ export default function Rainbow(props) {
     });
   }, []);
   
+  // Animación parallax suave del Cubo con GSAP
+  useEffect(() => {
+    if (cubeRef.current) {
+      // Animación de flotación sutil
+      gsap.to(cubeRef.current.position, {
+       /*  y: cubeRef.current.position.y + 1, */
+        x: cubeRef.current.position.x + 2,
+        duration: 5,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+
+      // Rotación suave continua
+      gsap.to(cubeRef.current.rotation, {
+        x: cubeRef.current.rotation.x + Math.PI * 0.1,
+        duration: 5,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+    }
+  }, []);
+
+  // Rotación continua de la esfera sobre su propio eje
+  useFrame((state, delta) => {
+    if (sphereRef.current) {
+      sphereRef.current.rotation.y += delta * 0.3; // Rotación en Y (horizontal)
+      sphereRef.current.rotation.x += delta * 0.3 // Rotación leve en X (vertical)
+    }
+  });
+
+  // Movimiento parallax basado en tiempo (sutil)
+/*   useFrame((state) => {
+    if (cubeRef.current) {
+      // Oscilación horizontal muy sutil
+      cubeRef.current.position.x = -5.95 + Math.sin(state.clock.elapsedTime * 0.3) * 0.3;
+    }
+  }); */
 
 /*    useEffect(() => {
 
@@ -40,28 +83,30 @@ export default function Rainbow(props) {
     <group {...props} dispose={null}>
       <group name="Scene">
         <mesh
+          ref={sphereRef}
           name="Esfera"
-       castShadow
-          receiveShadow
+       /*    castShadow
+          receiveShadow */
           geometry={nodes.Esfera.geometry}
           material={materials.rainbow}
-          position={[0, -0.227, -10]}
+          position={[0, 0, -10]}
           scale={7}
         />
         <mesh
+          ref={cubeRef}
           name="Cubo"
-          castShadow
-          receiveShadow
+   /*        castShadow
+          receiveShadow */
           geometry={nodes.Cubo.geometry}
           material={materials['Material.002']}
           position={[-5.95, -1, -1.783]}
-          scale={[5, 5, 1]}
+          scale={[6, 6, 1]}
           
         />
         <mesh
           name="Cilindro"
-          castShadow
-          receiveShadow
+     /*      castShadow
+          receiveShadow */
           geometry={nodes.Cilindro.geometry}
           material={frostedGlassMaterial}
           position={[-1.452, 0, 3.919]}

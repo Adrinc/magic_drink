@@ -76,46 +76,7 @@
   color: #000000;
 }
 
-.ctaButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 1.25rem;
-  background: linear-gradient(135deg, #2BC7FF, #F5C15C);
-  color: #0A0A0A;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(43, 199, 255, 0.3);
-  width: fit-content;
-}
-
-.ctaButton:hover {
-  transform: translateX(3px);
-  box-shadow: 0 6px 20px rgba(43, 199, 255, 0.5);
-}
-
-.ctaCardLight .ctaButton {
-  background: #672E92;
-  color: #FFFFFF;
-  box-shadow: 0 4px 15px rgba(103, 46, 146, 0.2);
-}
-
-.ctaCardLight .ctaButton:hover {
-  background: linear-gradient(135deg, #672E92 0%, #A47EB9 100%);
-  box-shadow: 0 6px 20px rgba(103, 46, 146, 0.4);
-}
-
-.arrow {
-  transition: transform 0.3s ease;
-}
-
-.ctaButton:hover .arrow {
-  transform: translateX(3px);
-}
+/* Botón ahora usa componente Button global */
 
 /* ========== Responsive ========== */
 

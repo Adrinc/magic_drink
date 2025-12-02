@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react';
 import { isEnglish, isDarkMode } from '../../data/variables';
 import styles from './css/ctaCard.module.css';
+import Button from './Button';
 
 const CtaCard = () => {
   const ingles = useStore(isEnglish);
@@ -8,12 +9,10 @@ const CtaCard = () => {
 
   const content = {
     es: {
-      title: "¡Hagamos realidad tus ideas con Energy!",
-      cta: "Contáctanos"
+      title: "¡Hagamos realidad tus ideas con Energy!"
     },
     en: {
-      title: "Let's bring your ideas to life with Energy!",
-      cta: "Contact Us"
+      title: "Let's bring your ideas to life with Energy!"
     }
   };
 
@@ -30,9 +29,14 @@ const CtaCard = () => {
       </div>
       <div className={styles.contentSection}>
         <h3 className={styles.title}>{t.title}</h3>
-        <a href="/contacto" className={styles.ctaButton}>
-          {t.cta} <span className={styles.arrow}>→</span>
-        </a>
+        <Button
+          textEs="Contáctanos"
+          textEn="Contact Us"
+          href="/contacto"
+          variant="primary"
+          size="sm"
+          showArrow={true}
+        />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccion1.module.css';
 import CtaCard from '../../global/CtaCard';
+import Button from '../../global/Button';
 
 const IndexSeccion1 = () => {
   const ingles = useStore(isEnglish);
@@ -11,14 +12,12 @@ const IndexSeccion1 = () => {
     es: {
       h1Line1: "Digital by design,",
       h1Line2: "Creative con corazón.",
-      subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward.",
-      cta: "Book a Free Strategy Session"
+      subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward."
     },
     en: {
       h1Line1: "Digital by design.",
       h1Line2: "Creative con corazón.",
-      subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward.",
-      cta: "Book a Free Strategy Session"
+      subtitle: "We turn bold ideas into ROI-driven campaigns that move culture—and your business—forward."
     }
   };
 
@@ -52,10 +51,14 @@ const IndexSeccion1 = () => {
 
           
           <div className={styles.ctaGroup}>
-            <button className={styles.btnPrimary}>
-              <span className={styles.ctaText}>{t.cta}</span>
-              <span className={styles.ctaArrow}>→</span>
-            </button>
+            <Button
+              textEs="Agenda tu Consultoría Gratis"
+              textEn="Book a Free Strategy Session"
+              href="/contacto"
+              variant="primary"
+              size="md"
+              showArrow={true}
+            />
           </div>
 
           {/* CTA Card - Mobile: Aparece aquí debajo del botón */}

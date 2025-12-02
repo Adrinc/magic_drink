@@ -1,0 +1,229 @@
+/* button.module.css - Componente Button Global Energy Media */
+/* Sistema de diseño "Digital by Design" */
+
+/* ========== BASE BUTTON ========== */
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  white-space: nowrap;
+}
+
+/* ========== VARIANTE PRIMARY (Gradiente CTA) ========== */
+.primary {
+  background: var(--em-gradient-cta);
+  color: #ffffff;
+  box-shadow: 
+    0 4px 15px rgba(63, 199, 245, 0.25),
+    0 0 40px rgba(102, 45, 145, 0.15);
+}
+
+.primary .bgOverlay {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--em-gradient-cta-hover);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.primary:hover .bgOverlay {
+  opacity: 1;
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 25px rgba(63, 199, 245, 0.35),
+    0 0 50px rgba(102, 45, 145, 0.25);
+}
+
+.primary:active {
+  transform: translateY(0);
+}
+
+/* ========== VARIANTE SECONDARY (Mismo gradiente, texto oscuro) ========== */
+.secondary {
+  background: var(--em-gradient-cta);
+  color: #ffffff;
+  box-shadow: 
+    0 4px 15px rgba(63, 199, 245, 0.25),
+    0 0 40px rgba(102, 45, 145, 0.15);
+}
+
+.secondary .bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: var(--em-gradient-cta-hover);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.secondary:hover .bgOverlay {
+  opacity: 1;
+}
+
+.secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 25px rgba(63, 199, 245, 0.35),
+    0 0 50px rgba(102, 45, 145, 0.25);
+}
+
+/* ========== VARIANTE OUTLINE (Borde con gradiente) ========== */
+.outline {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid transparent;
+  background-image: 
+    linear-gradient(#0A0A0A, #0A0A0A),
+    var(--em-gradient-cta);
+  background-origin: padding-box, border-box;
+  background-clip: padding-box, border-box;
+}
+
+.outline .bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: var(--em-gradient-cta);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  border-radius: 50px;
+}
+
+.outline:hover .bgOverlay {
+  opacity: 0.15;
+}
+
+.outline:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(63, 199, 245, 0.2);
+}
+
+/* Outline en modo claro */
+[data-theme="light"] .outline,
+.outlineLight {
+  color: var(--em-purple-primary);
+  background-image: 
+    linear-gradient(#f7f7f9, #f7f7f9),
+    var(--em-gradient-cta);
+}
+
+/* ========== TAMAÑOS ========== */
+.sm {
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  gap: 0.5rem;
+}
+
+.md {
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+}
+
+.lg {
+  padding: 1.25rem 3rem;
+  font-size: 1.125rem;
+}
+
+/* ========== FULL WIDTH ========== */
+.fullWidth {
+  width: 100%;
+}
+
+/* ========== DISABLED ========== */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ========== CONTENIDO INTERNO ========== */
+.text,
+.icon,
+.arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .md {
+    padding: 0.875rem 2rem;
+    font-size: 0.9375rem;
+  }
+  
+  .lg {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8125rem;
+  }
+  
+  .md {
+    padding: 0.75rem 1.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .lg {
+    padding: 0.875rem 2rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* ========== ACCESIBILIDAD: Focus visible ========== */
+.button:focus-visible {
+  outline: 2px solid var(--em-cyan-accent);
+  outline-offset: 3px;
+}
+
+/* ========== REDUCE MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .bgOverlay,
+  .arrow {
+    transition: none;
+  }
+  
+  .button:hover {
+    transform: none;
+  }
+  
+  .button:hover .arrow {
+    transform: none;
+  }
+}

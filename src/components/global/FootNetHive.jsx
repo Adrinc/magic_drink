@@ -3,6 +3,7 @@ import { isEnglish, isDarkMode } from '../../data/variables';
 import { useStore } from '@nanostores/react';
 import styles from "./css/footnethive.module.css";
 import { useState, useEffect, useRef } from 'react';
+import Button from './Button';
 const FootNetHive = () => {
  
   const ingles = useStore(isEnglish);
@@ -81,7 +82,14 @@ const FootNetHive = () => {
           </div>
           <h2 className={styles.title}>{t.title}</h2>
           <p className={styles.subtitle}>{t.subtitle}</p>
-          <a href="/contacto" className={styles.ctaButton}>{t.ctaButton}</a>
+          <Button
+            textEs="Colaboremos"
+            textEn="Let's Collaborate"
+            href="/contacto"
+            variant="primary"
+            size="lg"
+            showArrow={true}
+          />
         </div>
 
         {/* Middle Grid */}
@@ -113,7 +121,14 @@ const FootNetHive = () => {
                     required
                   />
                 </div>
-                <button type="submit" className={styles.subscribeBtn}>{t.subscribeBtn}</button>
+                <Button
+                  textEs="Colaboremos"
+                  textEn="Let's Collaborate"
+                  type="submit"
+                  variant="secondary"
+                  size="md"
+                  fullWidth={true}
+                />
               </form>
             </div>
           </div>

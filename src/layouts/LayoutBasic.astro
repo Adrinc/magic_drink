@@ -143,8 +143,24 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		--em-gradient-purple-magenta: linear-gradient(135deg, #7E2B7F, #6F26A9);
 		--em-gradient-dark-purple: linear-gradient(180deg, #1A1A1A 0%, #6F26A9 100%);
 		--em-gradient-light-lavender: linear-gradient(180deg, #F6F6F6 0%, #E1DDEC 100%);
-		--em-gradient-cta: linear-gradient(135deg, #2BC7FF 0%, #F5C15C 100%);  /* 🔥 Turquesa → Amarillo */
-		--em-gradient-cta-hover: linear-gradient(135deg, #1FB5ED 0%, #E3AF4A 100%);  /* Hover más oscuro */
+		--em-gradient-cta: linear-gradient(
+  90deg,
+  rgba(63, 199, 245, 1) 0%,   /* azul claro */
+  rgba(77, 145, 210, 1) 25.1%,
+  rgba(88, 102, 182, 1) 48.66%,
+  rgba(95, 71, 162, 1) 69.73%,
+  rgba(100, 52, 149, 1) 87.56%,
+  rgba(102, 45, 145, 1) 100%   /* morado */
+);  
+		--em-gradient-cta-hover: linear-gradient(
+			  90deg,
+			  rgba(45, 170, 220, 1) 0%,   /* azul claro más oscuro */
+			  rgba(60, 125, 190, 1) 25.1%,
+			  rgba(70, 82, 160, 1) 48.66%,
+			  rgba(78, 55, 140, 1) 69.73%,
+			  rgba(85, 40, 130, 1) 87.56%,
+			  rgba(88, 35, 125, 1) 100%   /* morado más oscuro */
+		); 
 		
 		/* === TIPOGRAFÍA CINE-DATA === */
 		--em-font-headline: 'Poppins', 'Plus Jakarta Sans', 'Inter', sans-serif;

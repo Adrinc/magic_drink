@@ -142,8 +142,8 @@ background-clip: text;
 
 .btnPrimary {
   position: relative;
-  background: linear-gradient(135deg, #2BC7FF 0%, #F5C15C 100%);
-  color: #1A1A1A;
+  background: var(--em-gradient-cta);
+  color: #ffffff;
   padding: 1rem 2.5rem;
   border-radius: 50px;
   border: none;
@@ -164,7 +164,7 @@ background-clip: text;
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #1FB5ED 0%, #E3AF4A 100%);
+  background: var(--em-gradient-cta-hover);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -175,6 +175,7 @@ background-clip: text;
 
 .btnPrimary:hover {
   transform: translateY(-5px) scale(1.02);
+  background-color: var(--em-gradient-cta-hover);
   box-shadow: 
     0 20px 50px rgba(43, 199, 255, 0.4),
     0 0 60px rgba(245, 193, 92, 0.3);

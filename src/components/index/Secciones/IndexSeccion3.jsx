@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccion3.module.css';
+import Button from '../../global/Button';
 
 const IndexSeccion3 = () => {
   const ingles = useStore(isEnglish);
@@ -180,7 +181,14 @@ const IndexSeccion3 = () => {
           <h2 className={styles.title}>{t.header.title}</h2>
           <p className={styles.subtitle}>{t.header.subtitle}</p>
         </div>
-        <button className={styles.seeMoreBtn}>{t.header.seeMore}</button>
+        <Button
+          textEs="Ver más"
+          textEn="See more"
+          href="/servicios"
+          variant="secondary"
+          size="md"
+          showArrow={true}
+        />
       </div>
 
       <div className={styles.container}>
@@ -238,7 +246,15 @@ const IndexSeccion3 = () => {
                 ))}
               </ul>
 
-              <button className={styles.modalCta}>{t.modalLearnMore}</button>
+              <Button
+                textEs="Explorar servicio"
+                textEn="Explore service"
+                href="/servicios"
+                variant="primary"
+                size="lg"
+                fullWidth={true}
+                showArrow={true}
+              />
             </div>
           </div>
         </div>

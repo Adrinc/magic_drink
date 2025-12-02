@@ -5,6 +5,7 @@ import { useStore } from "@nanostores/react";
 import { isEnglish, isDarkMode } from "../../data/variables"; 
 import { useLang } from "../../data/signals";
 import { translationsGlobal } from "../../data/translationsGlobal";
+import Button from "../global/Button";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -250,13 +251,17 @@ const NavBar = () => {
             </ul>
 
             {/* Botón Contact Móvil */}
-            <a 
-              className={styles.mobileContactButton} 
-              href="/contacto"
-              onClick={closeMobileMenu}
-            >
-              {navTranslations.contactUs}
-            </a>
+            <div className={styles.mobileContactButtonWrapper} onClick={closeMobileMenu}>
+              <Button
+                textEs="Contáctanos"
+                textEn="Contact Us"
+                href="/contacto"
+                variant="primary"
+                size="lg"
+                fullWidth={true}
+                showArrow={true}
+              />
+            </div>
 
             {/* Dropdowns Móvil */}
             <div className={styles.mobileDropdowns}>

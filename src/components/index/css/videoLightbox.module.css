@@ -13,38 +13,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  overflow: hidden; /* CRÍTICO: Evitar doble scrollbar */
+  padding: 1rem;
+  overflow: hidden;
 }
 
 /* ========== Content Container ========== */
+/* Base: optimizado para 1080p */
 .lightboxContent {
   position: relative;
   width: 100%;
-  max-width: 1200px; /* Reducido de 1400px */
-  max-height: 90vh; /* CRÍTICO: Limitar altura máxima */
+  max-width: 950px;
+  max-height: calc(100vh - 2rem);
   background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-  border-radius: 24px;
-  padding: 2.5rem;
+  border-radius: 20px;
+  padding: 1.5rem;
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.8),
     0 0 0 1px rgba(255, 255, 255, 0.05);
-  overflow-y: auto; /* Scroll interno si es necesario */
+  overflow-y: auto;
   overflow-x: hidden;
+  margin: 0 3.5rem;
 }
 
 /* ========== Close Button ========== */
 .closeButton {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 48px;
-  height: 48px;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.8);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -61,41 +63,40 @@
   transform: rotate(90deg);
 }
 
-/* ========== Navigation Buttons ========== */
+/* ========== Navigation Buttons (pegados al borde del modal) ========== */
 .navButtonPrev,
 .navButtonNext {
-  position: absolute;
+  position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 2px solid rgba(43, 199, 255, 0.3);
-  background: rgba(43, 199, 255, 0.1);
+  border: 2px solid rgba(43, 199, 255, 0.4);
+  background: rgba(26, 26, 26, 0.95);
   color: #2BC7FF;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 10;
-  backdrop-filter: blur(10px);
+  z-index: 10001;
 }
 
 .navButtonPrev {
-  left: -28px;
+  left: calc(50% - 475px - 3rem); /* Pegado al borde izquierdo del modal */
 }
 
 .navButtonNext {
-  right: -28px;
+  right: calc(50% - 475px - 3rem); /* Pegado al borde derecho del modal */
 }
 
 .navButtonPrev:hover,
 .navButtonNext:hover {
   background: rgba(43, 199, 255, 0.25);
   border-color: rgba(43, 199, 255, 0.6);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.05);
   box-shadow: 0 0 20px rgba(43, 199, 255, 0.4);
 }
 
@@ -103,7 +104,7 @@
 .lightboxLayout {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 /* ========== Video Header ========== */
@@ -111,13 +112,13 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 2rem;
-  padding-right: 4rem; /* Espacio para botón de cierre */
+  gap: 1rem;
+  padding-right: 3.5rem; /* Espacio para botón de cierre */
 }
 
 .videoTitle {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 700;
   color: #ffffff;
   margin: 0;
@@ -159,8 +160,8 @@
 .videoDescription {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
+  gap: 0.75rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -168,8 +169,8 @@
 
 .videoDescription p {
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
 }
@@ -193,21 +194,30 @@
 /* Tablet */
 @media (max-width: 1024px) {
   .lightboxContent {
-    padding: 2rem;
-    max-width: 90%;
+    padding: 1.25rem;
+    max-width: 85%;
+    margin: 0 2.5rem;
   }
 
+  .navButtonPrev,
+  .navButtonNext {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  /* En tablet, posicionar relativo al viewport */
   .navButtonPrev {
-    left: -20px;
+    left: calc(7.5% - 2.5rem);
   }
 
   .navButtonNext {
-    right: -20px;
+    right: calc(7.5% - 2.5rem);
   }
 
   .videoHeader {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .videoCounter {
@@ -218,74 +228,79 @@
 /* Mobile */
 @media (max-width: 768px) {
   .lightboxBackdrop {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   .lightboxContent {
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 16px;
+    max-width: 90%;
+    margin: 0 2rem;
   }
 
   .closeButton {
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-    font-size: 1.25rem;
-  }
-
-  .navButtonPrev,
-  .navButtonNext {
-    width: 44px;
-    height: 44px;
-    font-size: 1.5rem;
-  }
-
-  .navButtonPrev {
-    left: -10px;
-  }
-
-  .navButtonNext {
-    right: -10px;
-  }
-
-  .videoTitle {
-    font-size: 1.25rem;
-    padding-right: 2rem;
-  }
-
-  .videoDescription {
-    padding: 1rem;
-  }
-
-  .videoDescription p {
-    font-size: 0.875rem;
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  .lightboxContent {
-    padding: 1rem;
-  }
-
-  .videoHeader {
-    gap: 0.75rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 
   .navButtonPrev,
   .navButtonNext {
     width: 36px;
     height: 36px;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 
   .navButtonPrev {
-    left: -5px;
+    left: calc(5% - 1.5rem);
   }
 
   .navButtonNext {
-    right: -5px;
+    right: calc(5% - 1.5rem);
+  }
+
+  .videoTitle {
+    font-size: 1.1rem;
+    padding-right: 2.5rem;
+  }
+
+  .videoDescription {
+    padding: 0.75rem;
+  }
+
+  .videoDescription p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .lightboxContent {
+    padding: 0.75rem;
+    max-width: 95%;
+    margin: 0 1.5rem;
+  }
+
+  .videoHeader {
+    gap: 0.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .navButtonPrev,
+  .navButtonNext {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .navButtonPrev {
+    left: 0.25rem;
+  }
+
+  .navButtonNext {
+    right: 0.25rem;
   }
 }
 
@@ -304,98 +319,65 @@
 }
 
 /* ========== Resoluciones Altas (2K, 3K, 4K) ========== */
-/* 2K (2560px+) */
+/* 2K (2560px+) - Más espacio disponible */
 @media (min-width: 2560px) {
   .lightboxBackdrop {
-    padding: 3rem;
-  }
-
-  .lightboxContent {
-    max-width: 1100px;
-    max-height: 85vh;
     padding: 2rem;
-  }
-
-  .closeButton {
-    top: 1rem;
-    right: 1rem;
-  }
-
-  .videoTitle {
-    font-size: 1.75rem;
-  }
-
-  .playerWrapper {
-    padding-bottom: 50%; /* Ratio más compacto */
-  }
-}
-
-/* 3K (3072px+) - Tu caso específico */
-@media (min-width: 3000px) {
-  .lightboxBackdrop {
-    padding: 4rem;
   }
 
   .lightboxContent {
     max-width: 1000px;
-    max-height: 80vh;
-    padding: 1.75rem;
-    border-radius: 20px;
-  }
-
-  .closeButton {
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 44px;
-    height: 44px;
-  }
-
-  .navButtonPrev,
-  .navButtonNext {
-    width: 50px;
-    height: 50px;
+    max-height: calc(100vh - 4rem);
+    padding: 1.25rem;
+    margin: 0 3.5rem;
   }
 
   .navButtonPrev {
-    left: -25px;
+    left: calc(50% - 500px - 3.5rem);
   }
 
   .navButtonNext {
-    right: -25px;
-  }
-
-  .videoHeader {
-    padding-right: 3rem;
-    gap: 1.5rem;
-  }
-
-  .videoTitle {
-    font-size: 1.5rem;
+    right: calc(50% - 500px - 3.5rem);
   }
 
   .playerWrapper {
-    padding-bottom: 45%; /* Más compacto para que quepa todo */
-    border-radius: 12px;
+    padding-bottom: 50%;
+  }
+}
+
+/* 3K (3072px+) */
+@media (min-width: 3000px) {
+  .lightboxContent {
+    max-width: 900px;
+    max-height: calc(100vh - 6rem);
   }
 
-  .videoDescription {
-    padding: 1rem;
+  .navButtonPrev {
+    left: calc(50% - 450px - 3.5rem);
   }
 
-  .videoDescription p {
-    font-size: 0.9rem;
+  .navButtonNext {
+    right: calc(50% - 450px - 3.5rem);
   }
 
-  .lightboxLayout {
-    gap: 1.5rem;
+  .playerWrapper {
+    padding-bottom: 45%;
   }
 }
 
 /* 4K (3840px+) */
 @media (min-width: 3840px) {
   .lightboxContent {
-    max-width: 1200px;
-    max-height: 75vh;
+    max-width: 950px;
+    max-height: calc(100vh - 8rem);
+  }
+
+  .navButtonPrev {
+    left: calc(50% - 475px - 3.5rem);
+  }
+
+  .navButtonNext {
+    right: calc(50% - 475px - 3.5rem);
   }
 
   .playerWrapper {

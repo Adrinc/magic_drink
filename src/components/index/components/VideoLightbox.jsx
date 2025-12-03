@@ -32,6 +32,27 @@ const VideoLightbox = ({
         transition={{ duration: 0.3 }}
         onClick={onClose}
       >
+        {/* Botones de navegación FUERA del modal, en el backdrop */}
+        {totalVideos > 1 && (
+          <>
+            <button 
+              className={styles.navButtonPrev}
+              onClick={(e) => { e.stopPropagation(); onPrev(); }}
+              aria-label={ingles ? "Previous video" : "Video anterior"}
+            >
+              ‹
+            </button>
+            
+            <button 
+              className={styles.navButtonNext}
+              onClick={(e) => { e.stopPropagation(); onNext(); }}
+              aria-label={ingles ? "Next video" : "Video siguiente"}
+            >
+              ›
+            </button>
+          </>
+        )}
+
         <motion.div
           className={styles.lightboxContent}
           initial={{ opacity: 0, scale: 0.9 }}
@@ -48,27 +69,6 @@ const VideoLightbox = ({
           >
             ✕
           </button>
-
-          {/* Botones de navegación prev/next */}
-          {totalVideos > 1 && (
-            <>
-              <button 
-                className={styles.navButtonPrev}
-                onClick={onPrev}
-                aria-label={ingles ? "Previous video" : "Video anterior"}
-              >
-                ‹
-              </button>
-              
-              <button 
-                className={styles.navButtonNext}
-                onClick={onNext}
-                aria-label={ingles ? "Next video" : "Video siguiente"}
-              >
-                ›
-              </button>
-            </>
-          )}
 
           {/* Contenido principal */}
           <div className={styles.lightboxLayout}>

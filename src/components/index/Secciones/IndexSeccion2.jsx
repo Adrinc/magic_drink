@@ -37,7 +37,7 @@ const IndexSeccion2 = () => {
           
           {/* Right Column: Rainbow Image */}
           <div className={styles.rightColumn}>
-            <div className={styles.imageWrapper} style={{ width: '100%', height: '100%' }}>
+            <div className={styles.imageWrapper}>
               <Rainbow/>
             </div>
           </div>

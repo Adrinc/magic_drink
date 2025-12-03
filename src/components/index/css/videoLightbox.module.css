@@ -14,20 +14,23 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  overflow-y: auto;
+  overflow: hidden; /* CRÍTICO: Evitar doble scrollbar */
 }
 
 /* ========== Content Container ========== */
 .lightboxContent {
   position: relative;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px; /* Reducido de 1400px */
+  max-height: 90vh; /* CRÍTICO: Limitar altura máxima */
   background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
   border-radius: 24px;
-  padding: 3rem;
+  padding: 2.5rem;
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.8),
     0 0 0 1px rgba(255, 255, 255, 0.05);
+  overflow-y: auto; /* Scroll interno si es necesario */
+  overflow-x: hidden;
 }
 
 /* ========== Close Button ========== */
@@ -297,5 +300,105 @@
   .lightboxBackdrop,
   .lightboxContent {
     animation: none !important;
+  }
+}
+
+/* ========== Resoluciones Altas (2K, 3K, 4K) ========== */
+/* 2K (2560px+) */
+@media (min-width: 2560px) {
+  .lightboxBackdrop {
+    padding: 3rem;
+  }
+
+  .lightboxContent {
+    max-width: 1100px;
+    max-height: 85vh;
+    padding: 2rem;
+  }
+
+  .closeButton {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .videoTitle {
+    font-size: 1.75rem;
+  }
+
+  .playerWrapper {
+    padding-bottom: 50%; /* Ratio más compacto */
+  }
+}
+
+/* 3K (3072px+) - Tu caso específico */
+@media (min-width: 3000px) {
+  .lightboxBackdrop {
+    padding: 4rem;
+  }
+
+  .lightboxContent {
+    max-width: 1000px;
+    max-height: 80vh;
+    padding: 1.75rem;
+    border-radius: 20px;
+  }
+
+  .closeButton {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 44px;
+    height: 44px;
+  }
+
+  .navButtonPrev,
+  .navButtonNext {
+    width: 50px;
+    height: 50px;
+  }
+
+  .navButtonPrev {
+    left: -25px;
+  }
+
+  .navButtonNext {
+    right: -25px;
+  }
+
+  .videoHeader {
+    padding-right: 3rem;
+    gap: 1.5rem;
+  }
+
+  .videoTitle {
+    font-size: 1.5rem;
+  }
+
+  .playerWrapper {
+    padding-bottom: 45%; /* Más compacto para que quepa todo */
+    border-radius: 12px;
+  }
+
+  .videoDescription {
+    padding: 1rem;
+  }
+
+  .videoDescription p {
+    font-size: 0.9rem;
+  }
+
+  .lightboxLayout {
+    gap: 1.5rem;
+  }
+}
+
+/* 4K (3840px+) */
+@media (min-width: 3840px) {
+  .lightboxContent {
+    max-width: 1200px;
+    max-height: 75vh;
+  }
+
+  .playerWrapper {
+    padding-bottom: 42%;
   }
 }

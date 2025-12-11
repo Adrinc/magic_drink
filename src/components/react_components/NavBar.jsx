@@ -103,7 +103,7 @@ const NavBar = () => {
       <div className={styles.logoContainer}>
         <a href="/" onClick={handleLogoClick} className={styles.logoLink}>
           <div className={styles.logopic}>
-            <img src="/logo_light.png" alt="Energy Media Logo" />
+            <img src="/logo.png" alt="Energy Media Logo" />
           </div>
         </a>
       </div>

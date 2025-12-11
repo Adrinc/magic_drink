@@ -1,29 +1,26 @@
-﻿/* INDEX SECCIÓN 1 - HERO REDISEÑO 2025 */
-/* Sistema "Digital by Design" - Energy Media */
+﻿/* INDEX SECCIÓN 1 - HERO MAGIC DRINK */
+/* Sistema "Kawaii Cosmic Refresh" */
 
 .heroSection {
   position: relative;
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background: #1A1A1A; /* Negro puro del rediseño - MODO OSCURO */
+  background: var(--md-gray-dark);
   transition: background-color 0.3s var(--em-ease-smooth);
 }
 
-/* MODO CLARO - Solo cambia el transitionGradient y scroll indicator */
-/* Los textos H1, subtitle, brandLine, brandName se MANTIENEN BLANCOS/DORADOS */
-
-/* SOLO el scroll indicator cambia a negro en modo claro */
+/* MODO CLARO */
 .heroSectionLight .scrollText {
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--md-purple);
 }
 
 .heroSectionLight .scrollIcon {
-  border-color: rgba(0, 0, 0, 0.5);
+  border-color: var(--md-purple);
 }
 
-.heroSectionLight .scrollIcon::before {
-  background: rgba(0, 0, 0, 0.8);
+.heroSectionLight .scrollDot {
+  background: var(--md-purple);
 }
 
 .heroContainer {
@@ -32,6 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 var(--em-space-lg);
 }
 
 /* ========== VIDEO DE FONDO ========== */
@@ -45,277 +43,170 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 1;
-  filter: brightness(0.7) contrast(1.1);
+  opacity: 0.85;
+  filter: brightness(0.75) contrast(1.15) saturate(1.1);
 }
 
 /* ========== CONTENIDO ========== */
 .heroContent {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 5vw, 40px);
+  padding: var(--em-space-2xl) var(--em-space-md);
   text-align: center;
-  color: white;
+  color: var(--md-white);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: var(--em-space-lg);
 }
 
-/* ========== TÍTULO REDISEÑO 2025 ========== */
+/* ========== TÍTULO KAWAII MAGIC DRINK ========== */
 .heroTitle {
-
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-   letter-spacing: -0.02em;
+  font-family: var(--em-font-headline);
+  font-size: var(--em-text-h1);
+  font-weight: 800;
+  line-height: var(--em-leading-tight);
+  letter-spacing: -0.025em;
   margin: 0;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  opacity: 0;
   
-background: linear-gradient(117.43deg, #FFFFFF 60%, rgba(255, 255, 255, 0.149) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-
+  /* Gradiente mágico kawaii */
+  background: linear-gradient(135deg, #FFFFFF 0%, #FF6AD7 50%, #82D2FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
-  transform: scaleY(0.9);
-  transform-origin: center;
   
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
-}
-
-.titleLine1 {
-   font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  display: block;
-}
-
-.titleLine2 {
-     font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  display: block;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========== SUBTITLE ========== */
-.heroSubtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  line-height: 1.6;
-  max-width: 750px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 400;
+  /* Sombra mágica */
+  filter: drop-shadow(0 4px 20px rgba(255, 106, 215, 0.4)) 
+          drop-shadow(0 0 40px rgba(170, 55, 242, 0.3));
+  
   opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(30px) scale(0.95);
+  animation: magicAppear 1.2s var(--em-ease-smooth) 0.3s forwards;
 }
 
-/* ========== BOTÓN CTA REDISEÑO 2025 ========== */
+@keyframes magicAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========== SUBTITLE MÁGICO ========== */
+.heroSubtitle {
+  font-family: var(--em-font-body);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  line-height: var(--em-leading-relaxed);
+  max-width: 700px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: magicAppear 1s var(--em-ease-smooth) 0.6s forwards;
+}
+
+/* ========== BOTONES CTA KAWAII ========== */
 .ctaGroup {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--em-space-md);
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: var(--em-space-lg);
   opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+  transform: translateY(20px);
+  animation: magicAppear 1s var(--em-ease-smooth) 0.9s forwards;
 }
 
-.btnPrimary {
-  position: relative;
-  background: var(--em-gradient-cta);
-  color: #ffffff;
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  border: none;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 
-    0 10px 30px rgba(43, 199, 255, 0.3),
-    0 0 40px rgba(245, 193, 92, 0.2);
-  overflow: hidden;
-}
-
-.btnPrimary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--em-gradient-cta-hover);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.btnPrimary:hover::before {
-  opacity: 1;
-}
-
-.btnPrimary:hover {
-  transform: translateY(-5px) scale(1.02);
-  background-color: var(--em-gradient-cta-hover);
-  box-shadow: 
-    0 20px 50px rgba(43, 199, 255, 0.4),
-    0 0 60px rgba(245, 193, 92, 0.3);
-}
-
-.ctaText, .ctaArrow {
-  position: relative;
-  z-index: 1;
-}
-
-.ctaText {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.ctaArrow {
-  font-size: 1.25rem;
-  transition: transform 0.4s ease;
-}
-
-.btnPrimary:hover .ctaArrow {
-  transform: translateX(5px);
-}
-
-/* ========== ENERGY BRAND LINE ========== */
-.energyBrand {
-  margin-top: 2rem;
-   font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.9);
-  opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
-  text-align: center;
-}
-
-.brandLine {
-  font-weight: 700;
-}
-
-.brandName {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  color: #FFB638; /* Amarillo dorado del diseño */
-  text-shadow: 
-    0 0 20px rgba(255, 182, 56, 0.8),
-    0 0 40px rgba(255, 182, 56, 0.6),
-    0 0 60px rgba(255, 182, 56, 0.4),
-    0 0 80px rgba(255, 182, 56, 0.2);
-  filter: brightness(1.2);
-}
-
-.brandExclaim {
-  font-weight: 700;
-  color: #FFB638;
-  text-shadow: 0 0 20px rgba(255, 182, 56, 0.5);
-}
-
-/* ========== DEGRADADO DE TRANSICIÓN A SIGUIENTE SECCIÓN ========== */
+/* ========== DEGRADADO DE TRANSICIÓN MÁGICO ========== */
 .transitionGradient {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 0;
   right: 0;
   bottom: 0;
-  /* MODO OSCURO (default): transparente → negro oscuro */
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(10, 10, 10, 0.3) 20%,
-    rgba(10, 10, 10, 0.6) 40%,
-    rgba(10, 10, 10, 0.85) 70%,
-    #0a0a0a 100%
-  );
+  /* MODO OSCURO: transparente → Magic Drink dark */
+  background: var(--md-gradient-hero);
   z-index: 1;
   pointer-events: none;
   transition: background 0.3s var(--em-ease-smooth);
 }
 
-/* MODO CLARO: transparente → #f7f7f9 */
+/* MODO CLARO */
 .heroSectionLight .transitionGradient {
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(247, 247, 249, 0.3) 20%,
-    rgba(247, 247, 249, 0.6) 40%,
-    rgba(247, 247, 249, 0.85) 70%,
-    #f7f7f9 100%
+    rgba(248, 244, 251, 0.4) 30%,
+    rgba(248, 244, 251, 0.8) 60%,
+    #F8F4FB 100%
   );
 }
 
-/* ========== SCROLL INDICATOR MEJORADO ========== */
+/* ========== SCROLL INDICATOR KAWAII ========== */
 .scrollIndicator {
   position: absolute;
-  bottom: 3rem;
+  bottom: var(--em-space-2xl);
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  color: white;
+  gap: var(--em-space-sm);
   opacity: 0;
-  animation: fadeIn 1.5s ease-in-out 2s forwards, bounce 2s ease-in-out 3s infinite;
+  animation: fadeIn 1.5s ease-in-out 1.5s forwards, floatBounce 2.5s ease-in-out 2.5s infinite;
 }
 
 @keyframes fadeIn {
-  to { opacity: 0.8; }
+  to { opacity: 0.9; }
 }
 
-@keyframes bounce {
+@keyframes floatBounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(10px); }
+  50% { transform: translateX(-50%) translateY(12px); }
 }
 
 .scrollText {
-  font-size: 0.8rem;
+  font-size: var(--em-text-caption);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   font-weight: 600;
+  color: var(--md-white);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .scrollIcon {
-  width: 28px;
-  height: 45px;
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  border-radius: 14px;
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--md-white);
+  border-radius: 15px;
   position: relative;
+  box-shadow: 0 4px 12px rgba(255, 106, 215, 0.3);
 }
 
-.scrollIcon::before {
-  content: '';
+.scrollDot {
   position: absolute;
-  width: 5px;
-  height: 10px;
-  background: white;
+  width: 6px;
+  height: 6px;
+  background: var(--md-white);
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 3px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--md-pink);
   animation: scrollDown 2s ease-in-out infinite;
 }
 
@@ -326,103 +217,60 @@ background-clip: text;
   }
   50% { 
     opacity: 1; 
-    transform: translateX(-50%) translateY(15px); 
+    transform: translateX(-50%) translateY(20px); 
   }
 }
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
-  .heroTitle {
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
+  .heroContainer {
+    padding: 0 var(--em-space-md);
+  }
+
+  .heroContent {
+    padding: var(--em-space-xl) var(--em-space-md);
   }
 
   .transitionGradient {
-    top: 50%;
+    top: 60%;
   }
 }
 
 @media (max-width: 768px) {
-  .heroTitle {
-    font-size: clamp(2rem, 9vw, 3.5rem);
+  .heroContent {
+    gap: var(--em-space-md);
   }
   
   .heroSubtitle {
-    font-size: 1rem;
+    font-size: 1.125rem;
   }
 
   .ctaGroup {
     flex-direction: column;
     width: 100%;
-    gap: 1rem;
-  }
-  
-  .btnPrimary {
-    width: 100%;
-    max-width: 350px;
-    padding: 1rem 2rem;
-    justify-content: center;
-  }
-
-  .energyBrand {
-    font-size: 1.25rem;
+    gap: var(--em-space-sm);
   }
 
   .scrollIndicator {
-    bottom: 2rem;
-  }
-}
-
-/* ========== CTA Card - Desktop (Esquina Inferior Derecha) ========== */
-.ctaCardDesktop {
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 10;
-  opacity: 0;
-  animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
-}
-
-/* CTA Card - Mobile (Centrado debajo del botón) */
-.ctaCardMobile {
-  display: none; /* Oculto en desktop */
-}
-
-/* Responsive para CTA Card */
-@media (max-width: 1024px) {
-  .ctaCardDesktop {
-    bottom: 1.5rem;
-    right: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Ocultar versión desktop */
-  .ctaCardDesktop {
-    display: none;
-  }
-
-  /* Mostrar versión mobile centrada */
-  .ctaCardMobile {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-    opacity: 0;
-    animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+    bottom: var(--em-space-xl);
   }
 }
 
 @media (max-width: 480px) {
-  .heroTitle {
-    font-size: 1.75rem;
+  .heroContainer {
+    padding: 0 var(--em-space-sm);
   }
 
-  .btnPrimary {
-    font-size: 0.9rem;
-    padding: 0.875rem 1.75rem;
+  .heroContent {
+    padding: var(--em-space-lg) var(--em-space-sm);
   }
 
-  .energyBrand {
-    font-size: 1.1rem;
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+
+  .scrollIndicator {
+    bottom: var(--em-space-lg);
   }
 }
 

@@ -111,86 +111,81 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 	:root,
 	[data-theme="dark"] {
 		/* ========================================
-		   ENERGY MEDIA - SISTEMA "CINE-DATA MULTICULTURAL"
+		   MAGIC DRINK - SISTEMA "KAWAII COSMIC REFRESH"
 		   MODO OSCURO (DEFAULT)
 		   ======================================== */
 
-		--main--background-color-dark: #0a0a0a;
+		--main--background-color-dark: #2C2633;
 		
-		/* === PALETA CORE (REDISEÑO 2025) === */
-		--em-purple-primary: #6F26A9;        /* Morado Energy vibrante (marca, botones principales) */
-		--em-purple-light: #A47EB9;          /* Lavanda medio (fondos suaves, tarjetas) */
-		--em-purple-deep: #7E2B7F;           /* Morado profundo (gradientes, secciones dark) */
+		/* === PALETA CORE (KAWAII COSMIC) === */
+		--md-purple: #AA37F2;                /* Morado Magic vibrante (marca principal) */
+		--md-purple-dark: #6822A8;           /* Morado oscuro profundo */
+		--md-pink: #FF6AD7;                  /* Rosa kawaii brillante */
+		--md-blue: #82D2FF;                  /* Azul cielo suave */
 		
-		/* === ACENTOS === */
-		--em-cyan-accent: #3DBBFF;           /* Azul cian puro (estados activos, highlights) */
-		--em-orange-accent: #FF7A45;         /* Naranja/salmón vivo (badges, micro-llamadas) */
-		--em-amber-accent: #FFB638;          /* Amarillo/dorado suave (etiquetas, indicadores) */
-		--em-red-accent: #F12A2A;            /* Rojo brillante (alertas/errores, énfasis puntual) */
+		/* === ACENTOS MÁGICOS === */
+		--md-yellow: #F9F871;                /* Amarillo brillante (estrellas, energía) */
+		--md-mint: #98FFDE;                  /* Menta fresca (toques de frescura) */
 		
 		/* === NEUTROS - MODO OSCURO === */
-		--em-bg-primary: #1A1A1A;            /* Fondo principal oscuro */
-		--em-bg-secondary: #2A2A2A;          /* Fondo secundario */
-		--em-bg-offwhite: #F6F6F6;           /* Off-white/gris muy claro (fondo de página) */
-		--em-border-light: #E1DDEC;          /* Gris lavanda claro (bordes, dividers) */
-		--em-border-medium: #DDCDDC;         /* Gris lavanda medio (fills sutiles) */
-		--em-text-primary: #FFFFFF;          /* Blanco (texto principal en oscuro) */
-		--em-text-secondary: #B0B0B0;        /* Gris claro para texto secundario */
-		--em-text-light: #FFFFFF;            /* Blanco puro (texto sobre oscuro) */
-		--em-text-gray: #6B6B7B;             /* Gris para textos secundarios */		/* === GRADIENTES CINEMATOGRÁFICOS (REDISEÑO 2025) === */
-		--em-gradient-purple-cyan: linear-gradient(135deg, #6F26A9, #3DBBFF);
-		--em-gradient-purple-black: linear-gradient(180deg, #6F26A9, #1A1A1A);
-		--em-gradient-purple-magenta: linear-gradient(135deg, #7E2B7F, #6F26A9);
-		--em-gradient-dark-purple: linear-gradient(180deg, #1A1A1A 0%, #6F26A9 100%);
-		--em-gradient-light-lavender: linear-gradient(180deg, #F6F6F6 0%, #E1DDEC 100%);
-		--em-gradient-cta: linear-gradient(
-  90deg,
-  rgba(63, 199, 245, 1) 0%,   /* azul claro */
-  rgba(77, 145, 210, 1) 25.1%,
-  rgba(88, 102, 182, 1) 48.66%,
-  rgba(95, 71, 162, 1) 69.73%,
-  rgba(100, 52, 149, 1) 87.56%,
-  rgba(102, 45, 145, 1) 100%   /* morado */
-);  
-		--em-gradient-cta-hover: linear-gradient(
-			  90deg,
-			  rgba(45, 170, 220, 1) 0%,   /* azul claro más oscuro */
-			  rgba(60, 125, 190, 1) 25.1%,
-			  rgba(70, 82, 160, 1) 48.66%,
-			  rgba(78, 55, 140, 1) 69.73%,
-			  rgba(85, 40, 130, 1) 87.56%,
-			  rgba(88, 35, 125, 1) 100%   /* morado más oscuro */
-		); 
+		--md-white: #FFFFFF;                 /* Blanco puro */
+		--md-gray: #F8F4FB;                  /* Gris muy claro con tinte lavanda */
+		--md-gray-dark: #2C2633;             /* Gris oscuro principal */
+		--em-bg-primary: #2C2633;            /* Fondo principal oscuro */
+		--em-bg-secondary: #3A3344;          /* Fondo secundario */
+		--em-bg-offwhite: #F8F4FB;           /* Off-white con tinte lavanda */
+		--em-border-light: #E8E3F0;          /* Bordes suaves lavanda */
+		--em-border-medium: #D5CADE;         /* Bordes medios */
+		--em-text-primary: #FFFFFF;          /* Blanco texto principal */
+		--em-text-secondary: #C5BFD3;        /* Gris lavanda para secundario */
+		--em-text-light: #FFFFFF;            /* Blanco puro */
+		--em-text-gray: #8B8595;             /* Gris para textos terciarios */
 		
-		/* === TIPOGRAFÍA CINE-DATA === */
-		--em-font-headline: 'Poppins', 'Plus Jakarta Sans', 'Inter', sans-serif;
+		/* === GRADIENTES MÁGICOS (KAWAII COSMIC) === */
+		--md-gradient-main: linear-gradient(135deg, #FF6AD7, #AA37F2);
+		--md-gradient-sparkle: linear-gradient(135deg, #82D2FF, #F9F871);
+		--md-gradient-hero: linear-gradient(180deg, rgba(0,0,0,0) 0%, #2C2633 90%);
+		--em-gradient-purple-cyan: linear-gradient(135deg, #AA37F2, #82D2FF);
+		--em-gradient-purple-black: linear-gradient(180deg, #AA37F2, #2C2633);
+		--em-gradient-purple-magenta: linear-gradient(135deg, #6822A8, #AA37F2);
+		--em-gradient-dark-purple: linear-gradient(180deg, #2C2633 0%, #AA37F2 100%);
+		--em-gradient-light-lavender: linear-gradient(180deg, #F8F4FB 0%, #E8E3F0 100%);
+		--em-gradient-cta: linear-gradient(135deg, #FF6AD7, #AA37F2);
+		--em-gradient-cta-hover: linear-gradient(135deg, #FF4DC9, #9520E5); 
+		
+		/* === TIPOGRAFÍA KAWAII === */
+		--em-font-headline: 'Poppins', 'Syne', sans-serif;
 		--em-font-body: 'Inter', system-ui, -apple-system, sans-serif;
 		
 		/* === ESCALA TIPOGRÁFICA (Mobile-first responsive) === */
-		--em-text-h1: clamp(3.5rem, 5vw, 4rem);        /* 56-64px */
-		--em-text-h2: clamp(2.25rem, 3.5vw, 2.5rem);   /* 36-40px */
-		--em-text-h3: clamp(1.5rem, 2vw, 1.75rem);     /* 24-28px */
+		--em-text-h1: clamp(3rem, 6vw, 5rem);          /* 48-80px - Más grande para impacto */
+		--em-text-h2: clamp(2rem, 4vw, 3rem);          /* 32-48px */
+		--em-text-h3: clamp(1.5rem, 2.5vw, 2rem);      /* 24-32px */
 		--em-text-body: clamp(1rem, 1.5vw, 1.125rem);  /* 16-18px */
 		--em-text-caption: 0.875rem;                   /* 14px */
 		--em-text-small: 0.75rem;                      /* 12px */
 		
 		/* === LINE-HEIGHT === */
-		--em-leading-tight: 1.2;
+		--em-leading-tight: 1.1;
 		--em-leading-normal: 1.5;
 		--em-leading-relaxed: 1.75;
 		
-		/* === SOMBRAS CINEMATOGRÁFICAS (3 capas de profundidad) === */
-		--em-shadow-card: 
-			0 10px 30px rgba(103, 46, 146, 0.08),
-			0 2px 8px rgba(103, 46, 146, 0.04);
-		--em-shadow-card-hover: 
-			0 15px 40px rgba(103, 46, 146, 0.12),
-			0 4px 12px rgba(103, 46, 146, 0.06);
+		/* === SOMBRAS MÁGICAS (Kawaii Cosmic) === */
+		--md-shadow-card: 
+			0 8px 24px rgba(170, 55, 242, 0.15),
+			0 2px 8px rgba(170, 55, 242, 0.08);
+		--md-shadow-hover: 
+			0 12px 32px rgba(255, 106, 215, 0.25),
+			0 4px 12px rgba(255, 106, 215, 0.15);
+		--em-shadow-card: var(--md-shadow-card);
+		--em-shadow-card-hover: var(--md-shadow-hover);
 		--em-shadow-dramatic: 
-			0 20px 50px rgba(103, 46, 146, 0.15),
-			0 8px 16px rgba(103, 46, 146, 0.08);
-		--em-shadow-glow-cyan: 0 0 20px rgba(62, 200, 247, 0.3);
-		--em-shadow-glow-purple: 0 0 20px rgba(103, 46, 146, 0.4);
+			0 20px 50px rgba(170, 55, 242, 0.2),
+			0 8px 16px rgba(170, 55, 242, 0.12);
+		--em-shadow-glow-cyan: 0 0 20px rgba(130, 210, 255, 0.4);
+		--em-shadow-glow-purple: 0 0 20px rgba(170, 55, 242, 0.5);
+		--md-shadow-glow-pink: 0 0 25px rgba(255, 106, 215, 0.6);
+		--md-shadow-glow-yellow: 0 0 30px rgba(249, 248, 113, 0.5);
 		
 		/* === EASING CINEMATOGRÁFICO === */
 		--em-ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
@@ -238,25 +233,29 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 
 	/* ========== MODO CLARO (LIGHT MODE) ========== */
 	[data-theme="light"] {
+		--main--background-color-dark: #F8F4FB;
+		
 		/* === NEUTROS - MODO CLARO === */
-		--em-bg-primary: #f7f7f9;            /* Fondo oficial modo claro */
+		--em-bg-primary: #F8F4FB;            /* Fondo oficial modo claro (lavanda muy suave) */
 		--em-bg-secondary: #FFFFFF;          /* Blanco puro para cards */
-		--em-bg-offwhite: #FAFAFA;           /* Off-white para variaciones */
-		--em-border-light: #E0E0E0;          /* Gris claro para bordes */
-		--em-text-primary: #000000;          /* Negro puro para texto principal */
-		--em-text-secondary: #4A4A4A;        /* Gris oscuro para texto secundario */
-		--em-text-light: #1A1A1A;            /* Texto sobre fondos claros */
+		--em-bg-offwhite: #FEFCFF;           /* Off-white con tinte lavanda */
+		--em-border-light: #E8E3F0;          /* Gris lavanda claro */
+		--em-text-primary: #2C2633;          /* Gris oscuro Magic Drink */
+		--em-text-secondary: #5A4F6B;        /* Gris medio para secundario */
+		--em-text-light: #2C2633;            /* Texto sobre fondos claros */
 		
 		/* Ajustar sombras para modo claro */
-		--em-shadow-card: 
-			0 10px 30px rgba(0, 0, 0, 0.08),
-			0 2px 8px rgba(0, 0, 0, 0.04);
-		--em-shadow-card-hover: 
-			0 15px 40px rgba(0, 0, 0, 0.12),
-			0 4px 12px rgba(0, 0, 0, 0.06);
+		--md-shadow-card: 
+			0 8px 24px rgba(170, 55, 242, 0.1),
+			0 2px 8px rgba(170, 55, 242, 0.05);
+		--md-shadow-hover: 
+			0 12px 32px rgba(255, 106, 215, 0.15),
+			0 4px 12px rgba(255, 106, 215, 0.08);
+		--em-shadow-card: var(--md-shadow-card);
+		--em-shadow-card-hover: var(--md-shadow-hover);
 		--em-shadow-dramatic: 
-			0 20px 50px rgba(0, 0, 0, 0.15),
-			0 8px 16px rgba(0, 0, 0, 0.08);
+			0 20px 50px rgba(170, 55, 242, 0.12),
+			0 8px 16px rgba(170, 55, 242, 0.08);
 	}
 
 	*, 

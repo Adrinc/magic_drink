@@ -3,6 +3,18 @@
 *(Versión Alpha / v0 del Portal Oficial)*  
 
 ---
+# 🟣 Descripción de la Magic Drink
+
+Magic Drink es una bebida moderna que, en el mundo real, se ha convertido en un fenómeno global. Superó a todas las sodas tradicionales no por ser más agresiva o dañina, sino por lo contrario: es extremadamente adictiva a nivel sensorial, pero no contiene cafeína ni sustancias perjudiciales para la salud. Esto la volvió un caso único y desconcertante para la industria.
+
+Su efecto no es el de un “golpe de energía” artificial, sino una sensación inmediata de bienestar, enfoque y ligereza emocional. Las personas describen que al beberla se sienten más animadas, creativas y de buen humor, como si el día se volviera un poco más llevadero. Nadie puede explicar del todo por qué funciona tan bien… solo que funciona.
+
+Magic Drink se posiciona como una bebida joven, colorida y optimista, asociada a la música, el arte digital, la cultura pop y la estética kawaii-electrónica. Su imagen pública está ligada a DJ Sweet Hex (Hexy), la carismática brujita musical que actúa como rostro de la marca: no como una simple mascota, sino como un ícono cultural reconocido por campañas, comerciales y eventos.
+
+En la vida cotidiana, Magic Drink está en todas partes: tiendas, escuelas, conciertos, máquinas expendedoras y anuncios urbanos. Es “normal” verla, pero al mismo tiempo genera una fidelidad extraña; quienes la prueban suelen integrarla a su rutina diaria sin cuestionarlo demasiado.
+
+Oficialmente, Magic Drink es solo una bebida innovadora, saludable y legal.
+Extraoficialmente… incluso en el mundo real, hay algo en ella que no termina de sentirse del todo normal.
 
 # 🟣 Descripción General del Proyecto
 
@@ -279,12 +291,10 @@ Ejemplo:
 ---
 
 # ✨ Futuro (v1 – no implementar en Alpha)
-- Animaciones GSAP  
-- Efectos de mouse  
+
 - Rive (stickers animados)  
 - Modelo 3D de la lata  
-- Mini-juego de máquina expendedora  
-- Página Dream Mode opcional  
+
 
 ---
 

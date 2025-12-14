@@ -50,7 +50,7 @@
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -126,11 +126,15 @@
   align-items: center;
   gap: var(--em-space-md);
   cursor: pointer;
-  max-width: 320px;
+  max-width: 350px;
   width: 100%;
+  min-height: 480px; /* Altura mínima consistente */
   
-  /* Sombra vibrante kawaii */
-  box-shadow: var(--em-shadow-card);
+  /* Sombra vibrante kawaii mejorada */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    0 0 20px var(--flavor-color);
   
   transition: all 0.4s var(--em-ease-smooth);
   overflow: hidden;
@@ -150,19 +154,44 @@
   border-radius: var(--em-radius-xl);
   transition: opacity 0.4s var(--em-ease-smooth);
   z-index: 0;
-  filter: blur(8px);
+  filter: blur(12px);
+}
+
+/* Efecto shimmer animado */
+.flavorCard::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s var(--em-ease-smooth);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.flavorCard:hover::after {
+  transform: translateX(100%);
 }
 
 .flavorCard:hover::before {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .flavorCard:hover {
-  transform: translateY(-12px) scale(1.03);
+  transform: translateY(-16px) scale(1.04);
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.25),
-    0 0 0 2px var(--flavor-color),
-    0 0 30px var(--flavor-color);
+    0 25px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 3px var(--flavor-color),
+    0 0 40px var(--flavor-color),
+    0 0 60px rgba(255, 255, 255, 0.1) inset;
   border-color: var(--flavor-color);
 }
 
@@ -224,6 +253,9 @@
   flex-direction: column;
   gap: var(--em-space-xs);
   z-index: 1;
+  flex: 1; /* Ocupa espacio disponible */
+  justify-content: space-between; /* Distribuye contenido */
+  width: 100%;
 }
 
 .flavorName {
@@ -234,10 +266,22 @@
   margin: 0;
   letter-spacing: -0.02em;
   text-align: center;
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 20px var(--flavor-color);
+  transition: text-shadow 0.3s var(--em-ease-smooth);
+}
+
+.flavorCard:hover .flavorName {
+  text-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.4),
+    0 0 30px var(--flavor-color),
+    0 0 40px var(--flavor-color);
 }
 
 .sectionLight .flavorName {
   color: var(--em-text-primary);
+  text-shadow: none;
 }
 
 .flavorDescription {
@@ -267,12 +311,46 @@
   transition: all 0.3s var(--em-ease-smooth);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin-top: auto; /* Empuja al botón al fondo */
+}
+
+.viewMoreBtn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--flavor-color);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s var(--em-ease-smooth), height 0.4s var(--em-ease-smooth);
+  opacity: 0.2;
+  z-index: -1;
+}
+
+.viewMoreBtn:hover::before {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
 }
 
 .viewMoreBtn:hover {
   background: var(--flavor-color);
   color: #ffffff;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 
+    0 0 25px var(--flavor-color),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+  border-color: var(--flavor-color);
+}
+
+.sectionLight .viewMoreBtn {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* ========== Badge Decorativo ========== */
@@ -280,20 +358,42 @@
   position: absolute;
   top: var(--em-space-md);
   right: var(--em-space-md);
-  font-size: 1.5rem;
-  filter: drop-shadow(0 0 8px var(--md-yellow));
+  font-size: 1.75rem;
+  filter: drop-shadow(0 0 12px var(--md-yellow));
   z-index: 3;
-  animation: sparkle 2s ease-in-out infinite;
+  animation: sparkleFloat 3s ease-in-out infinite;
 }
 
-@keyframes sparkle {
+@keyframes sparkleFloat {
   0%, 100% { 
-    opacity: 0.8;
-    transform: scale(1) rotate(0deg);
+    opacity: 0.7;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.15) rotate(10deg);
   }
   50% { 
+    opacity: 0.9;
+    transform: translateY(-4px) scale(1.25) rotate(-5deg);
+  }
+  75% {
     opacity: 1;
-    transform: scale(1.2) rotate(15deg);
+    transform: translateY(-10px) scale(1.1) rotate(15deg);
+  }
+}
+
+.flavorCard:hover .flavorBadge {
+  animation: sparkleFloatFast 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px var(--md-yellow)) drop-shadow(0 0 30px var(--flavor-color));
+}
+
+@keyframes sparkleFloatFast {
+  0%, 100% { 
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  50% { 
+    transform: translateY(-12px) scale(1.3) rotate(20deg);
   }
 }
 
@@ -313,6 +413,7 @@
 
   .flavorCard {
     max-width: 280px;
+    min-height: 460px;
   }
 
   .flavorImageWrapper {
@@ -369,6 +470,7 @@
 
   .flavorCard {
     padding: var(--em-space-md);
+    min-height: 420px;
   }
 
   .flavorImageWrapper {
@@ -382,5 +484,9 @@
 
   .flavorDescription {
     font-size: 0.85rem;
+  }
+
+  .flavorBadge {
+    font-size: 1.5rem;
   }
 }

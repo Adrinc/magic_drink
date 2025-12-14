@@ -1,22 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./navbar.module.css";
 
 import { useStore } from "@nanostores/react";
-import { isEnglish, isDarkMode } from "../../data/variables"; 
+import { isEnglish } from "../../data/variables"; 
 import { useLang } from "../../data/signals";
 import { translationsGlobal } from "../../data/translationsGlobal";
-import Button from "../global/Button";
 
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentPath, setCurrentPath] = useState("");
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  const { t, changeLang, lang } = useLang();
+  const { changeLang } = useLang();
   const ingles = useStore(isEnglish);
-  const darkMode = useStore(isDarkMode);
   
   // Traducciones del navbar
   const navTranslations = ingles ? translationsGlobal.en.navbar : translationsGlobal.es.navbar;
@@ -31,13 +27,7 @@ const NavBar = () => {
     // Detectar scroll para efectos de navbar
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 20);
-    };
-
-    // Detectar cambios en la URL (navegación)
-    const handleLocationChange = () => {
-      const newPath = window.location.pathname;
-      setCurrentPath(newPath);
+      setIsScrolled(scrollPosition > 24);
     };
 
     // Detectar la página actual inicialmente
@@ -66,13 +56,6 @@ const NavBar = () => {
       isEnglish.set(false);
       changeLang('es');
     }
-    setLangDropdownOpen(false);
-  };
-
-  // Función para cambiar tema
-  const handleThemeToggle = () => {
-    isDarkMode.set(!darkMode);
-    setThemeDropdownOpen(false);
   };
 
   // Función para toggle del menú móvil
@@ -99,212 +82,192 @@ const NavBar = () => {
 
   return (
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}>
-      {/* Logo en esquina izquierda - Contenedor independiente */}
-      <div className={styles.logoContainer}>
-        <a href="/" onClick={handleLogoClick} className={styles.logoLink}>
-          <div className={styles.logopic}>
-            <img src="/logo.png" alt="Energy Media Logo" />
-          </div>
-        </a>
-      </div>
+      {/* Contenedor Principal de la Cápsula */}
+      <div className={styles.capsuleContainer}>
+        
+        {/* === LEFT: Logo === */}
+        <div className={styles.logoSection}>
+          <a href="/" onClick={handleLogoClick} className={styles.logoLink}>
+            <img 
+              src="/logo.png" 
+              alt="Magic Drink" 
+              className={`${styles.logoImage} ${isScrolled ? styles.logoCompact : ''}`}
+            />
+          </a>
+        </div>
 
-      {/* Contenedor central con blur (Links + Contact) */}
-      <div className={styles.navContainer}>
-        {/* Menú de navegación */}
-        <ul className={styles.navMenu}>
+        {/* === CENTER: Links === */}
+        <ul className={styles.navLinks}>
           <li className={styles.navItem}>
             <a 
-              href="/" 
-              className={`${styles.navLink} ${isActiveLink("/") ? styles.activeLink : ""}`}
+              href="/bebidas" 
+              className={`${styles.navLink} ${isActiveLink("/bebidas") ? styles.activeLink : ""}`}
             >
-              {navTranslations.home}
+              {ingles ? "Drinks" : "Bebidas"}
             </a>
           </li>
           <li className={styles.navItem}>
             <a 
-              href="/servicios" 
-              className={`${styles.navLink} ${isActiveLink("/servicios") ? styles.activeLink : ""}`}
+              href="/hexy" 
+              className={`${styles.navLink} ${isActiveLink("/hexy") ? styles.activeLink : ""}`}
             >
-              {navTranslations.services}
+              Hexy
             </a>
           </li>
           <li className={styles.navItem}>
             <a 
-              href="/portfolio" 
-              className={`${styles.navLink} ${isActiveLink("/portfolio") ? styles.activeLink : ""}`}
+              href="/merch" 
+              className={`${styles.navLink} ${isActiveLink("/merch") ? styles.activeLink : ""}`}
             >
-              {navTranslations.ourWork}
+              Merch
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a 
+              href="/wonderpop" 
+              className={`${styles.navLink} ${isActiveLink("/wonderpop") ? styles.activeLink : ""}`}
+            >
+              Wonderpop
             </a>
           </li>
         </ul>
 
-        {/* Botón Contact Us */}
-        <a className={styles.contactButton} href="/contacto">
-          {navTranslations.contactUs}
-        </a>
-      </div>
+        {/* === RIGHT: Idioma + CTA === */}
+        <div className={styles.actionsSection}>
+          {/* Toggle de Idioma */}
+          <div className={styles.languageToggle}>
+            <button 
+              className={`${styles.langButton} ${!ingles ? styles.langActive : ''}`}
+              onClick={() => handleLanguageChange('es')}
+            >
+              ES
+            </button>
+            <span className={styles.langSeparator}>|</span>
+            <button 
+              className={`${styles.langButton} ${ingles ? styles.langActive : ''}`}
+              onClick={() => handleLanguageChange('en')}
+            >
+              EN
+            </button>
+          </div>
 
-      {/* Botón Hamburguesa (solo móvil) - FUERA del contenedor central */}
-      <button 
-        className={styles.hamburgerButton}
-        onClick={toggleMobileMenu}
-        aria-label="Toggle menu"
-      >
-        <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
-        <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
-        <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerLineActive : ''}`}></span>
-      </button>
-
-      {/* Dropdowns (Idioma y Dark Mode) - FUERA del contenedor */}
-      <div className={styles.dropdownGroup}>
-        {/* Language Dropdown */}
-        <div className={styles.dropdown}>
-          <button 
-            className={styles.dropdownToggle}
-            onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-          >
-            {ingles ? 'EN' : 'ES'} ▼
-          </button>
-          {langDropdownOpen && (
-            <div className={styles.dropdownMenu}>
-              <button 
-                className={styles.dropdownItem}
-                onClick={() => handleLanguageChange('en')}
-              >
-                English
-              </button>
-              <button 
-                className={styles.dropdownItem}
-                onClick={() => handleLanguageChange('es')}
-              >
-                Español
-              </button>
-            </div>
-          )}
+          {/* CTA Principal */}
+          <a href="/wonderpop" className={styles.ctaButton}>
+            <span className={styles.ctaIcon}>📍</span>
+            {ingles ? "Visit Us" : "Visítanos"}
+          </a>
         </div>
 
-        {/* Theme Dropdown */}
-        <div className={styles.dropdown}>
-          <button 
-            className={styles.dropdownToggle}
-            onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
-          >
-            {/* {darkMode ? '🌙' : '☀️'}  */}{darkMode ? navTranslations.darkMode : navTranslations.lightMode} ▼
-          </button>
-          {themeDropdownOpen && (
-            <div className={styles.dropdownMenu}>
-              <button 
-                className={`${styles.dropdownItem} ${darkMode ? styles.active : ''}`}
-                onClick={handleThemeToggle}
-                disabled={darkMode}
-              >
-                {navTranslations.darkMode}
-              </button>
-              <button 
-                className={`${styles.dropdownItem} ${!darkMode ? styles.active : ''}`}
-                onClick={handleThemeToggle}
-                disabled={!darkMode}
-              >
-                {navTranslations.lightMode}
-              </button>
-            </div>
-          )}
+        {/* === MOBILE: Hamburguesa === */}
+        <button 
+          className={styles.hamburger}
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+        >
+          <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerActive : ''}`}></span>
+          <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerActive : ''}`}></span>
+          <span className={`${styles.hamburgerLine} ${mobileMenuOpen ? styles.hamburgerActive : ''}`}></span>
+        </button>
+
+        {/* Onda Decorativa INTERNA "Liquid Signature" - 3 Capas */}
+        <div className={styles.liquidWave}>
+        <svg viewBox="0 0 1200 50" preserveAspectRatio="none" className={styles.waveSvg}>
+          {/* Capa 1: Ola Principal Púrpura */}
+          <path 
+            d="M0,25 Q150,15 300,25 T600,25 T900,25 T1200,25 L1200,50 L0,50 Z" 
+            className={styles.wavePath}
+          />
+          {/* Capa 2: Ola Secundaria Rosa */}
+          <path 
+            d="M0,20 Q200,30 400,20 T800,20 T1200,20 L1200,50 L0,50 Z" 
+            className={styles.wavePath}
+          />
+          {/* Capa 3: Ola de Acento Azul */}
+          <path 
+            d="M0,30 Q250,25 500,30 T1000,30 T1200,30 L1200,50 L0,50 Z" 
+            className={styles.wavePath}
+          />
+        </svg>
         </div>
       </div>
 
-      {/* Menú Móvil Overlay */}
+      {/* === MENÚ MÓVIL OVERLAY === */}
       {mobileMenuOpen && (
-        <div className={styles.mobileMenuOverlay} onClick={closeMobileMenu}>
-          {/* Botón Cerrar - FUERA del content */}
-      
+        <div className={styles.mobileOverlay} onClick={closeMobileMenu}>
+          <div className={styles.mobileContent} onClick={(e) => e.stopPropagation()}>
+            
+            {/* Logo en menú móvil */}
+            <div className={styles.mobileLogo}>
+              <img src="/logo.png" alt="Magic Drink" />
+            </div>
 
-          <div className={styles.mobileMenuContent} onClick={(e) => e.stopPropagation()}>
-            {/* Navegación Móvil */}
-            <ul className={styles.mobileNavMenu}>
-              <li className={styles.mobileNavItem}>
+            {/* Links móvil */}
+            <ul className={styles.mobileLinks}>
+              <li>
                 <a 
-                  href="/" 
-                  className={`${styles.mobileNavLink} ${isActiveLink("/") ? styles.activeLink : ""}`}
+                  href="/bebidas" 
+                  className={`${styles.mobileLink} ${isActiveLink("/bebidas") ? styles.mobileLinkActive : ""}`}
                   onClick={closeMobileMenu}
                 >
-                  {navTranslations.home}
+                  {ingles ? "Drinks" : "Bebidas"}
                 </a>
               </li>
-              <li className={styles.mobileNavItem}>
+              <li>
                 <a 
-                  href="/servicios" 
-                  className={`${styles.mobileNavLink} ${isActiveLink("/servicios") ? styles.activeLink : ""}`}
+                  href="/hexy" 
+                  className={`${styles.mobileLink} ${isActiveLink("/hexy") ? styles.mobileLinkActive : ""}`}
                   onClick={closeMobileMenu}
                 >
-                  {navTranslations.services}
+                  Hexy
                 </a>
               </li>
-              <li className={styles.mobileNavItem}>
+              <li>
                 <a 
-                  href="/portfolio" 
-                  className={`${styles.mobileNavLink} ${isActiveLink("/portfolio") ? styles.activeLink : ""}`}
+                  href="/merch" 
+                  className={`${styles.mobileLink} ${isActiveLink("/merch") ? styles.mobileLinkActive : ""}`}
                   onClick={closeMobileMenu}
                 >
-                  {navTranslations.ourWork}
+                  Merch
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/wonderpop" 
+                  className={`${styles.mobileLink} ${isActiveLink("/wonderpop") ? styles.mobileLinkActive : ""}`}
+                  onClick={closeMobileMenu}
+                >
+                  Wonderpop
                 </a>
               </li>
             </ul>
 
-            {/* Botón Contact Móvil */}
-            <div className={styles.mobileContactButtonWrapper} onClick={closeMobileMenu}>
-              <Button
-                textEs="Contáctanos"
-                textEn="Contact Us"
-                href="/contacto"
-                variant="primary"
-                size="lg"
-                fullWidth={true}
-                showArrow={true}
-              />
+            {/* Idioma en móvil */}
+            <div className={styles.mobileLangToggle}>
+              <button 
+                className={`${styles.mobileLangButton} ${!ingles ? styles.mobileLangActive : ''}`}
+                onClick={() => { handleLanguageChange('es'); closeMobileMenu(); }}
+              >
+                ES
+              </button>
+              <span className={styles.langSeparator}>|</span>
+              <button 
+                className={`${styles.mobileLangButton} ${ingles ? styles.mobileLangActive : ''}`}
+                onClick={() => { handleLanguageChange('en'); closeMobileMenu(); }}
+              >
+                EN
+              </button>
             </div>
 
-            {/* Dropdowns Móvil */}
-            <div className={styles.mobileDropdowns}>
-              {/* Language Selector */}
-              <div className={styles.mobileDropdown}>
-                <span className={styles.mobileDropdownLabel}>{navTranslations.language}</span>
-                <div className={styles.mobileLanguageButtons}>
-                  <button 
-                    className={`${styles.mobileLangButton} ${!ingles ? styles.mobileLangButtonActive : ''}`}
-                    onClick={() => handleLanguageChange('es')}
-                  >
-                    ES
-                  </button>
-                  <button 
-                    className={`${styles.mobileLangButton} ${ingles ? styles.mobileLangButtonActive : ''}`}
-                    onClick={() => handleLanguageChange('en')}
-                  >
-                    EN
-                  </button>
-                </div>
-              </div>
+            {/* CTA en móvil */}
+            <a href="/wonderpop" className={styles.mobileCtaButton} onClick={closeMobileMenu}>
+              <span className={styles.ctaIcon}>📍</span>
+              {ingles ? "Visit Us" : "Visítanos"}
+            </a>
 
-              {/* Theme Selector */}
-              <div className={styles.mobileDropdown}>
-                <span className={styles.mobileDropdownLabel}>{navTranslations.theme}</span>
-                <div className={styles.mobileLanguageButtons}>
-                  <button 
-                    className={`${styles.mobileLangButton} ${darkMode ? styles.mobileLangButtonActive : ''}`}
-                    onClick={handleThemeToggle}
-                    disabled={darkMode}
-                  >
-                    {navTranslations.darkMode}
-                  </button>
-                  <button 
-                    className={`${styles.mobileLangButton} ${!darkMode ? styles.mobileLangButtonActive : ''}`}
-                    onClick={handleThemeToggle}
-                    disabled={!darkMode}
-                  >
-                    {navTranslations.lightMode}
-                  </button>
-                </div>
-              </div>
-            </div>
+            {/* Botón cerrar */}
+            <button className={styles.closeButton} onClick={closeMobileMenu}>
+              ✕
+            </button>
           </div>
         </div>
       )}

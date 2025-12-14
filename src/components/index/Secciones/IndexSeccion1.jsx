@@ -14,13 +14,15 @@ const IndexSeccion1 = () => {
       h1: "La bebida más popular del mundo",
       subtitle: "Sabor único, cero cafeína y una chispa de felicidad en cada burbuja. Magic Drink ilumina tus días con el poder de la música.",
       ctaPrimary: "Ver Sabores",
-      ctaSecondary: "Conoce a Hexy"
+      ctaSecondary: "Conoce a Hexy",
+      scrollText: "Desliza, disfruta la magia"
     },
     en: {
       h1: "The world's most popular drink",
       subtitle: "Unique flavor, zero caffeine and a spark of happiness in every bubble. Magic Drink lights up your days with the power of music.",
       ctaPrimary: "See Flavors",
-      ctaSecondary: "Meet Hexy"
+      ctaSecondary: "Meet Hexy",
+      scrollText: "Swipe and discover the magic"
     }
   };
 
@@ -86,11 +88,6 @@ const IndexSeccion1 = () => {
           ))}
         </div>
 
-        {/* Estrella Icónica 3D Flotante (Favicon Oficial) */}
-        <div className={styles.iconicStar}>
-          <img src="/favicon.png" alt="Magic Drink Star" />
-        </div>
-
         {/* Contenido Principal */}
         <div className={styles.heroContent}>
           {/* Headline Principal Kawaii con Sparkle */}
@@ -123,11 +120,11 @@ const IndexSeccion1 = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator con Estrella */}
         <div className={styles.scrollIndicator}>
-          <span className={styles.scrollText}>{ingles ? 'Scroll to discover' : 'Desliza para descubrir'}</span>
-          <div className={styles.scrollIcon}>
-            <div className={styles.scrollDot}></div>
+          <span className={styles.scrollText}>{t.scrollText}</span>
+          <div className={styles.iconicStar}>
+            <img src="/favicon.png" alt="Magic Drink Star" />
           </div>
         </div>
       </div>
@@ -135,19 +132,19 @@ const IndexSeccion1 = () => {
       {/* Ondas SVG de Transición Realistas (Múltiples Capas) */}
       <div className={styles.waveTransition}>
         <svg viewBox="0 0 1200 150" preserveAspectRatio="none" className={styles.waveSvg}>
-          {/* Ola 1 - Más profunda */}
+          {/* Ola 1 - Más profunda (muy ondulada) */}
           <path 
-            d="M0,80 C200,100 400,60 600,80 C800,100 1000,60 1200,80 L1200,150 L0,150 Z" 
+            d="M0,60 C150,90 250,30 400,60 C550,90 650,30 800,60 C950,90 1050,30 1200,60 L1200,150 L0,150 Z" 
             className={`${styles.wavePath} ${styles.wave1}`} 
           />
-          {/* Ola 2 - Media */}
+          {/* Ola 2 - Media (ondulada intermedia) */}
           <path 
-            d="M0,90 C250,110 350,70 600,90 C850,110 950,70 1200,90 L1200,150 L0,150 Z" 
+            d="M0,70 C200,100 300,40 500,70 C700,100 800,40 1000,70 C1100,100 1150,40 1200,70 L1200,150 L0,150 Z" 
             className={`${styles.wavePath} ${styles.wave2}`} 
           />
-          {/* Ola 3 - Superior */}
+          {/* Ola 3 - Superior (ondulada suave) */}
           <path 
-            d="M0,100 C300,120 400,80 600,100 C800,120 900,80 1200,100 L1200,150 L0,150 Z" 
+            d="M0,80 C250,110 350,50 600,80 C850,110 950,50 1200,80 L1200,150 L0,150 Z" 
             className={`${styles.wavePath} ${styles.wave3}`} 
           />
         </svg>

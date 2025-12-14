@@ -2,8 +2,7 @@
 /* Sistema "Kawaii Cosmic Refresh" */
 
 .heroSection {
-  position: sticky;
-  top: 0;
+  position: relative;
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
@@ -26,7 +25,8 @@
 }
 
 .heroContainer {
-  position: relative;
+  position: sticky;
+  top: 0;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -196,12 +196,8 @@
 
 /* ========== ESTRELLA ICÓNICA 3D (Favicon Oficial) ========== */
 .iconicStar {
-  position: absolute;
-  top: 15%;
-  right: 10%;
-  width: clamp(80px, 10vw, 150px);
-  height: clamp(80px, 10vw, 150px);
-  z-index: 2;
+  width: clamp(60px, 8vw, 80px);
+  height: clamp(60px, 8vw, 80px);
   animation: starFloat3D 6s ease-in-out infinite;
   filter: drop-shadow(0 0 30px var(--md-yellow)) drop-shadow(0 0 50px var(--md-pink));
   pointer-events: none;
@@ -372,7 +368,7 @@
 
 /* ========== ONDAS SVG DE TRANSICIÓN (Múltiples Capas Realistas) ========== */
 .waveTransition {
-  position: absolute;
+  position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -380,6 +376,7 @@
   z-index: 3;
   pointer-events: none;
   line-height: 0;
+  margin-top: -150px;
 }
 
 .waveSvg {
@@ -451,45 +448,12 @@
 }
 
 .scrollText {
-  font-size: var(--em-text-caption);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   font-weight: 600;
   color: var(--md-white);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-.scrollIcon {
-  width: 30px;
-  height: 50px;
-  border: 2px solid var(--md-white);
-  border-radius: 15px;
-  position: relative;
-  box-shadow: 0 4px 12px rgba(255, 106, 215, 0.3);
-}
-
-.scrollDot {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: var(--md-white);
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--md-pink);
-  animation: scrollDown 2s ease-in-out infinite;
-}
-
-@keyframes scrollDown {
-  0%, 100% { 
-    opacity: 0; 
-    transform: translateX(-50%) translateY(0); 
-  }
-  50% { 
-    opacity: 1; 
-    transform: translateX(-50%) translateY(20px); 
-  }
 }
 
 /* ========== RESPONSIVE ========== */
@@ -527,10 +491,8 @@
   }
 
   .iconicStar {
-    top: 10%;
-    right: 5%;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
 
   /* Reducir partículas en móvil para performance */
@@ -558,6 +520,7 @@
 
   .waveTransition {
     height: 100px;
+    margin-top: -100px;
   }
 }
 

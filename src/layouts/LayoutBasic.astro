@@ -268,7 +268,7 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 	}
 
 	html {
-	position: relative;
+/* 	position: relative; */
 	overflow-x: hidden; /* CRÍTICO: Previene scroll horizontal */
 	-webkit-user-select: none;
     -moz-user-select: none;
@@ -316,13 +316,13 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 	
 
 	main {
-		position: relative;
+	/* 	position: relative; */
 		z-index: 0;
 		min-height: calc(100vh - 70px);
 		overflow-x: hidden; /* CRÍTICO: Previene scroll horizontal en main */
 		max-width: 100vw; /* CRÍTICO: Limita ancho máximo */
 		width: 100%;
-/* 		background-color: #00000000 */
+
 
 	}
 
@@ -427,9 +427,9 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 
 
 	/* Animación de carga para mejorar la percepción */
-	html:not(.astro-route-transition) {
+/* 	html:not(.astro-route-transition) {
 		animation: page-initial-load 0.3s ease-out;
 	}
-
+ */
 
 </style>

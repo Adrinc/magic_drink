@@ -16,6 +16,52 @@ En la vida cotidiana, Magic Drink está en todas partes: tiendas, escuelas, conc
 Oficialmente, Magic Drink es solo una bebida innovadora, saludable y legal.
 Extraoficialmente… incluso en el mundo real, hay algo en ella que no termina de sentirse del todo normal.
 
+# 🟣 Descripción de Hexy
+
+Hexy es la mascota oficial y rostro musical de Magic Drink, una brujita DJ diseñada para representar la energía creativa, divertida y moderna de la marca.
+
+🎨 Apariencia visual
+
+Hexy tiene una estética kawaii–pop con toque mágico y futurista. Visualmente destaca por:
+
+💗 Cabello rosa intenso, largo y dinámico, que suele verse en movimiento como si siempre estuviera siguiendo un ritmo invisible.
+
+👀 Ojos fucsia brillantes, grandes y expresivos, que transmiten entusiasmo, picardía y cercanía.
+
+🧙‍♀️ Sombrero de bruja icónico, símbolo de su magia musical y de la identidad fantástica de la marca.
+
+🎀 Vestimenta: traje de marinero blanco con adornos azul marino, un moño grande rojo en el pecho, falda azul marino, calcetas negras, botas negras
+
+✨ Estrellas, notas musicales y efectos luminosos como elementos gráficos recurrentes, reforzando su vínculo con la música y la energía.
+
+Su diseño está pensado para funcionar tanto en ilustración como en animación, empaques, anuncios y escenarios digitales, manteniendo siempre una imagen adorable, energética y memorable.
+
+🎧 La música de Hexy y su relación con Magic Drink
+
+La música de Hexy no es solo un acompañamiento: es parte del concepto central de Magic Drink.
+
+🎶 Hexy produce y “lanza” música como si fuera magia: canciones hiper pegajosas, rítmicas y alegres, inspiradas en estilos como kawaii EDM, electro pop, electro swing y house ligero.
+
+🧠 Sus canciones están diseñadas para generar un efecto tipo brainworm: ritmos que se quedan en la cabeza, coros repetitivos y sonidos juguetones que evocan energía constante.
+
+🧃 Esto conecta directamente con Magic Drink, que se presenta como una bebida que activa, anima y acompaña, sin cafeína ni picos artificiales: la energía es emocional, creativa y sensorial.
+
+💫 En el lore de marca, la música de Hexy es la “chispa” que representa cómo Magic Drink transforma momentos cotidianos en experiencias más vivas y divertidas.
+
+Así, Magic Drink no solo se consume: se escucha, se siente y se asocia a un estado de ánimo, y Hexy es la manifestación visual y sonora de ese estado.
+
+🌟 Rol como ícono de marca
+
+En conjunto, Hexy funciona como:
+
+El símbolo emocional de Magic Drink.
+
+La voz musical de la marca.
+
+Una figura que mezcla fantasía, ritmo y cercanía juvenil.
+
+Hexy no vende solo una bebida: vende una experiencia energética positiva, alegre y creativa, donde música y sabor forman parte del mismo concepto.
+
 # 🟣 Descripción General del Proyecto
 
 Este es el portal web oficial de **Magic Drink**, la bebida más popular del mundo.  
@@ -121,6 +167,33 @@ El contenido DEBE cumplir:
 - Estrellas, burbujas, corazones, notas musicales
 - Estilo redondeado kawaii
 
+### Íconos Oficiales (ubicación: `public/icons/`)
+
+**Logo principal:**
+- `public/logo.png` — Logo oficial de Magic Drink
+
+**Íconos de navegación (PNG):**
+- `icono_lata.png` — Bebidas/Drinks
+- `icono_hexy.png` — Hexy Music
+- `icono_bolsa.png` — Merch Oficial
+- `icono_globo.png` — Magic Drink Day
+- `icono_plaza.png` — Wonderpop Plaza
+- `icono_gorro.png` — (adicional)
+
+**Íconos de redes sociales (SVG):**
+- `insta.svg` — Instagram
+- `facebook.svg` — Facebook
+- `twitter.svg` — Twitter
+- `linkedin.svg` — LinkedIn
+- `vimeo.svg` — Vimeo
+
+**IMPORTANTE:** 
+- NO usar emojis genéricos (🥤, 🎧, 📷, etc.) en producción
+- Siempre usar los íconos PNG/SVG oficiales del proyecto
+- Aplicar `filter: brightness(0) invert(1)` en modo oscuro
+- Los íconos PNG de navegación deben ser 24x24px
+- Los íconos SVG de redes sociales deben ser 20x20px
+
 ## Sombras
 ```
 --md-shadow-card: 0 8px 24px rgba(170, 55, 242, 0.15);
@@ -137,7 +210,7 @@ Ubicación:
 Incluye:
 
 - NavBar.jsx  
-- Footer.jsx  
+- FootNetHive.jsx (Footer oficial con íconos reales)
 - ButtonPrimary.jsx  
 - ButtonSecondary.jsx  
 - MagicCard.jsx  

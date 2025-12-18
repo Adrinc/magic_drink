@@ -13,6 +13,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Patrón de estrellas sutiles */
@@ -53,6 +55,8 @@
   align-items: center;
   position: relative;
   z-index: 1;
+  padding: 0;
+  margin: 0 auto;
 }
 
 /* ========== Columna Izquierda - Imagen ========== */
@@ -117,6 +121,7 @@
   flex-direction: column;
   gap: var(--em-space-lg);
   max-width: 600px;
+  width: 100%;
 }
 
 /* Título */
@@ -197,6 +202,10 @@
 /* CTA Wrapper */
 .ctaWrapper {
   margin-top: var(--em-space-md);
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 /* ========================================
@@ -215,10 +224,15 @@
     gap: var(--em-space-2xl);
   }
   
+  .imageColumn,
+  .contentColumn {
+    width: 100%;
+    max-width: 100%;
+  }
+  
   .contentColumn {
     text-align: center;
     align-items: center;
-    max-width: 100%;
   }
   
   .title {
@@ -230,24 +244,49 @@
   }
 }
 
-/* Mobile */
-@media (max-width: 480px) {
+/* Mobile Medium (para dispositivos como iPhone 12/13/14) */
+@media (max-width: 430px) {
   .section {
-    padding: var(--em-space-xl) var(--em-space-md);
+    padding: var(--em-space-xl) var(--em-space-sm);
   }
   
   .container {
-    gap: var(--em-space-xl);
+    gap: var(--em-space-lg);
+  }
+  
+  .title {
+    font-size: 1.875rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .section {
+    padding: var(--em-space-xl) var(--em-space-sm);
+    min-height: auto;
+  }
+  
+  .container {
+    gap: var(--em-space-lg);
+    padding: 0;
+  }
+  
+  .imageColumn,
+  .contentColumn {
+    width: 100%;
+    max-width: 100%;
   }
   
   .imageCard {
     aspect-ratio: 4 / 3;
+    max-width: 100%;
   }
   
   .title {
     font-size: 2rem;
     flex-direction: column;
     gap: var(--em-space-xs);
+    word-wrap: break-word;
   }
   
   .titleIcon {
@@ -256,18 +295,34 @@
   
   .subtitle {
     font-size: 1.125rem;
+    word-wrap: break-word;
   }
   
   .body {
     font-size: 0.95rem;
+    word-wrap: break-word;
   }
   
   .highlight {
     font-size: 1rem;
     padding: var(--em-space-sm);
+    word-wrap: break-word;
+    margin: var(--em-space-sm) 0 0 0;
   }
   
   .eventBadge {
     font-size: 2rem;
+    top: var(--em-space-sm);
+    right: var(--em-space-sm);
+  }
+  
+  .ctaWrapper {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .ctaWrapper a,
+  .ctaWrapper button {
+    max-width: 100%;
   }
 }

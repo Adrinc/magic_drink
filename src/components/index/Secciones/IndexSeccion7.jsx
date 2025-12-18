@@ -179,7 +179,7 @@ const IndexSeccion7 = () => {
                 muted 
                 loop 
                 playsInline
-                poster="/images/wonderpop-poster.jpg"
+                poster="./image/wonderpop/wonderpop-poster.png"
               >
                 <source src="/videos/wonderpop.mp4" type="video/mp4" />
                 {ingles 

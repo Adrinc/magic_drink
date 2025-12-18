@@ -564,10 +564,36 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+  
+  .column {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .columnTitle {
+    text-align: center;
+  }
+  
+  .navList {
+    align-items: center;
+  }
+  
+  .navLink {
+    justify-content: center;
+  }
+  
+  .badgesContainer {
+    justify-content: center;
+  }
 
   .heroSection {
     margin-bottom: 2rem;
     padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  
+  .tagline {
+    text-align: center;
   }
 
   .divider {

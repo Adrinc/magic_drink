@@ -4,6 +4,8 @@ import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccion1.module.css';
 import CtaCard from '../../global/CtaCard';
 import Button from '../../global/Button';
+import SplashCursor from '../../global/SplashCursor';
+
 
 const IndexSeccion1 = () => {
   const ingles = useStore(isEnglish);
@@ -47,6 +49,16 @@ const IndexSeccion1 = () => {
   return (
     <section className={`${styles.heroSection} ${!darkMode ? styles.heroSectionLight : ''}`}>
       <div className={styles.heroContainer}>
+        {/* SplashCursor - Líquido Mágico Interactivo */}
+        <SplashCursor 
+          splatRadius={80}
+          trailLength={30}
+          fadeSpeed={0.96}
+          colorChangeSpeed={15}
+          blurAmount={20}
+          glowIntensity={0.6}
+        />
+
         {/* Imagen de Fondo con Efecto Spotlight */}
         <div className={styles.backgroundImageLayer}>
           <div className={styles.backgroundImage}></div>

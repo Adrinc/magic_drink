@@ -60,376 +60,357 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 	</body>
 
 </html>
-
-
 <style is:global>
+  @font-face {
+    font-family: 'Syne';
+    src: url('/fonts/Syne.ttf') format('truetype');
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+  }
 
-	@font-face {
-  font-family: 'Syne';
-  src: url('/fonts/Syne.ttf') format('truetype');
-  font-weight: 400 900;
-  font-style: normal;
-  font-display: swap;
-}
-	@font-face {
-  font-family: 'Inter';
-  src: 
-  url('/fonts/Inter.ttf') format('ttf'),
-  url('/fonts/InterVariable.ttf') format('ttf'),
-  url('/fonts/InterVariable.woff2') format('woff2');
+  @font-face {
+    font-family: 'Inter';
+    src:
+      url('/fonts/Inter.ttf') format('truetype'),
+      url('/fonts/InterVariable.ttf') format('truetype'),
+      url('/fonts/InterVariable.woff2') format('woff2');
+    font-display: swap;
+  }
 
-  font-display: swap;
-}
-	@font-face {
-  font-family: 'OpenSans';
-  src: 
-  	url('/fonts/OpenSans.ttf') format('ttf'),
-	url('/fonts/OpenSansRegular.ttf') format('ttf'),
-	url('/fonts/OpenSansRegular.woff') format('woff'),
-	url('/fonts/OpenSansRegular.woff2') format('woff2');
+  @font-face {
+    font-family: 'OpenSans';
+    src:
+      url('/fonts/OpenSans.ttf') format('truetype'),
+      url('/fonts/OpenSansRegular.ttf') format('truetype'),
+      url('/fonts/OpenSansRegular.woff') format('woff'),
+      url('/fonts/OpenSansRegular.woff2') format('woff2');
+    font-display: swap;
+  }
 
-  font-display: swap;
-}
-	@font-face {
-  font-family: 'Catamaran';
-  src: 
-  	url('/fonts/Catamaran.ttf') format('ttf'),
-	url('/fonts/CatamaranRegular.woff') format('woff'),
-	url('/fonts/CatamaranRegular.woff2') format('woff2');
+  @font-face {
+    font-family: 'Catamaran';
+    src:
+      url('/fonts/Catamaran.ttf') format('truetype'),
+      url('/fonts/CatamaranRegular.woff') format('woff'),
+      url('/fonts/CatamaranRegular.woff2') format('woff2');
+    font-display: swap;
+  }
 
-  font-display: swap;
-}
-	@font-face {
-  font-family: 'OldPress';
-  src: 
-  	url('/fonts/OldPress.ttf') format('ttf'),
-	url('/fonts/OldPress.woff') format('woff'),
-	url('/fonts/OldPress.woff2') format('woff2');
+  @font-face {
+    font-family: 'OldPress';
+    src:
+      url('/fonts/OldPress.ttf') format('truetype'),
+      url('/fonts/OldPress.woff') format('woff'),
+      url('/fonts/OldPress.woff2') format('woff2');
+    font-display: swap;
+  }
 
-  font-display: swap;
-	}
-	:root,
-	[data-theme="dark"] {
-		/* ========================================
-		   MAGIC DRINK - SISTEMA "KAWAII COSMIC REFRESH"
-		   MODO OSCURO (DEFAULT)
-		   ======================================== */
+  :root,
+  [data-theme="dark"] {
+    /* ========================================
+       MAGIC DRINK - SISTEMA "KAWAII COSMIC REFRESH"
+       MODO OSCURO (DEFAULT)
+       ======================================== */
 
-		--main--background-color-dark: #2C2633;
-		
-		/* === PALETA CORE (KAWAII COSMIC) === */
-		--md-purple: #AA37F2;                /* Morado Magic vibrante (marca principal) */
-		--md-purple-dark: #6822A8;           /* Morado oscuro profundo */
-		--md-pink: #FF6AD7;                  /* Rosa kawaii brillante */
-		--md-blue: #82D2FF;                  /* Azul cielo suave */
-		
-		/* === ACENTOS MÁGICOS === */
-		--md-yellow: #F9F871;                /* Amarillo brillante (estrellas, energía) */
-		--md-mint: #98FFDE;                  /* Menta fresca (toques de frescura) */
-		
-		/* === NEUTROS - MODO OSCURO === */
-		--md-white: #FFFFFF;                 /* Blanco puro */
-		--md-gray: #F8F4FB;                  /* Gris muy claro con tinte lavanda */
-		--md-gray-dark: #2C2633;             /* Gris oscuro principal */
-		--em-bg-primary: #2C2633;            /* Fondo principal oscuro */
-		--em-bg-secondary: #3A3344;          /* Fondo secundario */
-		--em-bg-offwhite: #F8F4FB;           /* Off-white con tinte lavanda */
-		--em-border-light: #E8E3F0;          /* Bordes suaves lavanda */
-		--em-border-medium: #D5CADE;         /* Bordes medios */
-		--em-text-primary: #FFFFFF;          /* Blanco texto principal */
-		--em-text-secondary: #C5BFD3;        /* Gris lavanda para secundario */
-		--em-text-light: #FFFFFF;            /* Blanco puro */
-		--em-text-gray: #8B8595;             /* Gris para textos terciarios */
-		
-		/* === GRADIENTES MÁGICOS (KAWAII COSMIC) === */
-		--md-gradient-main: linear-gradient(135deg, #FF6AD7, #AA37F2);
-		--md-gradient-sparkle: linear-gradient(135deg, #82D2FF, #F9F871);
-		--md-gradient-hero: linear-gradient(180deg, rgba(0,0,0,0) 0%, #2C2633 90%);
-		--em-gradient-purple-cyan: linear-gradient(135deg, #AA37F2, #82D2FF);
-		--em-gradient-purple-black: linear-gradient(180deg, #AA37F2, #2C2633);
-		--em-gradient-purple-magenta: linear-gradient(135deg, #6822A8, #AA37F2);
-		--em-gradient-dark-purple: linear-gradient(180deg, #2C2633 0%, #AA37F2 100%);
-		--em-gradient-light-lavender: linear-gradient(180deg, #F8F4FB 0%, #E8E3F0 100%);
-		--em-gradient-cta: linear-gradient(135deg, #FF6AD7, #AA37F2);
-		--em-gradient-cta-hover: linear-gradient(135deg, #FF4DC9, #9520E5); 
-		
-		/* === TIPOGRAFÍA KAWAII === */
-		--em-font-headline: 'Poppins', 'Syne', sans-serif;
-		--em-font-body: 'Inter', system-ui, -apple-system, sans-serif;
-		
-		/* === ESCALA TIPOGRÁFICA (Mobile-first responsive) === */
-		--em-text-h1: clamp(3rem, 6vw, 5rem);          /* 48-80px - Más grande para impacto */
-		--em-text-h2: clamp(2rem, 4vw, 3rem);          /* 32-48px */
-		--em-text-h3: clamp(1.5rem, 2.5vw, 2rem);      /* 24-32px */
-		--em-text-body: clamp(1rem, 1.5vw, 1.125rem);  /* 16-18px */
-		--em-text-caption: 0.875rem;                   /* 14px */
-		--em-text-small: 0.75rem;                      /* 12px */
-		
-		/* === LINE-HEIGHT === */
-		--em-leading-tight: 1.1;
-		--em-leading-normal: 1.5;
-		--em-leading-relaxed: 1.75;
-		
-		/* === SOMBRAS MÁGICAS (Kawaii Cosmic) === */
-		--md-shadow-card: 
-			0 8px 24px rgba(170, 55, 242, 0.15),
-			0 2px 8px rgba(170, 55, 242, 0.08);
-		--md-shadow-hover: 
-			0 12px 32px rgba(255, 106, 215, 0.25),
-			0 4px 12px rgba(255, 106, 215, 0.15);
-		--em-shadow-card: var(--md-shadow-card);
-		--em-shadow-card-hover: var(--md-shadow-hover);
-		--em-shadow-dramatic: 
-			0 20px 50px rgba(170, 55, 242, 0.2),
-			0 8px 16px rgba(170, 55, 242, 0.12);
-		--em-shadow-glow-cyan: 0 0 20px rgba(130, 210, 255, 0.4);
-		--em-shadow-glow-purple: 0 0 20px rgba(170, 55, 242, 0.5);
-		--md-shadow-glow-pink: 0 0 25px rgba(255, 106, 215, 0.6);
-		--md-shadow-glow-yellow: 0 0 30px rgba(249, 248, 113, 0.5);
-		
-		/* === EASING CINEMATOGRÁFICO === */
-		--em-ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
-		--em-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-		--em-ease-enter: cubic-bezier(0.4, 0, 0.2, 1);
-		--em-ease-exit: cubic-bezier(0.4, 0, 1, 1);
-		
-		/* === SPACING (8px base) === */
-		--em-space-xs: 0.5rem;    /* 8px */
-		--em-space-sm: 1rem;      /* 16px */
-		--em-space-md: 1.5rem;    /* 24px */
-		--em-space-lg: 2rem;      /* 32px */
-		--em-space-xl: 3rem;      /* 48px */
-		--em-space-2xl: 4rem;     /* 64px */
-		--em-space-3xl: 6rem;     /* 96px */
-		
-		/* === BORDER RADIUS === */
-		--em-radius-sm: 8px;
-		--em-radius-md: 12px;
-		--em-radius-lg: 20px;
-		--em-radius-xl: 24px;
-		--em-radius-full: 9999px;
-		
-		/* === BREAKPOINTS (para JS si se necesita) === */
-		--em-breakpoint-sm: 640px;
-		--em-breakpoint-md: 768px;
-		--em-breakpoint-lg: 1024px;
-		--em-breakpoint-xl: 1280px;
-		--em-breakpoint-2xl: 1536px;
+    --main--background-color-dark: #2C2633;
 
-		/* === VARIABLES LEGACY (mantener compatibilidad) === */
-		--primary-color: var(--em-purple-primary);
-		--secondary-color: var(--em-cyan-accent);
-		--font-family-primary: var(--em-font-body);
-		--font-family-secondary: var(--em-font-body);
-		
-		/* === TAMAÑOS LEGACY === */
-		--fs-xl: var(--em-text-h1);
-		--fs-lg: var(--em-text-h2);
-		--fs-md: var(--em-text-h3);
-		--fs-sm: var(--em-text-body);
-		--fs-xs: var(--em-text-caption);
-		--fs-xxs: var(--em-text-small);
-	}
+    /* === PALETA CORE (KAWAII COSMIC) === */
+    --md-purple: #AA37F2;
+    --md-purple-dark: #6822A8;
+    --md-pink: #FF6AD7;
+    --md-blue: #82D2FF;
 
-	/* ========== MODO CLARO (LIGHT MODE) ========== */
-	[data-theme="light"] {
-		--main--background-color-dark: #F8F4FB;
-		
-		/* === NEUTROS - MODO CLARO === */
-		--em-bg-primary: #F8F4FB;            /* Fondo oficial modo claro (lavanda muy suave) */
-		--em-bg-secondary: #FFFFFF;          /* Blanco puro para cards */
-		--em-bg-offwhite: #FEFCFF;           /* Off-white con tinte lavanda */
-		--em-border-light: #E8E3F0;          /* Gris lavanda claro */
-		--em-text-primary: #2C2633;          /* Gris oscuro Magic Drink */
-		--em-text-secondary: #5A4F6B;        /* Gris medio para secundario */
-		--em-text-light: #2C2633;            /* Texto sobre fondos claros */
-		
-		/* Ajustar sombras para modo claro */
-		--md-shadow-card: 
-			0 8px 24px rgba(170, 55, 242, 0.1),
-			0 2px 8px rgba(170, 55, 242, 0.05);
-		--md-shadow-hover: 
-			0 12px 32px rgba(255, 106, 215, 0.15),
-			0 4px 12px rgba(255, 106, 215, 0.08);
-		--em-shadow-card: var(--md-shadow-card);
-		--em-shadow-card-hover: var(--md-shadow-hover);
-		--em-shadow-dramatic: 
-			0 20px 50px rgba(170, 55, 242, 0.12),
-			0 8px 16px rgba(170, 55, 242, 0.08);
-	}
+    /* === ACENTOS MÁGICOS === */
+    --md-yellow: #F9F871;
+    --md-mint: #98FFDE;
 
-	*, 
-	*::before, 
-	*::after{
-	
-		box-sizing: border-box;
-		text-overflow: ellipsis;
-		font-family: var(--font-family-primary);
-	}
+    /* === NEUTROS - MODO OSCURO === */
+    --md-white: #FFFFFF;
+    --md-gray: #F8F4FB;
+    --md-gray-dark: #2C2633;
 
-	html {
-/* 	position: relative; */
-	overflow-x: hidden; /* CRÍTICO: Previene scroll horizontal */
-	-webkit-user-select: none;
+    --em-bg-primary: #2C2633;
+    --em-bg-secondary: #3A3344;
+    --em-bg-offwhite: #F8F4FB;
+
+    --em-border-light: #E8E3F0;
+    --em-border-medium: #D5CADE;
+
+    --em-text-primary: #FFFFFF;
+    --em-text-secondary: #C5BFD3;
+    --em-text-light: #FFFFFF;
+    --em-text-gray: #8B8595;
+
+    /* ✅ FIX: variables que estabas usando pero no existían */
+    --em-purple-primary: var(--md-purple);
+    --em-purple-deep: var(--md-purple-dark);
+    --em-cyan-accent: var(--md-blue);
+
+    /* ✅ Tokens semánticos (mínimos) para consistencia UI */
+    --em-surface-0: var(--em-bg-primary);     /* page */
+    --em-surface-1: #322B3B;                  /* cards */
+    --em-surface-2: #3A3344;                  /* elevated */
+    --em-border: rgba(232, 227, 240, 0.16);   /* borde real en dark */
+    --em-link: var(--md-blue);
+    --em-focus: var(--md-mint);
+    --em-danger: #FF4D6D;
+    --em-warning: var(--md-yellow);
+    --em-success: #4DFFB3;
+
+    /* === GRADIENTES MÁGICOS (KAWAII COSMIC) === */
+    --md-gradient-main: linear-gradient(135deg, #FF6AD7, #AA37F2);
+    --md-gradient-sparkle: linear-gradient(135deg, #82D2FF, #F9F871);
+    --md-gradient-hero: linear-gradient(180deg, rgba(0,0,0,0) 0%, #2C2633 90%);
+
+    --em-gradient-purple-cyan: linear-gradient(135deg, #AA37F2, #82D2FF);
+    --em-gradient-purple-black: linear-gradient(180deg, #AA37F2, #2C2633);
+    --em-gradient-purple-magenta: linear-gradient(135deg, #6822A8, #AA37F2);
+    --em-gradient-dark-purple: linear-gradient(180deg, #2C2633 0%, #AA37F2 100%);
+    --em-gradient-light-lavender: linear-gradient(180deg, #F8F4FB 0%, #E8E3F0 100%);
+    --em-gradient-cta: var(--md-gradient-main);
+    --em-gradient-cta-hover: linear-gradient(135deg, #FF4DC9, #9520E5);
+
+    /* === TIPOGRAFÍA KAWAII === */
+    --em-font-headline: 'Poppins', 'Syne', sans-serif;
+    --em-font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+    /* === ESCALA TIPOGRÁFICA (Mobile-first responsive) === */
+    --em-text-h1: clamp(3rem, 6vw, 5rem);
+    --em-text-h2: clamp(2rem, 4vw, 3rem);
+    --em-text-h3: clamp(1.5rem, 2.5vw, 2rem);
+    --em-text-body: clamp(1rem, 1.5vw, 1.125rem);
+    --em-text-caption: 0.875rem;
+    --em-text-small: 0.75rem;
+
+    /* === LINE-HEIGHT === */
+    --em-leading-tight: 1.1;
+    --em-leading-normal: 1.5;
+    --em-leading-relaxed: 1.75;
+
+    /* === SOMBRAS MÁGICAS (Kawaii Cosmic) === */
+    --md-shadow-card:
+      0 8px 24px rgba(170, 55, 242, 0.15),
+      0 2px 8px rgba(170, 55, 242, 0.08);
+    --md-shadow-hover:
+      0 12px 32px rgba(255, 106, 215, 0.25),
+      0 4px 12px rgba(255, 106, 215, 0.15);
+
+    --em-shadow-card: var(--md-shadow-card);
+    --em-shadow-card-hover: var(--md-shadow-hover);
+    --em-shadow-dramatic:
+      0 20px 50px rgba(170, 55, 242, 0.2),
+      0 8px 16px rgba(170, 55, 242, 0.12);
+
+    --em-shadow-glow-cyan: 0 0 20px rgba(130, 210, 255, 0.35);
+    --em-shadow-glow-purple: 0 0 20px rgba(170, 55, 242, 0.45);
+    --md-shadow-glow-pink: 0 0 25px rgba(255, 106, 215, 0.55);
+    --md-shadow-glow-yellow: 0 0 30px rgba(249, 248, 113, 0.40);
+
+    /* === EASING CINEMATOGRÁFICO === */
+    --em-ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    --em-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --em-ease-enter: cubic-bezier(0.4, 0, 0.2, 1);
+    --em-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+    /* === SPACING (8px base) === */
+    --em-space-xs: 0.5rem;
+    --em-space-sm: 1rem;
+    --em-space-md: 1.5rem;
+    --em-space-lg: 2rem;
+    --em-space-xl: 3rem;
+    --em-space-2xl: 4rem;
+    --em-space-3xl: 6rem;
+
+    /* === BORDER RADIUS === */
+    --em-radius-sm: 8px;
+    --em-radius-md: 12px;
+    --em-radius-lg: 20px;
+    --em-radius-xl: 24px;
+    --em-radius-full: 9999px;
+
+    /* === BREAKPOINTS === */
+    --em-breakpoint-sm: 640px;
+    --em-breakpoint-md: 768px;
+    --em-breakpoint-lg: 1024px;
+    --em-breakpoint-xl: 1280px;
+    --em-breakpoint-2xl: 1536px;
+
+    /* === VARIABLES LEGACY (compat) === */
+    --primary-color: var(--em-purple-primary);
+    --secondary-color: var(--em-cyan-accent);
+    --font-family-primary: var(--em-font-body);
+    --font-family-secondary: var(--em-font-body);
+
+    /* === TAMAÑOS LEGACY === */
+    --fs-xl: var(--em-text-h1);
+    --fs-lg: var(--em-text-h2);
+    --fs-md: var(--em-text-h3);
+    --fs-sm: var(--em-text-body);
+    --fs-xs: var(--em-text-caption);
+    --fs-xxs: var(--em-text-small);
+  }
+
+  /* ========== MODO CLARO (LIGHT MODE) ========== */
+  [data-theme="light"] {
+    --main--background-color-dark: #F8F4FB;
+
+    /* === NEUTROS - MODO CLARO === */
+    --em-bg-primary: #F8F4FB;
+    --em-bg-secondary: #FFFFFF;
+    --em-bg-offwhite: #FEFCFF;
+    --em-border-light: #E8E3F0;
+    --em-border-medium: #D5CADE;
+    --em-text-primary: #2C2633;
+    --em-text-secondary: #5A4F6B;
+    --em-text-light: #2C2633;
+
+    /* ✅ Mantener consistencia de tokens “missing” también en light */
+    --em-purple-primary: var(--md-purple);
+    --em-purple-deep: var(--md-purple-dark);
+    --em-cyan-accent: var(--md-blue);
+
+    /* ✅ Semánticos para light */
+    --em-surface-0: var(--em-bg-primary);
+    --em-surface-1: #FFFFFF;
+    --em-surface-2: #FEFCFF;
+    --em-border: rgba(104, 34, 168, 0.10);
+    --em-link: #2A7BFF;
+
+    /* Ajustar sombras para modo claro */
+    --md-shadow-card:
+      0 8px 24px rgba(170, 55, 242, 0.10),
+      0 2px 8px rgba(170, 55, 242, 0.05);
+    --md-shadow-hover:
+      0 12px 32px rgba(255, 106, 215, 0.14),
+      0 4px 12px rgba(255, 106, 215, 0.08);
+
+    --em-shadow-card: var(--md-shadow-card);
+    --em-shadow-card-hover: var(--md-shadow-hover);
+    --em-shadow-dramatic:
+      0 20px 50px rgba(170, 55, 242, 0.10),
+      0 8px 16px rgba(170, 55, 242, 0.06);
+
+    /* ✅ Glows más sutiles en light (para que no “grite”) */
+    --em-shadow-glow-cyan: 0 0 14px rgba(130, 210, 255, 0.18);
+    --em-shadow-glow-purple: 0 0 14px rgba(170, 55, 242, 0.20);
+    --md-shadow-glow-pink: 0 0 16px rgba(255, 106, 215, 0.20);
+    --md-shadow-glow-yellow: 0 0 18px rgba(249, 248, 113, 0.18);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    font-family: var(--font-family-primary);
+  }
+
+  html {
+    overflow-x: hidden;
+    -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select:none;
-    user-select:none;
-	box-sizing: border-box;
-	scroll-behavior: smooth;
-	background-color: var(--em-bg-primary); /* Cambia según tema */
-	max-width: 100vw; /* CRÍTICO: Limita ancho máximo */
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    background-color: var(--em-bg-primary);
+    max-width: 100vw;
     overflow-y: scroll;
-	scrollbar-width: thin; /* Firefox: Scrollbar más delgado */
-	scrollbar-color: var(--em-purple-primary) var(--em-border-light); /* Firefox: Color morado */
-	transition: background-color 0.3s var(--em-ease-smooth); /* Transición suave de tema */
-	}
-	
-	/* Scrollbar personalizado para Webkit (Chrome, Safari, Edge) */
-	::-webkit-scrollbar {
-		width: 10px;
-	}
-	
-	::-webkit-scrollbar-track {
-		background: var(--em-border-light);
-	}
-	
-	::-webkit-scrollbar-thumb {
-		background: var(--em-purple-primary);
-		border-radius: var(--em-radius-full);
-	}
-	
-	::-webkit-scrollbar-thumb:hover {
-		background: var(--em-purple-deep);
-	}
-    
-	body{
-		font-family: var(--em-font-body);
-		background: var(--em-bg-offwhite);
-		color: var(--em-text-primary);
-		z-index: 0;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-		overflow-x: hidden; /* CRÍTICO: Previene scroll horizontal en body */
-		max-width: 100vw; /* CRÍTICO: Limita ancho máximo */
-		position: relative;
-	}
-	
+    scrollbar-width: thin;
+    scrollbar-color: var(--em-purple-primary) var(--em-border-light);
+    transition: background-color 0.3s var(--em-ease-smooth);
+  }
 
-	main {
-	/* 	position: relative; */
-		z-index: 0;
-		min-height: calc(100vh - 70px);
-		overflow-x: hidden; /* CRÍTICO: Previene scroll horizontal en main */
-		max-width: 100vw; /* CRÍTICO: Limita ancho máximo */
-		width: 100%;
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--em-border-light); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--em-purple-primary);
+    border-radius: var(--em-radius-full);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--em-purple-deep);
+  }
 
+  body {
+    font-family: var(--em-font-body);
+    background: var(--em-bg-offwhite);
+    color: var(--em-text-primary);
+    z-index: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
+  }
 
-	}
+  main {
+    z-index: 0;
+    min-height: calc(100vh - 70px);
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+  }
 
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: auto;
+    z-index: 1000;
+    font-family: var(--font-family-primary);
+    pointer-events: none;
+    overflow: visible;
+  }
 
+  header * { pointer-events: auto; }
 
-	header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: auto; /* CAMBIO: Permitir altura dinámica del navbar */
-		z-index: 1000;
-		font-family: var(--font-family-primary);
-		/* CRÍTICO: No bloquear backdrop-filter */
-		pointer-events: none;
-		overflow: visible;
-	}
-	
-	/* Los hijos del header SÍ deben ser clickeables */
-	header * {
-		pointer-events: auto;
-	}
+  .cinematic-grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
 
+  .text-gradient-purple-cyan {
+    background: var(--em-gradient-purple-cyan);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-	/* === UTILITY CLASSES CINEMATOGRÁFICAS === */
-	.cinematic-grain::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-		pointer-events: none;
-		z-index: 1;
-	}
-	
-	.text-gradient-purple-cyan {
-		background: var(--em-gradient-purple-cyan);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-	
-	/* === ACCESIBILIDAD: Reduce Motion === */
-	@media (prefers-reduced-motion: reduce) {
-		*,
-		*::before,
-		*::after {
-			animation-duration: 0.01ms !important;
-			animation-iteration-count: 1 !important;
-			transition-duration: 0.01ms !important;
-			scroll-behavior: auto !important;
-		}
-	}
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 
-	/* Transiciones personalizadas para View Transitions */
-	@view-transition {
-		navigation: auto;
-	}
+  @view-transition { navigation: auto; }
 
-	/* Transición principal - fade y slide suave */
-	::view-transition-old(root),
-	::view-transition-new(root) {
-		animation-duration: 0.5s;
-		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-	}
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-	::view-transition-old(root) {
-		animation-name: slide-out-to-left;
-	}
+  ::view-transition-old(root) { animation-name: slide-out-to-left; }
+  ::view-transition-new(root) { animation-name: slide-in-from-right; }
 
-	::view-transition-new(root) {
-		animation-name: slide-in-from-right;
-	}
+  @keyframes slide-out-to-left {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(-30px); opacity: 0; }
+  }
 
-	/* Animaciones personalizadas */
-	@keyframes slide-out-to-left {
-		from {
-			transform: translateX(0);
-			opacity: 1;
-		}
-		to {
-			transform: translateX(-30px);
-			opacity: 0;
-		}
-	}
-
-	@keyframes slide-in-from-right {
-		from {
-			transform: translateX(30px);
-			opacity: 0;
-		}
-		to {
-			transform: translateX(0);
-			opacity: 1;
-		}
-	}
-
-	/* Transición especial para el navbar - se mantiene fijo */
-	/* NOTA: view-transition-name eliminado porque bloquea backdrop-filter en Chrome/Edge */
-	
-	/* Transición especial para el footer */
-
-
-
-	/* Animación de carga para mejorar la percepción */
-/* 	html:not(.astro-route-transition) {
-		animation: page-initial-load 0.3s ease-out;
-	}
- */
-
+  @keyframes slide-in-from-right {
+    from { transform: translateX(30px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
 </style>

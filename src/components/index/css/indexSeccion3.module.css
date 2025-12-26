@@ -16,6 +16,7 @@
   padding: var(--em-space-3xl) var(--em-space-lg);
   overflow: hidden;
   transition: background 0.3s var(--em-ease-smooth);
+  
 }
 
 /* Estrellas decorativas de fondo */

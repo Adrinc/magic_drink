@@ -9,7 +9,7 @@ import styles from './css/button.module.css';
  * @param {string} props.textEs - Texto en español
  * @param {string} props.textEn - Texto en inglés
  * @param {string} [props.href] - URL de destino (opcional). Si no se proporciona, el botón no navega
- * @param {string} [props.variant='primary'] - Variante del botón: 'primary' | 'secondary' | 'outline'
+ * @param {string} [props.variant='primary'] - Variante del botón: 'primary' | 'secondary' | 'outline' | 'magic'
  * @param {string} [props.size='md'] - Tamaño: 'sm' | 'md' | 'lg'
  * @param {boolean} [props.fullWidth=false] - Si ocupa el 100% del ancho
  * @param {boolean} [props.showArrow=false] - Mostrar flecha al final
@@ -51,9 +51,11 @@ const Button = ({
   // Contenido interno del botón
   const ButtonContent = () => (
     <>
+      {variant === 'magic' && <span className={styles.ornLeft} data-side="left"></span>}
       {icon && <span className={styles.icon}>{icon}</span>}
       <span className={styles.text}>{text}</span>
       {showArrow && <span className={styles.arrow}>→</span>}
+      {variant === 'magic' && <span className={styles.ornRight} data-side="right"></span>}
     </>
   );
 

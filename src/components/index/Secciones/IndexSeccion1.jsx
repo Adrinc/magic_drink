@@ -50,13 +50,15 @@ const IndexSeccion1 = () => {
     <section className={`${styles.heroSection} ${!darkMode ? styles.heroSectionLight : ''}`}>
       <div className={styles.heroContainer}>
         {/* SplashCursor - Líquido Mágico Interactivo */}
-        <SplashCursor 
+   
+   <SplashCursor 
           splatRadius={80}
           trailLength={30}
           fadeSpeed={0.96}
           colorChangeSpeed={15}
           blurAmount={20}
           glowIntensity={0.6}
+          zIndex={1}
         />
 
         {/* Imagen de Fondo con Efecto Spotlight */}
@@ -117,7 +119,7 @@ const IndexSeccion1 = () => {
               textEs={t.ctaPrimary}
               textEn={t.ctaPrimary}
               href="/bebidas"
-              variant="primary"
+              variant="magic"
               size="lg"
               showArrow={true}
             />
@@ -125,13 +127,14 @@ const IndexSeccion1 = () => {
               textEs={t.ctaSecondary}
               textEn={t.ctaSecondary}
               href="/hexy"
-              variant="secondary"
+              variant="magic"
               size="lg"
               showArrow={false}
             />
           </div>
         </div>
 
+     
         {/* Scroll Indicator con Estrella */}
         <div className={styles.scrollIndicator}>
           <span className={styles.scrollText}>{t.scrollText}</span>

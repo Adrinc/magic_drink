@@ -18,7 +18,7 @@
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  z-index: 1 !important;
+  z-index: -1 !important;
   pointer-events: none !important;
   mix-blend-mode: screen;
   opacity: 0.8;
@@ -56,7 +56,7 @@
 .backgroundImageLayer {
   position: absolute;
   inset: 0;
-  z-index: 0;
+
   overflow: hidden;
 }
 
@@ -128,7 +128,7 @@
 .animatedBackground {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   background: linear-gradient(
     135deg,
     var(--md-purple-dark) 0%,
@@ -139,7 +139,7 @@
   );
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
-  opacity: 0.8;
+  opacity: 0.5;
 }
 
 @keyframes gradientShift {
@@ -163,7 +163,7 @@
 .particlesContainer {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 3;
   pointer-events: none;
   overflow: hidden;
 }
@@ -249,7 +249,7 @@
 /* ========== CONTENIDO ========== */
 .heroContent {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   max-width: 900px;
   margin: 0 auto;
   padding: var(--em-space-2xl) var(--em-space-md);
@@ -260,6 +260,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--em-space-lg);
+  z-index: 3;
 }
 
 /* ========== TÍTULO KAWAII MAGIC DRINK ========== */
@@ -374,14 +375,16 @@
 /* ========== BOTONES CTA KAWAII ========== */
 .ctaGroup {
   display: flex;
-  gap: var(--em-space-md);
+  gap: var(--em-space-xl);
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: var(--em-space-lg);
   opacity: 0;
+  padding: 50px;
   transform: translateY(20px);
   animation: magicAppear 1s var(--em-ease-smooth) 0.9s forwards;
+  z-index: 100;
 }
 
 /* ========== ONDAS SVG DE TRANSICIÓN (Múltiples Capas Realistas) ========== */
@@ -391,7 +394,7 @@
   left: 0;
   width: 100%;
   height: 150px;
-  z-index: 3;
+  z-index: 30;
   pointer-events: none;
   line-height: 0;
   margin-top: -150px;
@@ -452,10 +455,10 @@
 /* ========== SCROLL INDICATOR KAWAII ========== */
 .scrollIndicator {
   position: absolute;
-  bottom: var(--em-space-2xl);
+  bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 3;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -513,7 +516,7 @@
   }
 
   .scrollIndicator {
-    bottom: var(--em-space-xl);
+    bottom: 20%;
   }
 
   .iconicStar {
@@ -572,7 +575,7 @@
   }
 
   .scrollIndicator {
-    bottom: var(--em-space-lg);
+    bottom: 7%;
   }
 }
 

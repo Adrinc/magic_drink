@@ -15,7 +15,8 @@ function SplashCursor({
   SHADING = true,
   COLOR_UPDATE_SPEED = 10,
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
-  TRANSPARENT = true
+  TRANSPARENT = true,
+  zIndex = -1
 }) {
   const canvasRef = useRef(null);
 
@@ -1052,7 +1053,7 @@ function SplashCursor({
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: 50,
+        zIndex: zIndex,
         pointerEvents: 'none',
         width: '100%',
         height: '100%'

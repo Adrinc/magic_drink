@@ -152,10 +152,10 @@ const NavBar = () => {
           </div>
 
           {/* CTA Principal */}
-       {/*    <a href="/wonderpop" className={styles.ctaButton}>
+          <a href="/wonderpop" className={styles.ctaButton}>
             <span className={styles.ctaIcon}>📍</span>
             {ingles ? "Visit Us" : "Visítanos"}
-          </a> */}
+          </a>
         </div>
 
         {/* === MOBILE: Hamburguesa === */}

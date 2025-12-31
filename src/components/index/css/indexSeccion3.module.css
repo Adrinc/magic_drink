@@ -1,493 +1,677 @@
-/* indexSeccion3.module.css - SABORES DESTACADOS */
+/* indexSeccion3.module.css - HORIZONTAL SCROLL FLAVORS */
 /* Sistema "Kawaii Cosmic Refresh" - Magic Drink */
+/* Efecto: Scroll Vertical → Horizontal → Vertical */
 
-/* ========== Section Container ========== */
+/* ═══════════════════════════════════════════════════════════════
+   SECTION CONTAINER
+═══════════════════════════════════════════════════════════════ */
 .section {
   position: relative;
-  min-height: 90vh;
-  /* Fondo oscuro que continúa desde la sección 2 (#2C2633) con halos mágicos */
-  background:
-    radial-gradient(circle at 0% 0%, rgba(170, 55, 242, 0.35), transparent 55%),
-    radial-gradient(circle at 100% 100%, rgba(130, 210, 255, 0.25), transparent 55%),
-    var(--md-gray-dark);
+  width: 100%;
+  background: var(--md-gray-dark);
+  overflow: visible; /* Importante para que GSAP calcule bien */
+  /* min-height se establece dinámicamente via JS */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BACKGROUND ORBS - Decoración flotante
+═══════════════════════════════════════════════════════════════ */
+.backgroundOrbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.orb1, .orb2, .orb3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  animation: floatOrb 25s ease-in-out infinite;
+}
+
+.orb1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--md-purple) 0%, transparent 70%);
+  top: -20%;
+  left: -10%;
+}
+
+.orb2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--md-pink) 0%, transparent 70%);
+  bottom: -10%;
+  right: -10%;
+  animation-delay: -10s;
+}
+
+.orb3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--md-blue) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -5s;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, -30px) scale(1.1); }
+  66% { transform: translate(-30px, 50px) scale(0.95); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HORIZONTAL SCROLL SYSTEM
+═══════════════════════════════════════════════════════════════ */
+.horizontalTrigger {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  /* GSAP pinneará este elemento durante el scroll horizontal */
+}
+
+.horizontalTrack {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center; /* Centrar verticalmente */
+  height: 100vh;
+  width: max-content;
+  will-change: transform;
+  padding-top: 70px; /* Espacio para el navbar */
+  padding-bottom: 0;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INTRO PANEL - Primera pantalla
+═══════════════════════════════════════════════════════════════ */
+.introPanel {
+  width: 100vw;
+  height: calc(100vh - 70px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--em-space-3xl) var(--em-space-lg);
-  overflow: hidden;
-  transition: background 0.3s var(--em-ease-smooth);
-  
-}
-
-/* Estrellas decorativas de fondo */
-.section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(2px 2px at 20% 30%, rgba(248, 244, 251, 0.9), transparent),
-    radial-gradient(2px 2px at 60% 70%, rgba(248, 244, 251, 0.9), transparent),
-    radial-gradient(1px 1px at 50% 50%, rgba(248, 244, 251, 0.8), transparent),
-    radial-gradient(1px 1px at 80% 10%, rgba(248, 244, 251, 0.7), transparent),
-    radial-gradient(2px 2px at 90% 60%, rgba(248, 244, 251, 0.9), transparent),
-    radial-gradient(1px 1px at 33% 80%, rgba(248, 244, 251, 0.7), transparent),
-    radial-gradient(1px 1px at 15% 90%, rgba(248, 244, 251, 0.7), transparent);
-  background-size: 200% 200%;
-  background-position: 0% 0%;
-  opacity: 0.4;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* MODO CLARO */
-.sectionLight {
-  background: linear-gradient(
-    180deg,
-    var(--em-bg-primary) 0%,
-    #FFE8FD 50%,
-    #E8D4FF 100%
-  );
-}
-
-.container {
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--em-space-2xl);
+  flex-shrink: 0;
   position: relative;
-  z-index: 1;
+  padding: 2rem;
 }
 
-/* ========== Header ========== */
-.header {
+.introContent {
   text-align: center;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
-  gap: var(--em-space-sm);
-  margin-bottom: var(--em-space-lg);
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.sectionTitle {
+.introTag {
+  font-family: var(--em-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--md-pink);
+  background: rgba(255, 106, 215, 0.1);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 106, 215, 0.3);
+}
+
+.introTitle {
   font-family: var(--em-font-headline);
-  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 800;
-  line-height: var(--em-leading-tight);
-  letter-spacing: -0.025em;
+  line-height: 1.1;
   margin: 0;
-  
-  /* Gradiente kawaii vibrante */
-  background: linear-gradient(
-    135deg,
-    #FFFFFF 0%,
-    #FFE066 40%,
-    #FF6AD7 70%,
-    #82D2FF 100%
-  );
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--md-pink) 50%, var(--md-purple) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  
-  filter: drop-shadow(0 4px 20px rgba(255, 255, 255, 0.4));
-  text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
 }
 
-.sectionSubtitle {
+.introSubtitle {
   font-family: var(--em-font-body);
-  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.8);
   margin: 0;
+  max-width: 600px;
 }
 
-.sectionLight .sectionSubtitle {
-  color: var(--md-purple);
-  text-shadow: none;
-}
-
-/* ========== Grid de Sabores ========== */
-.flavorsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--em-space-xl);
-  margin-bottom: var(--em-space-xl);
-  justify-items: center;
-}
-
-/* ========== Flavor Card (Sticker Coleccionable) ========== */
-.flavorCard {
-  position: relative;
-  background: rgba(58, 51, 68, 0.98); /* card oscura en modo dark */
-  border: 3px solid var(--flavor-color, var(--md-purple));
-  border-radius: var(--em-radius-xl);
-  padding: var(--em-space-xl);
+.scrollHint {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--em-space-md);
-  cursor: pointer;
-  max-width: 350px;
-  width: 100%;
-  min-height: 480px; /* Altura mínima consistente */
-  
-  /* Sombra vibrante kawaii mejorada */
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-    0 0 20px var(--flavor-color);
-  
-  transition: all 0.4s var(--em-ease-smooth);
-  overflow: hidden;
+  gap: 1rem;
+  margin-top: 2rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
 }
 
-.flavorCard::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  background: linear-gradient(
-    135deg,
-    var(--flavor-color) 0%,
-    transparent 50%,
-    var(--flavor-color) 100%
-  );
-  opacity: 0;
-  border-radius: var(--em-radius-xl);
-  transition: opacity 0.4s var(--em-ease-smooth);
-  z-index: 0;
-  filter: blur(12px);
-}
-
-/* Efecto shimmer animado */
-.flavorCard::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  transition: transform 0.6s var(--em-ease-smooth);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.flavorCard:hover::after {
-  transform: translateX(100%);
-}
-
-.flavorCard:hover::before {
-  opacity: 0.5;
-}
-
-.flavorCard:hover {
-  transform: translateY(-16px) scale(1.04);
-  box-shadow: 
-    0 25px 60px rgba(0, 0, 0, 0.3),
-    0 0 0 3px var(--flavor-color),
-    0 0 40px var(--flavor-color),
-    0 0 60px rgba(255, 255, 255, 0.1) inset;
-  border-color: var(--flavor-color);
-}
-
-/* Card en modo claro */
-.sectionLight .flavorCard {
-  background: var(--md-white);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.sectionLight .flavorCard:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-}
-
-/* ========== Imagen de la Lata ========== */
-.flavorImageWrapper {
-  position: relative;
-  width: 100%;
-  max-width: 200px;
-  height: 220px;
+.scrollArrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--md-purple) 0%, var(--md-pink) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  font-size: 1.5rem;
+  color: white;
+  animation: pulseArrow 2s ease-in-out infinite;
 }
 
-.flavorImage {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
-  transition: transform 0.4s var(--em-ease-smooth);
+@keyframes pulseArrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FLAVOR CARDS - Cards épicas de sabores
+═══════════════════════════════════════════════════════════════ */
+.flavorCard {
+  width: 80vw;
+  max-width: 900px;
+  height: 65vh;
+  max-height: 550px;
+  margin: 0 2vw;
+  flex-shrink: 0;
   position: relative;
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  
+  /* Card styling */
+  background: rgba(44, 38, 51, 0.95);
+  border-radius: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  
+  /* Sombra épica con color del sabor */
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.4),
+    0 0 60px var(--flavor-color, var(--md-purple)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.flavorCard:hover .flavorImage {
-  transform: scale(1.1) rotate(-2deg);
-}
-
-/* Glow detrás de la lata */
-.flavorGlow {
+/* Efecto de borde gradiente */
+.flavorCard::before {
+  content: '';
   position: absolute;
-  inset: 10%;
-  filter: blur(40px);
-  opacity: 0.6;
-  z-index: 1;
+  inset: -2px;
+  background: linear-gradient(135deg, var(--flavor-color) 0%, transparent 50%, var(--flavor-accent) 100%);
+  border-radius: 42px;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* Número del sabor - Grande y dramático */
+.flavorNumber {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-family: var(--em-font-headline);
+  font-size: clamp(5rem, 12vw, 10rem);
+  font-weight: 900;
+  color: var(--flavor-color);
+  opacity: 0.08;
+  line-height: 1;
   pointer-events: none;
-  transition: opacity 0.4s var(--em-ease-smooth);
+  z-index: 0;
 }
 
-.flavorCard:hover .flavorGlow {
-  opacity: 0.9;
+/* Contenido de la card */
+.cardContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* ========== Info del Sabor ========== */
-.flavorInfo {
-  text-align: center;
+/* Lado izquierdo - Información */
+.cardInfo {
   display: flex;
   flex-direction: column;
-  gap: var(--em-space-xs);
-  z-index: 1;
-  flex: 1; /* Ocupa espacio disponible */
-  justify-content: space-between; /* Distribuye contenido */
-  width: 100%;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.flavorTagline {
+  font-family: var(--em-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--flavor-color);
 }
 
 .flavorName {
   font-family: var(--em-font-headline);
-  font-size: clamp(1.5rem, 2vw, 1.75rem);
-  font-weight: 700;
-  color: var(--em-text-light);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
   margin: 0;
-  letter-spacing: -0.02em;
-  text-align: center;
-  text-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.3),
-    0 0 20px var(--flavor-color);
-  transition: text-shadow 0.3s var(--em-ease-smooth);
-}
-
-.flavorCard:hover .flavorName {
-  text-shadow: 
-    0 2px 12px rgba(0, 0, 0, 0.4),
-    0 0 30px var(--flavor-color),
-    0 0 40px var(--flavor-color);
-}
-
-.sectionLight .flavorName {
-  color: var(--em-text-primary);
-  text-shadow: none;
+  color: white;
+  text-shadow: 0 4px 30px var(--flavor-color);
 }
 
 .flavorDescription {
   font-family: var(--em-font-body);
-  font-size: 0.9rem;
-  line-height: var(--em-leading-normal);
-  color: var(--em-text-secondary);
-  margin: 0 0 var(--em-space-sm) 0;
-  text-align: center;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 380px;
 }
 
-.sectionLight .flavorDescription {
-  color: var(--em-text-secondary);
+/* Stats del sabor */
+.flavorStats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ========== Botón Ver Más (Decorativo en ALPHA) ========== */
-.viewMoreBtn {
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.statLabel {
   font-family: var(--em-font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--flavor-color);
-  background: rgba(44, 38, 51, 0.9);
-  border: 2px solid var(--flavor-color);
-  border-radius: var(--em-radius-full);
-  padding: 0.5rem 1.25rem;
-  cursor: pointer;
-  transition: all 0.3s var(--em-ease-smooth);
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  margin-top: auto; /* Empuja al botón al fondo */
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.viewMoreBtn::before {
-  content: '';
+.statValue {
+  font-family: var(--em-font-headline);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--flavor-color);
+}
+
+/* Lado derecho - Visual */
+.cardVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.canContainer {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glow de fondo de la lata */
+.canGlow {
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--flavor-color) 0%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  opacity: 0.6;
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Círculos orbitales */
+.orbitRing, .orbitRing2 {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  pointer-events: none;
+}
+
+.orbitRing {
+  width: 100%;
+  height: 100%;
+  border-color: var(--flavor-color);
+  opacity: 0.2;
+  animation: rotateOrbit 20s linear infinite;
+}
+
+.orbitRing2 {
+  width: 120%;
+  height: 120%;
+  border-color: var(--flavor-accent);
+  opacity: 0.15;
+  animation: rotateOrbit 30s linear infinite reverse;
+}
+
+@keyframes rotateOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Imagen de la lata */
+.canImage {
+  position: relative;
+  z-index: 2;
+  width: 80%;
+  max-width: 180px;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+  transition: transform 0.5s var(--em-ease-smooth);
+}
+
+.flavorCard:hover .canImage {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+/* Partículas brillantes */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: var(--flavor-color);
-  transform: translate(-50%, -50%);
-  transition: width 0.4s var(--em-ease-smooth), height 0.4s var(--em-ease-smooth);
-  opacity: 0.2;
-  z-index: -1;
-}
-
-.viewMoreBtn:hover::before {
-  width: 300px;
-  height: 300px;
-  opacity: 1;
-}
-
-.viewMoreBtn:hover {
-  background: var(--flavor-color);
-  color: #ffffff;
-  transform: scale(1.08);
-  box-shadow: 
-    0 0 25px var(--flavor-color),
-    0 4px 15px rgba(0, 0, 0, 0.3);
-  border-color: var(--flavor-color);
-}
-
-.sectionLight .viewMoreBtn {
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* ========== Badge Decorativo ========== */
-.flavorBadge {
-  position: absolute;
-  top: var(--em-space-md);
-  right: var(--em-space-md);
-  font-size: 1.75rem;
-  filter: drop-shadow(0 0 12px var(--md-yellow));
-  z-index: 3;
+  font-size: 1rem;
+  color: var(--flavor-color);
+  filter: drop-shadow(0 0 8px var(--flavor-color));
   animation: sparkleFloat 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.3s);
 }
+
+.particle:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translateY(-150px); }
+.particle:nth-child(2) { transform: translate(-50%, -50%) rotate(45deg) translateY(-150px); }
+.particle:nth-child(3) { transform: translate(-50%, -50%) rotate(90deg) translateY(-150px); }
+.particle:nth-child(4) { transform: translate(-50%, -50%) rotate(135deg) translateY(-150px); }
+.particle:nth-child(5) { transform: translate(-50%, -50%) rotate(180deg) translateY(-150px); }
+.particle:nth-child(6) { transform: translate(-50%, -50%) rotate(225deg) translateY(-150px); }
+.particle:nth-child(7) { transform: translate(-50%, -50%) rotate(270deg) translateY(-150px); }
+.particle:nth-child(8) { transform: translate(-50%, -50%) rotate(315deg) translateY(-150px); }
 
 @keyframes sparkleFloat {
-  0%, 100% { 
-    opacity: 0.7;
-    transform: translateY(0) scale(1) rotate(0deg);
-  }
-  25% {
-    opacity: 1;
-    transform: translateY(-8px) scale(1.15) rotate(10deg);
-  }
-  50% { 
-    opacity: 0.9;
-    transform: translateY(-4px) scale(1.25) rotate(-5deg);
-  }
-  75% {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.1) rotate(15deg);
-  }
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
 }
 
-.flavorCard:hover .flavorBadge {
-  animation: sparkleFloatFast 1.5s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px var(--md-yellow)) drop-shadow(0 0 30px var(--flavor-color));
+/* Decoración de esquina */
+.cornerDecor {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-family: var(--em-font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.2);
+  writing-mode: vertical-rl;
 }
 
-@keyframes sparkleFloatFast {
-  0%, 100% { 
-    transform: translateY(0) scale(1) rotate(0deg);
-  }
-  50% { 
-    transform: translateY(-12px) scale(1.3) rotate(20deg);
-  }
-}
-
-/* ========== CTA Wrapper ========== */
-.ctaWrapper {
+/* ═══════════════════════════════════════════════════════════════
+   END PANEL - CTA Final
+═══════════════════════════════════════════════════════════════ */
+.endPanel {
+  width: 100vw;
+  height: calc(100vh - 70px);
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-top: var(--em-space-lg);
+  flex-shrink: 0;
+  position: relative;
+  padding: 2rem;
+  gap: 2rem;
 }
 
-/* ========== Responsive ========== */
+.endContent {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.endTitle {
+  font-family: var(--em-font-headline);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, var(--md-pink) 0%, var(--md-purple) 50%, var(--md-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.endSubtitle {
+  font-family: var(--em-font-body);
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Mini colección de latas */
+.miniCollection {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.miniCan {
+  width: 60px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s var(--em-ease-smooth);
+  animation: floatMini 3s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.miniCan:hover {
+  transform: scale(1.2) translateY(-10px);
+}
+
+@keyframes floatMini {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+═══════════════════════════════════════════════════════════════ */
+
+/* Tablet */
 @media (max-width: 1024px) {
-  .flavorsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: var(--em-space-lg);
-  }
-
   .flavorCard {
-    max-width: 280px;
-    min-height: 460px;
+    width: 95vw;
+    height: 80vh;
+    margin: 0 2vw;
   }
 
-  .flavorImageWrapper {
-    max-width: 180px;
-    height: 200px;
-  }
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: var(--em-space-2xl) var(--em-space-md);
-  }
-
-  .container {
-    gap: var(--em-space-xl);
-  }
-
-  .header {
-    margin-bottom: var(--em-space-md);
-  }
-
-  .flavorsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--em-space-md);
-  }
-
-  .flavorCard {
-    padding: var(--em-space-lg);
-  }
-
-  .flavorImageWrapper {
-    max-width: 150px;
-    height: 170px;
-  }
-}
-
-@media (max-width: 480px) {
-  .section {
-    padding: var(--em-space-xl) var(--em-space-sm);
-  }
-
-  .sectionTitle {
-    font-size: 2.5rem;
-  }
-
-  .sectionSubtitle {
-    font-size: 1rem;
-  }
-
-  .flavorsGrid {
+  .cardContent {
     grid-template-columns: 1fr;
-    gap: var(--em-space-lg);
+    grid-template-rows: auto 1fr;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .cardInfo {
+    order: 2;
+    text-align: center;
+    align-items: center;
+  }
+
+  .cardVisual {
+    order: 1;
+  }
+
+  .canContainer {
+    max-width: 250px;
+  }
+
+  .flavorStats {
+    justify-content: center;
+  }
+
+  .flavorNumber {
+    font-size: 10rem;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .horizontalTrigger {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .horizontalTrack {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  .introPanel,
+  .endPanel {
+    min-height: 60vh;
+    height: auto;
+    padding: 4rem 1.5rem;
   }
 
   .flavorCard {
-    padding: var(--em-space-md);
-    min-height: 420px;
+    width: calc(100% - 2rem);
+    height: auto;
+    min-height: 80vh;
+    margin: 1rem;
+    border-radius: 24px;
   }
 
-  .flavorImageWrapper {
-    max-width: 180px;
-    height: 200px;
+  .cardContent {
+    padding: 1.5rem;
+    gap: 1.5rem;
   }
 
   .flavorName {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .flavorDescription {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
-  .flavorBadge {
-    font-size: 1.5rem;
+  .canContainer {
+    max-width: 200px;
+  }
+
+  .canImage {
+    width: 80%;
+    max-width: 180px;
+  }
+
+  .flavorStats {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .flavorNumber {
+    font-size: 6rem;
+    opacity: 0.05;
+  }
+
+  .orbitRing,
+  .orbitRing2,
+  .particles {
+    display: none;
+  }
+
+  .introTitle {
+    font-size: 2.5rem;
+  }
+
+  .scrollHint {
+    display: none;
+  }
+
+  .miniCan {
+    width: 45px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .flavorCard {
+    border-radius: 20px;
+    min-height: 70vh;
+  }
+
+  .cardContent {
+    padding: 1rem;
+  }
+
+  .flavorTagline {
+    font-size: 0.8rem;
+  }
+
+  .flavorName {
+    font-size: 1.75rem;
+  }
+
+  .canContainer {
+    max-width: 160px;
+  }
+
+  .endTitle {
+    font-size: 1.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY
+═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .orb1, .orb2, .orb3,
+  .scrollArrow,
+  .canGlow,
+  .orbitRing, .orbitRing2,
+  .particle,
+  .miniCan {
+    animation: none;
+  }
+
+  .horizontalTrack {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+
+  .flavorCard {
+    height: auto;
+    min-height: 80vh;
   }
 }

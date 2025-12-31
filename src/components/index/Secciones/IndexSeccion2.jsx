@@ -1,287 +1,252 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useStore } from '@nanostores/react';
 import { isEnglish } from '../../../data/variables';
 import styles from '../css/indexSeccion2.module.css';
 import Button from '../../global/Button';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // ReactBits Animations
-import ScrollStack, { ScrollStackItem } from '../../global/animations/ScrollStack/ScrollStack';
-import GradientText from '../../global/animations/GradientText/GradientText';
-import ShinyText from '../../global/animations/ShinyText/ShinyText';
 import BlurText from '../../global/animations/BlurText/BlurText';
+import ShinyText from '../../global/animations/ShinyText/ShinyText';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const IndexSeccion2 = () => {
   const ingles = useStore(isEnglish);
-  const [isHovering, setIsHovering] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef(null);
+  const heroRef = useRef(null);
   const canRef = useRef(null);
+  const statsRef = useRef(null);
 
   const content = {
     es: {
-      brandName: "Magic Drink",
-      tagline: "El original • Desde 2018",
-      title: "Sabor Clásico",
-      subtitle: "La magia líquida que conquistó el mundo",
-      description: "Nuestro sabor original combina notas frutales moradas con una frescura imposible de describir. No contiene cafeína, pero miles de personas aseguran sentir un impulso suave de energía desde el primer sorbo.",
-      features: [
-        { icon: "⚡", text: "0 mg de cafeína", highlight: "Energía natural" },
-        { icon: "💜", text: "Sabor morado exclusivo", highlight: "Único en el mundo" },
-        { icon: "🌿", text: "Ingredientes naturales", highlight: "100% real" },
-        { icon: "❄️", text: "Sensación refrescante", highlight: "Frescura mágica" },
-        { icon: "🎧", text: "Compatible con Hexy™", highlight: "Música + Sabor" }
+      tagline: "EL ORIGINAL • DESDE 2018",
+      brandMagic: "Magic",
+      brandDrink: "Drink",
+      subtitle: "La bebida que conquistó el mundo",
+      description: "Sin cafeína. Sin secretos oscuros. Solo pura magia líquida que despierta tu mejor versión.",
+      stats: [
+        { number: "147", suffix: "M", label: "Fans globales" },
+        { number: "89", suffix: "%", label: "Vuelven a comprar" },
+        { number: "6", suffix: "", label: "Sabores únicos" },
+        { number: "0", suffix: "mg", label: "Cafeína" }
       ],
-      cta: "Ver todos los sabores",
-      scrollHint: "Sigue deslizando"
+      cta: "Descubre los sabores",
+      scrollHint: "Desliza para explorar"
     },
     en: {
-      brandName: "Magic Drink",
-      tagline: "The original • Since 2018",
-      title: "Classic Flavor",
-      subtitle: "The liquid magic that conquered the world",
-      description: "Our original flavor combines purple fruity notes with an indescribable freshness. It contains no caffeine, but thousands of people claim to feel a gentle burst of energy from the first sip.",
-      features: [
-        { icon: "⚡", text: "0 mg caffeine", highlight: "Natural energy" },
-        { icon: "💜", text: "Exclusive purple flavor", highlight: "One of a kind" },
-        { icon: "🌿", text: "Natural ingredients", highlight: "100% real" },
-        { icon: "❄️", text: "Refreshing sensation", highlight: "Magic freshness" },
-        { icon: "🎧", text: "Compatible with Hexy™", highlight: "Music + Flavor" }
+      tagline: "THE ORIGINAL • SINCE 2018",
+      brandMagic: "Magic",
+      brandDrink: "Drink",
+      subtitle: "The drink that conquered the world",
+      description: "No caffeine. No dark secrets. Just pure liquid magic that awakens your best self.",
+      stats: [
+        { number: "147", suffix: "M", label: "Global fans" },
+        { number: "89", suffix: "%", label: "Buy again" },
+        { number: "6", suffix: "", label: "Unique flavors" },
+        { number: "0", suffix: "mg", label: "Caffeine" }
       ],
-      cta: "See all flavors",
-      scrollHint: "Keep scrolling"
+      cta: "Discover flavors",
+      scrollHint: "Scroll to explore"
     }
   };
 
   const t = ingles ? content.en : content.es;
 
-  // Colores kawaii para el gradiente (dark mode siempre)
-  const kawaiiColors = ['#FF6AD7', '#AA37F2', '#82D2FF', '#AA37F2', '#FF6AD7'];
+  // Animaciones GSAP épicas
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Parallax de la lata
+      gsap.to(canRef.current, {
+        yPercent: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
 
-  // Efecto 3D para la lata
-  const handleMouseMove = (e) => {
-    if (!canRef.current) return;
-    const rect = canRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMousePosition({ x: x * 20, y: y * -20 });
-  };
+      // Stats counter animation on scroll
+      const statNumbers = statsRef.current?.querySelectorAll(`.${styles.statNumber}`);
+      statNumbers?.forEach((stat) => {
+        const target = parseInt(stat.dataset.target);
+        gsap.fromTo(stat, 
+          { innerText: 0 },
+          {
+            innerText: target,
+            duration: 2,
+            ease: "power2.out",
+            snap: { innerText: 1 },
+            scrollTrigger: {
+              trigger: stat,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
 
-  const handleMouseLeave = () => {
-    setMousePosition({ x: 0, y: 0 });
-    setIsHovering(false);
-  };
+      // Entrada épica del hero
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      tl.fromTo(`.${styles.tagline}`, 
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+      )
+      .fromTo(`.${styles.canShowcase}`,
+        { opacity: 0, scale: 0.8, rotation: -15 },
+        { opacity: 1, scale: 1, rotation: 0, duration: 1.2, ease: "elastic.out(1, 0.5)" },
+        "-=0.4"
+      );
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className={styles.section}>
-      {/* Fondo decorativo animado */}
-      <div className={styles.backgroundDecoration}>
+    <section ref={sectionRef} className={styles.section}>
+      {/* Fondo con gradiente animado */}
+      <div className={styles.backgroundGradient}>
         <div className={styles.gradientOrb1}></div>
         <div className={styles.gradientOrb2}></div>
         <div className={styles.gradientOrb3}></div>
       </div>
 
-      <ScrollStack
-        className={styles.scrollStackContainer}
-        itemDistance={250}
-        itemScale={0.04}
-        itemStackDistance={40}
-        stackPosition="25%"
-        scaleEndPosition="15%"
-        baseScale={0.88}
-        blurAmount={2}
-        rotationAmount={0}
-        useWindowScroll={true}
-      >
-        {/* ═══════════════════════════════════════════════════════════════
-            CARD 1: THE REVEAL - Texto gigante "Magic Drink"
-        ═══════════════════════════════════════════════════════════════ */}
-        <ScrollStackItem itemClassName={`${styles.stackCard} ${styles.cardReveal}`}>
-          <div className={styles.cardContent}>
-            <div className={styles.revealContent}>
-              {/* Texto pequeño animado arriba */}
-              <div className={styles.taglineWrapper}>
-                <ShinyText
-                  text={t.tagline}
-                  speed={3}
-                  color="rgba(255,255,255,0.6)"
-                  shineColor="#FF6AD7"
-                  className={styles.taglineText}
-                />
-              </div>
+      {/* Grid de puntos decorativo */}
+      <div className={styles.dotGrid}></div>
 
-              {/* Título gigante con gradiente animado */}
-              <div className={styles.brandNameWrapper}>
-                <GradientText
-                  colors={kawaiiColors}
-                  animationSpeed={6}
-                  showBorder={false}
-                  className={styles.brandNameGradient}
-                >
-                  <h2 className={styles.brandName}>{t.brandName}</h2>
-                </GradientText>
-              </div>
+      {/* ═══════════════════════════════════════════════════════════════
+          HERO ZONE - El impacto inicial
+      ═══════════════════════════════════════════════════════════════ */}
+      <div ref={heroRef} className={styles.heroZone}>
+        {/* Tagline superior */}
+        <div className={styles.tagline}>
+          <ShinyText
+            text={t.tagline}
+            speed={3}
+            color="rgba(255,255,255,0.6)"
+            shineColor="#F9F871"
+            className={styles.taglineText}
+          />
+        </div>
 
-              {/* Subtítulo con blur reveal */}
-              <div className={styles.subtitleWrapper}>
-                <BlurText
-                  text={t.subtitle}
-                  delay={100}
-                  animateBy="words"
-                  direction="top"
-                  className={styles.subtitleBlur}
-                />
-              </div>
-
-              {/* Indicador de scroll */}
-              <div className={styles.scrollIndicator}>
-                <span className={styles.scrollText}>{t.scrollHint}</span>
-                <div className={styles.scrollArrow}>
-                  <span>↓</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Decoración flotante */}
-            <div className={styles.floatingElements}>
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={i}
-                  className={styles.floatingBubble}
-                  style={{
-                    '--delay': `${i * 0.5}s`,
-                    '--size': `${20 + Math.random() * 40}px`,
-                    '--left': `${10 + Math.random() * 80}%`,
-                    '--duration': `${4 + Math.random() * 3}s`
-                  }}
-                />
-              ))}
-            </div>
+        {/* TÍTULO GIGANTE - Magic (amarillo) Drink (azul) */}
+        <div className={styles.brandTitle}>
+          <div className={styles.brandLine}>
+            <BlurText
+              text={t.brandMagic}
+              delay={80}
+              animateBy="letters"
+              direction="bottom"
+              className={styles.brandMagic}
+            />
           </div>
-        </ScrollStackItem>
-
-        {/* ═══════════════════════════════════════════════════════════════
-            CARD 2: THE PRODUCT - Lata con efecto 3D
-        ═══════════════════════════════════════════════════════════════ */}
-        <ScrollStackItem itemClassName={`${styles.stackCard} ${styles.cardProduct}`}>
-          <div className={styles.cardContent}>
-            <div className={styles.productLayout}>
-              {/* Lata con efecto 3D interactivo */}
-              <div
-                className={styles.productShowcase}
-                ref={canRef}
-                onMouseMove={handleMouseMove}
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={handleMouseLeave}
-              >
-                {/* Glow de fondo */}
-                <div className={`${styles.productGlow} ${isHovering ? styles.glowActive : ''}`}></div>
-                
-                {/* Círculos decorativos */}
-                <div className={styles.orbitRing}></div>
-                <div className={styles.orbitRing2}></div>
-
-                {/* La lata */}
-                <div
-                  className={styles.canWrapper}
-                  style={{
-                    transform: `perspective(1000px) rotateY(${mousePosition.x}deg) rotateX(${mousePosition.y}deg) scale(${isHovering ? 1.05 : 1})`
-                  }}
-                >
-                  <img
-                    src="./image/drinks/lata_original.png"
-                    alt="Magic Drink - Sabor Clásico"
-                    className={styles.canImage}
-                  />
-                  {/* Reflejo */}
-                  <div className={styles.canReflection}></div>
-                </div>
-
-                {/* Partículas brillantes */}
-                <div className={styles.sparkleContainer}>
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className={styles.sparkle}
-                      style={{
-                        '--angle': `${i * 30}deg`,
-                        '--delay': `${i * 0.15}s`,
-                        '--distance': `${120 + Math.random() * 60}px`
-                      }}
-                    >✦</div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Título del sabor */}
-              <div className={styles.flavorTitle}>
-                <GradientText
-                  colors={['#AA37F2', '#FF6AD7', '#AA37F2']}
-                  animationSpeed={4}
-                  className={styles.flavorGradient}
-                >
-                  <h3 className={styles.flavorName}>{t.title}</h3>
-                </GradientText>
-                <p className={styles.flavorTagline}>{t.description}</p>
-              </div>
-            </div>
+          <div className={styles.brandLine}>
+            <BlurText
+              text={t.brandDrink}
+              delay={80}
+              animateBy="letters"
+              direction="top"
+              className={styles.brandDrink}
+            />
           </div>
-        </ScrollStackItem>
+        </div>
 
-        {/* ═══════════════════════════════════════════════════════════════
-            CARD 3: THE EXPERIENCE - Features + CTA
-        ═══════════════════════════════════════════════════════════════ */}
-        <ScrollStackItem itemClassName={`${styles.stackCard} ${styles.cardExperience}`}>
-          <div className={styles.cardContent}>
-            <div className={styles.experienceLayout}>
-         
-              <div className={styles.featuresGrid}>
-                <div className={styles.featuresHeader}>
-                  <ShinyText
-                    text={ingles ? "Why Magic Drink?" : "¿Por qué Magic Drink?"}
-                    speed={2.5}
-                    color="#fff"
-                    shineColor="#FF6AD7"
-                    className={styles.featuresTitle}
-                  />
-                </div>
+        {/* Subtítulo con entrada */}
+        <div className={styles.subtitleWrapper}>
+          <BlurText
+            text={t.subtitle}
+            delay={40}
+            animateBy="words"
+            direction="top"
+            className={styles.subtitle}
+          />
+        </div>
 
-                <div className={styles.featureCards}>
-                  {t.features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className={styles.featureCard}
-                      style={{ '--delay': `${index * 0.1}s` }}
-                    >
-                      <div className={styles.featureIconWrapper}>
-                        <span className={styles.featureIcon}>{feature.icon}</span>
-                      </div>
-                      <div className={styles.featureContent}>
-                        <span className={styles.featureHighlight}>{feature.highlight}</span>
-                        <span className={styles.featureText}>{feature.text}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-          
-              <div className={styles.ctaSection}>
-                <div className={styles.ctaGlow}></div>
-                <Button
-                  textEs={t.cta}
-                  textEn={t.cta}
-                  href="/bebidas"
-                  variant="magic"
-                  size="lg"
-                  showArrow={true}
-                />
-                <p className={styles.ctaSubtext}>
-                  {ingles ? "6 unique flavors available" : "6 sabores únicos disponibles"}
-                </p>
-              </div>
-            </div>
+        {/* LA LATA - Hero Product */}
+        <div ref={canRef} className={styles.canShowcase}>
+          <div className={styles.canGlow}></div>
+          <div className={styles.canRings}>
+            <div className={styles.ring1}></div>
+            <div className={styles.ring2}></div>
+            <div className={styles.ring3}></div>
           </div>
-        </ScrollStackItem>
-      </ScrollStack>
+          <img 
+            src="/image/drinks/lata_original.png" 
+            alt="Magic Drink Original"
+            className={styles.canImage}
+          />
+          {/* Partículas flotantes */}
+          <div className={styles.particles}>
+            {[...Array(12)].map((_, i) => (
+              <span 
+                key={i} 
+                className={styles.particle}
+                style={{ 
+                  '--i': i,
+                  '--delay': `${i * 0.2}s`,
+                  '--angle': `${i * 30}deg`
+                }}
+              >✦</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Descripción */}
+        <p className={styles.description}>{t.description}</p>
+
+        {/* CTA Button */}
+        <div className={styles.ctaWrapper}>
+          <Button
+            textEs="Descubre los sabores"
+            textEn="Discover flavors"
+            href="/bebidas"
+            variant="magic"
+            size="lg"
+            showArrow={true}
+          />
+        </div>
+
+        {/* Scroll Indicator */}
+      {/*   <div className={styles.scrollIndicator}>
+          <span className={styles.scrollText}>{t.scrollHint}</span>
+          <div className={styles.scrollLine}>
+            <div className={styles.scrollDot}></div>
+          </div>
+        </div> */}
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          STATS ZONE - Los números que impresionan
+      ═══════════════════════════════════════════════════════════════ */}
+      <div ref={statsRef} className={styles.statsZone}>
+        <div className={styles.statsGrid}>
+          {t.stats.map((stat, index) => (
+            <div key={index} className={styles.statCard}>
+              <div className={styles.statNumberWrapper}>
+                <span 
+                  className={styles.statNumber}
+                  data-target={stat.number}
+                >
+                  {stat.number}
+                </span>
+                <span className={styles.statSuffix}>{stat.suffix}</span>
+              </div>
+              <span className={styles.statLabel}>{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

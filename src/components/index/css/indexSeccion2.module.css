@@ -1,5 +1,5 @@
-﻿/* indexSeccion2.module.css - MAGIC DRINK CINEMATIC REVEAL */
-/* Sistema "Kawaii Cosmic Refresh" - ScrollStack Experience */
+/* indexSeccion2.module.css - MAGIC DRINK EPIC HERO */
+/* Sistema "Kawaii Cosmic Refresh" - Texto Gigante Impactante */
 
 /* ═══════════════════════════════════════════════════════════════
    SECTION CONTAINER
@@ -7,15 +7,16 @@
 .section {
   position: relative;
   width: 100%;
-  background: var(--md-gray-dark);
+  min-height: 170vh;
+ /*  background: var(--md-gray-dark); */
+  overflow: hidden;
   z-index: 2;
-  /* NO overflow:hidden - permite scroll natural */
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   BACKGROUND DECORATION - Orbes flotantes
+   BACKGROUND - Gradientes y decoraciones
 ═══════════════════════════════════════════════════════════════ */
-.backgroundDecoration {
+.backgroundGradient {
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -28,591 +29,402 @@
 .gradientOrb3 {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  animation: floatOrb 20s ease-in-out infinite;
-  /* Optimización GPU - evita ghosting */
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  filter: blur(120px);
+  opacity: 0.5;
+  animation: floatOrb 25s ease-in-out infinite;
   will-change: transform;
-  pointer-events: none;
 }
 
 .gradientOrb1 {
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
   background: radial-gradient(circle, var(--md-purple) 0%, transparent 70%);
-  top: -10%;
-  right: -10%;
-  animation-delay: 0s;
+  top: -20%;
+  right: -20%;
 }
 
 .gradientOrb2 {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   background: radial-gradient(circle, var(--md-pink) 0%, transparent 70%);
-  bottom: 20%;
+  bottom: 10%;
   left: -15%;
-  animation-delay: -7s;
+  animation-delay: -8s;
 }
 
 .gradientOrb3 {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   background: radial-gradient(circle, var(--md-blue) 0%, transparent 70%);
-  top: 40%;
-  right: 20%;
-  animation-delay: -14s;
+  top: 50%;
+  left: 40%;
+  animation-delay: -15s;
 }
 
 @keyframes floatOrb {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(30px, -40px) scale(1.1);
-  }
-  50% {
-    transform: translate(-20px, 30px) scale(0.95);
-  }
-  75% {
-    transform: translate(40px, 20px) scale(1.05);
-  }
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, -40px) scale(1.1); }
+  66% { transform: translate(-30px, 60px) scale(0.95); }
+}
+
+/* Grid de puntos decorativo */
+.dotGrid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SCROLL STACK CONTAINER (useWindowScroll mode)
+   HERO ZONE - El impacto principal
 ═══════════════════════════════════════════════════════════════ */
-.scrollStackContainer {
-  width: 100%;
+.heroZone {
   position: relative;
-  z-index: 1;
-  /* NO height fijo - fluye con el contenido */
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   STACK CARDS - Base Styles
-═══════════════════════════════════════════════════════════════ */
-.stackCard {
-  min-height: 85vh !important;
-  height: auto !important;
-  width: calc(100% - 4rem) !important;
-  max-width: 1400px !important;
-  margin: 0 auto !important;
-  border-radius: 40px !important;
-  overflow: hidden;
-  position: relative;
-  
-  /* Fondo sólido sin backdrop-filter (evita ghosting en scroll) */
-  background: rgba(44, 38, 51, 0.97) !important;
-
-  
-  /* Optimización de renderizado */
-
-  
-  /* Sombra épica */
-
-}
-
-.cardContent {
-  width: 100%;
-  height: 100%;
-  min-height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
-  position: relative;
-  z-index: 1;
-  /* Optimización de renderizado */
-/*   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden; */
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   CARD 1: THE REVEAL
-═══════════════════════════════════════════════════════════════ */
-.cardReveal {
-  background: 
-    radial-gradient(ellipse at 50% 0%, rgba(170, 55, 242, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(255, 106, 215, 0.2) 0%, transparent 40%),
-    rgba(44, 38, 51, 0.95) !important;
-}
-
-.revealContent {
-  text-align: center;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 120px 2rem 4rem;
+  z-index: 1;
   gap: 2rem;
-  max-width: 900px;
 }
 
-/* Tagline */
-.taglineWrapper {
+/* Tagline superior */
+.tagline {
   margin-bottom: 1rem;
 }
 
 .taglineText {
   font-family: var(--em-font-body);
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-  font-weight: 600;
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* Brand Name - El título gigante */
-.brandNameWrapper {
-  position: relative;
+/* ═══════════════════════════════════════════════════════════════
+   BRAND TITLE - El título GIGANTE
+═══════════════════════════════════════════════════════════════ */
+.brandTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.85;
+  margin: 1rem 0 2rem;
 }
 
-.brandNameGradient {
-  display: inline-block;
+.brandLine {
+  display: flex;
+  justify-content: center;
+  overflow: visible;
 }
 
-.brandName {
+/* MAGIC - Amarillo/Dorado */
+.brandMagic {
   font-family: var(--em-font-headline);
-  font-size: clamp(4rem, 12vw, 10rem);
-  font-weight: 800;
-  line-height: 1;
+  font-size: clamp(5rem, 20vw, 16rem);
+  font-weight: 900;
   letter-spacing: -0.03em;
-  margin: 0;
-  text-shadow: 0 10px 60px rgba(170, 55, 242, 0.5);
+  color: var(--md-yellow);
+  text-shadow: 
+    0 0 60px rgba(249, 248, 113, 0.5),
+    0 0 120px rgba(249, 248, 113, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-/* Subtitle con blur */
+/* DRINK - Azul */
+.brandDrink {
+  font-family: var(--em-font-headline);
+  font-size: clamp(5rem, 20vw, 16rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--md-blue);
+  text-shadow: 
+    0 0 60px rgba(130, 210, 255, 0.5),
+    0 0 120px rgba(130, 210, 255, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* Subtitle */
 .subtitleWrapper {
-  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.subtitleBlur {
+.subtitle {
   font-family: var(--em-font-body);
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
-  line-height: 1.5;
+  text-align: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
 }
 
-/* Scroll Indicator */
-.scrollIndicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 3rem;
-  animation: fadeInUp 1s ease-out 0.5s both;
-}
-
-.scrollText {
-  font-family: var(--em-font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.scrollArrow {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--md-purple) 0%, var(--md-pink) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-/*   animation: bounceDown 2s ease-in-out infinite; */
-}
-
-.scrollArrow span {
-  color: white;
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-@keyframes bounceDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Floating Elements */
-.floatingElements {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.floatingBubble {
-  position: absolute;
-  width: var(--size);
-  height: var(--size);
-  left: var(--left);
-  bottom: -50px;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 106, 215, 0.4) 0%,
-    rgba(130, 210, 255, 0.3) 100%
-  );
-  animation: floatUp var(--duration) ease-in-out infinite;
-  animation-delay: var(--delay);
-  filter: blur(1px);
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.6;
-    transform: translateY(-10vh) scale(1);
-  }
-  90% {
-    opacity: 0.4;
-  }
-  100% {
-    transform: translateY(-100vh) scale(0.5);
-    opacity: 0;
-  }
-}
-
 /* ═══════════════════════════════════════════════════════════════
-   CARD 2: THE PRODUCT
+   CAN SHOWCASE - La lata hero
 ═══════════════════════════════════════════════════════════════ */
-.cardProduct {
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(170, 55, 242, 0.2) 0%, transparent 60%),
-    rgba(44, 38, 51, 0.95) !important;
-}
-
-.productLayout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-  width: 100%;
-  max-width: 800px;
-}
-
-/* Product Showcase - La lata */
-.productShowcase {
+.canShowcase {
   position: relative;
   width: 100%;
   max-width: 400px;
-  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  margin: 2rem 0;
+  z-index: 2;
 }
 
-/* Glow de fondo */
-.productGlow {
+.canGlow {
   position: absolute;
-  inset: 10%;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(170, 55, 242, 0.5) 0%,
-    rgba(255, 106, 215, 0.3) 40%,
+    rgba(170, 55, 242, 0.6) 0%,
+    rgba(255, 106, 215, 0.4) 40%,
     transparent 70%
   );
-  filter: blur(40px);
-  opacity: 0.6;
-  transition: all 0.5s ease;
+  filter: blur(60px);
   animation: glowPulse 4s ease-in-out infinite;
-}
-
-.glowActive {
-  opacity: 1;
-  transform: scale(1.2);
-  filter: blur(50px);
 }
 
 @keyframes glowPulse {
   0%, 100% { 
-    opacity: 0.6;
+    opacity: 0.8;
     transform: scale(1);
   }
   50% { 
-    opacity: 0.8;
-    transform: scale(1.1);
+    opacity: 1;
+    transform: scale(1.2);
   }
 }
 
-/* Orbit rings */
-.orbitRing,
-.orbitRing2 {
+/* Anillos orbitales */
+.canRings {
   position: absolute;
-  border-radius: 50%;
-  border: 1px solid;
+  inset: -20%;
   pointer-events: none;
 }
 
-.orbitRing {
-  width: 90%;
-  height: 90%;
-  border-color: rgba(170, 55, 242, 0.2);
-  animation: rotateOrbit 20s linear infinite;
+.ring1, .ring2, .ring3 {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(170, 55, 242, 0.2);
 }
 
-.orbitRing2 {
-  width: 110%;
-  height: 110%;
+.ring1 {
+  animation: rotateRing 20s linear infinite;
+}
+
+.ring2 {
+  inset: 10%;
   border-color: rgba(255, 106, 215, 0.15);
-  animation: rotateOrbit 30s linear infinite reverse;
+  animation: rotateRing 15s linear infinite reverse;
 }
 
-@keyframes rotateOrbit {
+.ring3 {
+  inset: 20%;
+  border-color: rgba(130, 210, 255, 0.1);
+  animation: rotateRing 25s linear infinite;
+}
+
+@keyframes rotateRing {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Can Wrapper */
-.canWrapper {
-  position: relative;
-  z-index: 2;
-  transition: transform 0.3s ease-out;
-  transform-style: preserve-3d;
-}
-
+/* La imagen de la lata */
 .canImage {
+  position: relative;
   width: 100%;
   max-width: 280px;
   height: auto;
-  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.4));
-  transition: filter 0.3s ease;
+  filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.5));
+  z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.canWrapper:hover .canImage {
-  filter: drop-shadow(0 40px 80px rgba(170, 55, 242, 0.5));
+.canShowcase:hover .canImage {
+  transform: scale(1.05) translateY(-10px);
 }
 
-.canReflection {
+/* Partículas brillantes */
+.particles {
   position: absolute;
-  bottom: -30%;
-  left: 50%;
-  transform: translateX(-50%) scaleY(-1);
-  width: 80%;
-  height: 60%;
-  background: linear-gradient(
-    to bottom,
-    rgba(170, 55, 242, 0.2) 0%,
-    transparent 100%
-  );
-  filter: blur(10px);
-  opacity: 0.5;
+  inset: -50px;
   pointer-events: none;
 }
 
-/* Sparkle Container */
-.sparkleContainer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.sparkle {
+.particle {
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--md-yellow);
-  transform: 
-    translate(-50%, -50%)
-    rotate(var(--angle))
-    translateY(calc(var(--distance) * -1));
-  animation: sparklePulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px currentColor);
+  animation: particleOrbit 8s linear infinite;
   animation-delay: var(--delay);
-  filter: drop-shadow(0 0 8px var(--md-yellow));
+  transform-origin: center center;
 }
 
-@keyframes sparklePulse {
-  0%, 100% { 
+@keyframes particleOrbit {
+  0% {
+    transform: rotate(var(--angle)) translateX(150px) rotate(calc(var(--angle) * -1));
     opacity: 0.3;
-    transform: 
-      translate(-50%, -50%)
-      rotate(var(--angle))
-      translateY(calc(var(--distance) * -1))
-      scale(0.8);
   }
-  50% { 
+  50% {
     opacity: 1;
-    transform: 
-      translate(-50%, -50%)
-      rotate(var(--angle))
-      translateY(calc(var(--distance) * -1))
-      scale(1.2);
   }
-}
-
-/* Flavor Title */
-.flavorTitle {
-  text-align: center;
-  max-width: 600px;
-}
-
-.flavorGradient {
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-
-.flavorName {
-  font-family: var(--em-font-headline);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-
-.flavorTagline {
-  font-family: var(--em-font-body);
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
+  100% {
+    transform: rotate(calc(var(--angle) + 360deg)) translateX(150px) rotate(calc((var(--angle) + 360deg) * -1));
+    opacity: 0.3;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CARD 3: THE EXPERIENCE
+   DESCRIPTION & CTA
 ═══════════════════════════════════════════════════════════════ */
-.cardExperience {
-  background: 
-    linear-gradient(135deg, rgba(44, 38, 51, 0.98) 0%, rgba(104, 34, 168, 0.3) 100%),
-    rgba(44, 38, 51, 0.95) !important;
+.description {
+  font-family: var(--em-font-body);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  max-width: 600px;
+  margin: 0;
 }
 
-.experienceLayout {
+.ctaWrapper {
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL INDICATOR
+═══════════════════════════════════════════════════════════════ */
+.scrollIndicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-  width: 100%;
-  max-width: 1000px;
-}
-
-/* Features Grid */
-.featuresGrid {
-  width: 100%;
-  text-align: center;
-}
-
-.featuresHeader {
-  margin-bottom: 2.5rem;
-}
-
-.featuresTitle {
-  font-family: var(--em-font-headline);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 700;
-}
-
-.featureCards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  width: 100%;
-}
-
-.featureCard {
-  display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.25rem 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-/*   animation: fadeInUp 0.6s ease-out both;
-  animation-delay: var(--delay); */
 }
 
-.featureCard:hover {
-  background: rgba(170, 55, 242, 0.15);
-  border-color: rgba(170, 55, 242, 0.3);
-  transform: translateY(-4px);
+.scrollText {
+  font-family: var(--em-font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.4);
 }
 
-.featureIconWrapper {
-  width: 50px;
-  height: 50px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--md-purple) 0%, var(--md-pink) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.scrollLine {
+  width: 2px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
 }
 
-.featureIcon {
-  font-size: 1.5rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+.scrollDot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(180deg, var(--md-purple) 0%, var(--md-pink) 100%);
+  border-radius: 2px;
+  animation: scrollBounce 2s ease-in-out infinite;
 }
 
-.featureContent {
+@keyframes scrollBounce {
+  0%, 100% { top: 0; }
+  50% { top: calc(100% - 20px); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATS ZONE - Números impresionantes
+═══════════════════════════════════════════════════════════════ */
+.statsZone {
+  position: relative;
+  padding: 6rem 2rem;
+  z-index: 1;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.statCard {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.4s ease;
+}
+
+.statCard:hover {
+  background: rgba(170, 55, 242, 0.1);
+  border-color: rgba(170, 55, 242, 0.3);
+  transform: translateY(-8px);
+}
+
+.statNumberWrapper {
+  display: flex;
+  align-items: baseline;
   gap: 0.25rem;
 }
 
-.featureHighlight {
+.statNumber {
   font-family: var(--em-font-headline);
-  font-size: 1rem;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--md-pink) 0%, var(--md-purple) 50%, var(--md-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.statSuffix {
+  font-family: var(--em-font-headline);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 700;
   color: var(--md-pink);
 }
 
-.featureText {
+.statLabel {
   font-family: var(--em-font-body);
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* CTA Section */
-.ctaSection {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 2rem;
-}
-
-.ctaGlow {
-  position: absolute;
-  width: 300px;
-  height: 100px;
-  background: radial-gradient(
-    ellipse,
-    rgba(170, 55, 242, 0.4) 0%,
-    transparent 70%
-  );
-  filter: blur(30px);
-  pointer-events: none;
-}
-
-.ctaSubtext {
-  font-family: var(--em-font-body);
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin: 0;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -621,22 +433,17 @@
 
 /* Tablet */
 @media (max-width: 1024px) {
-  .stackCard {
-    width: calc(100% - 2rem) !important;
-    border-radius: 30px !important;
-    min-height: 80vh !important;
+  .heroZone {
+    padding: 100px 1.5rem 4rem;
+    min-height: 90vh;
   }
 
-  .cardContent {
-    padding: 2rem;
-    min-height: 80vh;
+  .brandMagic,
+  .brandDrink {
+    font-size: clamp(4rem, 18vw, 10rem);
   }
 
-  .brandName {
-    font-size: clamp(3rem, 10vw, 6rem);
-  }
-
-  .productShowcase {
+  .canShowcase {
     max-width: 320px;
   }
 
@@ -644,120 +451,117 @@
     max-width: 220px;
   }
 
-  .featureCards {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .particle {
+    display: none;
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .stackCard {
-    width: calc(100% - 1.5rem) !important;
-    border-radius: 24px !important;
-    min-height: 75vh !important;
+  .section {
+    min-height: 180vh;
   }
 
-  .cardContent {
-    padding: 1.5rem;
-    min-height: 75vh;
-  }
-
-  .revealContent {
+  .heroZone {
+    padding: 90px 1rem 3rem;
     gap: 1.5rem;
   }
 
-  .brandName {
-    font-size: clamp(2.5rem, 15vw, 4rem);
+  .taglineText {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
   }
 
-  .subtitleBlur {
+  .brandMagic,
+  .brandDrink {
+    font-size: clamp(3rem, 20vw, 6rem);
+  }
+
+  .subtitle {
     font-size: 1.1rem;
   }
 
-  .scrollIndicator {
-    margin-top: 2rem;
-  }
-
-  .productShowcase {
+  .canShowcase {
     max-width: 280px;
+    margin: 1rem 0;
   }
 
   .canImage {
     max-width: 180px;
   }
 
-  .flavorName {
-    font-size: 2rem;
+  .canGlow {
+    width: 200px;
+    height: 200px;
+    filter: blur(40px);
   }
 
-  .flavorTagline {
+  .ring1, .ring2, .ring3 {
+    display: none;
+  }
+
+  .description {
     font-size: 0.95rem;
+    padding: 0 1rem;
   }
 
-  .featureCards {
-    grid-template-columns: 1fr;
+  .scrollIndicator {
+    bottom: 2rem;
+  }
+
+  .scrollLine {
+    height: 40px;
+  }
+
+  .statsZone {
+    padding: 4rem 1rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
-  .featureCard {
-    padding: 1rem 1.25rem;
+  .statCard {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
   }
 
-  .featureIconWrapper {
-    width: 44px;
-    height: 44px;
+  .statNumber {
+    font-size: 2.5rem;
   }
 
-  .floatingBubble {
-    display: none;
-  }
-
-  .orbitRing,
-  .orbitRing2 {
-    display: none;
-  }
-
-  .sparkle {
-    display: none;
+  .statSuffix {
+    font-size: 1.25rem;
   }
 
   .gradientOrb1,
   .gradientOrb2,
   .gradientOrb3 {
-    width: 300px;
-    height: 300px;
-    filter: blur(60px);
-    opacity: 0.3;
+    width: 400px;
+    height: 400px;
+    filter: blur(80px);
+    opacity: 0.4;
   }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
-  .stackCard {
-    width: calc(100% - 1rem) !important;
-    border-radius: 20px !important;
-    min-height: 70vh !important;
+  .heroZone {
+    padding: 80px 0.75rem 2rem;
   }
 
-  .cardContent {
-    padding: 1.25rem;
-    min-height: 70vh;
+  .brandMagic,
+  .brandDrink {
+    font-size: clamp(2.5rem, 22vw, 4rem);
   }
 
-  .brandName {
-    font-size: 2.5rem;
-  }
-
-  .taglineText {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-  }
-
-  .subtitleBlur {
-    font-size: 1rem;
-  }
-
-  .productShowcase {
+  .canShowcase {
     max-width: 240px;
   }
 
@@ -765,39 +569,20 @@
     max-width: 150px;
   }
 
-  .productGlow {
-    filter: blur(30px);
+  .subtitle {
+    font-size: 1rem;
   }
 
-  .flavorName {
-    font-size: 1.75rem;
-  }
-
-  .featuresTitle {
-    font-size: 1.5rem;
-  }
-
-  .featureCard {
-    padding: 0.875rem 1rem;
-    border-radius: 16px;
-  }
-
-  .featureIconWrapper {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-  }
-
-  .featureIcon {
-    font-size: 1.25rem;
-  }
-
-  .featureHighlight {
+  .description {
     font-size: 0.9rem;
   }
 
-  .featureText {
-    font-size: 0.8rem;
+  .statNumber {
+    font-size: 2rem;
+  }
+
+  .statLabel {
+    font-size: 0.75rem;
   }
 }
 
@@ -808,20 +593,14 @@
   .gradientOrb1,
   .gradientOrb2,
   .gradientOrb3,
-  .floatingBubble,
-  .scrollArrow,
-  .productGlow,
-  .orbitRing,
-  .orbitRing2,
-  .sparkle {
+  .canGlow,
+  .ring1, .ring2, .ring3,
+  .particle,
+  .scrollDot {
     animation: none;
   }
 
-  .featureCard {
-    animation: none;
-  }
-
-  .canWrapper {
+  .canImage {
     transition: none;
   }
 }

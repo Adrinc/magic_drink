@@ -8,7 +8,7 @@
   position: relative;
   width: 100%;
   min-height: 170vh;
- /*  background: var(--md-gray-dark); */
+  background: var(--md-gray-dark);
   overflow: hidden;
   z-index: 2;
 }

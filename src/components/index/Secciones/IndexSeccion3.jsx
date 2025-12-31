@@ -154,56 +154,109 @@ const IndexSeccion3 = () => {
     
     if (!section || !horizontal || !trigger) return;
 
-    // Pequeño delay para asegurar que el DOM esté listo
-    const ctx = gsap.context(() => {
+    let ctx;
+    let rafId;
+    
+    // Función para inicializar ScrollTrigger
+    const initScrollTrigger = () => {
       // Calcular el ancho total del scroll horizontal
       const totalWidth = horizontal.scrollWidth - window.innerWidth;
 
-      // Crear el ScrollTrigger para el efecto horizontal
-      const scrollTween = gsap.to(horizontal, {
-        x: -totalWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: trigger,
-          start: "top top",
-          end: () => `+=${totalWidth}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          // Importante: onRefresh para sincronizar alturas
-          onRefresh: (self) => {
-            // Asegurar que la sección padre tenga la altura correcta
-            const scrollDistance = self.end - self.start;
-            section.style.minHeight = `${scrollDistance + window.innerHeight}px`;
-          },
-        }
-      });
-
-      // Animaciones de entrada para cada card
-      const cards = horizontal.querySelectorAll(`.${styles.flavorCard}`);
-      cards.forEach((card) => {
-        gsap.fromTo(card.querySelector(`.${styles.canImage}`), 
-          { scale: 0.8, rotation: -10, opacity: 0.5 },
-          {
-            scale: 1,
-            rotation: 0,
-            opacity: 1,
-            duration: 1,
-            scrollTrigger: {
-              trigger: card,
-              start: "left 90%",
-              end: "left 50%",
-              scrub: true,
-              containerAnimation: scrollTween,
-            }
+      ctx = gsap.context(() => {
+        // Crear el ScrollTrigger para el efecto horizontal
+        const scrollTween = gsap.to(horizontal, {
+          x: -totalWidth,
+          ease: "none",
+          scrollTrigger: {
+            trigger: trigger,
+            start: "top top",
+            end: () => `+=${horizontal.scrollWidth - window.innerWidth}`,
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            // Importante: onRefresh para sincronizar alturas
+            onRefresh: (self) => {
+              // Asegurar que la sección padre tenga la altura correcta
+              const scrollDistance = self.end - self.start;
+              section.style.minHeight = `${scrollDistance + window.innerHeight}px`;
+            },
           }
-        );
+        });
+
+        // Animaciones de entrada para cada card
+        const cards = horizontal.querySelectorAll(`.${styles.flavorCard}`);
+        cards.forEach((card) => {
+          gsap.fromTo(card.querySelector(`.${styles.canImage}`), 
+            { scale: 0.8, rotation: -10, opacity: 0.5 },
+            {
+              scale: 1,
+              rotation: 0,
+              opacity: 1,
+              duration: 1,
+              scrollTrigger: {
+                trigger: card,
+                start: "left 90%",
+                end: "left 50%",
+                scrub: true,
+                containerAnimation: scrollTween,
+              }
+            }
+          );
+        });
+      }, sectionRef);
+    };
+
+    // Esperar a que el DOM esté completamente renderizado
+    // Usamos múltiples estrategias para asegurar compatibilidad cross-browser
+    const waitForLayout = () => {
+      // 1. Esperar al siguiente frame de animación
+      rafId = requestAnimationFrame(() => {
+        // 2. Pequeño timeout adicional para Chrome/Edge
+        setTimeout(() => {
+          initScrollTrigger();
+          
+          // 3. Refresh adicional después de que las imágenes carguen
+          const images = horizontal.querySelectorAll('img');
+          let loadedImages = 0;
+          const totalImages = images.length;
+          
+          if (totalImages === 0) {
+            ScrollTrigger.refresh();
+            return;
+          }
+          
+          images.forEach((img) => {
+            if (img.complete) {
+              loadedImages++;
+              if (loadedImages === totalImages) {
+                ScrollTrigger.refresh();
+              }
+            } else {
+              img.addEventListener('load', () => {
+                loadedImages++;
+                if (loadedImages === totalImages) {
+                  ScrollTrigger.refresh();
+                }
+              }, { once: true });
+            }
+          });
+        }, 100);
       });
-    }, sectionRef);
+    };
+
+    // Verificar si el documento ya está cargado
+    if (document.readyState === 'complete') {
+      waitForLayout();
+    } else {
+      window.addEventListener('load', waitForLayout, { once: true });
+    }
 
     // Cleanup
-    return () => ctx.revert();
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (

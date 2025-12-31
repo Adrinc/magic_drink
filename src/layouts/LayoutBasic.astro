@@ -68,6 +68,20 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
     font-style: normal;
     font-display: swap;
   }
+  @font-face {
+    font-family: 'BakeSoda';
+    src: url('/fonts/Bakesoda.otf') format('truetype');
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'FizzSoda';
+    src: url('/fonts/Fizzsoda.ttf') format('truetype');
+    font-weight: 400 900;
+    font-style: normal;
+    font-display: swap;
+  }
 
   @font-face {
     font-family: 'Inter';
@@ -172,7 +186,7 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
     --em-gradient-cta-hover: linear-gradient(135deg, #FF4DC9, #9520E5);
 
     /* === TIPOGRAFÍA KAWAII === */
-    --em-font-headline: 'Poppins', 'Syne', sans-serif;
+    --em-font-headline: 'BakeSoda', 'Syne', sans-serif;
     --em-font-body: 'Inter', system-ui, -apple-system, sans-serif;
 
     /* === ESCALA TIPOGRÁFICA (Mobile-first responsive) === */

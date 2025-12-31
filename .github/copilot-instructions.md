@@ -16,6 +16,65 @@ En la vida cotidiana, Magic Drink está en todas partes: tiendas, escuelas, conc
 Oficialmente, Magic Drink es solo una bebida innovadora, saludable y legal.
 Extraoficialmente… incluso en el mundo real, hay algo en ella que no termina de sentirse del todo normal.
 
+# 🟣 Descripción de Wonderpop plaza
+
+La WonderPop Plaza es el centro comercial oficial de Magic Drink dentro del mundo real de la marca. Funciona como:
+
+Un mall temático kawaii
+
+Punto físico de experiencia de marca
+
+Lugar donde Magic Drink “cobra vida” fuera de la bebida
+
+No es solo un edificio: es una experiencia inmersiva, colorida y aspiracional.
+
+✨ Rol dentro del universo Magic Drink
+
+Representa que Magic Drink es una marca gigante, global y real
+
+Refuerza la idea de comunidad, fans y lifestyle
+
+Es el espacio donde convergen:
+
+Bebidas
+
+Merch oficial
+
+Hexy
+
+Música
+
+Eventos especiales
+
+Todo es positivo, mágico y comercial
+👉 Nunca oscuro, nunca onírico, nunca inquietante
+
+🧃 ¿Qué hay dentro de la WonderPop Plaza?
+
+Conceptualmente incluye:
+
+🥤 Tienda oficial Magic Drink
+
+🧸 Merch kawaii (peluches, ropa, accesorios)
+
+🎧 Zonas de música de Hexy
+
+🎉 Eventos temporales
+
+📸 Espacios “instagrameables”
+
+⭐ Decoración con:
+
+estrellas
+
+notas musicales
+
+burbujas
+
+partículas brillantes
+
+Es un lugar al que la gente quiere ir, no solo comprar.
+
 # 🟣 Descripción de Hexy
 
 Hexy es la mascota oficial y rostro musical de Magic Drink, una brujita DJ diseñada para representar la energía creativa, divertida y moderna de la marca.

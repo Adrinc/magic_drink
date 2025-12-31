@@ -63,13 +63,13 @@
 .backgroundImage {
   position: absolute;
   inset: 0;
-  background-image: url('/image/backgrounds/bg_temp_2.png');
+  background-image: url('/image/backgrounds/bg_magic.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.8;
+  opacity: 1;
   filter: blur(3px) grayscale(50%);
-  transform: scale(1.1);
+  transform: scale(1.5);
   transition: transform 8s ease-out;
 }
 
@@ -81,11 +81,12 @@
 .spotlightReveal {
   position: absolute;
   inset: 0;
-  background-image: url('/image/backgrounds/bg_temp_1.png');
+  background-image: url('/image/backgrounds/bg_temp_2.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.95;
+  opacity: 1;
+  transform: scale(1.15);
   --mouse-x: 50%;
   --mouse-y: 50%;
   -webkit-mask-image: radial-gradient(
@@ -278,14 +279,16 @@
 }
 
 .titleText {
+  font-family: var(--em-font-headline);
   position: relative;
   z-index: 1;
   
   /* Gradiente mágico kawaii */
-  background: linear-gradient(135deg, #FFFFFF 0%, #FF6AD7 50%, #82D2FF 100%);
+  background: linear-gradient(180deg,  #ffdd00 50%, #2fc2ef 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-stroke: 3.5px #272400;
   
   /* Sombra mágica */
   filter: drop-shadow(0 4px 20px rgba(255, 106, 215, 0.4)) 

@@ -1,107 +1,347 @@
-﻿import { useStore } from '@nanostores/react';
-import { isEnglish, isDarkMode } from '../../../data/variables';
-import Button from '../../global/Button';
+﻿import React, { useEffect, useRef } from 'react';
+import { useStore } from '@nanostores/react';
+import { isEnglish } from '../../../data/variables';
 import styles from '../css/indexSeccion4.module.css';
+import Button from '../../global/Button';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// ReactBits Animations
+import BlurText from '../../global/animations/BlurText/BlurText';
+import ShinyText from '../../global/animations/ShinyText/ShinyText';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const IndexSeccion4 = () => {
   const ingles = useStore(isEnglish);
-  const darkMode = useStore(isDarkMode);
-  
+  const sectionRef = useRef(null);
+  const contentRef = useRef(null);
+  const panelsRef = useRef([]);
+
   const content = {
     es: {
-      title: "Hexy, la voz de Magic Drink",
-      subtitle: "Hexy es la mascota oficial de Magic Drink y la idol que ha conquistado millones de playlists alrededor del mundo. Sus canciones están hechas para disfrutarse con una lata fría en la mano.",
-      description: "Nadie sabe con certeza quién está detrás del nombre 'DJ Sweet Hex'. Algunos dicen que es una productora anónima, otros creen que es un equipo creativo entero. Lo único seguro es que, cuando su música suena y una Magic Drink se abre, el mundo se siente un poco más brillante.",
-      stats: [
-        { icon: "🎵", text: "+5 mil millones de streams en campañas y redes" },
-        { icon: "🌎", text: "Presente en anuncios de más de 40 países" },
-        { icon: "💜", text: "Idol número uno en el 'Día de la Magic Drink'" }
-      ],
-      ctaPrimary: "Escuchar a Hexy",
-      ctaSecondary: "Ver discografía"
+      // Panel 1 - Introducción épica
+      intro: {
+        tag: "LA IDOL DE MAGIC DRINK",
+        title: "Hexy",
+        subtitle: "DJ Sweet Hex",
+        description: "La voz que conquistó millones de corazones"
+      },
+      // Panel 2 - El misterio
+      mystery: {
+        title: "¿Quién es DJ Sweet Hex?",
+        text: "Nadie sabe con certeza quién está detrás del nombre. Algunos dicen que es una productora anónima, otros creen que es un equipo creativo entero.",
+        highlight: "El misterio es parte de la magia."
+      },
+      // Panel 3 - Los números
+      stats: {
+        title: "Los números hablan",
+        items: [
+          { value: "5B+", label: "Streams globales" },
+          { value: "40+", label: "Países con campañas" },
+          { value: "#1", label: "Idol del Magic Drink Day" }
+        ]
+      },
+      // Panel 4 - La experiencia
+      experience: {
+        title: "Música + Sabor",
+        text: "Cuando su música suena y una Magic Drink se abre, el mundo se siente un poco más brillante.",
+        cta: "Escuchar a Hexy",
+        ctaSecondary: "Ver discografía"
+      }
     },
     en: {
-      title: "Hexy, the voice of Magic Drink",
-      subtitle: "Hexy is the official mascot of Magic Drink and the idol who has conquered millions of playlists around the world. Her songs are made to be enjoyed with a cold can in hand.",
-      description: "No one knows for sure who is behind the name 'DJ Sweet Hex'. Some say it's an anonymous producer, others believe it's an entire creative team. The only certainty is that when her music plays and a Magic Drink opens, the world feels a little brighter.",
-      stats: [
-        { icon: "🎵", text: "+5 billion streams in campaigns and social networks" },
-        { icon: "🌎", text: "Present in ads in over 40 countries" },
-        { icon: "💜", text: "#1 idol on 'Magic Drink Day'" }
-      ],
-      ctaPrimary: "Listen to Hexy",
-      ctaSecondary: "View discography"
+      intro: {
+        tag: "THE MAGIC DRINK IDOL",
+        title: "Hexy",
+        subtitle: "DJ Sweet Hex",
+        description: "The voice that conquered millions of hearts"
+      },
+      mystery: {
+        title: "Who is DJ Sweet Hex?",
+        text: "No one knows for sure who is behind the name. Some say it's an anonymous producer, others believe it's an entire creative team.",
+        highlight: "The mystery is part of the magic."
+      },
+      stats: {
+        title: "Numbers speak",
+        items: [
+          { value: "5B+", label: "Global streams" },
+          { value: "40+", label: "Countries with campaigns" },
+          { value: "#1", label: "Magic Drink Day idol" }
+        ]
+      },
+      experience: {
+        title: "Music + Flavor",
+        text: "When her music plays and a Magic Drink opens, the world feels a little brighter.",
+        cta: "Listen to Hexy",
+        ctaSecondary: "View discography"
+      }
     }
   };
-  
+
   const t = ingles ? content.en : content.es;
-  
+
+  // Animaciones GSAP para los paneles
+  useEffect(() => {
+    const section = sectionRef.current;
+    const panels = panelsRef.current;
+    
+    if (!section || panels.length === 0) return;
+
+    let ctx;
+    let rafId;
+
+    const initAnimations = () => {
+      ctx = gsap.context(() => {
+        // Animar cada panel cuando entra en viewport
+        panels.forEach((panel, index) => {
+          if (!panel) return;
+
+          // Animación de entrada del panel
+          gsap.fromTo(panel,
+            { 
+              opacity: 0, 
+              y: 80,
+              scale: 0.95
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: panel,
+                start: "top 85%",
+                end: "top 40%",
+                toggleActions: "play none none reverse",
+              }
+            }
+          );
+
+          // Animación de parallax sutil para elementos internos
+          const innerElements = panel.querySelectorAll(`.${styles.animateIn}`);
+          innerElements.forEach((el, i) => {
+            gsap.fromTo(el,
+              { opacity: 0, y: 40 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: i * 0.1,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: panel,
+                  start: "top 80%",
+                  toggleActions: "play none none reverse",
+                }
+              }
+            );
+          });
+        });
+
+        // Efecto parallax en Hexy
+        const hexyImage = section.querySelector(`.${styles.hexyImage}`);
+        if (hexyImage) {
+          gsap.to(hexyImage, {
+            yPercent: -15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1
+            }
+          });
+        }
+
+      }, section);
+    };
+
+    // Esperar al layout
+    rafId = requestAnimationFrame(() => {
+      setTimeout(initAnimations, 100);
+    });
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      if (ctx) ctx.revert();
+    };
+  }, []);
+
+  // Función para agregar refs a los paneles
+  const addPanelRef = (el, index) => {
+    panelsRef.current[index] = el;
+  };
+
   return (
-    <section 
-      className={`${styles.section} ${!darkMode ? styles.sectionLight : ''}`}
-    >
-      {/* Columna Izquierda - Imagen de Hexy */}
-      <div className={styles.imageColumn}>
-        <div className={styles.imageWrapper}>
-          <img 
-            src="/image/hexy/hexy-highlight.png" 
-            alt="Hexy - DJ Sweet Hex"
-            className={styles.hexyImage}
-          />
-          {/* Badge decorativo */}
-          <div className={styles.hexyBadge}>✨</div>
-          {/* Glow effect */}
-          <div className={styles.hexyGlow}></div>
-        </div>
+    <section ref={sectionRef} className={styles.section}>
+      {/* Background decorativo */}
+      <div className={styles.backgroundDecor}>
+        <div className={styles.gradientOrb1}></div>
+        <div className={styles.gradientOrb2}></div>
+        <div className={styles.noiseOverlay}></div>
       </div>
-      
-      {/* Columna Derecha - Contenido */}
-      <div className={styles.contentColumn}>
-        {/* Título principal */}
-        <h2 className={styles.title}>{t.title}</h2>
-        
-        {/* Subtítulo/tagline */}
-        <p className={styles.subtitle}>{t.subtitle}</p>
-        
-        {/* Descripción corporativa */}
-        <p className={styles.description}>{t.description}</p>
-        
-        {/* Stats de Hexy */}
-        <div className={styles.statsGrid}>
-          {t.stats.map((stat, index) => (
-            <div key={index} className={styles.statItem}>
-              <span className={styles.statIcon}>{stat.icon}</span>
-              <span className={styles.statText}>{stat.text}</span>
-            </div>
-          ))}
-        </div>
-        
-        {/* CTAs */}
-        <div className={styles.ctaGroup}>
-          <Button 
-            variant="primary"
-            href="/hexy"
-            textEs={t.ctaPrimary}
-            textEn={t.ctaPrimary}
-            size="lg"
-          />
-          <Button 
-            variant="outline"
-            href="/hexy"
-            textEs={t.ctaSecondary}
-            textEn={t.ctaSecondary}
-            size="lg"
-          />
-        </div>
-      </div>
-      
-      {/* Decoraciones de fondo - Notas musicales */}
+
+      {/* Notas musicales flotantes */}
       <div className={styles.musicNotes} aria-hidden="true">
-        <span className={styles.note}>♪</span>
-        <span className={styles.note}>♫</span>
-        <span className={styles.note}>♪</span>
-        <span className={styles.note}>♫</span>
-        <span className={styles.note}>♪</span>
+        {['♪', '♫', '♪', '♫', '✦', '♪'].map((note, i) => (
+          <span key={i} className={styles.note} style={{ '--i': i }}>{note}</span>
+        ))}
+      </div>
+
+      <div className={styles.container}>
+        {/* ═══════════════════════════════════════════════════════════════
+            COLUMNA IZQUIERDA - Hexy Sticky
+        ═══════════════════════════════════════════════════════════════ */}
+        <div className={styles.stickyColumn}>
+          <div className={styles.hexyWrapper}>
+            {/* Glow de fondo */}
+            <div className={styles.hexyGlow}></div>
+            
+            {/* Anillos decorativos orbitales */}
+            <div className={styles.hexyRings}>
+              <div className={styles.ring1}></div>
+              <div className={styles.ring2}></div>
+            </div>
+            
+            {/* Imagen de Hexy */}
+            <img
+              src="/image/hexy/hexy-highlight.png"
+              alt="Hexy - DJ Sweet Hex"
+              className={styles.hexyImage}
+            />
+            
+            {/* Badge flotante */}
+            <div className={styles.hexyBadge}>
+              <span>✨</span>
+            </div>
+
+            {/* Partículas */}
+            <div className={styles.particles}>
+              {[...Array(8)].map((_, i) => (
+                <span 
+                  key={i} 
+                  className={styles.particle}
+                  style={{ '--i': i }}
+                >✦</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════════════════
+            COLUMNA DERECHA - Contenido con scroll
+        ═══════════════════════════════════════════════════════════════ */}
+        <div ref={contentRef} className={styles.contentColumn}>
+          
+          {/* Panel 1: Introducción */}
+          <div ref={(el) => addPanelRef(el, 0)} className={styles.panel}>
+            <div className={styles.panelInner}>
+              <span className={`${styles.tag} ${styles.animateIn}`}>
+                <ShinyText
+                  text={t.intro.tag}
+                  speed={3}
+                  color="rgba(255,255,255,0.7)"
+                  shineColor="#FF6AD7"
+                />
+              </span>
+              <h2 className={`${styles.heroTitle} ${styles.animateIn}`}>
+                <BlurText
+                  text={t.intro.title}
+                  delay={100}
+                  animateBy="letters"
+                  direction="bottom"
+                  className={styles.heroTitleText}
+                />
+              </h2>
+              <p className={`${styles.heroSubtitle} ${styles.animateIn}`}>
+                {t.intro.subtitle}
+              </p>
+              <p className={`${styles.heroDescription} ${styles.animateIn}`}>
+                {t.intro.description}
+              </p>
+            </div>
+          </div>
+
+          {/* Panel 2: El Misterio */}
+          <div ref={(el) => addPanelRef(el, 1)} className={styles.panel}>
+            <div className={styles.panelInner}>
+              <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
+                <BlurText
+                  text={t.mystery.title}
+                  delay={60}
+                  animateBy="words"
+                  direction="top"
+                  className={styles.sectionTitleText}
+                />
+              </h3>
+              <p className={`${styles.mysteryText} ${styles.animateIn}`}>
+                {t.mystery.text}
+              </p>
+              <blockquote className={`${styles.highlight} ${styles.animateIn}`}>
+                <span className={styles.quoteIcon}>"</span>
+                {t.mystery.highlight}
+              </blockquote>
+            </div>
+          </div>
+
+          {/* Panel 3: Stats */}
+          <div ref={(el) => addPanelRef(el, 2)} className={styles.panel}>
+            <div className={styles.panelInner}>
+              <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
+                {t.stats.title}
+              </h3>
+              <div className={styles.statsGrid}>
+                {t.stats.items.map((stat, index) => (
+                  <div 
+                    key={index} 
+                    className={`${styles.statCard} ${styles.animateIn}`}
+                    style={{ '--delay': `${index * 0.1}s` }}
+                  >
+                    <span className={styles.statValue}>{stat.value}</span>
+                    <span className={styles.statLabel}>{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Panel 4: Experiencia + CTA */}
+          <div ref={(el) => addPanelRef(el, 3)} className={styles.panel}>
+            <div className={styles.panelInner}>
+              <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
+                <BlurText
+                  text={t.experience.title}
+                  delay={60}
+                  animateBy="words"
+                  direction="top"
+                  className={styles.sectionTitleText}
+                />
+              </h3>
+              <p className={`${styles.experienceText} ${styles.animateIn}`}>
+                {t.experience.text}
+              </p>
+              <div className={`${styles.ctaGroup} ${styles.animateIn}`}>
+                <Button
+                  textEs={t.experience.cta}
+                  textEn={t.experience.cta}
+                  href="/hexy"
+                  variant="magic"
+                  size="lg"
+                  showArrow={true}
+                />
+                <Button
+                  textEs={t.experience.ctaSecondary}
+                  textEn={t.experience.ctaSecondary}
+                  href="/hexy"
+                  variant="outline"
+                  size="lg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

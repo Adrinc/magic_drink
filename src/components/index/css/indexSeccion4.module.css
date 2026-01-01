@@ -573,7 +573,7 @@
 }
 
 /* Anillos decorativos orbitales */
-.hexyRings {
+/* .hexyRings {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -609,14 +609,14 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
+ */
 /* Imagen de Hexy - Aumentado 20% */
 .hexyImage {
   position: relative;
   width: auto;
-  height: 90%; /* Aumentado de 75% a 90% (+20%) */
-  max-height: 660px; /* Aumentado de 550px (+20%) */
-  min-height: 420px; /* Aumentado de 350px (+20%) */
+  height: 100%; /* Aumentado de 75% a 90% (+20%) */
+  max-height: 960px; /* Aumentado de 550px (+20%) */
+  min-height: 820px; /* Aumentado de 350px (+20%) */
   object-fit: contain;
   filter: 
     drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5))
@@ -1021,8 +1021,8 @@
 .curvedLoopWrapper {
   position: relative;
   width: 100%;
-  padding: 4rem 0 35rem 0; /* Espacio inferior generoso para separar secciones */
-  margin-top: 16rem; /* Espacio generoso antes del banner */
+  padding: 5rem 0 35rem 0; /* Espacio inferior generoso para separar secciones */
+ /*  margin-top: 1rem;  */
   overflow: hidden;
   background: linear-gradient(
     180deg,

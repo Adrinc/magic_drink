@@ -204,10 +204,10 @@ const IndexSeccion4 = () => {
             <div className={styles.hexyGlow}></div>
             
             {/* Anillos decorativos orbitales */}
-            <div className={styles.hexyRings}>
+          {/*   <div className={styles.hexyRings}>
               <div className={styles.ring1}></div>
               <div className={styles.ring2}></div>
-            </div>
+            </div> */}
             
             {/* Imagen de Hexy */}
             <img
@@ -408,7 +408,7 @@ const IndexSeccion4 = () => {
       ═══════════════════════════════════════════════════════════════ */}
       <div className={styles.curvedLoopWrapper}>
         <CurvedLoop
-          marqueeText="Magic Drink ⭐ "
+          marqueeText={ingles ? "MUSIC & FLAVOR  ♫  FEEL THE MAGIC  ♪ " : "MUSICA Y SABOR  ♫  SIENTE LA MAGIA  ♪ "}
           speed={1.5}
           curveAmount={250}
           direction="left"

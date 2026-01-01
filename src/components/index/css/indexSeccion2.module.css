@@ -115,17 +115,19 @@
   align-items: center;
   line-height: 0.85;
   margin: 1rem 0 2rem;
+  font-family: var(--em-font-headline) !important;
 }
 
 .brandLine {
   display: flex;
   justify-content: center;
   overflow: visible;
+  font-family: inherit;
 }
 
 /* MAGIC - Amarillo/Dorado */
 .brandMagic {
-  font-family: var(--em-font-headline);
+  font-family: var(--em-font-headline) !important;
   font-size: clamp(5rem, 20vw, 16rem);
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -140,7 +142,7 @@
 
 /* DRINK - Azul */
 .brandDrink {
-  font-family: var(--em-font-headline);
+  font-family: var(--em-font-headline) !important;
   font-size: clamp(5rem, 20vw, 16rem);
   font-weight: 900;
   letter-spacing: -0.03em;

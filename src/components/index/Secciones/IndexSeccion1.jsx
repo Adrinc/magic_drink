@@ -6,6 +6,9 @@ import CtaCard from '../../global/CtaCard';
 import Button from '../../global/Button';
 import SplashCursor from '../../global/SplashCursor';
 
+// ReactBits Animations
+import BlurText from '../../global/animations/BlurText/BlurText';
+
 
 const IndexSeccion1 = () => {
   const ingles = useStore(isEnglish);
@@ -106,7 +109,33 @@ const IndexSeccion1 = () => {
         <div className={styles.heroContent}>
           {/* Headline Principal Kawaii con Sparkle */}
           <h1 className={styles.heroTitle}>
-            <span className={styles.titleText}>{t.h1}</span>
+            <div className={styles.titleLine}>
+              <BlurText
+                text={ingles ? "The world's" : "La bebida"}
+                delay={50}
+                animateBy="words"
+                direction="bottom"
+                className={styles.titlePart1}
+              />
+            </div>
+            <div className={styles.titleLine}>
+              <BlurText
+                text={ingles ? "most popular" : "más popular"}
+                delay={70}
+                animateBy="words"
+                direction="bottom"
+                className={styles.titlePart2}
+              />
+            </div>
+            <div className={styles.titleLine}>
+              <BlurText
+                text={ingles ? "drink" : "del mundo"}
+                delay={90}
+                animateBy="words"
+                direction="bottom"
+                className={styles.titlePart3}
+              />
+            </div>
             <span className={styles.sparkle}></span>
           </h1>
           

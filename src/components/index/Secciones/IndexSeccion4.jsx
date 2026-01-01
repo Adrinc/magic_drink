@@ -6,9 +6,13 @@ import Button from '../../global/Button';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// ReactBits Animations
+// ReactBits Animations - Full arsenal
 import BlurText from '../../global/animations/BlurText/BlurText';
 import ShinyText from '../../global/animations/ShinyText/ShinyText';
+import GradientText from '../../global/animations/GradientText/GradientText';
+import ScrollReveal from '../../global/animations/ScrollReveal/ScrollReveal';
+import CountUp from '../../global/animations/CountUp';
+import CurvedLoop from '../../global/animations/CurvedLoop/CurvedLoop';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,9 +41,9 @@ const IndexSeccion4 = () => {
       stats: {
         title: "Los números hablan",
         items: [
-          { value: "5B+", label: "Streams globales" },
-          { value: "40+", label: "Países con campañas" },
-          { value: "#1", label: "Idol del Magic Drink Day" }
+          { value: 5, suffix: "B+", label: "Streams globales", icon: "🎵", accentColor: "#FF6AD7" },
+          { value: 40, suffix: "+", label: "Países con campañas", icon: "🌍", accentColor: "#82D2FF" },
+          { value: 1, prefix: "#", suffix: "", label: "Idol del Magic Drink Day", icon: "👑", accentColor: "#F9F871" }
         ]
       },
       // Panel 4 - La experiencia
@@ -65,9 +69,9 @@ const IndexSeccion4 = () => {
       stats: {
         title: "Numbers speak",
         items: [
-          { value: "5B+", label: "Global streams" },
-          { value: "40+", label: "Countries with campaigns" },
-          { value: "#1", label: "Magic Drink Day idol" }
+          { value: 5, suffix: "B+", label: "Global streams", icon: "🎵", accentColor: "#FF6AD7" },
+          { value: 40, suffix: "+", label: "Countries with campaigns", icon: "🌍", accentColor: "#82D2FF" },
+          { value: 1, prefix: "#", suffix: "", label: "Magic Drink Day idol", icon: "👑", accentColor: "#F9F871" }
         ]
       },
       experience: {
@@ -256,7 +260,13 @@ const IndexSeccion4 = () => {
                 />
               </h2>
               <p className={`${styles.heroSubtitle} ${styles.animateIn}`}>
-                {t.intro.subtitle}
+                <GradientText
+                  colors={["#AA37F2", "#FF6AD7", "#82D2FF", "#AA37F2"]}
+                  animationSpeed={4}
+                  showBorder={false}
+                >
+                  {t.intro.subtitle}
+                </GradientText>
               </p>
               <p className={`${styles.heroDescription} ${styles.animateIn}`}>
                 {t.intro.description}
@@ -268,39 +278,87 @@ const IndexSeccion4 = () => {
           <div ref={(el) => addPanelRef(el, 1)} className={styles.panel}>
             <div className={styles.panelInner}>
               <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
-                <BlurText
-                  text={t.mystery.title}
-                  delay={60}
-                  animateBy="words"
-                  direction="top"
-                  className={styles.sectionTitleText}
-                />
+                <ScrollReveal
+                  enableBlur={true}
+                  baseOpacity={0.15}
+                  blurStrength={6}
+                  containerClassName={styles.scrollRevealContainer}
+                  textClassName={styles.mysteryTitleText}
+                >
+                  {t.mystery.title}
+                </ScrollReveal>
               </h3>
-              <p className={`${styles.mysteryText} ${styles.animateIn}`}>
+              <p className={`${styles.mysteryText}`}>
                 {t.mystery.text}
               </p>
               <blockquote className={`${styles.highlight} ${styles.animateIn}`}>
                 <span className={styles.quoteIcon}>"</span>
-                {t.mystery.highlight}
+                <ShinyText
+                  text={t.mystery.highlight}
+                  speed={2}
+                  color="#F9F871"
+                  shineColor="#ffffff"
+                />
               </blockquote>
             </div>
           </div>
 
-          {/* Panel 3: Stats */}
+          {/* Panel 3: Stats - EPIC VERSION */}
           <div ref={(el) => addPanelRef(el, 2)} className={styles.panel}>
             <div className={styles.panelInner}>
               <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
-                {t.stats.title}
+                <ScrollReveal
+                  enableBlur={true}
+                  baseOpacity={0.15}
+                  blurStrength={5}
+                  containerClassName={styles.scrollRevealContainer}
+                  textClassName={styles.statsTitleText}
+                >
+                  {t.stats.title}
+                </ScrollReveal>
               </h3>
               <div className={styles.statsGrid}>
                 {t.stats.items.map((stat, index) => (
                   <div 
                     key={index} 
                     className={`${styles.statCard} ${styles.animateIn}`}
-                    style={{ '--delay': `${index * 0.1}s` }}
+                    style={{ 
+                      '--delay': `${index * 0.1}s`,
+                      '--accent-color': stat.accentColor 
+                    }}
                   >
-                    <span className={styles.statValue}>{stat.value}</span>
-                    <span className={styles.statLabel}>{stat.label}</span>
+                    {/* Icon Badge */}
+                    <div className={styles.statIconBadge}>
+                      <span className={styles.statIcon}>{stat.icon}</span>
+                      <div className={styles.statIconGlow}></div>
+                    </div>
+                    
+                    {/* Value with CountUp */}
+                    <span className={styles.statValue}>
+                      <GradientText
+                        colors={["#FF6AD7", "#AA37F2", "#82D2FF", "#F9F871", "#FF6AD7"]}
+                        animationSpeed={3}
+                        showBorder={false}
+                      >
+                        {stat.prefix || ''}
+                        <CountUp
+                          to={stat.value}
+                          from={0}
+                          duration={2.5}
+                          separator=","
+                        />
+                        {stat.suffix}
+                      </GradientText>
+                    </span>
+                    
+                    {/* Label with accent bar */}
+                    <div className={styles.statLabelWrapper}>
+                      <span className={styles.statAccentBar}></span>
+                      <span className={styles.statLabel}>{stat.label}</span>
+                    </div>
+                    
+                    {/* Decorative sparkle */}
+                    <span className={styles.statSparkle}>✦</span>
                   </div>
                 ))}
               </div>
@@ -311,13 +369,14 @@ const IndexSeccion4 = () => {
           <div ref={(el) => addPanelRef(el, 3)} className={styles.panel}>
             <div className={styles.panelInner}>
               <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
-                <BlurText
-                  text={t.experience.title}
-                  delay={60}
-                  animateBy="words"
-                  direction="top"
-                  className={styles.sectionTitleText}
-                />
+                <GradientText
+                  colors={["#FF6AD7", "#F9F871", "#82D2FF", "#FF6AD7"]}
+                  animationSpeed={5}
+                  showBorder={false}
+                  className={styles.experienceTitleGradient}
+                >
+                  {t.experience.title}
+                </GradientText>
               </h3>
               <p className={`${styles.experienceText} ${styles.animateIn}`}>
                 {t.experience.text}
@@ -335,13 +394,27 @@ const IndexSeccion4 = () => {
                   textEs={t.experience.ctaSecondary}
                   textEn={t.experience.ctaSecondary}
                   href="/hexy"
-                  variant="outline"
+                  variant="secondary"
                   size="lg"
                 />
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          CURVED LOOP - Magic Drink Banner
+      ═══════════════════════════════════════════════════════════════ */}
+      <div className={styles.curvedLoopWrapper}>
+        <CurvedLoop
+          marqueeText="Magic Drink ⭐ "
+          speed={1.5}
+          curveAmount={250}
+          direction="left"
+          interactive={false}
+          className={styles.curvedLoopText}
+        />
       </div>
     </section>
   );

@@ -266,7 +266,7 @@
 
 /* ========== TÍTULO KAWAII MAGIC DRINK ========== */
 .heroTitle {
-  font-family: var(--em-font-headline);
+  font-family: var(--em-font-headline) !important;
   font-size: var(--em-text-h1);
   font-weight: 800;
   line-height: var(--em-leading-tight);
@@ -278,21 +278,58 @@
   animation: magicAppear 1.2s var(--em-ease-smooth) 0.3s forwards;
 }
 
-.titleText {
-  font-family: var(--em-font-headline);
+.titleLine {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* PARTE 1 - "La bebida" / "The world's" - Amarillo brillante */
+.titlePart1 {
+  font-family: var(--em-font-headline) !important;
   position: relative;
   z-index: 1;
-  
-  /* Gradiente mágico kawaii */
-  background: linear-gradient(180deg,  #ffdd00 50%, #2fc2ef 50%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-text-stroke: 3.5px #272400;
-  
-  /* Sombra mágica */
-  filter: drop-shadow(0 4px 20px rgba(255, 106, 215, 0.4)) 
-          drop-shadow(0 0 40px rgba(170, 55, 242, 0.3));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: var(--md-yellow);
+  text-shadow: 
+    0 0 30px rgba(249, 248, 113, 0.9),
+    0 0 60px rgba(249, 248, 113, 0.6),
+    0 0 90px rgba(255, 200, 50, 0.4),
+    0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* PARTE 2 - "más popular" / "most popular" - Rosa/Magenta */
+.titlePart2 {
+  font-family: var(--em-font-headline) !important;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: var(--md-pink);
+  text-shadow: 
+    0 0 30px rgba(255, 106, 215, 0.9),
+    0 0 60px rgba(255, 106, 215, 0.6),
+    0 0 90px rgba(255, 50, 200, 0.4),
+    0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* PARTE 3 - "del mundo" / "drink" - Azul Cyan */
+.titlePart3 {
+  font-family: var(--em-font-headline) !important;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: var(--md-blue);
+  text-shadow: 
+    0 0 30px rgba(130, 210, 255, 0.9),
+    0 0 60px rgba(130, 210, 255, 0.6),
+    0 0 90px rgba(50, 180, 255, 0.4),
+    0 4px 24px rgba(0, 0, 0, 0.6);
 }
 
 /* Efecto Sparkle */

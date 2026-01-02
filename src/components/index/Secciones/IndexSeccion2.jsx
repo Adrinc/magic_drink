@@ -116,11 +116,11 @@ const IndexSeccion2 = () => {
   return (
     <section ref={sectionRef} className={styles.section}>
       {/* Fondo con gradiente animado */}
-      <div className={styles.backgroundGradient}>
+  {/*     <div className={styles.backgroundGradient}>
         <div className={styles.gradientOrb1}></div>
         <div className={styles.gradientOrb2}></div>
         <div className={styles.gradientOrb3}></div>
-      </div>
+      </div> */}
 
       {/* Grid de puntos decorativo */}
       <div className={styles.dotGrid}></div>

@@ -262,11 +262,11 @@ const IndexSeccion3 = () => {
   return (
     <section ref={sectionRef} className={styles.section}>
       {/* Fondo con orbes flotantes */}
-      <div className={styles.backgroundOrbs}>
+    {/*   <div className={styles.backgroundOrbs}>
         <div className={styles.orb1}></div>
         <div className={styles.orb2}></div>
         <div className={styles.orb3}></div>
-      </div>
+      </div> */}
 
       {/* Contenedor del trigger para el pin */}
       <div ref={triggerRef} className={styles.horizontalTrigger}>

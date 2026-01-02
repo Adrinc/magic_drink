@@ -181,11 +181,6 @@ const IndexSeccion4 = () => {
   return (
     <section ref={sectionRef} className={styles.section}>
       {/* Background decorativo */}
-      <div className={styles.backgroundDecor}>
-        <div className={styles.gradientOrb1}></div>
-        <div className={styles.gradientOrb2}></div>
-        <div className={styles.noiseOverlay}></div>
-      </div>
 
       {/* Notas musicales flotantes */}
       <div className={styles.musicNotes} aria-hidden="true">
@@ -203,11 +198,7 @@ const IndexSeccion4 = () => {
             {/* Glow de fondo */}
             <div className={styles.hexyGlow}></div>
             
-            {/* Anillos decorativos orbitales */}
-          {/*   <div className={styles.hexyRings}>
-              <div className={styles.ring1}></div>
-              <div className={styles.ring2}></div>
-            </div> */}
+       
             
             {/* Imagen de Hexy */}
             <img

@@ -1,20 +1,232 @@
 ﻿/* ========================================
    INDEX SECCION 5 - MAGIC DRINK DAY
-   Magic Drink - Kawaii Cosmic Refresh
+   Magic Drink - CINEMATIC SCROLL EXPERIENCE
+   Efecto: Título zoom-in → Fade-out → Imagen blur-to-sharp + vignette → Subtítulos tipo película
    ======================================== */
 
-/* ========== Sección Principal ========== */
-.section {
+/* ═══════════════════════════════════════════════════════════════
+   SECCIÓN CINEMÁTICA - Fullscreen Pinned
+═══════════════════════════════════════════════════════════════ */
+.cinematicSection {
   position: relative;
-  min-height: 85vh;
-  padding: var(--em-space-3xl) var(--em-space-2xl);
-  background: var(--em-bg-secondary);
+  width: 100%;
+  height: 100vh;
+  background: #0A0A0A; /* Negro profundo */
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cinematicBackground {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(44, 38, 51, 0.3) 0%,
+    #0A0A0A 70%
+  );
+  z-index: 0;
+}
+
+/* Modo claro (mantener oscuro para efecto cinemático) */
+.sectionLight {
+  background: #0A0A0A;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TÍTULO GIGANTE CENTRADO (Fase 1-2)
+═══════════════════════════════════════════════════════════════ */
+.cinematicTitle {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0; /* Controlado por GSAP */
+}
+
+.titleText {
+  font-family: 'BakeSoda', 'Syne', sans-serif;
+  font-size: clamp(4rem, 15vw, 12rem);
+  font-weight: 900;
+  color: #FF6AD7;
+  text-align: center;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin: 0;
+  padding: 0 2rem;
+  text-shadow:
+    0 0 60px rgba(255, 106, 215, 0.8),
+    0 0 120px rgba(170, 55, 242, 0.6),
+    0 8px 40px rgba(0, 0, 0, 0.9);
+  will-change: transform, opacity;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   IMAGEN FULLSCREEN CON VIGNETTE (Fase 3-4)
+═══════════════════════════════════════════════════════════════ */
+.cinematicImageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0; /* Controlado por GSAP */
   overflow: hidden;
+}
+
+.cinematicImage {
   width: 100%;
-  max-width: 100vw;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: filter, transform;
+  filter: blur(40px) brightness(0.7); /* Inicial - GSAP lo anima */
+}
+
+/* Vignette Overlay - Efecto TV en cuarto oscuro */
+.vignetteOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(10, 10, 10, 0.3) 50%,
+    rgba(10, 10, 10, 0.8) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0; /* Controlado por GSAP */
+  mix-blend-mode: multiply;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUBTÍTULOS TIPO PELÍCULA (Fase 5-6)
+═══════════════════════════════════════════════════════════════ */
+.subtitlesBox {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  z-index: 3;
+  text-align: center;
+  opacity: 0; /* Controlado por GSAP */
+  will-change: transform, opacity;
+  padding: 0 2rem;
+}
+
+.subtitleText {
+  font-family: var(--em-font-body);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 1rem 0;
+  line-height: 1.4;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(0, 0, 0, 0.7);
+  letter-spacing: 0.02em;
+}
+
+.bodyText {
+  font-family: var(--em-font-body);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.7;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUBTÍTULOS FINALES + CTA (Fase 7)
+═══════════════════════════════════════════════════════════════ */
+.finalSubtitlesBox {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  z-index: 4;
+  text-align: center;
+  opacity: 0; /* Controlado por GSAP */
+  will-change: transform, opacity;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.highlightText {
+  font-family: var(--em-font-body);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  font-style: italic;
+  color: #F9F871;
+  margin: 0;
+  line-height: 1.3;
+  text-shadow:
+    0 0 30px rgba(249, 248, 113, 0.6),
+    0 4px 12px rgba(0, 0, 0, 0.9),
+    0 0 60px rgba(249, 248, 113, 0.4);
+  letter-spacing: 0.01em;
+}
+
+.ctaBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* ========== Background Decorations ========== */
+.backgroundDecor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.gradientOrb1 {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 106, 215, 0.2) 0%, transparent 70%);
+  top: -15%;
+  left: -10%;
+  filter: blur(80px);
+  animation: floatOrb1 25s ease-in-out infinite;
+}
+
+.gradientOrb2 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 248, 113, 0.15) 0%, transparent 70%);
+  bottom: -10%;
+  right: -5%;
+  filter: blur(70px);
+  animation: floatOrb2 20s ease-in-out infinite reverse;
+}
+
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, 40px) scale(1.15); }
 }
 
 /* Patrón de estrellas sutiles */
@@ -29,7 +241,7 @@
     radial-gradient(1px 1px at 40% 80%, rgba(255, 255, 255, 0.04), transparent),
     radial-gradient(1px 1px at 90% 60%, rgba(255, 255, 255, 0.04), transparent);
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 /* Modo claro */
@@ -45,16 +257,54 @@
     radial-gradient(1px 1px at 40% 80%, rgba(170, 55, 242, 0.06), transparent);
 }
 
+/* ========== Partículas Kawaii Flotantes ========== */
+.particlesContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  opacity: 0;
+  filter: drop-shadow(0 0 15px currentColor);
+  animation: particleFloatContinuous 8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.8s);
+}
+
+.particle:nth-child(1) { top: 15%; left: 10%; color: var(--md-pink); }
+.particle:nth-child(2) { top: 25%; right: 15%; color: var(--md-yellow); }
+.particle:nth-child(3) { top: 45%; left: 8%; color: var(--md-blue); }
+.particle:nth-child(4) { top: 65%; right: 12%; color: var(--md-pink); }
+.particle:nth-child(5) { top: 80%; left: 20%; color: var(--md-yellow); }
+.particle:nth-child(6) { top: 35%; right: 8%; color: var(--md-blue); }
+.particle:nth-child(7) { top: 55%; left: 25%; color: var(--md-pink); }
+.particle:nth-child(8) { top: 75%; right: 25%; color: var(--md-yellow); }
+
+@keyframes particleFloatContinuous {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
 /* ========== Container ========== */
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1500px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--em-space-3xl);
+  gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
   position: relative;
-  z-index: 1;
+  z-index: 3;
   padding: 0;
   margin: 0 auto;
 }
@@ -65,27 +315,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: transform;
 }
 
 .imageCard {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   aspect-ratio: 16 / 10;
-  border-radius: var(--em-radius-xl);
+  border-radius: 28px;
   overflow: hidden;
   box-shadow: var(--md-shadow-card);
-  transition: all 0.4s var(--em-ease-smooth);
-  background: var(--md-gray-dark);
+  transition: all 0.5s var(--em-ease-smooth);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 106, 215, 0.1) 0%,
+    rgba(170, 55, 242, 0.15) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  will-change: transform;
 }
 
 .imageCard:hover {
-  transform: scale(1.02);
+  transform: scale(1.03) translateY(-8px);
   box-shadow: var(--md-shadow-hover);
+  border-color: rgba(255, 106, 215, 0.3);
 }
 
 .sectionLight .imageCard {
-  background: var(--md-white);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(248, 244, 251, 1) 100%
+  );
+  border-color: rgba(170, 55, 242, 0.15);
 }
 
 .paradeImage {
@@ -93,25 +356,30 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.5s var(--em-ease-smooth);
 }
 
-/* Badge decorativo */
+.imageCard:hover .paradeImage {
+  transform: scale(1.05);
+}
+
+/* Badge decorativo flotante */
 .eventBadge {
   position: absolute;
-  top: var(--em-space-md);
-  right: var(--em-space-md);
-  font-size: 2.5rem;
-  filter: drop-shadow(0 4px 12px rgba(255, 106, 215, 0.5));
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 3.5rem;
+  filter: drop-shadow(0 8px 20px rgba(255, 106, 215, 0.6));
   z-index: 2;
-  animation: balloonFloat 3s ease-in-out infinite;
+  animation: balloonFloat 4s ease-in-out infinite;
 }
 
 @keyframes balloonFloat {
   0%, 100% {
-    transform: translateY(0) rotate(-5deg);
+    transform: translateY(0) rotate(-5deg) scale(1);
   }
   50% {
-    transform: translateY(-15px) rotate(5deg);
+    transform: translateY(-20px) rotate(5deg) scale(1.1);
   }
 }
 
@@ -119,49 +387,60 @@
 .contentColumn {
   display: flex;
   flex-direction: column;
-  gap: var(--em-space-lg);
-  max-width: 600px;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  max-width: 650px;
   width: 100%;
 }
 
-/* Título */
+/* Clase para animar elementos */
+.animateIn {
+  will-change: transform, opacity;
+}
+
+/* Título ÉPICO con zoom-out */
 .title {
   font-family: var(--em-font-headline);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 800;
-  color: var(--em-text-primary);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  color: var(--md-pink);
   margin: 0;
-  line-height: var(--em-leading-tight);
+  line-height: 0.95;
   letter-spacing: -0.02em;
   display: flex;
   align-items: center;
-  gap: var(--em-space-sm);
+  gap: 1rem;
+  flex-wrap: wrap;
+  will-change: transform, opacity;
+  text-shadow: 
+    0 0 30px rgba(255, 106, 215, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .titleIcon {
-  font-size: 1.2em;
-  animation: starPulse 2s ease-in-out infinite;
+  font-size: 1em;
+  display: inline-block;
+  animation: starPulse 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px var(--md-yellow));
 }
 
 @keyframes starPulse {
   0%, 100% {
     transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 10px var(--md-yellow));
+    opacity: 0.9;
   }
   50% {
-    transform: scale(1.15) rotate(15deg);
-    filter: drop-shadow(0 0 20px var(--md-yellow));
+    transform: scale(1.2) rotate(15deg);
+    opacity: 1;
   }
 }
 
-/* Subtítulo */
+/* Subtítulo con GradientText */
 .subtitle {
   font-family: var(--em-font-headline);
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-  font-weight: 600;
-  color: var(--md-purple);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 700;
   margin: 0;
-  line-height: var(--em-leading-normal);
+  line-height: 1.3;
 }
 
 .sectionLight .subtitle {
@@ -171,37 +450,60 @@
 /* Cuerpo */
 .body {
   font-family: var(--em-font-body);
-  font-size: var(--em-text-body);
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
   font-weight: 400;
-  color: var(--em-text-secondary);
-  line-height: var(--em-leading-relaxed);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.8;
   margin: 0;
 }
 
-/* Highlight line */
+.sectionLight .body {
+  color: rgba(44, 38, 51, 0.85);
+}
+
+/* Highlight line con ShinyText */
 .highlight {
+  position: relative;
   font-family: var(--em-font-body);
-  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   font-weight: 600;
   font-style: italic;
+  margin: 0.5rem 0 0 0;
+  padding: 1.5rem 1.5rem 1.5rem 3rem;
+  background: linear-gradient(
+    135deg,
+    rgba(249, 248, 113, 0.12) 0%,
+    rgba(255, 106, 215, 0.08) 100%
+  );
+  border-left: 5px solid var(--md-yellow);
+  border-radius: 16px;
+  line-height: 1.6;
+  box-shadow: 0 4px 15px rgba(249, 248, 113, 0.15);
+}
+
+.highlightIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
   color: var(--md-yellow);
-  margin: var(--em-space-md) 0 0 0;
-  padding: var(--em-space-md);
-  background: rgba(170, 55, 242, 0.08);
-  border-left: 4px solid var(--md-purple);
-  border-radius: var(--em-radius-sm);
-  line-height: var(--em-leading-normal);
+  filter: drop-shadow(0 0 10px var(--md-yellow));
 }
 
 .sectionLight .highlight {
-  color: var(--md-purple);
-  background: rgba(170, 55, 242, 0.05);
-  border-left-color: var(--md-purple-dark);
+  background: linear-gradient(
+    135deg,
+    rgba(249, 248, 113, 0.15) 0%,
+    rgba(170, 55, 242, 0.08) 100%
+  );
+  border-left-color: var(--md-purple);
+  box-shadow: 0 4px 15px rgba(170, 55, 242, 0.12);
 }
 
 /* CTA Wrapper */
 .ctaWrapper {
-  margin-top: var(--em-space-md);
+  margin-top: 1rem;
   width: 100%;
   max-width: 100%;
   display: flex;
@@ -209,120 +511,78 @@
 }
 
 /* ========================================
-   RESPONSIVE - MOBILE FIRST
+   RESPONSIVE - MOBILE
    ======================================== */
 
-/* Tablets */
-@media (max-width: 1024px) {
-  .section {
-    min-height: auto;
-    padding: var(--em-space-2xl) var(--em-space-lg);
+@media (max-width: 768px) {
+  .titleText {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+    padding: 0 1rem;
   }
-  
-  .container {
-    grid-template-columns: 1fr;
-    gap: var(--em-space-2xl);
+
+  .subtitlesBox {
+    bottom: 12%;
+    max-width: 95%;
+    padding: 0 1rem;
   }
-  
-  .imageColumn,
-  .contentColumn {
+
+  .subtitleText {
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+  }
+
+  .bodyText {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  }
+
+  .finalSubtitlesBox {
+    bottom: 12%;
+    max-width: 95%;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  .highlightText {
+    font-size: clamp(1.25rem, 5vw, 1.6rem);
+  }
+
+  .ctaBox {
     width: 100%;
-    max-width: 100%;
-  }
-  
-  .contentColumn {
-    text-align: center;
-    align-items: center;
-  }
-  
-  .title {
-    justify-content: center;
-  }
-  
-  .highlight {
-    text-align: center;
   }
 }
 
-/* Mobile Medium (para dispositivos como iPhone 12/13/14) */
-@media (max-width: 430px) {
-  .section {
-    padding: var(--em-space-xl) var(--em-space-sm);
-  }
-  
-  .container {
-    gap: var(--em-space-lg);
-  }
-  
-  .title {
-    font-size: 1.875rem;
-  }
-}
-
-/* Mobile */
 @media (max-width: 480px) {
-  .section {
-    padding: var(--em-space-xl) var(--em-space-sm);
-    min-height: auto;
+  .titleText {
+    font-size: clamp(2rem, 14vw, 4rem);
   }
-  
-  .container {
-    gap: var(--em-space-lg);
-    padding: 0;
+
+  .subtitlesBox,
+  .finalSubtitlesBox {
+    bottom: 15%;
   }
-  
-  .imageColumn,
-  .contentColumn {
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  .imageCard {
-    aspect-ratio: 4 / 3;
-    max-width: 100%;
-  }
-  
-  .title {
-    font-size: 2rem;
-    flex-direction: column;
-    gap: var(--em-space-xs);
-    word-wrap: break-word;
-  }
-  
-  .titleIcon {
-    font-size: 2rem;
-  }
-  
-  .subtitle {
-    font-size: 1.125rem;
-    word-wrap: break-word;
-  }
-  
-  .body {
-    font-size: 0.95rem;
-    word-wrap: break-word;
-  }
-  
-  .highlight {
+
+  .subtitleText {
     font-size: 1rem;
-    padding: var(--em-space-sm);
-    word-wrap: break-word;
-    margin: var(--em-space-sm) 0 0 0;
+    margin-bottom: 0.75rem;
   }
-  
-  .eventBadge {
-    font-size: 2rem;
-    top: var(--em-space-sm);
-    right: var(--em-space-sm);
+
+  .bodyText {
+    font-size: 0.9rem;
   }
-  
-  .ctaWrapper {
-    width: 100%;
-    justify-content: center;
+
+  .highlightText {
+    font-size: 1.1rem;
   }
-  
-  .ctaWrapper a,
-  .ctaWrapper button {
-    max-width: 100%;
+}
+
+/* ========================================
+   ACCESSIBILITY & REDUCED MOTION
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .cinematicImage,
+  .cinematicTitle,
+  .subtitlesBox,
+  .finalSubtitlesBox {
+    transition: none !important;
+    animation: none !important;
   }
 }

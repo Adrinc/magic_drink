@@ -534,7 +534,7 @@
 
 .hexyWrapper {
   position: sticky;
-  top: 100px; /* Debajo del navbar con espacio */
+  top: 200px; /* Debajo del navbar con espacio */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1021,7 +1021,7 @@
 .curvedLoopWrapper {
   position: relative;
   width: 100%;
-  padding: 5rem 0 35rem 0; /* Espacio inferior generoso para separar secciones */
+  padding: 1rem 0 35rem 0; /* Espacio inferior generoso para separar secciones */
  /*  margin-top: 1rem;  */
   overflow: hidden;
   background: linear-gradient(

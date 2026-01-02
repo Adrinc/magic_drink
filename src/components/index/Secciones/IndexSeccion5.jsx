@@ -15,7 +15,7 @@ const IndexSeccion5 = () => {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const imageWrapperRef = useRef(null);
-  const imageRef = useRef(null);
+  const videoRef = useRef(null);
   const vignetteRef = useRef(null);
   const subtitlesRef = useRef(null);
   const finalSubtitlesRef = useRef(null);
@@ -44,30 +44,74 @@ const IndexSeccion5 = () => {
     const section = sectionRef.current;
     const title = titleRef.current;
     const imageWrapper = imageWrapperRef.current;
-    const image = imageRef.current;
+    const video = videoRef.current;
     const vignette = vignetteRef.current;
     const subtitles = subtitlesRef.current;
     const finalSubtitles = finalSubtitlesRef.current;
     
-    if (!section || !title || !imageWrapper) return;
+    if (!section || !title || !imageWrapper || !video) return;
 
     let ctx;
     let rafId;
 
     const initCinematicTimeline = () => {
-      ctx = gsap.context(() => {
+      // 🎬 ESPERAR A QUE EL VIDEO ESTÉ COMPLETAMENTE CARGADO
+      const waitForVideo = new Promise((resolve) => {
+        if (video.readyState >= 2) {
+          // Video ya está listo
+          resolve();
+        } else {
+          // Esperar evento loadeddata
+          video.addEventListener('loadeddata', resolve, { once: true });
+        }
+      });
+
+      waitForVideo.then(() => {
+        // 🎬 PRECARGAR VIDEO COMPLETAMENTE
+        video.pause();
+        video.currentTime = 0;
         
-        // 🎯 TIMELINE PRINCIPAL con PIN
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: "+=400%", // Sección larga para timeline completo
-            pin: true,
-            scrub: 1.2,
-            anticipatePin: 1,
-          }
+        // 🎯 FORZAR DURACIÓN DE 10 SEGUNDOS (ajustar según tu video real)
+        const videoDuration = 10; // Usar valor fijo para mayor consistencia
+        
+        console.log('📹 Video cargado:', {
+          duration: video.duration,
+          usedDuration: videoDuration,
+          readyState: video.readyState
         });
+        
+        ctx = gsap.context(() => {
+          
+          // 🎯 TIMELINE PRINCIPAL con PIN
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: "+=400%",
+              pin: true,
+              scrub: true,
+              anticipatePin: 1,
+              onUpdate: (self) => {
+                // 🎬 VIDEO SCRUB MANUAL - Control directo frame por frame
+                // Video va de 25% (inicio fade-in) hasta 78% (antes de CTA final)
+                const progress = self.progress;
+                
+                if (progress >= 0.25 && progress <= 0.78) {
+                  // Mapear 25%-78% del scroll a 0s-10s del video
+                  const videoProgress = (progress - 0.25) / 0.53; // 0.53 = 0.78 - 0.25
+                  const targetTime = videoProgress * videoDuration;
+                  
+                  // Actualizar cada 16ms (~60fps) para fluidez máxima
+                  if (Math.abs(video.currentTime - targetTime) > 0.016) {
+                    video.currentTime = targetTime;
+                  }
+                  
+                  // Debug opcional (comentar en producción)
+                  // console.log(`📹 Progress: ${(progress*100).toFixed(1)}% | Video: ${targetTime.toFixed(2)}s`);
+                }
+              }
+            }
+          });
 
         // ═══════════════════════════════════════════════════════════
         // FASE 1: TÍTULO ZOOM IN (0% - 15%)
@@ -111,8 +155,11 @@ const IndexSeccion5 = () => {
           }, 0.25
         );
 
-        // Blur to sharp effect
-        tl.fromTo(image,
+        // 🎬 VIDEO: Blur to sharp effect (el currentTime se controla en onUpdate)
+        // Ya no animamos currentTime aquí - se hace en onUpdate del ScrollTrigger
+        
+        // Blur to sharp sobre el video (termina en 40%, video sigue hasta 78%)
+        tl.fromTo(video,
           {
             filter: "blur(40px) brightness(0.7)",
             scale: 1.2,
@@ -120,7 +167,7 @@ const IndexSeccion5 = () => {
           {
             filter: "blur(0px) brightness(1)",
             scale: 1,
-            duration: 0.25,
+            duration: 0.15, // Blur más rápido
             ease: "power2.out"
           }, 0.25
         );
@@ -140,9 +187,9 @@ const IndexSeccion5 = () => {
         }
 
         // ═══════════════════════════════════════════════════════════
-        // FASE 4: IMAGEN NÍTIDA (50% - 55%)
+        // FASE 4: VIDEO NÍTIDO CONTINÚA (40% - 78%)
         // ═══════════════════════════════════════════════════════════
-        // (pausa visual - imagen completamente visible)
+        // (El video sigue avanzando mientras aparecen subtítulos)
         tl.to({}, { duration: 0.05 }, 0.5);
 
         // ═══════════════════════════════════════════════════════════
@@ -194,6 +241,7 @@ const IndexSeccion5 = () => {
         }
 
       }, section);
+      });
     };
 
     // Esperar al layout
@@ -223,15 +271,19 @@ const IndexSeccion5 = () => {
       </div>
 
       {/* ══════════════════════════════════════════════════════════
-          FASE 3-4: IMAGEN CON VIGNETTE (TV EFFECT)
+          FASE 3-4: VIDEO SCRUB CON VIGNETTE (TV EFFECT)
       ══════════════════════════════════════════════════════════ */}
       <div ref={imageWrapperRef} className={styles.cinematicImageWrapper}>
-        <img
-          ref={imageRef}
-          src="/image/events/md_parade_teaser.png"
-          alt="Magic Drink Day"
+        <video
+          ref={videoRef}
           className={styles.cinematicImage}
-        />
+          muted
+          playsInline
+          preload="auto"
+          
+        >
+          <source src="/videos/parade2.mp4" type="video/mp4" />
+        </video>
         {/* Vignette overlay - efecto TV oscura */}
         <div ref={vignetteRef} className={styles.vignetteOverlay}></div>
       </div>
@@ -257,6 +309,7 @@ const IndexSeccion5 = () => {
             textEn={t.cta}
             size="lg"
             showArrow={true}
+          
           />
         </div>
       </div>

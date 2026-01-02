@@ -250,7 +250,7 @@ const IndexSeccion4 = () => {
                   className={styles.heroTitleText}
                 />
               </h2>
-              <p className={`${styles.heroSubtitle} ${styles.animateIn}`}>
+              <div className={`${styles.heroSubtitle} ${styles.animateIn}`}>
                 <GradientText
                   colors={["#AA37F2", "#FF6AD7", "#82D2FF", "#AA37F2"]}
                   animationSpeed={4}
@@ -258,7 +258,7 @@ const IndexSeccion4 = () => {
                 >
                   {t.intro.subtitle}
                 </GradientText>
-              </p>
+              </div>
               <p className={`${styles.heroDescription} ${styles.animateIn}`}>
                 {t.intro.description}
               </p>
@@ -268,7 +268,7 @@ const IndexSeccion4 = () => {
           {/* Panel 2: El Misterio */}
           <div ref={(el) => addPanelRef(el, 1)} className={styles.panel}>
             <div className={styles.panelInner}>
-              <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
+              <div className={`${styles.sectionTitle} ${styles.animateIn}`}>
                 <ScrollReveal
                   enableBlur={true}
                   baseOpacity={0.15}
@@ -278,7 +278,7 @@ const IndexSeccion4 = () => {
                 >
                   {t.mystery.title}
                 </ScrollReveal>
-              </h3>
+              </div>
               <p className={`${styles.mysteryText}`}>
                 {t.mystery.text}
               </p>
@@ -297,7 +297,7 @@ const IndexSeccion4 = () => {
           {/* Panel 3: Stats - EPIC VERSION */}
           <div ref={(el) => addPanelRef(el, 2)} className={styles.panel}>
             <div className={styles.panelInner}>
-              <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
+              <div className={`${styles.sectionTitle} ${styles.animateIn}`}>
                 <ScrollReveal
                   enableBlur={true}
                   baseOpacity={0.15}
@@ -307,7 +307,7 @@ const IndexSeccion4 = () => {
                 >
                   {t.stats.title}
                 </ScrollReveal>
-              </h3>
+              </div>
               <div className={styles.statsGrid}>
                 {t.stats.items.map((stat, index) => (
                   <div 
@@ -359,7 +359,7 @@ const IndexSeccion4 = () => {
           {/* Panel 4: Experiencia + CTA */}
           <div ref={(el) => addPanelRef(el, 3)} className={styles.panel}>
             <div className={styles.panelInner}>
-              <h3 className={`${styles.sectionTitle} ${styles.animateIn}`}>
+              <div className={`${styles.sectionTitle} ${styles.animateIn}`}>
                 <GradientText
                   colors={["#FF6AD7", "#F9F871", "#82D2FF", "#FF6AD7"]}
                   animationSpeed={5}
@@ -368,7 +368,7 @@ const IndexSeccion4 = () => {
                 >
                   {t.experience.title}
                 </GradientText>
-              </h3>
+              </div>
               <p className={`${styles.experienceText} ${styles.animateIn}`}>
                 {t.experience.text}
               </p>

@@ -101,7 +101,7 @@ const IndexSeccion5 = () => {
           // ═══════════════════════════════════════════════════════════
           tl.fromTo(title,
             { scale: 0.3, opacity: 0 },
-            { scale: 1.8, opacity: 1, duration: 0.12, ease: "power2.out" }, 0
+            { scale: 1.5, opacity: 1, duration: 0.12, ease: "power2.out" }, 0
           );
 
           // ═══════════════════════════════════════════════════════════

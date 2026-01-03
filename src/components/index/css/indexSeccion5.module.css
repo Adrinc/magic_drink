@@ -35,7 +35,9 @@
 ═══════════════════════════════════════════════════════════════ */
 .cinematicTitle {
   position: absolute;
-  inset: 0;
+  width: 500px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,7 +50,7 @@
   font-family: 'BakeSoda', 'Syne', sans-serif;
   font-size: clamp(4rem, 15vw, 12rem);
   font-weight: 900;
-  color: #FF6AD7;
+  color: #ffe100;
   text-align: center;
   line-height: 0.9;
   letter-spacing: -0.03em;
@@ -586,4 +588,95 @@
     transition: none !important;
     animation: none !important;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PORTAL MÁGICO - Transición a Wonderpop Plaza
+═══════════════════════════════════════════════════════════════ */
+.magicPortal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.portalInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portalGlow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(170, 55, 242, 1) 0%,
+    rgba(255, 106, 215, 0.9) 30%,
+    rgba(130, 210, 255, 0.7) 60%,
+    rgba(249, 248, 113, 0.3) 80%,
+    transparent 100%
+  );
+  filter: blur(10px);
+  animation: portalPulse 0.8s ease-in-out infinite;
+}
+
+.portalRing {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 0 20px rgba(170, 55, 242, 0.8),
+    0 0 40px rgba(255, 106, 215, 0.6),
+    inset 0 0 20px rgba(130, 210, 255, 0.4);
+}
+
+.portalRing:nth-child(2) {
+  width: 60%;
+  height: 60%;
+  border-color: rgba(255, 106, 215, 0.7);
+  animation: portalRingSpin 2s linear infinite;
+}
+
+.portalRing:nth-child(3) {
+  width: 40%;
+  height: 40%;
+  border-color: rgba(130, 210, 255, 0.8);
+  animation: portalRingSpin 1.5s linear infinite reverse;
+}
+
+.portalRing:nth-child(4) {
+  width: 20%;
+  height: 20%;
+  border-color: rgba(249, 248, 113, 0.9);
+  animation: portalRingSpin 1s linear infinite;
+}
+
+@keyframes portalPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.9;
+  }
+  50% { 
+    transform: scale(1.1); 
+    opacity: 1;
+  }
+}
+
+@keyframes portalRingSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

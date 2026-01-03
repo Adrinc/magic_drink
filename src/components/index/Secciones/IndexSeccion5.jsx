@@ -71,8 +71,8 @@ const IndexSeccion5 = () => {
         video.pause();
         video.currentTime = 0;
         
-        // 🎯 FORZAR DURACIÓN DE 10 SEGUNDOS (ajustar según tu video real)
-        const videoDuration = 10; // Usar valor fijo para mayor consistencia
+        // 🎯 DURACIÓN REAL: 9 SEGUNDOS (parade2.mp4)
+        const videoDuration = 9; // Duración exacta del video
         
         console.log('📹 Video cargado:', {
           duration: video.duration,
@@ -93,12 +93,12 @@ const IndexSeccion5 = () => {
               anticipatePin: 1,
               onUpdate: (self) => {
                 // 🎬 VIDEO SCRUB MANUAL - Control directo frame por frame
-                // Video va de 25% (inicio fade-in) hasta 78% (antes de CTA final)
+                // Video va de 25% (inicio fade-in) hasta 100% (final de sección)
                 const progress = self.progress;
                 
-                if (progress >= 0.25 && progress <= 0.78) {
-                  // Mapear 25%-78% del scroll a 0s-10s del video
-                  const videoProgress = (progress - 0.25) / 0.53; // 0.53 = 0.78 - 0.25
+                if (progress >= 0.25 && progress <= 1.0) {
+                  // Mapear 25%-100% del scroll a 0s-9s del video
+                  const videoProgress = (progress - 0.25) / 0.75; // 0.75 = 1.0 - 0.25
                   const targetTime = videoProgress * videoDuration;
                   
                   // Actualizar cada 16ms (~60fps) para fluidez máxima
@@ -193,7 +193,7 @@ const IndexSeccion5 = () => {
         tl.to({}, { duration: 0.05 }, 0.5);
 
         // ═══════════════════════════════════════════════════════════
-        // FASE 5: SUBTÍTULOS APARECEN (55% - 70%)
+        // FASE 5: SUBTÍTULOS APARECEN (42% - 62%)
         // ═══════════════════════════════════════════════════════════
         if (subtitles) {
           tl.fromTo(subtitles,
@@ -206,24 +206,24 @@ const IndexSeccion5 = () => {
               y: 0,
               duration: 0.1,
               ease: "power2.out"
-            }, 0.55
+            }, 0.3 // Aparecen justo después del blur (0.40)
           );
 
           // ═════════════════════════════════════════════════════════
-          // FASE 6: SUBTÍTULOS FADE OUT (70% - 78%)
+          // FASE 6: SUBTÍTULOS FADE OUT (62% - 68%)
           // ═════════════════════════════════════════════════════════
           tl.to(subtitles,
             {
               opacity: 0,
               y: -20,
-              duration: 0.08,
+              duration: 0.06,
               ease: "power2.in"
-            }, 0.7
+            }, 0.62 // Se van antes para dar espacio al siguiente
           );
         }
 
         // ═══════════════════════════════════════════════════════════
-        // FASE 7: SUBTÍTULOS FINALES + CTA (78% - 100%)
+        // FASE 7: SUBTÍTULOS FINALES + CTA (68% - 100%)
         // ═══════════════════════════════════════════════════════════
         if (finalSubtitles) {
           tl.fromTo(finalSubtitles,
@@ -236,7 +236,7 @@ const IndexSeccion5 = () => {
               y: 0,
               duration: 0.12,
               ease: "power2.out"
-            }, 0.78
+            }, 0.68 // Aparecen antes para mejor ritmo
           );
         }
 

@@ -1,313 +1,138 @@
-import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../../data/variables';
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+﻿import { useStore } from '@nanostores/react';
+import { isEnglish, isDarkMode } from '../../../data/variables';
 import styles from '../css/indexSeccion7.module.css';
 
 const IndexSeccion7 = () => {
   const ingles = useStore(isEnglish);
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
-  // Animación de contador para stats
-  const [counts, setCounts] = useState({
-    locations: 0,
-    visitors: 0,
-    rating: 0,
-    photos: 0
-  });
-
-  useEffect(() => {
-    if (isInView) {
-      // Animar contador de ubicaciones (0 → 24)
-      const locInterval = setInterval(() => {
-        setCounts(prev => {
-          if (prev.locations >= 24) {
-            clearInterval(locInterval);
-            return prev;
-          }
-          return { ...prev, locations: prev.locations + 1 };
-        });
-      }, 30);
-
-      // Animar visitantes (0 → 2000000, mostrar como "2M+")
-      let visitorCount = 0;
-      const visInterval = setInterval(() => {
-        visitorCount += 100000;
-        if (visitorCount >= 2000000) {
-          visitorCount = 2000000;
-          clearInterval(visInterval);
-        }
-        setCounts(prev => ({ ...prev, visitors: visitorCount }));
-      }, 40);
-
-      // Animar rating (0 → 4.9)
-      let ratingCount = 0;
-      const rateInterval = setInterval(() => {
-        ratingCount += 0.1;
-        if (ratingCount >= 4.9) {
-          ratingCount = 4.9;
-          clearInterval(rateInterval);
-        }
-        setCounts(prev => ({ ...prev, rating: parseFloat(ratingCount.toFixed(1)) }));
-      }, 50);
-
-      // Animar fotos (0 → 500000, mostrar como "500K+")
-      let photoCount = 0;
-      const photoInterval = setInterval(() => {
-        photoCount += 25000;
-        if (photoCount >= 500000) {
-          photoCount = 500000;
-          clearInterval(photoInterval);
-        }
-        setCounts(prev => ({ ...prev, photos: photoCount }));
-      }, 30);
-
-      return () => {
-        clearInterval(locInterval);
-        clearInterval(visInterval);
-        clearInterval(rateInterval);
-        clearInterval(photoInterval);
-      };
+  const darkMode = useStore(isDarkMode);
+  
+  const content = {
+    es: {
+      title: "Lo que opinan nuestros consumidores",
+      subtitle: "Personas reales, de distintos países, que hicieron de Magic Drink parte de su día."
+    },
+    en: {
+      title: "What our consumers say",
+      subtitle: "Real people, from different countries, who made Magic Drink part of their day."
     }
-  }, [isInView]);
-
-  // Datos de bullets
-  const highlights = [
+  };
+  
+  const testimonials = [
     {
-      icon: '/icons/icono_lata.png',
-      textEs: 'Tienda oficial Magic Drink',
-      textEn: 'Official Magic Drink Store'
+      id: "t1",
+      name: "Andrea L.",
+      country: "México",
+      countryEn: "Mexico",
+      image: "/image/testimonials/luna.png",
+      quote: "No tiene cafeína, pero me siento con energía todo el día. Ya es parte de mi rutina.",
+      quoteEn: "It has no caffeine, but I feel energized all day. It's already part of my routine."
     },
     {
-      icon: '/icons/icono_gorro.png',
-      textEs: 'Música y experiencias de Hexy',
-      textEn: 'Music and Hexy experiences'
+      id: "t2",
+      name: "Lucas M.",
+      country: "Argentina",
+      countryEn: "Argentina",
+      image: "/image/testimonials/lucas.png",
+      quote: "La probé por curiosidad y ahora siempre tengo una en mi mochila. Me pone de buen humor.",
+      quoteEn: "I tried it out of curiosity and now I always have one in my backpack. It puts me in a good mood."
     },
     {
-      icon: '/icons/icono_bolsa.png',
-      textEs: 'Merch exclusivo y ediciones limitadas',
-      textEn: 'Exclusive merch and limited editions'
+      id: "t3",
+      name: "Emily R.",
+      country: "España",
+      countryEn: "Spain",
+      image: "/image/testimonials/emily.png",
+      quote: "Me encanta el sabor y la estética. Es como una pausa feliz en medio del día.",
+      quoteEn: "I love the taste and aesthetics. It's like a happy break in the middle of the day."
     },
     {
-      icon: '/icons/icono_globo.png',
-      textEs: 'Eventos especiales durante el Magic Drink Day',
-      textEn: 'Special events during Magic Drink Day'
+      id: "t4",
+      name: "Daniel K.",
+      country: "Estados Unidos",
+      countryEn: "United States",
+      image: "/image/testimonials/daniel.png",
+      quote: "Trabajo muchas horas frente a la computadora y Magic Drink me ayuda a mantenerme enfocado sin nervios.",
+      quoteEn: "I work long hours in front of the computer and Magic Drink helps me stay focused without jitters."
+    },
+    {
+      id: "t5",
+      name: "Yuki A.",
+      country: "Japón",
+      countryEn: "Japan",
+      image: "/image/testimonials/yuki.png",
+      quote: "Me gusta porque es divertida y diferente. Me inspira cuando dibujo o escucho música.",
+      quoteEn: "I like it because it's fun and different. It inspires me when I draw or listen to music."
+    },
+    {
+      id: "t6",
+      name: "Malik S.",
+      country: "Colombia",
+      countryEn: "Colombia",
+      image: "/image/testimonials/malik.png",
+      quote: "Me sube el ánimo al instante. La siento ligera, pero con un punch que me activa.",
+      quoteEn: "It lifts my mood instantly. I feel it light, but with a punch that activates me."
     }
   ];
-
-  // Variantes de animación
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
-  const videoVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
+  
+  const t = ingles ? content.en : content.es;
+  
   return (
-    <section ref={sectionRef} className={styles.wonderpopSection}>
-      {/* Fondo con estrellas discretas */}
-      <div className={styles.starryBackground}>
-        <div className={styles.star}></div>
-        <div className={styles.star}></div>
-        <div className={styles.star}></div>
-        <div className={styles.star}></div>
-        <div className={styles.star}></div>
+    <section 
+      className={`${styles.section} ${!darkMode ? styles.sectionLight : ''}`}
+    >
+      {/* Header de la sección */}
+      <div className={styles.header}>
+        <h2 className={styles.title}>{t.title}</h2>
+        <p className={styles.subtitle}>{t.subtitle}</p>
       </div>
-
-      {/* Container principal */}
-      <div className={styles.container}>
-        
-        {/* Encabezado centrado */}
-        <motion.div 
-          className={styles.sectionHeader}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <h2 className={styles.title}>Wonderpop Plaza</h2>
-          <p className={styles.tagline}>
-            {ingles ? "The official heart of Magic Drink" : "El corazón oficial de Magic Drink"}
-          </p>
-        </motion.div>
-        
-        {/* Layout 2 columnas */}
-        <motion.div 
-          className={styles.contentGrid}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          
-          {/* Columna izquierda - Video */}
-          <motion.div 
-            className={styles.visualColumn}
-            variants={videoVariants}
-          >
-            <div className={styles.videoWrapper}>
-              <video 
-                className={styles.video}
-                autoPlay 
-                muted 
-                loop 
-                playsInline
-                poster="./image/wonderpop/wonderpop-poster.png"
-              >
-                <source src="/videos/wonderpop.mp4" type="video/mp4" />
-                {ingles 
-                  ? "Your browser does not support video playback." 
-                  : "Tu navegador no soporta reproducción de video."}
-              </video>
-              {/* Overlay sutil para mejor legibilidad */}
-              <div className={styles.videoOverlay}></div>
+      
+      {/* Grid de testimonios */}
+      <div className={styles.testimonialsGrid}>
+        {testimonials.map((testimonial, index) => (
+          <div key={testimonial.id} className={styles.testimonialCard}>
+            {/* Sección superior - Imagen con decoraciones */}
+            <div className={styles.imageSection}>
+              <img 
+                src={testimonial.image} 
+                alt={testimonial.name}
+                className={styles.userImage}
+              />
+              {/* Decoraciones kawaii flotantes sobre la imagen */}
+              <div className={styles.imageDecorations}>
+                <span className={styles.imageDeco}>{index % 3 === 0 ? '⭐' : index % 3 === 1 ? '💗' : '♪'}</span>
+                <span className={styles.imageDeco}>{index % 3 === 0 ? '💗' : index % 3 === 1 ? '⭐' : '✨'}</span>
+                <span className={styles.imageDeco}>{index % 3 === 0 ? '✨' : index % 3 === 1 ? '💜' : '♫'}</span>
+                <span className={styles.imageDeco}>{index % 3 === 0 ? '💜' : index % 3 === 1 ? '♪' : '💗'}</span>
+              </div>
             </div>
-          </motion.div>
-          
-          {/* Columna derecha - Contenido */}
-          <motion.div 
-            className={styles.contentColumn}
-            variants={itemVariants}
-          >
-            <h3 className={styles.subtitle}>
-              {ingles 
-                ? "More than a store. A Magic Drink world." 
-                : "Más que una tienda. Un mundo Magic Drink."}
-            </h3>
             
-            <p className={styles.description}>
-              {ingles ? (
-                <>
-                  Wonderpop Plaza is the official shopping center of Magic Drink. 
-                  A space where the drink, music and creativity meet in one place.
-                  <br /><br />
-                  Here special editions are born, exclusive events and unique 
-                  experiences that only exist within the Magic Drink universe.
-                </>
-              ) : (
-                <>
-                  Wonderpop Plaza es el centro comercial oficial de Magic Drink. 
-                  Un espacio donde la bebida, la música y la creatividad se encuentran en un solo lugar.
-                  <br /><br />
-                  Aquí nacen ediciones especiales, eventos exclusivos y experiencias únicas 
-                  que solo existen dentro del universo Magic Drink.
-                </>
-              )}
-            </p>
-            
-            {/* Bullets con iconos custom */}
-            <ul className={styles.highlights}>
-              {highlights.map((item, index) => (
-                <motion.li 
-                  key={index}
-                  className={styles.highlightItem}
-                  variants={itemVariants}
-                  custom={index}
-                >
-                  <div className={styles.iconWrapper}>
-                    <img 
-                      src={item.icon} 
-                      alt="" 
-                      className={styles.icon}
-                      loading="lazy"
-                    />
-                  </div>
-                  <span className={styles.highlightText}>
-                    {ingles ? item.textEn : item.textEs}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
-            
-            {/* CTA */}
-            <motion.div 
-              className={styles.ctaWrapper}
-              variants={itemVariants}
-            >
-              <a href="/wonderpop" className={styles.ctaButton}>
-                <span className={styles.ctaIcon}>📍</span>
-                <span className={styles.ctaText}>
-                  {ingles ? "Explore Wonderpop Plaza" : "Explorar Wonderpop Plaza"}
-                </span>
-              </a>
-              <p className={styles.ctaSubtext}>
-                {ingles 
-                  ? "Discover locations, events and exclusive experiences" 
-                  : "Descubre ubicaciones, eventos y experiencias exclusivas"}
-              </p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-        
-        {/* Stats Grid (Prueba Social) */}
-        <motion.div 
-          className={styles.statsGrid}
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className={styles.statCard}>
-            <div className={styles.statNumber}>{counts.locations}</div>
-            <div className={styles.statLabel}>
-              {ingles ? "Global locations" : "Ubicaciones globales"}
+            {/* Sección inferior - Contenido de texto */}
+            <div className={styles.contentSection}>
+              {/* Nombre */}
+              <h3 className={styles.userName}>{testimonial.name}</h3>
+              
+              {/* País */}
+              <p className={styles.userCountry}>{ingles ? testimonial.countryEn : testimonial.country}</p>
+              
+              {/* Cita */}
+              <blockquote className={styles.quote}>
+                “{ingles ? testimonial.quoteEn : testimonial.quote}”
+              </blockquote>
             </div>
           </div>
-          
-          <div className={styles.statCard}>
-            <div className={styles.statNumber}>
-              {(counts.visitors / 1000000).toFixed(1)}M+
-            </div>
-            <div className={styles.statLabel}>
-              {ingles ? "Monthly visitors" : "Visitantes mensuales"}
-            </div>
-          </div>
-          
-          <div className={styles.statCard}>
-            <div className={styles.statNumber}>
-              {counts.rating} <span className={styles.starIcon}>⭐</span>
-            </div>
-            <div className={styles.statLabel}>
-              {ingles ? "Average rating" : "Calificación promedio"}
-            </div>
-          </div>
-          
-          <div className={styles.statCard}>
-            <div className={styles.statNumber}>
-              {(counts.photos / 1000).toFixed(0)}K+
-            </div>
-            <div className={styles.statLabel}>
-              {ingles ? "Photos on social media" : "Fotos en redes"} 📸
-            </div>
-          </div>
-        </motion.div>
-        
+        ))}
+      </div>
+      
+      {/* Decoraciones de fondo */}
+      <div className={styles.decorations} aria-hidden="true">
+        <span className={styles.deco}>⭐</span>
+        <span className={styles.deco}>💗</span>
+        <span className={styles.deco}>♪</span>
+        <span className={styles.deco}>✨</span>
+        <span className={styles.deco}>💜</span>
+        <span className={styles.deco}>♫</span>
+        <span className={styles.deco}>⭐</span>
+        <span className={styles.deco}>💗</span>
       </div>
     </section>
   );

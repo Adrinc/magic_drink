@@ -1,0 +1,192 @@
+# 👨‍💻 Abraham Armando Domínguez Rodríguez
+
+**Creative Full-Stack Engineer · Technical Artist**
+
+Desarrollador autodidacta con **más de una década de contacto con la computación** y **3+ años de experiencia laboral formal (desde 2022)**. Perfil híbrido que combina **ingeniería de software**, **arte 3D**, **animación**, **IA** y **producción musical**, con capacidad probada para crear **productos completos de principio a fin** sin depender de equipos grandes.
+
+---
+
+## 🚀 Propuesta de valor
+
+No solo desarrollo software: **creo experiencias**. Integro programación avanzada, diseño visual, animación 3D, música e inteligencia artificial para construir aplicaciones, plataformas y universos interactivos con identidad propia.
+
+**Disponibilidad:** Abierto a oportunidades de **trabajo remoto** (tiempo completo o por proyecto).
+
+**Contacto:** [programador.adrinc@gmail.com](mailto:programador.adrinc@gmail.com)
+
+---
+
+## 🧠 Habilidades técnicas
+
+### 🔹 Desarrollo Frontend & Mobile
+
+* JavaScript · TypeScript
+* React · Astro · Ionic Angular
+* Flutter · Flutter Web
+* Three.js · React Three Fiber · GSAP
+* Rive (animación vectorial para web)
+
+### 🔹 Backend & Datos
+
+* Supabase (PostgreSQL / MySQL)
+* Diseño de esquemas complejos, relaciones estrictas, triggers
+* APIs y lógica de negocio
+* Sistemas multiempresa, roles y permisos
+
+### 🔹 3D, Animación y WebGL
+
+* Blender (modelado, texturas, exportación)
+* MMD (MikuMikuDance) para animación
+* Pipeline MMD → archivos .VMD → Three.js
+* Integración de **500+ animaciones** en tiempo real
+* Iluminación y escenas WebGL optimizadas
+
+### 🔹 Inteligencia Artificial
+
+* Chatbots conversacionales
+* Asistentes de voz (comandos, TTS, STT)
+* OCR y automatización
+* Generación de música, texto e imágenes
+* Integración de múltiples IAs como soporte de calidad
+
+### 🔹 Audio & Música
+
+* FL Studio (composición y producción)
+* Creación de música en múltiples géneros
+* Integración de IA (Suno + soporte creativo)
+* Sound design y música original para proyectos propios
+
+### 🔹 Multimedia & Diseño
+
+* Adobe Photoshop · Illustrator
+* Sony Vegas
+* Diseño UI/UX
+* Identidad visual y estética de producto
+
+---
+
+## 🧩 Proyectos destacados
+
+### ⭐ Botia — Asistente virtual 3D emocional (Proyecto personal)
+
+Aplicación interactiva con personaje 3D animado en tiempo real.
+
+* Desarrollo completo (programación, 3D, animación, UX)
+* Motor de animaciones con **500+ movimientos (.VMD)**
+* Integración con Three.js dentro de Ionic
+* Estados emocionales dinámicos (feliz, molesta, cansada, dormida)
+* Comandos de voz: abrir apps, clima, hora, matemáticas
+* Comportamiento adaptativo según hora y trato del usuario
+
+---
+
+### ⭐ NetHive — Plataforma empresarial (Proyecto personal)
+
+Sistema web para gestión de empresas, sucursales y su infraestructura.
+
+* Mapas interactivos
+* Inventarios MDF / IDF
+* Control estricto de cableado y conexiones
+* Backend en Supabase con arquitectura sólida
+
+---
+
+### ⭐ Taller Alex — Sistema automotriz (Proyecto personal)
+
+Plataforma para gestión de talleres mecánicos.
+
+* App para clientes, técnicos y administración
+* OCR de placas
+* Flujos de órdenes de servicio
+* Multi‑sucursal
+
+---
+
+### ⭐ Sitios web corporativos (Experiencia laboral)
+
+* **cbluna.com** — Portal corporativo (desarrollo 100%)
+* **abogadosliberales.com** — Sitio web profesional
+* Otros sitios informativos y comerciales
+
+---
+
+## 🎓 Formación académica
+
+* **Licenciatura en Informática** — concluida
+* **Título profesional:** en proceso de emisión
+
+---
+
+## 🏢 Experiencia profesional
+
+### Desarrollador Full‑Stack — 2022 → Actualidad
+
+**Empresa privada (México)**
+
+* Desarrollo de sitios web corporativos
+* Creación de CRMs y sistemas internos (proyectos privados)
+* Dashboards administrativos
+* Gestión de usuarios, roles e inventarios
+* Automatización de procesos empresariales
+
+---
+
+## ⏳ Línea de tiempo
+
+* **2008–2010:** Primeros proyectos web autodidactas
+* **2010:** Desarrollo de portal web personal con fichas de contenido
+* **2015–2020:** Exploración de programación, diseño y multimedia
+* **2022–Actualidad:** Desarrollo profesional full‑stack
+* **2023–Actualidad:** Proyectos avanzados 3D, IA, música y narrativa
+
+---
+
+## 🎭 Perfil creativo
+
+* Creación de universos narrativos originales
+* Diseño de personajes
+* Storytelling transmedia
+* Música original integrada a proyectos
+
+---
+
+## 🌍 Idiomas
+
+* **Español:** Nativo.
+* **Inglés:** Competencia profesional.
+
+  * Comprensión lectora: ~80%
+  * Comprensión auditiva: ~75%
+  * Comunicación oral: ~60%
+
+Capaz de leer documentación técnica, mantener conversaciones profesionales y colaborar en entornos internacionales. La comunicación escrita es fluida; la comunicación oral es funcional en contextos profesionales.
+
+---
+
+## 🎯 Tipo de roles ideales
+
+* Creative Full‑Stack Engineer
+* Technical Artist
+* Creative Technologist
+* Lead Developer en proyectos interactivos
+* Desarrollo de productos innovadores y no convencionales
+
+---
+
+## ✨ Diferencial clave
+
+Perfil **extremadamente versátil y poco común** en el mercado mexicano. Capaz de asumir funciones que normalmente requieren equipos completos, combinando técnica, creatividad y visión de producto.
+
+---
+
+## 🧠 Intereses creativos y exploración técnica
+
+* Exploración constante de nuevas tecnologías y frameworks.
+* Composición musical y sound design como extensión del desarrollo de productos interactivos.
+* Creación de universos narrativos y personajes para proyectos transmedia.
+* Experimentación con inteligencia artificial aplicada a música, arte y software.
+* Desarrollo de prototipos personales como laboratorio creativo y técnico.
+
+---
+
+> *Busco proyectos donde la tecnología no solo funcione, sino que también emocione.*

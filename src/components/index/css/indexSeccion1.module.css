@@ -1,176 +1,254 @@
-.sections {
+/* ============================================
+   HERO SECTION - PORTAFOLIO ABRAHAM DOMÍNGUEZ
+   Grid Scan Background + Typing Effect
+   ============================================ */
+
+.section {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 92vh;
+  height: 100vh;
   margin-top: 70px;
+  overflow: hidden;
+  background: var(--bg-primary);
 }
 
-.videox {
+/* Grid Scan Background Container */
+.backgroundGrid {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: 1;
-  opacity: 0.7;
-  filter: brightness(0.8) contrast(1.1);
+  opacity: 0.9;
+  pointer-events: auto; /* Asegurar que captura eventos del mouse */
 }
 
+/* Overlay gradient sutil para mejorar legibilidad */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+  background: radial-gradient(
+    ellipse at center,
+    rgba(10, 14, 39, 0.3) 0%,
+    rgba(10, 14, 39, 0.7) 100%
+  );
   z-index: 2;
+  pointer-events: none;
 }
 
-.textosAnimados {
-  position: absolute;
+/* Contenedor principal del hero */
+.heroContent {
+  position: relative;
   z-index: 10;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  width: 90%;
-  max-width: 1200px;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(8px);
-  padding: 3rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.slideIcon {
-  font-size: 6rem;
-  flex-shrink: 0;
-  animation: floatIcon 3s ease-in-out infinite;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
-}
-
-.textContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
-  text-align: center;
-}
-
-.titulo {
-  font-size: 3.5rem;
-  color: #fff;
-  margin-bottom: 1rem;
-  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.8), 0 1px 0 #009dff;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  text-align: center;
-  line-height: 1.2;
-  background: linear-gradient(120deg, #fff, #a5f3fc);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 2s infinite;
-}
-
-.subtitulo {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 6px 48px #141414, 0 2px 0 #7ae582;
-  letter-spacing: 0.04em;
-  text-align: center;
-  line-height: 1.1;
-  padding: 0.2em 0.5em;
-  border-radius: 0.2em;
-  margin-bottom: 2rem;
-}
-
-.indicators {
-  display: flex;
-  gap: 1rem;
   justify-content: center;
+  text-align: center;
+  max-width: 1200px;
+  padding: 0 var(--space-md);
+  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none; /* Permite que el mouse pase al grid */
 }
 
-.indicator {
-  width: 100px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
+/* Re-habilitar pointer-events solo en elementos interactivos */
+.heroContent a,
+.heroContent button,
+.skillCard {
+  pointer-events: auto;
+}
+
+/* Nombre principal con typing effect */
+.heroName {
+  font-family: var(--font-family-display);
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-sm);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+/* Cursor parpadeante del typing effect */
+.cursor {
+  display: inline-block;
+  color: var(--secondary-color);
+  animation: blink 1s step-end infinite;
+  margin-left: 4px;
+  text-shadow: 0 0 12px var(--secondary-color);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Wrapper para subtítulo con transición */
+.subtitleWrapper {
+  position: relative;
+  height: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: var(--space-sm);
   overflow: hidden;
 }
 
-.indicator.active {
-  background: rgba(255, 255, 255, 0.3);
+/* Subtítulo alternante */
+.heroSubtitle {
+  font-family: var(--font-family-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin: 0;
+  letter-spacing: 0.02em;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  text-shadow: 0 0 24px rgba(99, 102, 241, 0.3);
 }
 
-.progress {
-  height: 100%;
-  background: linear-gradient(90deg, #2563eb, #7ae582);
-  transition: width 50ms linear;
-}
-
-.fadeInUp {
-  opacity: 0;
-  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.fadeOutUp {
-  opacity: 1;
-  animation: fadeOutUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes fadeInUp {
+@keyframes fadeSlideIn {
   0% {
     opacity: 0;
-    transform: translate(-50%, 40%) scale(0.95);
+    transform: translateY(10px);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes fadeOutUp {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -80%) scale(0.95);
-  }
-}
-
-@keyframes floatIcon {
-  0%, 100% {
     transform: translateY(0);
   }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+/* Tagline descriptivo */
+.heroTagline {
+  font-size: var(--fs-base);
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 0 var(--space-lg);
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
-/* Estilos para el indicador de scroll */
+/* Grid de skills */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  width: 100%;
+  max-width: 600px;
+}
+
+.skillCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--space-sm);
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  border: var(--border-interactive);
+  border-radius: 12px;
+  transition: all var(--transition-base);
+  cursor: default;
+}
+
+.skillCard:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: var(--bg-glass-light);
+  border: var(--border-accent);
+  box-shadow: var(--shadow-glow-hover);
+}
+
+.skillIcon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform var(--transition-base);
+}
+
+.skillCard:hover .skillIcon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.skillLabel {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color var(--transition-base);
+}
+
+.skillCard:hover .skillLabel {
+  color: var(--text-primary);
+}
+
+/* Botones CTA */
+.ctaButtons {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.ctaPrimary {
+  background: var(--secondary-color);
+  color: #fff;
+  border: 2px solid var(--secondary-color);
+  box-shadow: 
+    var(--shadow-md),
+    0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.ctaPrimary:hover {
+  background: transparent;
+  color: var(--secondary-color);
+  box-shadow: 
+    var(--shadow-lg),
+    var(--shadow-glow-hover);
+  transform: translateY(-2px);
+}
+
+.ctaSecondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: var(--border-accent);
+}
+
+.ctaSecondary:hover {
+  background: var(--bg-glass-light);
+  border-color: var(--secondary-color);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+/* Scroll Indicator */
 .scrollIndicator {
   position: absolute;
   bottom: 2rem;
@@ -182,35 +260,38 @@
   align-items: center;
   gap: 0.5rem;
   animation: bounce 2s infinite;
+  opacity: 0.8;
 }
 
 .scrollText {
-  color: #fff;
-  font-size: 0.9rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .scrollIcon {
   width: 24px;
-  height: 24px;
-  border: 2px solid #fff;
+  height: 40px;
+  border: 2px solid var(--secondary-color);
   border-radius: 12px;
   position: relative;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
 }
 
 .scrollIcon::before {
   content: '';
   position: absolute;
-  top: 4px;
+  top: 8px;
   left: 50%;
   width: 4px;
-  height: 4px;
-  background: #fff;
-  border-radius: 50%;
+  height: 8px;
+  background: var(--secondary-color);
+  border-radius: 2px;
   transform: translateX(-50%);
   animation: scrollDot 2s infinite;
+  box-shadow: 0 0 8px var(--secondary-color);
 }
 
 @keyframes bounce {
@@ -227,46 +308,123 @@
 
 @keyframes scrollDot {
   0% {
-    top: 4px;
+    top: 8px;
     opacity: 1;
   }
   100% {
-    top: 12px;
+    top: 24px;
     opacity: 0;
   }
 }
 
+/* Animación de entrada principal */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
 @media (max-width: 900px) {
-  .sections {
-    height: 70vh;
+  .section {
+    height: 100vh;
+    margin-top: 0;
   }
 
-  .textosAnimados {
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
+  .heroContent {
+    padding: 0 var(--space-sm);
   }
 
-  .slideIcon {
-    font-size: 4rem;
+  .heroName {
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
 
-  .titulo {
+  .heroSubtitle {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .heroTagline {
+    font-size: var(--fs-sm);
+    max-width: 90%;
+  }
+
+  .skillsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xs);
+    max-width: 400px;
+  }
+
+  .skillCard {
+    padding: var(--space-xs);
+  }
+
+  .skillIcon {
     font-size: 2rem;
-    margin-bottom: 1rem;
   }
 
-  .subtitulo {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+  .skillLabel {
+    font-size: var(--fs-xs);
   }
-  
+
+  .ctaButtons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    padding: 0.875rem 2rem;
+    font-size: var(--fs-sm);
+  }
+
+  .scrollIndicator {
+    bottom: 1.5rem;
+  }
+
   .scrollText {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
   }
-  
+
   .scrollIcon {
     width: 20px;
-    height: 20px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroName {
+    font-size: clamp(2rem, 8vw, 3rem);
+    margin-bottom: var(--space-xs);
+  }
+
+  .subtitleWrapper {
+    height: clamp(2rem, 4vw, 3rem);
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .heroTagline {
+    font-size: var(--fs-xs);
+    margin-bottom: var(--space-md);
+  }
+
+  .skillsGrid {
+    gap: 0.5rem;
+  }
+
+  .skillIcon {
+    font-size: 1.75rem;
   }
 }

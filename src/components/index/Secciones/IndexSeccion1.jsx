@@ -1,129 +1,130 @@
 import React, { useEffect, useState } from "react";
 import { isEnglish } from '../../../data/variables';
 import { useStore } from '@nanostores/react';
+import { GridScan } from '../../global/animations/GridScan/GridScan';
 import styles from "../css/indexSeccion1.module.css";
 
-const HomeSeccion1 = () => {
+const IndexSeccion1 = () => {
   const ingles = useStore(isEnglish);
-  const textos = ingles ? [
-    {
-      title: "Transform your infrastructure",
-      subtitle: "Complete MDF/IDF Management",
-      icon: "🔧"
-    },
-    {
-      title: "Real-time monitoring",
-      subtitle: "Network Asset Visibility",
-      icon: "📡"
-    },
-    {
-      title: "Smart Documentation",
-      subtitle: "Automated Cable Management",
-      icon: "📋"
-    }
+  
+  // Typing effect para el nombre
+  const [displayedName, setDisplayedName] = useState("");
+  const fullName = "Abraham Domínguez";
+  
+  // Alternador de subtítulo
+  const [subtitleIndex, setSubtitleIndex] = useState(0);
+  const subtitles = ingles ? [
+    "Creative Full-Stack Engineer",
+    "Technical Artist",
+    "AI Enthusiast"
   ] : [
-    {
-      title: "Transforma tu infraestructura",
-      subtitle: "Gestión completa MDF/IDF",
-      icon: "🔧"
-    },
-    {
-      title: "Monitoreo en tiempo real",
-      subtitle: "Visibilidad de activos de red",
-      icon: "📡"
-    },
-    {
-      title: "Documentación inteligente",
-      subtitle: "Gestión automatizada de cableado",
-      icon: "📋"
-    }
+    "Creative Full-Stack Engineer",
+    "Technical Artist", 
+    "Entusiasta de IA"
   ];
 
-  const [index, setIndex] = useState(0);
-  const [anim, setAnim] = useState("fadeInUp");
-  const [progress, setProgress] = useState(0);
+  // Skills con iconos modernos
+  const skills = [
+    { icon: "💻", label: ingles ? "Code" : "Código" },
+    { icon: "🎨", label: ingles ? "3D Art" : "Arte 3D" },
+    { icon: "🎵", label: ingles ? "Music" : "Música" },
+    { icon: "🤖", label: ingles ? "AI" : "IA" }
+  ];
 
+  // Typing effect
   useEffect(() => {
-    const slideDuration = 5000; // Duración total del slide
-    const fadeOutDuration = 1000; // Duración de la animación de salida
-    const interval = 50; // Intervalo de actualización de la barra
+    if (displayedName.length < fullName.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedName(fullName.slice(0, displayedName.length + 1));
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
+  }, [displayedName]);
 
-    let timer;
-    let progressTimer;
-
-    const startTransition = () => {
-      // Iniciamos la animación de salida
-      setAnim("fadeOutUp");
-      
-      // Cambiamos al siguiente slide después de la animación de salida
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % textos.length);
-        setAnim("fadeInUp");
-        setProgress(0);
-      }, fadeOutDuration);
-    };
-
-    // Animación de la barra de progreso
-    progressTimer = setInterval(() => {
-      setProgress(prev => {
-        // Calculamos el nuevo progreso
-        const newProgress = prev + (100 * interval / (slideDuration - fadeOutDuration));
-        
-        // Si alcanzamos el 100%, iniciamos la transición
-        if (newProgress >= 100) {
-          clearInterval(progressTimer);
-          startTransition();
-          return 100;
-        }
-        return newProgress;
-      });
-    }, interval);
-
-    // Limpieza al desmontar
-    return () => {
-      clearInterval(progressTimer);
-      clearTimeout(timer);
-    };
-  }, [index, textos.length]);
+  // Alternar subtítulo cada 3 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSubtitleIndex((prev) => (prev + 1) % subtitles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [subtitles.length]);
 
   return (
-    <section className={styles.sections}>
-      <video id="background-video" loop autoPlay muted playsInline className={styles.videox}>
-        <source src="/videos/mdf1.mp4" type="video/mp4" />
-      </video>
-      
+    <section className={styles.section}>
+      {/* Grid Scan Background */}
+      <div className={styles.backgroundGrid}>
+         <GridScan
+    sensitivity={0.01}
+    lineThickness={1.2}
+    linesColor="#2D2447"
+    gridScale={0.08}
+    scanColor="#6366F1"
+    scanOpacity={0.5}
+    scanGlow={0.7}
+    scanSoftness={2.5}
+    enablePost
+    bloomIntensity={0.4}
+    chromaticAberration={0.002}
+    noiseIntensity={0.01}
+  />
+      </div>
+
+      {/* Overlay gradient sutil */}
       <div className={styles.overlay}></div>
-      
-      <div className={`${styles.textosAnimados} ${styles[anim]}`}>
-        <div className={styles.slideIcon}>{textos[index].icon}</div>
-        <div className={styles.textContainer}>
-          <span className={styles.titulo}>{textos[index].title}</span>
-          <span className={styles.subtitulo}>{textos[index].subtitle}</span>
-          
-          <div className={styles.indicators}>
-            {textos.map((_, i) => (
-              <div 
-                key={i} 
-                className={`${styles.indicator} ${i === index ? styles.active : ''}`}
-              >
-                <div 
-                  className={styles.progress} 
-                  style={{ width: i === index ? `${progress}%` : '0%' }}
-                ></div>
-              </div>
-            ))}
-          </div>
+
+      {/* Contenido principal */}
+      <div className={styles.heroContent}>
+        {/* Nombre con typing effect */}
+        <h1 className={styles.heroName}>
+          {displayedName}
+          <span className={styles.cursor}>|</span>
+        </h1>
+
+        {/* Subtítulo alternante */}
+        <div className={styles.subtitleWrapper}>
+          <h2 className={styles.heroSubtitle} key={subtitleIndex}>
+            {subtitles[subtitleIndex]}
+          </h2>
+        </div>
+
+        {/* Tagline */}
+        <p className={styles.heroTagline}>
+          {ingles 
+            ? "Building complete experiences: from code to 3D art, music, and artificial intelligence"
+            : "Construyo experiencias completas: desde código hasta arte 3D, música e inteligencia artificial"
+          }
+        </p>
+
+        {/* Skills Grid */}
+        <div className={styles.skillsGrid}>
+          {skills.map((skill, i) => (
+            <div key={i} className={styles.skillCard}>
+              <span className={styles.skillIcon}>{skill.icon}</span>
+              <span className={styles.skillLabel}>{skill.label}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTAs */}
+        <div className={styles.ctaButtons}>
+          <a href="#proyectos" className={styles.ctaPrimary}>
+            {ingles ? "View Projects" : "Ver Proyectos"}
+          </a>
+          <a href="/contacto" className={styles.ctaSecondary}>
+            {ingles ? "Get in Touch" : "Contactar"}
+          </a>
         </div>
       </div>
 
+      {/* Scroll Indicator */}
       <div className={styles.scrollIndicator}>
-        <span className={styles.scrollText}>{ingles ? "Scroll down" : "Desliza hacia abajo"}</span>
+        <span className={styles.scrollText}>
+          {ingles ? "Scroll down" : "Desliza hacia abajo"}
+        </span>
         <div className={styles.scrollIcon}></div>
       </div>
-      
-      <div className={styles.bottomFade}></div>
     </section>
   );
 };
 
-export default HomeSeccion1;
+export default IndexSeccion1;

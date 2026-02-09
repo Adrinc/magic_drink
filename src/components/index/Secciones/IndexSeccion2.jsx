@@ -1,69 +1,80 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { isEnglish } from '../../../data/variables';
 import { useStore } from '@nanostores/react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from "../css/indexSeccion2.module.css";
 
-const HomeSeccion2 = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+const IndexSeccion2 = () => {
   const ingles = useStore(isEnglish);
+  const sectionRef = useRef(null);
+  const statsRef = useRef([]);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   const content = {
     es: {
-      title: "¿Por qué NetHive?",
-      benefits: [
+      title: "Más allá del código",
+      manifesto: "No solo desarrollo software—",
+      manifestoBold: "creo experiencias completas",
+      manifestoEnd: ". Combino ingeniería avanzada, diseño 3D, música e inteligencia artificial para construir productos que funcionan y emocionan.",
+      stats: [
         {
-          icon: "📊",
-          title: "Inventario en Tiempo Real",
-          text: "Mantén tu inventario centralizado y actualizado automáticamente en tiempo real"
+          value: 3,
+          suffix: "+",
+          label: "Años de experiencia profesional",
+          icon: "💼"
         },
         {
-          icon: "🌐",
-          title: "Mapeo Visual",
-          text: "Visualiza todas las conexiones desde MDF hasta cada IDF y punto final"
+          value: 10,
+          suffix: "+",
+          label: "Años en contacto con desarrollo",
+          icon: "💻"
         },
         {
-          icon: "📝",
-          title: "Control de Historial",
-          text: "Registro completo de cambios y auditoría para saber quién hizo qué y cuándo"
+          value: 4,
+          suffix: "",
+          label: "Pilares creativos (Code · 3D · Music · AI)",
+          icon: "🎨"
         },
         {
-          icon: "🚨",
-          title: "Alertas Automáticas",
-          text: "Recibe notificaciones instantáneas ante cambios o desconexiones"
-        },
-        {
-          icon: "🔄",
-          title: "Integración Simple",
-          text: "Fácil integración con tus sistemas existentes y APIs"
+          value: 5,
+          suffix: "+",
+          label: "Proyectos completos de principio a fin",
+          icon: "🚀"
         }
       ]
     },
     en: {
-      title: "Why NetHive?",
-      benefits: [
+      title: "Beyond the code",
+      manifesto: "I don't just build software—",
+      manifestoBold: "I create complete experiences",
+      manifestoEnd: ". I blend advanced engineering, 3D design, music, and artificial intelligence to craft products that work and inspire.",
+      stats: [
         {
-          icon: "📊",
-          title: "Real-Time Inventory",
-          text: "Keep your inventory centralized and automatically updated in real-time"
+          value: 3,
+          suffix: "+",
+          label: "Years of professional experience",
+          icon: "💼"
         },
         {
-          icon: "🌐",
-          title: "Visual Mapping",
-          text: "Visualize all connections from MDF to each IDF and endpoint"
+          value: 10,
+          suffix: "+",
+          label: "Years in touch with development",
+          icon: "💻"
         },
         {
-          icon: "📝",
-          title: "History Control",
-          text: "Complete change log and audit trail to know who did what and when"
+          value: 4,
+          suffix: "",
+          label: "Creative pillars (Code · 3D · Music · AI)",
+          icon: "🎨"
         },
         {
-          icon: "🚨",
-          title: "Automatic Alerts",
-          text: "Receive instant notifications for changes or disconnections"
-        },
-        {
-          icon: "🔄",
-          title: "Simple Integration",
-          text: "Easy integration with your existing systems and APIs"
+          value: 5,
+          suffix: "+",
+          label: "Complete end-to-end projects",
+          icon: "🚀"
         }
       ]
     }
@@ -71,24 +82,99 @@ const HomeSeccion2 = () => {
 
   const textos = ingles ? content.en : content.es;
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || hasAnimated) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            
+            // Animar stats con GSAP
+            statsRef.current.forEach((stat, index) => {
+              if (!stat) return;
+              
+              const valueElement = stat.querySelector(`.${styles.statValue}`);
+              const targetValue = textos.stats[index].value;
+              const suffix = textos.stats[index].suffix;
+              
+              // Crear objeto para animar el counter
+              const counterObj = { value: 0 };
+              gsap.to(counterObj, {
+                value: targetValue,
+                duration: 2,
+                delay: index * 0.15,
+                ease: "power2.out",
+                onUpdate: function() {
+                  valueElement.textContent = Math.floor(counterObj.value) + suffix;
+                }
+              });
+
+              // Animar la card con stagger
+              gsap.fromTo(
+                stat,
+                {
+                  opacity: 0,
+                  y: 40,
+                  scale: 0.9
+                },
+                {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  duration: 0.8,
+                  delay: index * 0.15,
+                  ease: "back.out(1.2)"
+                }
+              );
+            });
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [hasAnimated, textos.stats]);
+
   return (
-    <section className={styles.section}>
+    <section ref={sectionRef} className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.title}>{textos.title}</h2>
-        <div className={styles.benefitsGrid}>
-          {textos.benefits.map((benefit, index) => (
-            <div key={index} className={styles.benefitCard}>
-              <div className={styles.iconContainer}>
-                <span className={styles.icon}>{benefit.icon}</span>
-              </div>
-              <h3 className={styles.benefitTitle}>{benefit.title}</h3>
-              <p className={styles.benefitText}>{benefit.text}</p>
+        {/* Manifesto principal */}
+        <div className={styles.manifestoWrapper}>
+          <h2 className={styles.title}>{textos.title}</h2>
+          <p className={styles.manifesto}>
+            {textos.manifesto}
+            <span className={styles.manifestoBold}>{textos.manifestoBold}</span>
+            {textos.manifestoEnd}
+          </p>
+        </div>
+
+        {/* Stats Grid */}
+        <div className={styles.statsGrid}>
+          {textos.stats.map((stat, index) => (
+            <div
+              key={index}
+              ref={(el) => (statsRef.current[index] = el)}
+              className={styles.statCard}
+            >
+              <div className={styles.statIcon}>{stat.icon}</div>
+              <div className={styles.statValue}>0{stat.suffix}</div>
+              <div className={styles.statLabel}>{stat.label}</div>
+              <div className={styles.statGlow}></div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Decoración de fondo */}
+      <div className={styles.bgDecoration}></div>
     </section>
   );
 };
 
-export default HomeSeccion2;
+export default IndexSeccion2;

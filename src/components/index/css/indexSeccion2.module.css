@@ -1,239 +1,312 @@
+/* ============================================
+   SECTION 2 - MANIFESTO + STATS
+   Portafolio Abraham Domínguez
+   ============================================ */
+
 .section {
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
-  padding: 5rem 2rem;
-  width: 100vw;
-  overflow: hidden;
   position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(3rem, 8vh, 6rem) var(--space-md);
+  background: var(--bg-primary);
+  overflow: hidden;
 }
 
-.section::before {
+/* Decoración de fondo con gradiente radial */
+.bgDecoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(
+      circle at 30% 40%,
+      rgba(99, 102, 241, 0.12) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(236, 72, 153, 0.08) 0%,
+      transparent 50%
+    );
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatGlow 8s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -52%) scale(1.05);
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ============================================
+   MANIFESTO SECTION
+   ============================================ */
+
+.manifestoWrapper {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.title {
+  font-family: var(--font-family-display);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.manifesto {
+  font-size: var(--fs-md);
+  color: var(--text-secondary);
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.manifestoBold {
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--gradient-creative);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+}
+
+/* ============================================
+   STATS GRID
+   ============================================ */
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(3rem, 5vw, 4rem);
+}
+
+.statCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  min-height: 280px;
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--border-interactive);
+  border-radius: 24px;
+  transition: all var(--transition-base);
+  cursor: default;
+  overflow: hidden;
+  opacity: 1;
+  box-shadow: var(--shadow-md);
+}
+
+.statCard::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 100%;
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(37, 99, 235, 0.03) 0px,
-    rgba(37, 99, 235, 0.03) 2px,
-    transparent 2px,
-    transparent 10px
+  height: 3px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-slow);
+}
+
+.statCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--secondary-color);
+  background: rgba(17, 24, 39, 0.8);
+  box-shadow: var(--shadow-glow-hover);
+}
+
+.statCard:hover::before {
+  transform: scaleX(1);
+}
+
+/* Glow effect background */
+.statGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(99, 102, 241, 0.15) 0%,
+    transparent 70%
   );
+  opacity: 0;
+  transition: opacity var(--transition-base);
   pointer-events: none;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
+.statCard:hover .statGlow {
+  opacity: 1;
 }
 
-/* .title {
-  text-align: center;
-  color: #1e293b;
+.statIcon {
   font-size: 3rem;
+  margin-bottom: var(--space-sm);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform var(--transition-base);
+}
+
+.statCard:hover .statIcon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.statValue {
+  font-family: var(--font-family-display);
+  font-size: clamp(3.5rem, 6vw, 5rem);
   font-weight: 800;
-  margin-bottom: 4rem;
-  position: relative;
-  padding-bottom: 1.5rem;
-  animation: slideDown 0.6s ease-out;
-}
-
-.title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(90deg, #2563eb, #1e40af);
-  border-radius: 2px;
-}
- */
-.title {
-  text-align: center;
-  position: relative;
-  font-size: 3rem;
-  color: #1a202c;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: slideDown 0.6s ease-out;
+  filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.4));
 }
 
-.title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(90deg, #2563eb, #1e40af);
-  border-radius: 2px;
+.statLabel {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.4;
+  font-weight: 500;
+  max-width: 200px;
+  transition: color var(--transition-base);
 }
 
-/* .title::before {
-  content: '🎯';
-  position: absolute;
-  top: -2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: bounce 2s infinite;
-} */
-
-.benefitsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  padding: 1rem;
+.statCard:hover .statLabel {
+  color: var(--text-primary);
 }
 
-.benefitCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2.5rem 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  animation: fadeIn 0.6s ease-out forwards;
-  opacity: 0;
-  transform: translateY(20px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-}
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 
-.benefitCard:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.iconContainer {
-  width: 110px;
-  height: 110px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-  border-radius: 50%;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
-  position: relative;
-  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
-}
-
-.iconContainer::after {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border-radius: 50%;
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-}
-
-.benefitCard:hover .iconContainer {
-  transform: scale(1.1) rotate(5deg);
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-}
-
-.icon {
-  font-size: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  color: white;
-}
-
-.benefitTitle {
-  color: #22292f;
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  transition: color 0.3s ease;
-}
-
-.benefitCard:hover .benefitTitle {
-  color: #2563eb;
-}
-
-.benefitText {
-  color: #4a5568;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideDown {
-  from {
+@keyframes fadeInUp {
+  0% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(30px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes bounce {
+@keyframes pulseGlow {
   0%, 100% {
-    transform: translateX(-50%) translateY(0);
+    box-shadow: 0 0 16px rgba(99, 102, 241, 0.18);
   }
   50% {
-    transform: translateX(-50%) translateY(-10px);
+    box-shadow: 0 0 24px rgba(99, 102, 241, 0.25);
   }
 }
 
-/* Añadimos delays para las cards */
-.benefitCard:nth-child(1) { animation-delay: 0.1s; }
-.benefitCard:nth-child(2) { animation-delay: 0.2s; }
-.benefitCard:nth-child(3) { animation-delay: 0.3s; }
-.benefitCard:nth-child(4) { animation-delay: 0.4s; }
-.benefitCard:nth-child(5) { animation-delay: 0.5s; }
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 
-@media (max-width: 1024px) {
-  .benefitsGrid {
+@media (max-width: 1200px) {
+  .statsGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: var(--space-sm);
   }
-  
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-lg) var(--space-sm);
+    min-height: auto;
+  }
+
+  .manifestoWrapper {
+    margin-bottom: var(--space-lg);
+  }
+
   .title {
+    font-size: var(--fs-lg);
+  }
+
+  .manifesto {
+    font-size: var(--fs-base);
+    padding: 0 var(--space-xs);
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .statCard {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .statValue {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+  }
+
+  .statLabel {
+    font-size: var(--fs-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .statIcon {
+    font-size: 2.5rem;
+  }
+
+  .statValue {
     font-size: 2.5rem;
   }
 }
 
-@media (max-width: 640px) {
-  .section {
-    padding: 3rem 1rem;
+/* Accesibilidad: Deshabilitar animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .statCard,
+  .manifestoWrapper {
+    animation: none !important;
+    transition: none !important;
   }
   
-  .title {
-    font-size: 2rem;
+  .statCard {
+    opacity: 1;
   }
-  
-  .benefitsGrid {
-    grid-template-columns: 1fr;
-  }
-  
-  .benefitCard {
-    padding: 2rem 1.5rem;
+
+  .statCard::before {
+    transform: scaleX(1);
   }
 }

@@ -7,8 +7,9 @@ import styles from "../css/indexSeccion1.module.css";
 const IndexSeccion1 = () => {
   const ingles = useStore(isEnglish);
   
-  // Typing effect para el nombre
+  // Typing effect para el nombre con delay inicial
   const [displayedName, setDisplayedName] = useState("");
+  const [typingStarted, setTypingStarted] = useState(false);
   const fullName = "Abraham Domínguez";
   
   // Alternador de subtítulo
@@ -31,15 +32,30 @@ const IndexSeccion1 = () => {
     { icon: "🤖", label: ingles ? "AI" : "IA" }
   ];
 
-  // Typing effect
+  // Delay inicial antes de empezar typing (500ms)
   useEffect(() => {
-    if (displayedName.length < fullName.length) {
+    const startDelay = setTimeout(() => {
+      setTypingStarted(true);
+    }, 500);
+    return () => clearTimeout(startDelay);
+  }, []);
+
+  // Typing effect con detección de prefers-reduced-motion
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      setDisplayedName(fullName);
+      return;
+    }
+
+    if (typingStarted && displayedName.length < fullName.length) {
       const timeout = setTimeout(() => {
         setDisplayedName(fullName.slice(0, displayedName.length + 1));
       }, 100);
       return () => clearTimeout(timeout);
     }
-  }, [displayedName]);
+  }, [displayedName, typingStarted]);
 
   // Alternar subtítulo cada 3 segundos
   useEffect(() => {
@@ -54,18 +70,18 @@ const IndexSeccion1 = () => {
       {/* Grid Scan Background */}
       <div className={styles.backgroundGrid}>
          <GridScan
-    sensitivity={0.01}
+    sensitivity={0.0001}
     lineThickness={1.2}
     linesColor="#2D2447"
     gridScale={0.08}
     scanColor="#6366F1"
-    scanOpacity={0.5}
-    scanGlow={0.7}
+    scanOpacity={0.35}
+    scanGlow={0.6}
     scanSoftness={2.5}
     enablePost
-    bloomIntensity={0.4}
-    chromaticAberration={0.002}
-    noiseIntensity={0.01}
+    bloomIntensity={0.25}
+    chromaticAberration={0.001}
+    noiseIntensity={0.000}
   />
       </div>
 
@@ -107,7 +123,17 @@ const IndexSeccion1 = () => {
 
         {/* CTAs */}
         <div className={styles.ctaButtons}>
-          <a href="#proyectos" className={styles.ctaPrimary}>
+          <a 
+            href="#proyectos" 
+            className={styles.ctaPrimary}
+            onClick={(e) => {
+              e.preventDefault();
+              const target = document.getElementById('proyectos');
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+          >
             {ingles ? "View Projects" : "Ver Proyectos"}
           </a>
           <a href="/contacto" className={styles.ctaSecondary}>

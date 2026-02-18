@@ -1,126 +1,484 @@
-# Portafolio Abraham Domínguez - Copilot Instructions
+# Demo Compras (Procurement Portal) — Copilot Instructions
 
 ## Contexto del Proyecto
 
-Este es un **portafolio web personal** para Abraham Domínguez (Creative Full-Stack Engineer / Technical Artist). El proyecto está construido sobre la base de "NetHive", adaptándose para mostrar:
-- Perfil profesional híbrido (código + 3D + música + IA)
-- Proyectos destacados (Botia, NetHive, Taller Alex, sitios web)
-- Habilidades técnicas y creativas
-- Timeline de experiencia
-- Case studies interactivos
+Este proyecto es una **demo interactiva de Portal de Compras Internas** para CBLuna. No es un ERP clásico con sidebar; es un **Portal Corporativo de Procurement** (marketplace empresarial privado) donde los usuarios de una empresa:
 
-**Objetivo**: Crear un portafolio **impresionante y profesional** que demuestre capacidad técnica avanzada.
+* Exploran un **Catálogo Interno** (productos/servicios autorizados)
+* Crean **Solicitudes de Compra** (Purchase Requests - PR)
+* Generan **Órdenes de Compra** (Purchase Orders - PO)
+* Revisan **Reportes** (control presupuestal y analítica)
 
-## Arquitectura del Proyecto
+**Concepto central**: Experiencia moderna tipo e-commerce + gobernanza corporativa, sin caer en "checkout" real.
 
-### Stack Principal
-- **Framework**: Astro 5.x con integración de React 18
-- **Estilos**: Tailwind CSS + CSS Modules (`.module.css`)
-- **Internacionalización**: Sistema custom con nanostores (NO usar astro:i18n)
-- **Animaciones**: GSAP + Lenis + Framer Motion + Rive + React Three Fiber
-- **Estado**: Nanostores para estado global compartido entre Astro y React
+### Mensaje del Producto
 
-### Estructura Clave
+> "Facilitamos adquisiciones internas con trazabilidad, control de presupuesto y aprobaciones integradas."
+
+### Alcance de la Demo (MVP)
+
+La demo debe sentirse completa con estos flujos mínimos:
+
+1. **Catálogo → Carrito → Crear Solicitud**
+2. **Solicitud (Enviada) → Aprobación (simulada) → Aprobada**
+3. **Generar Orden** desde solicitud aprobada
+4. **Órdenes** visibles con cambios de estado
+5. **Reportes** reflejan cambios dinámicos (contador de solicitudes, monto comprometido, gasto por categoría)
+
+**IMPORTANTE**: NO hay pagos reales. Todo es simulación con mock data.
+
+---
+
+## Stack Principal
+
+* **Framework**: Astro 5.x con integración de React 18
+* **Estilos**: CSS Modules (`.module.css`) — **NO Tailwind** para pantallas complejas
+* **Estado global**: Nanostores para carrito, solicitudes, órdenes, presupuesto y rol actual
+* **Iconos**: Lucide React
+* **Animaciones** (opcional): Framer Motion para micro-transiciones (tabs, modales)
+
+### Principios No Negociables
+
+✅ **Mantener una sola fuente de verdad** para: carrito, solicitudes, órdenes, presupuesto  
+✅ **NO duplicar lógica** por pantalla — componentes reutilizables  
+✅ **Mock data centralizado** en `src/data/purchases/`  
+✅ **Componentes pequeños** (cards, badges, tabs, modales, tabla simple)  
+✅ **CSS Modules obligatorio** para layouts complejos (no Tailwind)
+
+---
+
+## Arquitectura de Pantallas (TopBar + Tabs)
+
+La UI principal es un layout con **TopBar fijo + navegación por Tabs**:
+
+
+### Pantallas Principales
+
+#### 1. **Catálogo**
+* Grid de productos/servicios autorizados
+* Filtros: categoría, proveedor, rango de precio, "solo por contrato"
+* Panel lateral fijo: **Carrito de Compras**
+  * Items con qty +/- y subtotal
+  * Bloque "Impacto Estimado" (comprometido, centro de costo)
+  * CTA principal: **Crear Solicitud de Compra**
+
+#### 2. **Solicitudes**
+* Lista/tabla de solicitudes con estados:  
+  `Borrador | Enviada | En aprobación | Aprobada | Rechazada`
+* Detalle con timeline de eventos y acciones por rol
+
+#### 3. **Órdenes**
+* Lista de órdenes generadas con estados:  
+  `Generada | Enviada | Recibida | Cerrada`
+* Vista detalle (cabecera + items + proveedor)
+
+#### 4. **Reportes**
+* KPIs dinámicos: Presupuesto usado, Comprometido, Disponible, Solicitudes abiertas
+* Gráficas simples (pueden derivarse desde mock data)
+* Drill-down opcional (click en KPI → lista filtrada)
+
+### Roles (Simulación sin Auth Real)
+
+Selector simple en TopBar que cambia permisos en UI:
+
+* **Empleado** — crea solicitudes, navega catálogo
+* **Aprobador** — aprueba/rechaza solicitudes
+* **Finanzas** — monitorea reportes y presupuestos
+
+---
+
+## Estructura del Proyecto
+
 ```
 src/
-├── pages/          # Rutas Astro (index, contacto, 404) - lowercase
-├── layouts/        # LayoutBasic.astro (principal), Layout.astro
+├── pages/
+│   └── index.astro                    # Entry point (monta la app React)
+├── layouts/
+│   └── Layout.astro                   # Layout base (metadata, fondo, nav global)
 ├── components/
-│   ├── index/      # 8 secciones portafolio (IndexSeccion1-8.jsx)
-│   │   ├── Secciones/     # Componentes React (PascalCase)
-│   │   └── css/           # CSS Modules (camelCase)
-│   ├── react_components/  # NavBar, FormContacto (componentes globales)
-│   └── global/     # Footer, animaciones compartidas
+│   └── purchases/
+│       ├── App/
+│       │   ├── PurchasesApp.jsx       # Root component (tabs + layout)
+│       │   └── purchasesApp.module.css
+│       ├── screens/
+│       │   ├── CatalogScreen.jsx      # Pantalla: Catálogo
+│       │   ├── RequestsScreen.jsx     # Pantalla: Solicitudes
+│       │   ├── OrdersScreen.jsx       # Pantalla: Órdenes
+│       │   ├── ReportsScreen.jsx      # Pantalla: Reportes
+│       │   └── screens.module.css
+│       ├── ui/
+│       │   ├── TopBar.jsx             # Barra superior (logo, tabs, rol, presupuesto)
+│       │   ├── TabNav.jsx             # Navegación por tabs
+│       │   ├── ProductCard.jsx        # Tarjeta de producto
+│       │   ├── CartPanel.jsx          # Panel lateral: carrito
+│       │   ├── Badge.jsx              # Badge de estado (aprobada, rechazada, etc.)
+│       │   ├── Modal.jsx              # Modal genérico
+│       │   └── ui.module.css
+│       └── flows/
+│           ├── CreateRequestModal.jsx  # Wizard: crear solicitud (datos + centro costo + notas)
+│           └── RequestDetailDrawer.jsx # Drawer: detalle/timeline/acciones
 ├── data/
-│   ├── translations.js  # Diccionario es/en (~1200 líneas)
-│   ├── signals.jsx      # LangContext con localStorage
-│   └── variables.js     # Nanostores atoms (isEnglish, selectedCountry)
+│   └── purchases/
+│       ├── products.js                # Mock: productos
+│       ├── suppliers.js               # Mock: proveedores
+│       ├── budgets.js                 # Mock: presupuestos por centro de costo
+│       ├── categories.js              # Mock: categorías
+│       └── seed.js                    # Helpers para generar IDs/fechas
+├── stores/
+│   └── purchasesStore.js              # Nanostores: carrito + solicitudes + órdenes + rol
 └── public/
-    ├── fonts/      # Inter, OpenSans, Catamaran, OldPress
-    ├── image/      # Assets organizados por carpetas
-    ├── models/     # Modelos 3D para Three.js
-    └── rive/       # Animaciones .riv
+    ├── fonts/
+    ├── icons/
+    └── image/
+        └── purchases/                 # Mock images (productos, banners, logos proveedores)
 ```
 
-## Patrones Específicos del Proyecto
+---
 
-### 1. Internacionalización (i18n)
-**NO uses `astro:i18n`**. El proyecto usa un sistema custom:
+## Modelo de Datos (Mock)
 
-```jsx
-// En componentes React
-import { useLang } from '../../data/signals';
-const { t, changeLang, lang } = useLang();
-// Usar: t.navbar.inicio, t.home.soluciones.solutionsTitle
+Define estructuras simples como objetos JS y respétalas en todo el proyecto:
 
-// Nanostores para componentes Astro
-import { isEnglish } from '../../data/variables';
-import { useStore } from '@nanostores/react';
-const ingles = useStore(isEnglish);
+### Product
+```javascript
+{
+  id: 'prod-001',
+  name: 'Dell Latitude 5520 Laptop 15.6"',
+  categoryId: 'computech',
+  supplierId: 'sup-001',
+  price: 1199,
+  uom: 'USD',  // unidad de medida
+  contractAvailable: true,
+  contractDiscount: 0.15,  // 15% descuento si es por contrato
+  image: '/image/purchases/products/laptop.png',
+  leadTimeDays: 5
+}
 ```
 
-- **Traducción**: Editar `src/data/translations.js` (estructura anidada es/en)
-- **Persistencia**: Lang guardado en `localStorage` vía `signals.jsx`
-- **Patrón**: Todos los textos UI vienen de `translations.js`, NO hardcodear strings
-
-### 2. CSS Modules + Tailwind
-**Convención estricta**: CSS Modules para componentes, Tailwind para utilidades
-
-```jsx
-import styles from './componentName.module.css';
-// Usar: className={styles.container}, NO className="container"
+### Supplier
+```javascript
+{
+  id: 'sup-001',
+  name: 'ComputoTech',
+  rating: 4.5,
+  leadTimeDays: 5
+}
 ```
 
-- **Demo section**: Todos los estilos en `src/components/demo/css/`
-- **Index sections**: `src/components/index/css/indexSeccionN.module.css`
-- Tailwind solo para spacing/grid/flex, NO para componentes complejos
-
-### 3. Integración Astro-React
-**Patrón crítico**: Componentes React requieren directivas específicas
-
-```astro
-<!-- SIEMPRE incluir client:only para interactividad -->
-<IndexSeccion1 transition:persist client:only/>
-<RouterLinks transition:persist client:only />
-
-<!-- transition:persist mantiene estado en navegación -->
-<LangWrapper transition:persist client:only>
+### Budget
+```javascript
+{
+  id: 'cc-001',
+  costCenter: 'TI',
+  allocated: 500000,    // asignado
+  committed: 120000,    // comprometido (solicitudes enviadas/aprobadas)
+  spent: 85000          // gastado (órdenes cerradas)
+}
 ```
 
-- `client:only`: Hidratar solo en cliente (para nanostores)
-- `transition:persist`: Mantener estado entre page transitions
-- **NO omitir** estas directivas o perderás estado/interactividad
+### CartItem
+```javascript
+{
+  productId: 'prod-001',
+  qty: 2
+}
+```
 
-### 4. Arquitectura de Páginas Astro
-**Patrón crítico**: Las páginas `.astro` son contenedores que importan secciones React:
+### PurchaseRequest
+```javascript
+{
+  id: 'PR-00021',
+  createdAt: '2026-02-15T10:30:00Z',
+  requesterName: 'Carlos Pérez',
+  costCenter: 'TI',
+  priority: 'Normal',  // 'Normal' | 'Urgente'
+  status: 'Enviada',   // 'Borrador' | 'Enviada' | 'En aprobación' | 'Aprobada' | 'Rechazada'
+  items: [
+    { productId: 'prod-001', qty: 2, price: 1199 }
+  ],
+  total: 2398,
+  notes: 'Requerido para equipo nuevo',
+  approvals: [
+    { date: '2026-02-15T10:30:00Z', role: 'Empleado', action: 'creada' },
+    { date: '2026-02-15T14:20:00Z', role: 'Aprobador', action: 'aprobada', comment: 'OK' }
+  ]
+}
+```
+
+### PurchaseOrder
+```javascript
+{
+  id: 'PO-00011',
+  requestId: 'PR-00021',
+  supplierId: 'sup-001',
+  status: 'Generada',  // 'Generada' | 'Enviada' | 'Recibida' | 'Cerrada'
+  createdAt: '2026-02-15T15:00:00Z',
+  items: [
+    { productId: 'prod-001', qty: 2, price: 1199 }
+  ],
+  total: 2398
+}
+```
+
+> **Regla crítica**: Todo lo que se "mueve" (status, commitments, totales) se calcula desde el store.
+
+---
+
+## Patrón de Estado (Nanostores)
+
+### Store Principal (`src/stores/purchasesStore.js`)
+
+```javascript
+import { atom, computed } from 'nanostores';
+
+// Atoms
+export const $cart = atom([]);  // CartItem[]
+export const $selectedRole = atom('employee');  // 'employee' | 'approver' | 'finance'
+export const $budget = atom({ allocated: 1000000, committed: 215800, spent: 0 });
+export const $requests = atom([]);  // PurchaseRequest[]
+export const $orders = atom([]);    // PurchaseOrder[]
+
+// Computed
+export const $cartTotal = computed($cart, (items) => {
+  return items.reduce((sum, item) => {
+    const product = getProductById(item.productId);
+    return sum + (product.price * item.qty);
+  }, 0);
+});
+
+export const $budgetAvailable = computed($budget, (b) => {
+  return b.allocated - b.committed - b.spent;
+});
+
+// Actions
+export function addToCart(productId, qty = 1) {
+  const cart = $cart.get();
+  const existing = cart.find(item => item.productId === productId);
+  
+  if (existing) {
+    existing.qty += qty;
+    $cart.set([...cart]);
+  } else {
+    $cart.set([...cart, { productId, qty }]);
+  }
+}
+
+export function removeFromCart(productId) {
+  $cart.set($cart.get().filter(item => item.productId !== productId));
+}
+
+export function createRequest(requestData) {
+  const newRequest = {
+    id: `PR-${Date.now()}`,
+    createdAt: new Date().toISOString(),
+    ...requestData,
+    status: 'Enviada',
+    approvals: [
+      { date: new Date().toISOString(), role: 'Empleado', action: 'creada' }
+    ]
+  };
+  
+  $requests.set([...$requests.get(), newRequest]);
+  $cart.set([]);  // Vaciar carrito
+}
+
+export function approveRequest(requestId, comment = '') {
+  const requests = $requests.get();
+  const request = requests.find(r => r.id === requestId);
+  
+  if (request) {
+    request.status = 'Aprobada';
+    request.approvals.push({
+      date: new Date().toISOString(),
+      role: 'Aprobador',
+      action: 'aprobada',
+      comment
+    });
+    $requests.set([...requests]);
+  }
+}
+
+export function generateOrder(requestId) {
+  const request = $requests.get().find(r => r.id === requestId);
+  
+  if (request && request.status === 'Aprobada') {
+    const newOrder = {
+      id: `PO-${Date.now()}`,
+      requestId,
+      supplierId: request.items[0].supplierId,  // simplificado
+      status: 'Generada',
+      createdAt: new Date().toISOString(),
+      items: request.items,
+      total: request.total
+    };
+    
+    $orders.set([...$orders.get(), newOrder]);
+  }
+}
+```
+
+### Reglas de Negocio
+
+1. **Carrito**: agregar/quitar/cambiar qty → subtotal calculado
+2. **Crear solicitud**: convierte carrito → `PurchaseRequest` (estado: `Enviada`) y limpia carrito
+3. **Aprobar**: cambia `status` a `Aprobada` y agrega evento en `approvals`
+4. **Generar orden**: desde solicitud `Aprobada` crea `PurchaseOrder`
+5. **Reportes**: KPIs derivados del estado (NO hardcodeados)
+
+---
+
+## Integración Astro + React
+
+### Página única (recomendado para demo)
 
 ```astro
 ---
-import LayoutBasic from '../layouts/LayoutBasic.astro';
-import IndexSeccion1 from '../components/index/Secciones/IndexSeccion1.jsx';
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import PurchasesApp from '../components/purchases/App/PurchasesApp.jsx';
 ---
 
-<LayoutBasic title="Título SEO">
-  <IndexSeccion1 transition:persist client:only/>
-  <IndexSeccion2 transition:persist client:only/>
-  {/* ... más secciones */}
-</LayoutBasic>
+<Layout title="Demo Compras | CBLuna" showFooter={false}>
+  <PurchasesApp client:load />
+</Layout>
 ```
 
-**Flujo de datos**: Página Astro → Layout → Secciones React → CSS Modules
+**Directivas críticas:**
+- `client:load`: Componente se hidrata inmediatamente
+- **NO usar** `client:only` (debe ser SSR-compatible)
 
-### 5. Assets y Recursos
+### Layout base (`src/layouts/Layout.astro`)
+
+```astro
+---
+interface Props {
+  title: string;
+  showFooter?: boolean;
+}
+
+const { title, showFooter = false } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.png`} />
+  <title>{title}</title>
+</head>
+<body>
+  <slot />
+  {showFooter && <footer>© 2026 CBLuna</footer>}
+</body>
+</html>
 ```
-public/
-├── fonts/          # Inter, OpenSans, Catamaran, OldPress (preload en Layout)
-├── image/          # backgrounds/, companies/, logos/, testimonials/
-├── rive/           # 404.riv para animaciones
-└── models/         # Modelos 3D (React Three Fiber)
+
+---
+
+## Gestión de Assets y Base URL
+
+**CRÍTICO**: Este proyecto usa una base URL configurada en `astro.config.mjs`:
+
+```javascript
+export default defineConfig({
+  base: './compras_web_demo',  // ajustar según deploy
+  // ...
+});
 ```
 
-**Importante**: Referencias en CSS como `url('/fonts/Inter.ttf')` (root relativo)
+### Reglas obligatorias para rutas de assets:
 
-## Comandos de Desarrollo
+#### 1. Archivos `.astro` y componentes React (`.jsx`):
+**SIEMPRE usar `import.meta.env.BASE_URL` para assets en `public/`**
+
+```jsx
+// ✅ CORRECTO
+<img src={`${import.meta.env.BASE_URL}/image/purchases/products/laptop.png`} alt="Laptop" />
+<link rel="icon" href={`${import.meta.env.BASE_URL}/favicon.png`} />
+
+// ❌ INCORRECTO - se romperá en producción
+<img src="/image/purchases/products/laptop.png" alt="Laptop" />
+<link rel="icon" href="/favicon.png" />
+```
+
+#### 2. Archivos CSS Modules (`.module.css`):
+**NO usar BASE_URL** - CSS se procesa diferente por Astro
+
+```css
+/* ✅ CORRECTO en .module.css */
+.productCard {
+  background-image: url('/image/purchases/bg-pattern.png');
+}
+```
+
+#### 3. Fonts en archivos CSS globales:
+Para fonts referenciadas desde CSS, agregar manualmente la base:
+
+```css
+/* CORRECTO */
+@font-face {
+  font-family: 'Inter';
+  src: url('./compras_web_demo/fonts/Inter.ttf') format('truetype');
+}
+```
+
+### Patrón común: imágenes dinámicas en React
+```jsx
+const ProductCard = ({ product }) => {
+  return (
+    <div className={styles.card}>
+      <img 
+        src={`${import.meta.env.BASE_URL}${product.image}`} 
+        alt={product.name} 
+      />
+      <h3>{product.name}</h3>
+      <p>${product.price} USD</p>
+    </div>
+  );
+};
+```
+
+---
+
+## Convenciones de Código
+
+### Estructura de Componentes React
+```jsx
+// 1. Imports: React → third-party → stores → data → componentes locales → estilos
+import React, { useState, useEffect } from "react";
+import { ShoppingCart, Filter } from 'lucide-react';
+import { $cart, addToCart } from '../../../stores/purchasesStore';
+import { products } from '../../../data/purchases/products';
+import ProductCard from '../ui/ProductCard';
+import styles from './catalogScreen.module.css';
+
+// 2. Component con props destructuring
+const CatalogScreen = () => {
+  const [filters, setFilters] = useState({ category: 'all' });
+  
+  useEffect(() => { 
+    // Lógica de inicialización
+  }, []);
+  
+  return (
+    <div className={styles.catalog}>
+      {/* ... */}
+    </div>
+  );
+};
+
+export default CatalogScreen;
+```
+
+### Nomenclatura
+- **Componentes React**: PascalCase (`CatalogScreen.jsx`, `ProductCard.jsx`)
+- **CSS Modules**: camelCase (`catalogScreen.module.css`, `productCard.module.css`)
+- **Data files**: camelCase (`products.js`, `suppliers.js`)
+- **Props**: camelCase (`selectedRole`, `onApprove`)
+- **Store actions**: camelCase (`addToCart`, `createRequest`)
+
+### Comandos de Desarrollo
 
 ```bash
 npm run dev      # Dev server localhost:4321
@@ -128,202 +486,129 @@ npm run build    # astro check && astro build
 npm run preview  # Preview build localmente
 ```
 
-**NO ejecutar** `astro add` sin confirmar - integraciones ya configuradas
+---
 
-## Convenciones de Código
+## Errores Críticos a Evitar
 
-### Estructura de Componentes React
-```jsx
-// 1. Imports: React → third-party → local data → estilos
-import React, { useState } from "react";
-import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../data/variables';
-import styles from './component.module.css';
-
-// 2. Component con useState primero
-const Component = () => {
-  const ingles = useStore(isEnglish);
-  const [state, setState] = useState();
-  
-  // 3. useEffect después de state
-  useEffect(() => { ... }, []);
-  
-  return <div className={styles.container}>...</div>;
-};
-```
-
-### Nomenclatura
-- **Componentes React**: PascalCase (`DemoInteractivo.jsx`)
-- *Librerías de Animación y UI
-
-### Lenis (Smooth Scroll) - CRÍTICO
-```jsx
-// Inicializar en Layout.astro o componente wrapper global
-import Lenis from '@studio-freight/lenis';
-
-const lenis = new Lenis({
-  duration: 1.2,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  smooth: true
-});
-
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-```
-
-### Framer Motion (Animaciones React)
-```jsx
-impPaleta de Colores del Portafolio
-
-### Opción Principal: "Midnight Studio"
-```css
-:root {
-  --primary-color: #0A0E27;      /* Azul oscuro profundo */
-  --secondary-color: #6366F1;    /* Índigo vibrante */
-  --accent-creative: #EC4899;    /* Rosa magenta - creatividad */
-  --accent-tech: #8B5CF6;        /* Violeta - tech/IA */
-  --text-primary: #F8FAFC;       /* Blanco suave */
-  --text-secondary: #64748B;     /* Gris medio */
-}
-```Instalación de Nuevas Librerías (Roadmap)
-
-```bash
-# Animaciones esenciales
-npm install @studio-freight/lenis framer-motion
-
-# Efectos visuales
-npm install react-parallax-tilt lucide-react
-
-# Partículas (opcional)
-npm install @tsparticles/react @tsparticles/slim
-```estructura anidada es/en)
-- **Nueva sección portafolio**: Copiar patrón `IndexSeccionN.jsx` + CSS module correspondiente
-- **Modificar sección existente**: Componente en `src/components/index/Secciones/`, estilos en `src/components/index/css/`
-- **Variables CSS globales**: Editar `:root` en `src/layouts/LayoutBasic.astro`
-- **Cambiar colores**: Actualizar variables CSS en LayoutBasic (NO hardcodear en componentes)
-- **Assets**: Todo en `public/` con referencias root-relative: `url('/fonts/Inter.ttf')`
-
-## Perfil del Proyecto
-
-**Desarrollador**: Abraham Domínguez  
-**Rol**: Creative Full-Stack Engineer / Technical Artist  
-**Stack único**: Código + 3D + Música + IA + Diseño  
-**Objetivo**: Portafolio que demuestre versatilidad extrema y capacidad técnica avanzada
 ### Críticos (Rompen funcionalidad)
-- ❌ **NO olvidar** `client:only` en componentes React con nanostores
-- ❌ **NO omitir** `transition:persist` si el componente mantiene estado
-- ❌ **NO usar** `className="text-blue-500"` en componentes con CSS modules
-- ❌ **NO crear** archivos `.css` comunes - usar `.module.css` SIEMPRE
-- ❌ **NO modificar** `astro.config.mjs` sin verificar builds
+- ❌ **NO duplicar** lógica de carrito/solicitudes por pantalla - usar store centralizado
+- ❌ **NO hardcodear** KPIs en Reportes - deben derivarse del estado
+- ❌ **NO usar** rutas de assets sin `import.meta.env.BASE_URL` en JSX/Astro
+- ❌ **NO omitir** `client:load` en componentes interactivos
+- ❌ **NO usar** Tailwind para layouts complejos - CSS Modules obligatorio
+- ❌ **NO convertirlo en ecommerce real** - NO checkout/pago, solo workflow de aprobación
 
 ### Mejores Prácticas
-- ❌ No hardcodear textos - siempre desde `translations.js`
-- ❌ No mezclar español/inglés en código - UI bilingüe, code en inglés
-- ❌ No usar Tailwind para componentes complejos - solo utilidades (spacing, grid)
-- ❌ No ignorar el orden de imports: React → third-party → local → estilos
-- ❌ No crear routes Astro adicionales sin necesidad - mantener estructura simples animados + iconos
-3. **IndexSeccion3** - Proyectos Destacados ("The Lab") - Bento Grid + Tilt cards
-4. **IndexSeccion4** - Tech Stack ("The Arsenal") - Skills animados + Marquee
-5. **IndexSeccion5** - Case Studies ("Deep Dive") - Tabs interactivos + code snippets
-6. **IndexSeccion6** - Creative Side ("Beyond Code") - Galería multimedia + audio player
-7. **IndexSeccion7** - Timeline ("The Journey") - Línea temporal interactiva
-8. **IndexSeccion8** - Contacto ("Let's Create") - Formulario + CTA emocional
+- ✅ **Usar** store centralizado (Nanostores) como única fuente de verdad
+- ✅ **Centralizar** mock data en `src/data/purchases/`
+- ✅ **Aplicar** CSS variables para theming consistente
+- ✅ **Mantener** componentes pequeños y reutilizables
+- ✅ **Derivar** reportes y KPIs desde el estado (no hardcode)
+- ✅ **Simular** roles sin auth real (solo selector UI)
 
-## Notas de Implementación
+---
 
-1. **Pages Astro**: SIEMPRE usan `LayoutBasic.astro` como wrapper principal
-2. **Secciones React**: Todas llevan `transition:persist client:only` en la página Astro
-3. **Forms**: `FormContacto.jsx` usa Nodemailer (configuración en `variables.js`)
-4. **Responsive**: Breakpoints en CSS modules (NO Tailwind para layout complejo), mobile-first
-5. **Fonts**: Todas con `font-display: swap` (performance)
-6. **View Transitions**: Configuradas en `LayoutBasic.astro` con animaciones custom
->
-  <ProjectCard />
-</motion.div>
+## Estructura de TopBar
 
-// Stagger para listas
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
+```jsx
+// components/purchases/ui/TopBar.jsx
+const TopBar = () => {
+  const role = useStore($selectedRole);
+  const budget = useStore($budget);
+  
+  return (
+    <header className={styles.topBar}>
+      <div className={styles.brand}>
+        <img src={`${import.meta.env.BASE_URL}/image/logos/logo.png`} alt="Logo" />
+        <span>Portal de Compras</span>
+      </div>
+      
+      <TabNav />
+      
+      <div className={styles.indicators}>
+        <BudgetIndicator 
+          available={budget.allocated - budget.committed - budget.spent} 
+          total={budget.allocated}
+        />
+        <RoleSelector value={role} onChange={(r) => $selectedRole.set(r)} />
+        <a href="https://cbluna.com/" className={styles.backLink}>
+          Volver a CBLuna
+        </a>
+      </div>
+    </header>
+  );
 };
 ```
 
-### GSAP + ScrollTrigger
-```jsx
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
+**IMPORTANTE**: El botón "Volver a CBLuna" debe:
+- Enlazar a `https://cbluna.com/`
+- NO abrir en nueva ventana (`target="_self"` o sin target)
+- Usar `<a>` nativo, NO React Router Link
 
-// Parallax y animaciones por scroll
-gsap.to('.element', {
-  y: 200,
-  scrollTrigger: {
-    trigger: '.section',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true
-  }
-});
-```
+---
 
-### React Three Fiber + Drei
-```jsx
-// Para visualizaciones 3D (modelos en public/models/)
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment } from '@react-three/drei';
-```
+## Definition of Done (DoD)
 
-### React Tilt (Efecto 3D en Cards)
-```jsx
-import Tilt from 'react-parallax-tilt';
+Se considera lista la demo cuando:
 
-<Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.05}>
-  <ProjectCard />
-</Tilt>
-```
+✅ En **Catálogo** se pueden agregar items al carrito y ver subtotal actualizado  
+✅ El botón **Crear Solicitud** crea una solicitud con estado `Enviada` y vacía el carrito  
+✅ En **Solicitudes** se puede abrir detalle y (con rol Aprobador) aprobar/rechazar  
+✅ Una solicitud **Aprobada** permite **Generar Orden** desde su detalle  
+✅ En **Órdenes** aparece la nueva orden con estado inicial `Generada`  
+✅ En **Reportes** cambian al menos 2 KPIs dinámicamente (comprometido, solicitudes abiertas)  
+✅ El selector de **Roles** cambia permisos visibles en UI (botones de aprobación, etc.)
 
-### Rive Animations
-```jsx
-import { useRive } from '@rive-app/react-canvas';
-// Archivos .riv en public/rive/
-```
-
-### Lucide Icons
-```jsx
-import { Code2, Palette, Music, Brain } from 'lucide-react';
-// Usar con Framer Motion para animaciones de iconos
-### Rive Animations
-```jsx
-import { useRive } from '@rive-app/react-canvas';
-// Archivos .riv en public/rive/
-```
-
-## Notas de Implementación
-
-1. **Pages Astro**: Siempre usan `LayoutBasic` o `Layout` wrapper
-2. **Client-side routing**: React Router en componentes, Astro routing para pages
-3. **Forms**: `FormContacto.jsx` usa Nodemailer backend (ver variables.js para config)
-4. **Responsive**: Breakpoints en CSS modules (no Tailwind), mobile-first
-5. **Fonts**: Todas con `font-display: swap` (performance)
-
-## Errores Comunes a Evitar
-
-- ❌ No usar `className="text-blue-500"` en componentes con CSS modules
-- ❌ No olvidar `client:only` en componentes React con nanostores
-- ❌ No mezclar español/inglés en código - UI bilingüe, code en inglés
-- ❌ No hardcodear textos - siempre desde `translations.js`
-- ❌ No crear archivos `.css` comunes - usar `.module.css` obligatorio
-- ❌ No modificar `astro.config.mjs` sin verificar builds
+---
 
 ## Referencias Rápidas
 
-- **Añadir traducción**: Editar `src/data/translations.js` (ambos idiomas)
-- **Nueva sección index**: Copiar patrón `IndexSeccionN.jsx` + CSS module
-- **Modificar demo**: Estado en `DemoInteractivo.jsx`, pasar como props
-- **Estilos globales**: `src/layouts/Layout.astro` (CSS variables en `:root`)
+### Añadir nuevo producto:
+1. Agregar objeto en `src/data/purchases/products.js`
+2. Asegurar que `image` existe en `public/image/purchases/products/`
+3. Verificar `categoryId` y `supplierId` válidos
+
+### Cambiar estados de solicitud:
+1. Modificar en `src/stores/purchasesStore.js` → `approveRequest()` o `rejectRequest()`
+2. Agregar evento al array `approvals` con timestamp
+3. Actualizar UI en `RequestDetailDrawer.jsx`
+
+### Agregar nuevo KPI en Reportes:
+1. Crear `computed` en store si es derivado
+2. Agregar card en `ReportsScreen.jsx`
+3. Mostrar valor actualizado desde store
+
+### Debugging común:
+- **Carrito no actualiza**: Verificar que usas `$cart.set([...cart])` (nuevo array)
+- **KPIs no cambian**: Revisar que no estén hardcodeados - deben leer del store
+- **Assets no cargan**: Agregar `import.meta.env.BASE_URL` en JSX
+- **Botón no reactivo**: Agregar `client:load` en componente Astro
+
+---
+
+## Notas de Implementación
+
+1. **Performance**: Lazy load modales/drawers con `React.lazy()` si pesan
+2. **Mobile**: Carrito lateral se convierte en drawer/modal en viewport <768px
+3. **Animaciones**: Usar Framer Motion solo para transiciones críticas (tabs, modales)
+4. **Assets**: Productos mock en `public/image/purchases/products/` con naming `product-id.jpg`
+5. **Testing**: Probar flujo completo (catálogo → solicitud → aprobación → orden → reportes)
+
+---
+
+## Mensaje de la Demo
+
+**NO**: "Es un ERP pesado y complicado"  
+**SÍ**: "Es un portal moderno que simplifica compras internas con control total"
+
+La demo debe sentirse como un **flujo natural de trabajo**, NO como software legacy.
+
+---
+
+**Tiempo estimado de implementación**: 
+- **Phase 1** (Catálogo + Carrito): 4-6 horas  
+- **Phase 2** (Solicitudes + Aprobación): 4-6 horas  
+- **Phase 3** (Órdenes + Reportes): 3-4 horas  
+- **Total**: ~12-16 horas para demo completa funcional
+
+

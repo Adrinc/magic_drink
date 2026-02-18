@@ -1,20 +1,18 @@
 ---
-import LayoutBasic from '../layouts/LayoutBasic.astro';
+import Layout from '../layouts/Layout.astro';
 
-import IndexSeccion1 from '../components/index/Secciones/IndexSeccion1.jsx';
-import IndexSeccion2 from '../components/index/Secciones/IndexSeccion2.jsx';
+
 
 ---
 
-<LayoutBasic title="Abraham Domínguez | Creative Full-Stack Engineer & Technical Artist" showFooter={true}>
+<Layout title="Abraham Domínguez | Creative Full-Stack Engineer & Technical Artist" showFooter={true}>
 
 
 
 
 
-    <IndexSeccion1 client:load transition:persist />
-    <IndexSeccion2 transition:persist client:only/>
+ 
 
 
-</LayoutBasic>
+</Layout>
 

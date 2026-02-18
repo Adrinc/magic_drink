@@ -1,8 +1,9 @@
 ---
-import LangWrapper from '../data/langwrapper.jsx';
+import { ViewTransitions } from 'astro:transitions';
 
 import RouterLinks from '../components/react_components/RouterLinks.jsx';
 
+import FootNetHive from '../components/global/FootNetHive';
 
 
 
@@ -25,16 +26,17 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
-
-
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-
+		
+		<!-- View Transitions para transiciones suaves entre páginas -->
+		<ViewTransitions />
+	
 	</head>
 	<header>
 
-		<RouterLinks  transition:persist client:only />
-	<!-- 	<TopMenuSuffle client:only/> -->
+		{showNavBar &&  <RouterLinks  transition:persist client:only />}
+
 	
 		
 	</header>
@@ -43,16 +45,14 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 
 
 	<main>	
-		<!-- <RedesSocialesNav /> -->
-		<LangWrapper transition:persist client:only >
-			<slot />
-		</LangWrapper>
+
+		<slot />
 
 	</main>
 
+	{showFooter && <FootNetHive client:only />}
 	</body>
-	
-<!-- 	{showFooter && <FootUWIFI/>} -->
+
 </html>
 
 
@@ -95,52 +95,91 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
   font-display: swap;
 }
 	:root {
-		--primary-color: #000000;
-		--secondary-color: #58aafc;
-		--tertiary-color: #2f47c5;
-		--cuaternary-color: #60bed7;
-
-		--primary-text-color: #ffffff;
-		--secondary-text-color: #0a5968;
-		--tertiary-text-color: #ededed;
-		
-		--primary-buttom-color: #d9a45e;
-		--primary-buttom-fill-text-color: #fffefa;
-		--primary-buttom-outline-text-color: #8b705f;
-		--primary-buttom-fill-shadow: 0 5px 2px #966f34;
-
-		--primary-gradient: linear-gradient(to right, #fdf8f2, #fffbf0, #f5e9d9 );
-		--secondary-gradient: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--tertiary-color));
-		--tertiary-gradient: linear-gradient(to right, #afa09d, #72869f, #501b0b);
-
-		--main-bg-color: linear-gradient(to bottom, #ede6cc, #f0e3d0, #c8a98c );
-		--primary-bg-color: #00000000;
-		--secondary-bg-color: #e9e9e9;
-
-		--primary-glass-color: #525065;
-		--secondary-glass-color: #7398ab;
-
-		--primary-nav-color: #020d2b;
-		--primary-nav-border-color: #353c70;
-
-		--font-family-primary: 'Inter', sans-serif;
-		--font-family-secondary: 'OpenSans', sans-serif;
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-		--fs-xl: clamp(3.5rem, 12vw + 1rem, 12rem);
-		--fs-lg: clamp(1.25rem, 2vw, 1.5rem);
-		--fs-md: clamp(1rem, 1.5vw, 1.25rem);
-		--fs-sm: clamp(0.875rem, 1.25vw, 1rem);
-		--fs-xs: clamp(0.75rem, 1vw, 0.875rem);
-		--fs-xxs: clamp(0.625rem, 0.75vw, 0.75rem);
-	}
+        /* ============================================
+           PALETA "MIDNIGHT STUDIO" - PORTAFOLIO
+           ============================================ */
+        
+        /* Colores principales */
+        --primary-color: #0A0E27;           /* Azul oscuro profundo - background principal */
+        --secondary-color: #6366F1;         /* Índigo vibrante - elementos interactivos */
+        --tertiary-color: #8B5CF6;          /* Violeta - tech/IA */
+        --accent-creative: #EC4899;         /* Rosa magenta - highlights creativos */
+        --accent-tech: #8B5CF6;             /* Violeta - elementos técnicos */
+        --accent-success: #10B981;          /* Verde - estados positivos */
+        
+        /* Colores de texto */
+        --text-primary: #E9EEF7;            /* Blanco premium - texto principal */
+        --text-secondary: #94A3B8;          /* Gris claro - texto secundario */
+        --text-tertiary: #64748B;           /* Gris medio - texto desenfatizado */
+        --text-muted: #475569;              /* Gris oscuro - texto sutil */
+        
+        /* Backgrounds y superficies */
+        --bg-primary: #0A0E27;              /* Background principal */
+        --bg-secondary: #111833;            /* Superficie elevada (más profundo) */
+        --bg-tertiary: #162045;             /* Superficie más elevada (sutil) */
+        --bg-glass: rgba(17, 24, 39, 0.6);  /* Efecto glass premium */
+        --bg-glass-light: rgba(99, 102, 241, 0.1); /* Glass con tinte */
+        
+        /* Gradientes modernos */
+        --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
+        --gradient-dark: linear-gradient(180deg, #0A0E27 0%, #1E293B 100%);
+        --gradient-creative: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+        --gradient-tech: linear-gradient(135deg, #6366F1 0%, #3B82F6 100%);
+        --gradient-subtle: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+        
+        /* Sombras y elevaciones */
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+        --shadow-glow: 0 0 16px rgba(99, 102, 241, 0.18);      /* Glow sutil */
+        --shadow-glow-hover: 0 0 24px rgba(99, 102, 241, 0.22); /* Glow hover */
+        --shadow-glow-pink: 0 0 16px rgba(236, 72, 153, 0.18);  /* Glow creativo */
+        
+        /* Borders - Sistema de 3 niveles */
+        --border-default: 1px solid rgba(148, 163, 184, 0.08);  /* Neutro sutil */
+        --border-interactive: 1px solid rgba(99, 102, 241, 0.2); /* Azul suave */
+        --border-accent: 1px solid rgba(99, 102, 241, 0.4);      /* Azul obvio (hover/focus) */
+        --border-creative: 1px solid rgba(236, 72, 153, 0.3);    /* Rosa highlights */
+        
+        /* Tipografía */
+        --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-family-display: 'Outfit', 'Space Grotesk', sans-serif;  /* Títulos creativos */
+        --font-family-secondary: 'OpenSans', sans-serif;  /* Legacy fallback */
+        --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        
+        /* Escalas de tamaño responsive */
+        --fs-hero: clamp(3rem, 8vw, 6rem);       /* Hero titles */
+        --fs-xl: clamp(2.5rem, 6vw, 4.5rem);     /* Section titles */
+        --fs-lg: clamp(1.75rem, 4vw, 3rem);      /* Subsection titles */
+        --fs-md: clamp(1.25rem, 2.5vw, 1.875rem); /* Card titles */
+        --fs-base: clamp(1rem, 1.5vw, 1.125rem); /* Body text */
+        --fs-sm: clamp(0.875rem, 1.25vw, 1rem);  /* Small text */
+        --fs-xs: clamp(0.75rem, 1vw, 0.875rem);  /* Extra small */
+        
+        /* Spacing system */
+        --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+        --space-sm: clamp(1rem, 2vw, 1.5rem);
+        --space-md: clamp(2rem, 4vw, 3rem);
+        --space-lg: clamp(3rem, 6vw, 5rem);
+        --space-xl: clamp(5rem, 10vw, 8rem);
+        
+        /* Transitions */
+        --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        
+        /* Z-index layers */
+        --z-background: -1;
+        --z-default: 1;
+        --z-dropdown: 100;
+        --z-sticky: 200;
+        --z-fixed: 300;
+        --z-modal-backdrop: 400;
+        --z-modal: 500;
+        --z-popover: 600;
+        --z-tooltip: 700;
+    }
 
 	*, 
 	*::before, 
@@ -153,21 +192,30 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 
 	html {
 	position: relative;
-	overflow: hidden;
-/* 	overflow-x: hidden; */
+	/* overflow: hidden; */
+	overflow-x: hidden;
 	-webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select:none;
     user-select:none;
 	box-sizing: border-box;
 	scroll-behavior: smooth;
-	background-color: #00000000;
+	background-color: var(--bg-primary);
 	
-
+    overflow-y: scroll;
+  scrollbar-width: thin; /* Firefox: Scrollbar más delgado */
+  scrollbar-color: var(--secondary-color) rgba(10, 14, 39, 0.3); /* Firefox: Color del thumb y track */
 	}
+    
 	body{
 		font-family: var(--font-family-primary);
-		background: black;
+		/* background: #0D0E26; */
+		background: var(--bg-primary);
+		color: var(--text-primary);
+		font-size: var(--fs-base);
+		line-height: 1.6;
+		-webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
 		z-index: 0;
 	/* 	overflow: hidden; */
 	}
@@ -175,44 +223,179 @@ const {title, showNavBar=true, showFooter=true, dataLayout, seoData } = Astro.pr
 
 	main {
 		position: relative;
-		z-index: 0;
-/* 		background-color: #00000000 */
-
+		z-index: var(--z-default);
+		min-height: calc(100vh - 70px);
+		background: var(--bg-primary);
 	}
 
 
 
 	header {
-	  position: fixed;
-	  top: 0;
-	  left: 0;
-	  width: 100vw;
-	  height: 70px;
-
-	
-	  z-index: 1000;
-	  font-family: var(--font-family-primary);
-	}
-	footer {
-		position: static;
-		display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-        height: 20vh;
-
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 70px;
+		z-index: var(--z-fixed);
 		font-family: var(--font-family-primary);
-        padding-left: clamp(0px, 5vw, 100px);
-		padding-right: clamp(0px, 5vw, 100px);
-        gap:20px;
-        background-color: var(--primary-color);
-        z-index: 1000;
-
-
+		background: var(--bg-glass);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: var(--border-secondary);
 	}
 
-  
+	footer {
+		position: relative;
+		width: 100%;
+		min-height: fit-content;
+		height: auto;
+		font-family: var(--font-family-primary);
+		background: var(--bg-primary);
+		border-top: var(--border-secondary);
+		z-index: var(--z-default);
+		overflow: hidden;
+	}
 
+	/* Transiciones personalizadas para View Transitions */
+	@view-transition {
+		navigation: auto;
+	}
 
+	/* Transición principal - fade y slide suave */
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.5s;
+		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	::view-transition-old(root) {
+		animation-name: slide-out-to-left;
+	}
+
+	::view-transition-new(root) {
+		animation-name: slide-in-from-right;
+	}
+
+	/* Animaciones personalizadas - Más suaves y modernas */
+	@keyframes slide-out-to-left {
+		from {
+			transform: translateX(0) scale(1);
+			opacity: 1;
+		}
+		to {
+			transform: translateX(-50px) scale(0.98);
+			opacity: 0;
+		}
+	}
+
+	@keyframes slide-in-from-right {
+		from {
+			transform: translateX(50px) scale(0.98);
+			opacity: 0;
+		}
+		to {
+			transform: translateX(0) scale(1);
+			opacity: 1;
+		}
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes pulse-glow {
+		0%, 100% {
+			box-shadow: 0 0 16px rgba(99, 102, 241, 0.18);
+		}
+		50% {
+			box-shadow: 0 0 24px rgba(99, 102, 241, 0.22);
+		}
+	}
+
+	/* Transición especial para el navbar - se mantiene fijo */
+	header {
+		view-transition-name: navbar;
+	}
+
+	::view-transition-old(navbar),
+	::view-transition-new(navbar) {
+		animation: none;
+	}
+
+	/* Transición especial para el footer */
+	footer {
+		view-transition-name: footer;
+	}
+
+	::view-transition-old(footer),
+	::view-transition-new(footer) {
+		animation-duration: 0.4s;
+		animation-timing-function: ease-out;
+	}
+
+	/* Animación de carga para mejorar la percepción */
+	html:not(.astro-route-transition) {
+		animation: page-initial-load 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	@keyframes page-initial-load {
+		from {
+			opacity: 0;
+			transform: translateY(15px) scale(0.99);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	/* Utilidades globales para animaciones */
+	.animate-fade-in {
+		animation: fade-in var(--transition-base) ease-out;
+	}
+
+	.animate-glow {
+		animation: pulse-glow 2s ease-in-out infinite;
+	}
+
+	/* Scrollbar personalizado para navegadores webkit */
+    html::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    html::-webkit-scrollbar-track {
+        background: rgba(10, 14, 39, 0.3);
+    }
+
+    html::-webkit-scrollbar-thumb {
+        background: var(--secondary-color);
+        border-radius: 4px;
+    }
+
+    html::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-creative);
+    }
+    
+    /* Selection personalizada */
+    ::selection {
+        background: var(--secondary-color);
+        color: var(--text-primary);
+    }
+
+    ::-moz-selection {
+        background: var(--secondary-color);
+        color: var(--text-primary);
+    }
+
+    /* Focus visible mejorado para accesibilidad */
+    *:focus-visible {
+        outline: 2px solid var(--secondary-color);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
 </style>

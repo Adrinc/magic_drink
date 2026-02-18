@@ -10,9 +10,9 @@ const tabs = [
   { id: 'reports', label: 'Reportes', icon: BarChart3 }
 ];
 
-const TabNav = ({ activeTab, onTabChange }) => {
+const TabNav = ({ activeTab, onTabChange, mobile = false }) => {
   return (
-    <nav className={styles.tabNav}>
+    <nav className={mobile ? styles.tabNavMobile : styles.tabNav}>
       {tabs.map(tab => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -20,14 +20,14 @@ const TabNav = ({ activeTab, onTabChange }) => {
         return (
           <motion.button
             key={tab.id}
-            className={`${styles.tabButton} ${isActive ? styles.tabButtonActive : ''}`}
+            className={`${mobile ? styles.tabButtonMobile : styles.tabButton} ${isActive ? (mobile ? styles.tabButtonMobileActive : styles.tabButtonActive) : ''}`}
             onClick={() => onTabChange(tab.id)}
             aria-current={isActive ? 'page' : undefined}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.15 }}
           >
-            <Icon size={18} />
+            <Icon size={20} />
             <span>{tab.label}</span>
           </motion.button>
         );

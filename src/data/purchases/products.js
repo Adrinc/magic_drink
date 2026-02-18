@@ -9,7 +9,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: true,
     contractDiscount: 0.15,
-    image: 'https://placehold.co/400x300/1e293b/22d3ee?text=Laptop+Dell+15.6"',
+    image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 5,
     description: 'Laptop empresarial Dell Latitude con procesador Intel Core i5, 8GB RAM, 256GB SSD',
     stock: 'available'
@@ -23,7 +23,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: true,
     contractDiscount: 0.10,
-    image: 'https://placehold.co/400x300/1e293b/10b981?text=Silla+Ergonomica',
+    image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 7,
     description: 'Silla ejecutiva ergonómica con respaldo de malla, brazos ajustables',
     stock: 'available'
@@ -37,7 +37,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: true,
     contractDiscount: 0.12,
-    image: 'https://placehold.co/400x300/1e293b/3b82f6?text=Impresora+HP',
+    image: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 5,
     description: 'Impresora láser multifuncional blanco y negro, WiFi, dúplex automático',
     stock: 'available'
@@ -51,7 +51,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: true,
     contractDiscount: 0.05,
-    image: 'https://placehold.co/400x300/e2e8f0/475569?text=Papel+A4',
+    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 2,
     description: 'Papel bond tamaño carta, 75g/m², bolsa con 20 paquetes de 500 hojas',
     stock: 'available'
@@ -65,7 +65,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: true,
     contractDiscount: 0.15,
-    image: 'https://placehold.co/400x300/1e293b/22d3ee?text=Monitor+24"',
+    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 5,
     description: 'Monitor LED IPS 24", resolución 1920x1080, HDMI, DisplayPort',
     stock: 'available'
@@ -79,7 +79,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: false,
     contractDiscount: 0,
-    image: 'https://placehold.co/400x300/1e293b/10b981?text=Escritorio+L',
+    image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 10,
     description: 'Escritorio ejecutivo en forma de L, melamina color nogal, patas metálicas',
     stock: 'on-demand'
@@ -93,7 +93,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: true,
     contractDiscount: 0.10,
-    image: 'https://placehold.co/400x300/1e293b/3b82f6?text=Teclado+Mouse',
+    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 3,
     description: 'Combo teclado y mouse inalámbrico, receptor USB unificado, batería larga duración',
     stock: 'available'
@@ -107,7 +107,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: false,
     contractDiscount: 0,
-    image: 'https://placehold.co/400x300/1e293b/ec4899?text=Roll+Up',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 5,
     description: 'Banner retráctil con estructura de aluminio, impresión full color',
     stock: 'on-demand'
@@ -121,7 +121,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: true,
     contractDiscount: 0.08,
-    image: 'https://placehold.co/400x300/1e293b/10b981?text=Archivero',
+    image: 'https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 7,
     description: 'Archivero vertical metálico, 4 gavetas, cerradura de seguridad',
     stock: 'available'
@@ -135,7 +135,7 @@ export const products = [
     uom: 'USD',
     contractAvailable: false,
     contractDiscount: 0,
-    image: 'https://placehold.co/400x300/1e293b/ec4899?text=Tarjetas',
+    image: 'https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=400&h=300&fit=crop&q=80',
     leadTimeDays: 5,
     description: 'Tarjetas de presentación impresas a color, papel couché 300g, barniz UV',
     stock: 'on-demand'

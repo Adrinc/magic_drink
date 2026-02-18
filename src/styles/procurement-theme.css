@@ -58,8 +58,10 @@
   --z-fixed: 300;
   --z-modal-backdrop: 400;
   --z-modal: 500;
+  --z-drawer: 600;            /* Drawer lateral */
   --z-popover: 600;
   --z-tooltip: 700;
+  --z-header: 1000;           /* TopBar siempre encima de todo */
   
   /* ========== SPACING SYSTEM ========== */
   --space-xs: 0.5rem;    /* 8px */

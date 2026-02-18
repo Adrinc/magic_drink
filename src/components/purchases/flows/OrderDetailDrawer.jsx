@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useStore } from "@nanostores/react";
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, Package, Building2, FileText, Clock, MapPin, Calendar, CheckCircle, Send, Truck, Archive } from 'lucide-react';
 import { $selectedRole, updateOrderStatus } from '../../../stores/purchasesStore';
 import { formatCurrency, formatDate, getRelativeTime } from '../../../data/purchases/seed';
@@ -330,9 +331,22 @@ const OrderDetailDrawer = ({ order, onClose }) => {
   };
 
   return (
-    <>
-      <div className={styles.drawerOverlay} onClick={onClose} />
-      <div className={styles.drawer}>
+    <AnimatePresence>
+      <motion.div
+        className={styles.drawerOverlay}
+        onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+      />
+      <motion.div
+        className={styles.drawer}
+        initial={{ x: '100%' }}
+        animate={{ x: 0 }}
+        exit={{ x: '100%' }}
+        transition={{ type: 'tween', duration: 0.3, ease: 'easeOut' }}
+      >
         {/* Header */}
         <div className={styles.drawerHeader}>
           <div className={styles.drawerHeaderTop}>
@@ -386,8 +400,8 @@ const OrderDetailDrawer = ({ order, onClose }) => {
         <div className={styles.drawerFooter}>
           {renderFooter()}
         </div>
-      </div>
-    </>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

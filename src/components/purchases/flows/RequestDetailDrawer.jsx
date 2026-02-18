@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useStore } from '@nanostores/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
   FileText, 
@@ -228,15 +229,25 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
   );
 
   return (
-    <>
+    <AnimatePresence>
       {/* Overlay */}
-      <div 
+      <motion.div 
         className={styles.drawerOverlay}
         onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
       />
 
       {/* Drawer */}
-      <div className={styles.drawer}>
+      <motion.div 
+        className={styles.drawer}
+        initial={{ x: '100%' }}
+        animate={{ x: 0 }}
+        exit={{ x: '100%' }}
+        transition={{ type: 'tween', duration: 0.3, ease: 'easeOut' }}
+      >
         
         {/* Header */}
         <div className={styles.drawerHeader}>
@@ -392,8 +403,8 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
             </div>
           )}
         </div>
-      </div>
-    </>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

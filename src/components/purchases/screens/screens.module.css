@@ -42,12 +42,32 @@
   background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
   border-bottom: 1px solid var(--border-primary);
   padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }
 
 .catalogHeroContent {
   max-width: 1920px;
   margin: 0 auto;
   padding: 0 2rem;
+  flex: 1;
+}
+
+.catalogHeroIllustration {
+  flex-shrink: 0;
+  opacity: 0.9;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .catalogTitle {
@@ -653,13 +673,24 @@
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+  .catalogGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 1024px) {
+  .catalogGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
   .requestsStats {
     grid-template-columns: repeat(2, 1fr);
   }
   
   .requestsTableWrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .requestsTable {
@@ -668,22 +699,149 @@
 }
 
 @media (max-width: 768px) {
+  .screenContent {
+    padding: 1rem;
+  }
+  
+  .screenTitle {
+    font-size: 1.5rem;
+  }
+  
+  /* Catalog responsive */
+  .catalogHero {
+    padding: 1.5rem 1rem;
+  }
+  
+  .catalogHeroContent {
+    padding: 0;
+  }
+  
+  .catalogTitle {
+    font-size: 1.5rem;
+  }
+  
+  .catalogSearch {
+    padding: 1rem;
+  }
+  
+  .searchInputWrapper {
+    max-width: 100%;
+  }
+  
+  .filterButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .catalogFilters {
+    padding: 0 1rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .filterClear {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .catalogCategories {
+    padding: 0 1rem 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .catalogContent {
+    padding: 0 1rem 1rem;
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+  
+  .catalogGrid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  
+  .catalogFooter {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
+  }
+  
+  /* Requests responsive */
   .requestsHeader {
     flex-direction: column;
     gap: 1rem;
+  }
+  
+  .requestsTitle {
+    font-size: 1.5rem;
   }
   
   .requestsStats {
     grid-template-columns: 1fr;
   }
   
+  .requestsStatValue {
+    font-size: 1.5rem;
+  }
+  
   .requestsFilters {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
   }
   
   .requestsFilterBtn {
     white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
+  .requestsTable {
+    font-size: 0.8125rem;
+  }
+  
+  .requestsTableAmount {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .screenContent {
+    padding: 0.75rem;
+  }
+  
+  .catalogHero {
+    padding: 1rem 0.75rem;
+  }
+  
+  .catalogTitle {
+    font-size: 1.25rem;
+  }
+  
+  .catalogDescription {
+    font-size: 0.875rem;
+  }
+  
+  .searchInput {
+    font-size: 0.875rem;
+  }
+  
+  .categoryChip {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.75rem;
+  }
+  
+  .requestsTitle {
+    font-size: 1.25rem;
+  }
+  
+  .requestsStatCard {
+    padding: 1rem;
+  }
+  
+  .requestsFilterBtn {
+    padding: 0.75rem 1rem;
+    font-size: 0.8125rem;
   }
 }
 

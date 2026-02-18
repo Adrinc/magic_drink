@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ShoppingCart, Tag, TrendingDown } from 'lucide-react';
 import { addToCart } from '../../../stores/purchasesStore';
 import { getSupplierName } from '../../../data/purchases/suppliers';
@@ -17,7 +18,13 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <article className={styles.productCard}>
+    <motion.article
+      className={styles.productCard}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
       
       {/* Image */}
       <div className={styles.productImage}>
@@ -100,7 +107,7 @@ const ProductCard = ({ product }) => {
         </div>
 
       </div>
-    </article>
+    </motion.article>
   );
 };
 

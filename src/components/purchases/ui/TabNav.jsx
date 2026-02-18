@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ShoppingBag, FileText, Package, BarChart3 } from 'lucide-react';
 import styles from './ui.module.css';
 
@@ -17,15 +18,18 @@ const TabNav = ({ activeTab, onTabChange }) => {
         const isActive = activeTab === tab.id;
         
         return (
-          <button
+          <motion.button
             key={tab.id}
             className={`${styles.tabButton} ${isActive ? styles.tabButtonActive : ''}`}
             onClick={() => onTabChange(tab.id)}
             aria-current={isActive ? 'page' : undefined}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.15 }}
           >
             <Icon size={18} />
             <span>{tab.label}</span>
-          </button>
+          </motion.button>
         );
       })}
     </nav>

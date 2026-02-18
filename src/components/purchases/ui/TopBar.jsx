@@ -26,7 +26,12 @@ const TopBar = ({ activeTab, onTabChange }) => {
         {/* Logo y Brand */}
         <div className={styles.topBarBrand}>
           <div className={styles.topBarLogo}>
-            <ShoppingBag size={24} className={styles.topBarLogoIcon} />
+            <img 
+              src={`${import.meta.env.BASE_URL}/image/purchases/logo-compras.svg`}
+              alt="Portal Compras"
+              width={28}
+              height={28}
+            />
           </div>
           <div className={styles.topBarBrandText}>
             <h1 className={styles.topBarTitle}>Portal Compras</h1>
@@ -95,24 +100,5 @@ const TopBar = ({ activeTab, onTabChange }) => {
     </header>
   );
 };
-
-// Icon placeholder component
-const ShoppingBag = ({ size, className }) => (
-  <svg 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-    <line x1="3" y1="6" x2="21" y2="6"></line>
-    <path d="M16 10a4 4 0 0 1-8 0"></path>
-  </svg>
-);
 
 export default TopBar;

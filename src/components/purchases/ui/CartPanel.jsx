@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useStore } from '@nanostores/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShoppingCart, 
   Plus, 
@@ -81,17 +82,26 @@ const CartPanel = ({ onCreateRequest }) => {
                 <span>Agrega productos del catálogo</span>
               </div>
             ) : (
-              cart.map((item) => {
-                const product = getProductById(item.productId);
-                if (!product) return null;
-                
-                const price = item.useContract 
-                  ? getContractPrice(product) 
-                  : product.price;
-                const subtotal = price * item.qty;
+              <AnimatePresence mode="popLayout">
+                {cart.map((item) => {
+                  const product = getProductById(item.productId);
+                  if (!product) return null;
+                  
+                  const price = item.useContract 
+                    ? getContractPrice(product) 
+                    : product.price;
+                  const subtotal = price * item.qty;
 
-                return (
-                  <div key={`${item.productId}-${item.useContract}`} className={styles.cartItem}>
+                  return (
+                    <motion.div
+                      key={`${item.productId}-${item.useContract}`}
+                      className={styles.cartItem}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, x: -100 }}
+                      transition={{ duration: 0.2 }}
+                      layout
+                    >
                     
                     {/* Image */}
                     <div className={styles.cartItemImage}>
@@ -147,9 +157,10 @@ const CartPanel = ({ onCreateRequest }) => {
                         Subtotal: <strong>{formatCurrency(subtotal)}</strong>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
-              })
+              })}
+              </AnimatePresence>
             )}
           </div>
 

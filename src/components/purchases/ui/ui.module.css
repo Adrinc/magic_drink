@@ -912,6 +912,14 @@
    RESPONSIVE
    ======================================== */
 
+/* Laptop grande y Desktop */
+@media (max-width: 1400px) {
+  .cartPanel {
+    width: 320px;
+  }
+}
+
+/* Laptop estándar */
 @media (max-width: 1200px) {
   .topBarContainer {
     padding: 1rem 1.5rem;
@@ -926,8 +934,41 @@
   .budgetIndicator {
     padding: 0.5rem 0.75rem;
   }
+  
+  .cartPanel {
+    width: 300px;
+  }
+  
+  .productCard {
+    font-size: 0.9375rem;
+  }
 }
 
+/* Tablet y pantallas medianas */
+@media (max-width: 1024px) {
+  .topBarBrandText {
+    display: none;
+  }
+  
+  .topBarBrand {
+    min-width: auto;
+  }
+  
+  .tabButton {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+  
+  .cartPanel {
+    width: 280px;
+  }
+  
+  .productImage {
+    height: 160px;
+  }
+}
+
+/* Tablet pequeño y móvil grande */
 @media (max-width: 768px) {
   .topBarContainer {
     flex-wrap: wrap;
@@ -947,12 +988,15 @@
   .tabNav {
     width: 100%;
     justify-content: space-between;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
   .tabButton {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0.625rem 0.75rem;
     justify-content: center;
+    min-width: 70px;
   }
   
   .tabButton span {
@@ -961,15 +1005,67 @@
   
   .topBarControls {
     gap: 0.5rem;
+    flex-wrap: wrap;
   }
   
   .budgetIndicator,
   .roleSelector {
     padding: 0.5rem;
+    font-size: 0.8125rem;
+  }
+  
+  .budgetInfo {
+    display: none;
   }
   
   .backLink {
     padding: 0.5rem;
+  }
+  
+  .backLink span {
+    display: none;
+  }
+  
+  /* CartPanel en móvil - se convierte en modal fixed */
+  .cartPanel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    box-shadow: var(--shadow-2xl);
+    transform: translateY(calc(100% - 60px));
+    transition: transform 0.3s ease-out;
+  }
+  
+  .cartPanel:hover,
+  .cartPanel:focus-within {
+    transform: translateY(0);
+  }
+  
+  .cartHeader {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .cartHeader::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    background: var(--border-primary);
+    border-radius: 2px;
+  }
+  
+  .cartHeader {
+    padding-top: 1.5rem;
   }
   
   .productImage {
@@ -982,5 +1078,93 @@
   
   .productTitle {
     font-size: 0.9375rem;
+  }
+  
+  .productPrice {
+    font-size: 1.125rem;
+  }
+  
+  .badge {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  /* Modal ajustes */
+  .modalContainer {
+    width: 95vw;
+    max-height: 85vh;
+    margin: 1rem;
+  }
+  
+  .modalHeader {
+    padding: 1rem;
+  }
+  
+  .modalBody {
+    padding: 1rem;
+  }
+  
+  .modalFooter {
+    padding: 1rem;
+  }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+  .topBarContainer {
+    padding: 0.75rem;
+  }
+  
+  .topBarLogo {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .tabButton {
+    padding: 0.5rem;
+    min-width: 60px;
+  }
+  
+  .roleSelector {
+    font-size: 0.75rem;
+  }
+  
+  .cartPanel {
+    transform: translateY(calc(100% - 50px));
+  }
+  
+  .cartItems {
+    max-height: 30vh;
+  }
+  
+  .productCard {
+    border-radius: var(--radius-md);
+  }
+  
+  .productTitle {
+    font-size: 0.875rem;
+  }
+  
+  .productMeta {
+    font-size: 0.75rem;
+  }
+  
+  .modalContainer {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+  }
+}
+
+/* Ajustes para landscape en móvil */
+@media (max-height: 600px) and (orientation: landscape) {
+  .cartPanel {
+    max-height: 80vh;
+  }
+  
+  .modalContainer {
+    max-height: 95vh;
   }
 }

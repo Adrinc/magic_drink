@@ -36,6 +36,18 @@ const TopBar = ({ activeTab, onTabChange }) => {
     setIsMobileMenuOpen(false);
   }, [activeTab]);
 
+  // Cerrar menú móvil cuando la pantalla se hace grande
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1200 && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobileMenuOpen]);
+
   // Cerrar menús al hacer click fuera
   useEffect(() => {
     const handleClickOutside = (e) => {

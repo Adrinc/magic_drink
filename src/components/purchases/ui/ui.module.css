@@ -36,7 +36,8 @@
   text-decoration: none;
   transition: all var(--transition-fast);
   white-space: nowrap;
-  margin-right: auto;
+  position: absolute;
+  left: 2rem;
 }
 
 .exitButton:hover {
@@ -56,6 +57,7 @@
   align-items: center;
   gap: 0.75rem;
   min-width: 180px;
+  margin-left: 160px;
 }
 
 .topBarLogo {
@@ -673,7 +675,9 @@
   }
   
   .exitButton {
+    position: static;
     padding: 0.625rem 0.875rem;
+    margin-left: 0;
   }
   
   .exitButtonText {
@@ -681,7 +685,7 @@
   }
   
   .topBarBrand {
-    margin: 0 0 0 0.5rem;
+    margin-left: 0.5rem;
   }
   
   .mobileHeader {
@@ -703,6 +707,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
   
   .exitButton {
@@ -712,6 +717,7 @@
   .topBarBrand {
     min-width: auto;
     margin: 0;
+    position: static;
   }
   
   .topBarBrandText {

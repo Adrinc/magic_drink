@@ -42,7 +42,7 @@ export const $requests = atom([
 ]);
 
 export const $orders = atom([
-  // Mock order inicial para testing
+  // Mock order 1 - En proceso de entrega
   {
     id: 'PO-00010',
     requestId: 'PR-00020',
@@ -54,7 +54,99 @@ export const $orders = atom([
     ],
     total: 2398,
     deliveryAddress: 'Oficina Central - Av. Principal 123',
-    deliveryDate: generateMockDate(-5)  // 5 días en el futuro
+    deliveryDate: generateMockDate(-5),
+    statusHistory: [
+      {
+        status: 'Generada',
+        date: generateMockDate(2),
+        role: 'employee',
+        userName: 'Sistema',
+        notes: 'Orden generada automáticamente desde PR-00020'
+      },
+      {
+        status: 'Enviada',
+        date: generateMockDate(1),
+        role: 'employee',
+        userName: 'María López',
+        notes: 'Orden enviada a ComputoTech'
+      }
+    ]
+  },
+  // Mock order 2 - Recibida
+  {
+    id: 'PO-00009',
+    requestId: 'PR-00019',
+    supplierId: 'sup-002',
+    status: 'Recibida',
+    createdAt: generateMockDate(7),
+    items: [
+      { productId: 'prod-005', qty: 10, price: 45 }
+    ],
+    total: 450,
+    deliveryAddress: 'Almacén General - Sótano 1',
+    deliveryDate: generateMockDate(0),
+    statusHistory: [
+      {
+        status: 'Generada',
+        date: generateMockDate(7),
+        role: 'employee',
+        userName: 'Sistema'
+      },
+      {
+        status: 'Enviada',
+        date: generateMockDate(6),
+        role: 'employee',
+        userName: 'Pedro Ramírez'
+      },
+      {
+        status: 'Recibida',
+        date: generateMockDate(1),
+        role: 'approver',
+        userName: 'Laura Martínez',
+        notes: 'Productos recibidos en buen estado'
+      }
+    ]
+  },
+  // Mock order 3 - Cerrada
+  {
+    id: 'PO-00008',
+    requestId: 'PR-00018',
+    supplierId: 'sup-003',
+    status: 'Cerrada',
+    createdAt: generateMockDate(15),
+    items: [
+      { productId: 'prod-007', qty: 1, price: 899 }
+    ],
+    total: 899,
+    deliveryAddress: 'Sala de Conferencias - Piso 5',
+    deliveryDate: generateMockDate(-8),
+    statusHistory: [
+      {
+        status: 'Generada',
+        date: generateMockDate(15),
+        role: 'employee',
+        userName: 'Sistema'
+      },
+      {
+        status: 'Enviada',
+        date: generateMockDate(14),
+        role: 'employee',
+        userName: 'Carlos Pérez'
+      },
+      {
+        status: 'Recibida',
+        date: generateMockDate(10),
+        role: 'approver',
+        userName: 'Ana García'
+      },
+      {
+        status: 'Cerrada',
+        date: generateMockDate(8),
+        role: 'finance',
+        userName: 'Roberto Sánchez',
+        notes: 'Orden cerrada - Factura procesada'
+      }
+    ]
   }
 ]);
 
@@ -126,6 +218,75 @@ export const $ordersStats = computed($orders, (orders) => {
     received: orders.filter(o => o.status === 'Recibida').length,
     closed: orders.filter(o => o.status === 'Cerrada').length
   };
+});
+
+// Totales financieros globales
+export const $financialStats = computed([$requests, $orders], (requests, orders) => {
+  // Comprometido: solicitudes aprobadas no cerradas
+  const committed = requests
+    .filter(r => r.status === 'Aprobada' || r.status === 'En aprobación')
+    .reduce((sum, r) => sum + r.total, 0);
+  
+  // Gastado: órdenes cerradas
+  const spent = orders
+    .filter(o => o.status === 'Cerrada')
+    .reduce((sum, o) => sum + o.total, 0);
+  
+  // Total presupuesto (simplificado - suma de todos los centros de costo)
+  const allocated = 500000; // Hardcoded para demo, debería sumarse de budgets
+  
+  const available = allocated - committed - spent;
+  
+  return {
+    allocated,
+    committed,
+    spent,
+    available,
+    utilizationPercent: allocated > 0 ? Math.round(((committed + spent) / allocated) * 100) : 0
+  };
+});
+
+// Gasto por categoría
+export const $spendingByCategory = computed([$orders], (orders) => {
+  const categoryTotals = {};
+  
+  orders.forEach(order => {
+    order.items.forEach(item => {
+      const product = getProductById(item.productId);
+      if (product) {
+        if (!categoryTotals[product.categoryId]) {
+          categoryTotals[product.categoryId] = 0;
+        }
+        categoryTotals[product.categoryId] += item.price * item.qty;
+      }
+    });
+  });
+  
+  return Object.entries(categoryTotals).map(([categoryId, amount]) => ({
+    categoryId,
+    amount
+  })).sort((a, b) => b.amount - a.amount);
+});
+
+// Gasto por proveedor
+export const $spendingBySupplier = computed([$orders], (orders) => {
+  const supplierTotals = {};
+  
+  orders.forEach(order => {
+    if (!supplierTotals[order.supplierId]) {
+      supplierTotals[order.supplierId] = {
+        total: 0,
+        orderCount: 0
+      };
+    }
+    supplierTotals[order.supplierId].total += order.total;
+    supplierTotals[order.supplierId].orderCount += 1;
+  });
+  
+  return Object.entries(supplierTotals).map(([supplierId, data]) => ({
+    supplierId,
+    ...data
+  })).sort((a, b) => b.total - a.total);
 });
 
 // ========================================
@@ -314,20 +475,43 @@ export function generateOrder(requestId, deliveryAddress, deliveryDays = 5) {
     items: request.items,
     total: request.total,
     deliveryAddress: deliveryAddress || 'Oficina Central - Dirección por definir',
-    deliveryDate: deliveryDate.toISOString()
+    deliveryDate: deliveryDate.toISOString(),
+    statusHistory: [
+      {
+        status: 'Generada',
+        date: new Date().toISOString(),
+        role: $selectedRole.get(),
+        userName: getUserName()
+      }
+    ]
   };
   
   $orders.set([newOrder, ...$orders.get()]);
   return newOrder;
 }
 
-export function updateOrderStatus(orderId, newStatus) {
+export function updateOrderStatus(orderId, newStatus, notes = '') {
   const orders = $orders.get();
   const order = orders.find(o => o.id === orderId);
   
   if (!order) return false;
   
   order.status = newStatus;
+  
+  // Initialize statusHistory if it doesn't exist
+  if (!order.statusHistory) {
+    order.statusHistory = [];
+  }
+  
+  // Add status change to history
+  order.statusHistory.push({
+    status: newStatus,
+    date: new Date().toISOString(),
+    role: $selectedRole.get(),
+    userName: getUserName(),
+    notes
+  });
+  
   $orders.set([...orders]);
   return true;
 }

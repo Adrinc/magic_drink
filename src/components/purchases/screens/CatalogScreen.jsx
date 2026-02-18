@@ -13,14 +13,16 @@ import { products } from '../../../data/purchases/products';
 import { categories } from '../../../data/purchases/categories';
 import ProductCard from '../ui/ProductCard';
 import CartPanel from '../ui/CartPanel';
+import CreateRequestModal from '../flows/CreateRequestModal';
 import Badge from '../ui/Badge';
 import styles from './screens.module.css';
 
-const CatalogScreen = ({ onCreateRequest }) => {
+const CatalogScreen = () => {
   const searchQuery = useStore($searchQuery);
   const selectedCategory = useStore($selectedCategory);
   const contractOnly = useStore($contractOnly);
   const [showFilters, setShowFilters] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   // Filtrar productos
   const filteredProducts = products.filter(product => {
@@ -172,7 +174,7 @@ const CatalogScreen = ({ onCreateRequest }) => {
         </div>
 
         {/* Cart Panel */}
-        <CartPanel onCreateRequest={onCreateRequest} />
+        <CartPanel onCreateRequest={() => setShowCreateModal(true)} />
       </div>
 
       {/* Results Count */}
@@ -184,6 +186,12 @@ const CatalogScreen = ({ onCreateRequest }) => {
           }
         </p>
       </div>
+
+      {/* Create Request Modal */}
+      <CreateRequestModal 
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+      />
     </div>
   );
 };

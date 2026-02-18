@@ -230,25 +230,29 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
 
   return (
     <AnimatePresence>
-      {/* Modal Overlay */}
-      <motion.div 
-        className={styles.modalOverlay}
-        onClick={onClose}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-      />
+      {isOpen && (
+        <>
+          {/* Modal Overlay */}
+          <motion.div 
+            key="request-overlay"
+            className={styles.modalOverlay}
+            onClick={onClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          />
 
-      {/* Modal Content */}
-      <motion.div 
-        className={styles.modal}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ type: 'spring', duration: 0.3 }}
-        onClick={(e) => e.stopPropagation()}
-      >
+          {/* Modal Content */}
+          <motion.div 
+            key="request-modal"
+            className={styles.modal}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ type: 'spring', duration: 0.3 }}
+            onClick={(e) => e.stopPropagation()}
+          >
         
         {/* Header */}
         <div className={styles.modalHeader}>
@@ -409,6 +413,8 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
           )}
         </div>
       </motion.div>
+        </>
+      )}
     </AnimatePresence>
   );
 };

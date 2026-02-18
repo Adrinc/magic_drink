@@ -332,26 +332,24 @@ const OrderDetailDrawer = ({ order, onClose }) => {
 
   return (
     <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            key="order-overlay"
-            className={styles.modalOverlay}
-            onClick={onClose}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          />
-          <motion.div
-            key="order-modal"
-            className={styles.modal}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ type: 'spring', duration: 0.3 }}
-            onClick={(e) => e.stopPropagation()}
-          >
+      <motion.div
+        key="order-overlay"
+        className={styles.modalOverlay}
+        onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+      >
+        <motion.div
+          key="order-modal"
+          className={styles.modal}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ type: 'spring', duration: 0.3 }}
+          onClick={(e) => e.stopPropagation()}
+        >
         {/* Modal Header */}
         <div className={styles.modalHeader}>
           <div className={styles.modalHeaderLeft}>
@@ -398,9 +396,8 @@ const OrderDetailDrawer = ({ order, onClose }) => {
         <div className={styles.modalFooter}>
           {renderFooter()}
         </div>
+        </motion.div>
       </motion.div>
-        </>
-      )}
     </AnimatePresence>
   );
 };

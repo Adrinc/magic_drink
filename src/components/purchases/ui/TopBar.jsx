@@ -14,6 +14,13 @@ const ROLES = [
 
 const COST_CENTERS = ['TI', 'Oficina', 'Marketing', 'Mantenimiento'];
 
+const TABS = [
+  { id: 'catalog', label: 'Catálogo' },
+  { id: 'requests', label: 'Solicitudes' },
+  { id: 'orders', label: 'Órdenes' },
+  { id: 'reports', label: 'Reportes' }
+];
+
 const TopBar = ({ activeTab, onTabChange }) => {
   const role = useStore($selectedRole);
   const budgetInfo = useStore($budgetInfo);
@@ -22,6 +29,7 @@ const TopBar = ({ activeTab, onTabChange }) => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const currentRole = ROLES.find(r => r.id === role) || ROLES[0];
+  const currentTab = TABS.find(t => t.id === activeTab) || TABS[0];
 
   // Cerrar menú móvil cuando cambia el tab
   useEffect(() => {
@@ -43,7 +51,7 @@ const TopBar = ({ activeTab, onTabChange }) => {
     <header className={styles.topBar}>
       <div className={styles.topBarContainer}>
         
-        {/* Salir Demo - Lado Izquierdo */}
+        {/* Salir Demo - Desktop Only */}
         <a 
           href="https://cbluna.com/" 
           className={styles.exitButton}
@@ -163,6 +171,11 @@ const TopBar = ({ activeTab, onTabChange }) => {
           </div>
         </div>
 
+        {/* Mobile Header Elements */}
+        <div className={styles.mobileHeader}>
+          <span className={styles.mobileCurrentTab}>{currentTab.label}</span>
+        </div>
+
         {/* Menú Hamburguesa - Mobile */}
         <button
           className={styles.mobileMenuButton}
@@ -178,6 +191,16 @@ const TopBar = ({ activeTab, onTabChange }) => {
         <div className={styles.mobileMenuOverlay}>
           <div className={styles.mobileMenuContent}>
             
+            {/* Salir Demo - Mobile */}
+            <a 
+              href="https://cbluna.com/" 
+              className={styles.mobileExitButton}
+              aria-label="Salir de la demo"
+            >
+              <ArrowLeft size={20} />
+              <span>Salir de la demo</span>
+            </a>
+
             {/* User Info Mobile */}
             <div className={styles.mobileUserInfo}>
               <img 

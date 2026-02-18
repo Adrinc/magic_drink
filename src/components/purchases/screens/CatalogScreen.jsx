@@ -70,14 +70,6 @@ const CatalogScreen = () => {
             Explora productos y servicios autorizados para tu departamento
           </p>
         </div>
-        <div className={styles.catalogHeroIllustration}>
-          <img 
-            src={`${import.meta.env.BASE_URL}/image/purchases/illustrations/catalog-hero.svg`}
-            alt="Catálogo"
-            width={200}
-            height={150}
-          />
-        </div>
       </div>
 
       {/* Search Bar */}

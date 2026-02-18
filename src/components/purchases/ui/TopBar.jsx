@@ -27,10 +27,10 @@ const TopBar = ({ activeTab, onTabChange }) => {
         <div className={styles.topBarBrand}>
           <div className={styles.topBarLogo}>
             <img 
-              src={`${import.meta.env.BASE_URL}/image/purchases/logo-compras.svg`}
+              src={`${import.meta.env.BASE_URL}/favicon.png`}
               alt="Portal Compras"
-              width={28}
-              height={28}
+              width={32}
+              height={32}
             />
           </div>
           <div className={styles.topBarBrandText}>

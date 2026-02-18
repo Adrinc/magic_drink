@@ -42,32 +42,12 @@
   background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
   border-bottom: 1px solid var(--border-primary);
   padding: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
 }
 
 .catalogHeroContent {
   max-width: 1920px;
   margin: 0 auto;
   padding: 0 2rem;
-  flex: 1;
-}
-
-.catalogHeroIllustration {
-  flex-shrink: 0;
-  opacity: 0.9;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .catalogTitle {

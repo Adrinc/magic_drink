@@ -10,6 +10,7 @@ import styles from './screens.module.css';
 
 const STATUS_FILTERS = [
   { key: 'all', label: 'Todas' },
+  { key: 'pending', label: 'Pendientes' },
   { key: 'Generada', label: 'Generadas' },
   { key: 'Enviada', label: 'Enviadas' },
   { key: 'Recibida', label: 'Recibidas' },
@@ -48,7 +49,9 @@ const OrdersScreen = () => {
     let filtered = orders;
     
     // Filtro por estado
-    if (selectedStatus !== 'all') {
+    if (selectedStatus === 'pending') {
+      filtered = filtered.filter(o => o.status === 'Generada' || o.status === 'Enviada');
+    } else if (selectedStatus !== 'all') {
       filtered = filtered.filter(o => o.status === selectedStatus);
     }
     
@@ -107,53 +110,18 @@ const OrdersScreen = () => {
           </div>
         </div>
 
-        {/* Stats Cards */}
-        <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
-              <Package size={20} />
-            </div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stats.total}</span>
-              <span className={styles.statLabel}>Total Órdenes</span>
-            </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' }}>
-              <TrendingUp size={20} />
-            </div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stats.active}</span>
-              <span className={styles.statLabel}>Activas</span>
-            </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' }}>
-              <Clock size={20} />
-            </div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stats.sent}</span>
-              <span className={styles.statLabel}>Enviadas</span>
-            </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)' }}>
-              <Package size={20} />
-            </div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stats.received}</span>
-              <span className={styles.statLabel}>Recibidas</span>
-            </div>
-          </div>
-        </div>
-
         {/* Filtros y Búsqueda */}
         <div className={styles.tableControls}>
           <div className={styles.filterTabs}>
             {STATUS_FILTERS.map(filter => {
-              const count = filter.key === 'all'
-                ? orders.length
-                : orders.filter(o => o.status === filter.key).length;
+              let count;
+              if (filter.key === 'all') {
+                count = orders.length;
+              } else if (filter.key === 'pending') {
+                count = orders.filter(o => o.status === 'Generada' || o.status === 'Enviada').length;
+              } else {
+                count = orders.filter(o => o.status === filter.key).length;
+              }
 
               return (
                 <button

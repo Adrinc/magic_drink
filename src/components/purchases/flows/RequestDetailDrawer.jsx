@@ -93,11 +93,11 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
 
   // Details Tab
   const renderDetailsTab = () => (
-    <div className={styles.drawerSection}>
+    <div className={styles.modalSection}>
       
       {/* Items List */}
-      <div className={styles.drawerBlock}>
-        <h4 className={styles.drawerBlockTitle}>
+      <div className={styles.modalBlock}>
+        <h4 className={styles.modalBlockTitle}>
           <ShoppingBag size={18} />
           Items Solicitados
         </h4>
@@ -139,8 +139,8 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
       </div>
 
       {/* Additional Info */}
-      <div className={styles.drawerBlock}>
-        <h4 className={styles.drawerBlockTitle}>
+      <div className={styles.modalBlock}>
+        <h4 className={styles.modalBlockTitle}>
           <FileText size={18} />
           Información Adicional
         </h4>
@@ -171,8 +171,8 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
 
       {/* Notes */}
       {request.notes && (
-        <div className={styles.drawerBlock}>
-          <h4 className={styles.drawerBlockTitle}>
+        <div className={styles.modalBlock}>
+          <h4 className={styles.modalBlockTitle}>
             <MessageSquare size={18} />
             Notas
           </h4>
@@ -184,7 +184,7 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
 
   // Timeline Tab
   const renderTimelineTab = () => (
-    <div className={styles.drawerSection}>
+    <div className={styles.modalSection}>
       <div className={styles.timeline}>
         {request.approvals.map((approval, index) => {
           const Icon = getApprovalIcon(approval.action);
@@ -230,9 +230,9 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
 
   return (
     <AnimatePresence>
-      {/* Overlay */}
+      {/* Modal Overlay */}
       <motion.div 
-        className={styles.drawerOverlay}
+        className={styles.modalOverlay}
         onClick={onClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -240,56 +240,61 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
         transition={{ duration: 0.2 }}
       />
 
-      {/* Drawer */}
+      {/* Modal Content */}
       <motion.div 
-        className={styles.drawer}
-        initial={{ x: '100%' }}
-        animate={{ x: 0 }}
-        exit={{ x: '100%' }}
-        transition={{ type: 'tween', duration: 0.3, ease: 'easeOut' }}
+        className={styles.modal}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ type: 'spring', duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
       >
         
         {/* Header */}
-        <div className={styles.drawerHeader}>
-          <div className={styles.drawerHeaderTop}>
-            <div className={styles.drawerHeaderInfo}>
-              <h3 className={styles.drawerTitle}>{request.id}</h3>
+        <div className={styles.modalHeader}>
+          <div className={styles.modalHeaderLeft}>
+            <div className={styles.modalHeaderInfo}>
+              <h2 className={styles.modalTitle}>{request.id}</h2>
               <Badge variant={getStatusVariant(request.status)} size="md">
                 {request.status}
               </Badge>
             </div>
+          </div>
+          <div className={styles.modalHeaderRight}>
             <button
               onClick={onClose}
-              className={styles.drawerClose}
-              aria-label="Cerrar panel"
+              className={styles.modalClose}
+              aria-label="Cerrar modal"
             >
               <X size={20} />
             </button>
           </div>
-          <div className={styles.drawerHeaderMeta}>
-            <div className={styles.drawerMetaItem}>
-              <User size={16} />
-              <span>{request.requesterName}</span>
-            </div>
-            <div className={styles.drawerMetaItem}>
-              <Clock size={16} />
-              <span>{getRelativeTime(request.createdAt)}</span>
-            </div>
-            <div className={styles.drawerMetaItem}>
-              <strong>{formatCurrency(request.total)}</strong>
-            </div>
+        </div>
+
+        {/* Meta Info (below header for mobile) */}
+        <div style={{ padding: '0 1.5rem 1rem', display: 'flex', gap: '1rem', flexWrap: 'wrap', fontSize: '0.875rem', color: 'var(--text-secondary)', borderBottom: '1px solid var(--border-primary)', background: 'var(--bg-tertiary)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <User size={16} />
+            <span>{request.requesterName}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Clock size={16} />
+            <span>{getRelativeTime(request.createdAt)}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <strong style={{ color: 'var(--accent-primary)', fontSize: '1.125rem' }}>{formatCurrency(request.total)}</strong>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className={styles.drawerTabs}>
+        <div className={styles.modalTabs}>
           {TABS.map(tab => {
             const Icon = tab.icon;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`${styles.drawerTab} ${activeTab === tab.id ? styles.drawerTabActive : ''}`}
+                className={`${styles.modalTab} ${activeTab === tab.id ? styles.modalTabActive : ''}`}
               >
                 <Icon size={16} />
                 <span>{tab.label}</span>
@@ -299,24 +304,24 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
         </div>
 
         {/* Content */}
-        <div className={styles.drawerBody}>
+        <div className={styles.modalBody}>
           {activeTab === 'details' ? renderDetailsTab() : renderTimelineTab()}
         </div>
 
         {/* Footer Actions */}
-        <div className={styles.drawerFooter}>
+        <div className={styles.modalFooter}>
           {canApprove && !showApproveConfirm && !showRejectConfirm && (
             <>
               <button
                 onClick={() => setShowApproveConfirm(true)}
-                className={styles.drawerButtonSuccess}
+                className={styles.modalButtonSuccess}
               >
                 <CheckCircle size={18} />
                 Aprobar Solicitud
               </button>
               <button
                 onClick={() => setShowRejectConfirm(true)}
-                className={styles.drawerButtonError}
+                className={styles.modalButtonError}
               >
                 <XCircle size={18} />
                 Rechazar
@@ -389,7 +394,7 @@ const RequestDetailDrawer = ({ request, isOpen, onClose }) => {
           {canGenerateOrder && !showApproveConfirm && !showRejectConfirm && (
             <button
               onClick={handleGenerateOrder}
-              className={styles.drawerButtonPrimary}
+              className={styles.modalButtonPrimary}
             >
               <Package size={18} />
               Generar Orden de Compra

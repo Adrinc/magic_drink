@@ -9,6 +9,7 @@ import styles from './screens.module.css';
 
 const STATUS_FILTERS = [
   { id: 'all', label: 'Todas' },
+  { id: 'pending', label: 'Pendientes' },
   { id: 'Enviada', label: 'Enviadas' },
   { id: 'En aprobación', label: 'En Aprobación' },
   { id: 'Aprobada', label: 'Aprobadas' },
@@ -44,7 +45,9 @@ const RequestsScreen = () => {
     let filtered = requests;
     
     // Filtro por estado
-    if (selectedStatus !== 'all') {
+    if (selectedStatus === 'pending') {
+      filtered = filtered.filter(r => r.status === 'Enviada' || r.status === 'En aprobación');
+    } else if (selectedStatus !== 'all') {
       filtered = filtered.filter(r => r.status === selectedStatus);
     }
     
@@ -108,53 +111,18 @@ const RequestsScreen = () => {
           </div>
         </div>
 
-        {/* Stats Cards */}
-        <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
-              <FileText size={20} />
-            </div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stats.total}</span>
-              <span className={styles.statLabel}>Total Solicitudes</span>
-            </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' }}>
-              <Clock size={20} />
-            </div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stats.pending}</span>
-              <span className={styles.statLabel}>Pendientes</span>
-            </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' }}>
-              <FileText size={20} />
-            </div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stats.approved}</span>
-              <span className={styles.statLabel}>Aprobadas</span>
-            </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon} style={{ background: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' }}>
-              <FileText size={20} />
-            </div>
-            <div className={styles.statContent}>
-              <span className={styles.statValue}>{stats.rejected}</span>
-              <span className={styles.statLabel}>Rechazadas</span>
-            </div>
-          </div>
-        </div>
-
         {/* Filtros y Búsqueda */}
         <div className={styles.tableControls}>
           <div className={styles.filterTabs}>
             {STATUS_FILTERS.map(filter => {
-              const count = filter.id === 'all' 
-                ? requests.length 
-                : requests.filter(r => r.status === filter.id).length;
+              let count;
+              if (filter.id === 'all') {
+                count = requests.length;
+              } else if (filter.id === 'pending') {
+                count = requests.filter(r => r.status === 'Enviada' || r.status === 'En aprobación').length;
+              } else {
+                count = requests.filter(r => r.status === filter.id).length;
+              }
               
               return (
                 <button

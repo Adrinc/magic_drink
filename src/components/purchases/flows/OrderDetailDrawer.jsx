@@ -79,10 +79,10 @@ const OrderDetailDrawer = ({ order, onClose }) => {
   };
 
   const renderDetailsTab = () => (
-    <div className={styles.drawerSection}>
+    <div className={styles.modalSection}>
       {/* Order Items */}
-      <div className={styles.drawerBlock}>
-        <h3 className={styles.drawerBlockTitle}>
+      <div className={styles.modalBlock}>
+        <h3 className={styles.modalBlockTitle}>
           <Package size={18} />
           Items de la Orden ({order.items.length})
         </h3>
@@ -124,8 +124,8 @@ const OrderDetailDrawer = ({ order, onClose }) => {
       </div>
 
       {/* Supplier Info */}
-      <div className={styles.drawerBlock}>
-        <h3 className={styles.drawerBlockTitle}>
+      <div className={styles.modalBlock}>
+        <h3 className={styles.modalBlockTitle}>
           <Building2 size={18} />
           Información del Proveedor
         </h3>
@@ -152,8 +152,8 @@ const OrderDetailDrawer = ({ order, onClose }) => {
       </div>
 
       {/* Order Info */}
-      <div className={styles.drawerBlock}>
-        <h3 className={styles.drawerBlockTitle}>
+      <div className={styles.modalBlock}>
+        <h3 className={styles.modalBlockTitle}>
           <FileText size={18} />
           Información de la Orden
         </h3>
@@ -183,8 +183,8 @@ const OrderDetailDrawer = ({ order, onClose }) => {
 
       {/* Delivery Address */}
       {order.deliveryAddress && (
-        <div className={styles.drawerBlock}>
-          <h3 className={styles.drawerBlockTitle}>
+        <div className={styles.modalBlock}>
+          <h3 className={styles.modalBlockTitle}>
             <MapPin size={18} />
             Dirección de Entrega
           </h3>
@@ -196,8 +196,8 @@ const OrderDetailDrawer = ({ order, onClose }) => {
 
       {/* Notes */}
       {order.notes && (
-        <div className={styles.drawerBlock}>
-          <h3 className={styles.drawerBlockTitle}>
+        <div className={styles.modalBlock}>
+          <h3 className={styles.modalBlockTitle}>
             <FileText size={18} />
             Notas de Entrega
           </h3>
@@ -210,7 +210,7 @@ const OrderDetailDrawer = ({ order, onClose }) => {
   );
 
   const renderTimelineTab = () => (
-    <div className={styles.drawerSection}>
+    <div className={styles.modalSection}>
       <div className={styles.timeline}>
         {order.statusHistory && order.statusHistory.length > 0 ? (
           order.statusHistory.map((event, index) => {
@@ -321,7 +321,7 @@ const OrderDetailDrawer = ({ order, onClose }) => {
 
     return (
       <button
-        className={styles.drawerButtonPrimary}
+        className={styles.modalButtonPrimary}
         onClick={handleChangeStatus}
       >
         <CheckCircle size={18} />
@@ -333,7 +333,7 @@ const OrderDetailDrawer = ({ order, onClose }) => {
   return (
     <AnimatePresence>
       <motion.div
-        className={styles.drawerOverlay}
+        className={styles.modalOverlay}
         onClick={onClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -341,49 +341,43 @@ const OrderDetailDrawer = ({ order, onClose }) => {
         transition={{ duration: 0.2 }}
       />
       <motion.div
-        className={styles.drawer}
-        initial={{ x: '100%' }}
-        animate={{ x: 0 }}
-        exit={{ x: '100%' }}
-        transition={{ type: 'tween', duration: 0.3, ease: 'easeOut' }}
+        className={styles.modal}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ type: 'spring', duration: 0.3 }}
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className={styles.drawerHeader}>
-          <div className={styles.drawerHeaderTop}>
-            <div className={styles.drawerHeaderInfo}>
-              <h2 className={styles.drawerTitle}>{order.id}</h2>
-              <Badge variant={getStatusVariant(order.status)}>{order.status}</Badge>
+        {/* Modal Header */}
+        <div className={styles.modalHeader}>
+          <div className={styles.modalHeaderLeft}>
+            <Package size={24} />
+            <div>
+              <h2 className={styles.modalTitle}>{order.id}</h2>
+              <p className={styles.modalSubtitle}>
+                {supplier?.name || 'N/A'} • {formatDate(order.createdAt)}
+              </p>
             </div>
-            <button className={styles.drawerClose} onClick={onClose}>
+          </div>
+          <div className={styles.modalHeaderRight}>
+            <Badge variant={getStatusVariant(order.status)}>{order.status}</Badge>
+            <button className={styles.modalClose} onClick={onClose}>
               <X size={20} />
             </button>
           </div>
-          <div className={styles.drawerHeaderMeta}>
-            <div className={styles.drawerMetaItem}>
-              <Clock size={16} />
-              {formatDate(order.createdAt)}
-            </div>
-            <div className={styles.drawerMetaItem}>
-              <Building2 size={16} />
-              {supplier?.name || 'N/A'}
-            </div>
-            <div className={styles.drawerMetaItem}>
-              Total: <strong>{formatCurrency(order.total)}</strong>
-            </div>
-          </div>
         </div>
 
-        {/* Tabs */}
-        <div className={styles.drawerTabs}>
+        {/* Modal Tabs */}
+        <div className={styles.modalTabs}>
           <button
-            className={`${styles.drawerTab} ${activeTab === 'details' ? styles.drawerTabActive : ''}`}
+            className={`${styles.modalTab} ${activeTab === 'details' ? styles.modalTabActive : ''}`}
             onClick={() => setActiveTab('details')}
           >
             <Package size={16} />
             Detalles
           </button>
           <button
-            className={`${styles.drawerTab} ${activeTab === 'timeline' ? styles.drawerTabActive : ''}`}
+            className={`${styles.modalTab} ${activeTab === 'timeline' ? styles.modalTabActive : ''}`}
             onClick={() => setActiveTab('timeline')}
           >
             <Clock size={16} />
@@ -391,13 +385,13 @@ const OrderDetailDrawer = ({ order, onClose }) => {
           </button>
         </div>
 
-        {/* Body */}
-        <div className={styles.drawerBody}>
+        {/* Modal Body */}
+        <div className={styles.modalBody}>
           {activeTab === 'details' ? renderDetailsTab() : renderTimelineTab()}
         </div>
 
-        {/* Footer */}
-        <div className={styles.drawerFooter}>
+        {/* Modal Footer */}
+        <div className={styles.modalFooter}>
           {renderFooter()}
         </div>
       </motion.div>

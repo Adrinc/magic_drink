@@ -1322,20 +1322,32 @@
 /* Modern Table */
 .tableWrapper {
   background: var(--bg-secondary);
-  border: 1px solid var(--border-primary);
+  border: 2px solid var(--border-primary);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  height: 600px;
+  display: flex;
+  flex-direction: column;
 }
 
 .modernTable {
   width: 100%;
   border-collapse: collapse;
+  display: block;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .modernTable thead {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.05));
   border-bottom: 2px solid var(--accent-cyan);
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .modernTable th {
@@ -1347,16 +1359,25 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
+  border-right: 1px solid var(--border-primary);
+}
+
+.modernTable th:last-child {
+  border-right: none;
 }
 
 .modernTable tbody {
   background: var(--bg-secondary);
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
 .modernTableRow {
   border-bottom: 1px solid var(--border-primary);
   transition: all var(--transition-fast);
   cursor: pointer;
+  display: table-row;
 }
 
 .modernTableRow:last-child {
@@ -1365,7 +1386,7 @@
 
 .modernTableRow:hover {
   background: var(--bg-hover);
-  transform: scale(1.005);
+  transform: scale(1.002);
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
 }
 
@@ -1374,6 +1395,11 @@
   font-size: 0.9375rem;
   color: var(--text-primary);
   vertical-align: middle;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.modernTable td:last-child {
+  border-right: none;
 }
 
 /* Table Cells */

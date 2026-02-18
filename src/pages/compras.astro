@@ -1,0 +1,11 @@
+---
+import LayoutPurchases from '../layouts/LayoutPurchases.astro';
+import PurchasesApp from '../components/purchases/App/PurchasesApp.jsx';
+---
+
+<LayoutPurchases 
+  title="Portal de Compras | CBLuna Demo"
+  description="Demo interactiva de Portal de Compras Internas - gestiona catálogo, solicitudes y órdenes de compra"
+>
+  <PurchasesApp client:load />
+</LayoutPurchases>

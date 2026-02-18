@@ -1,0 +1,172 @@
+/* ============================================
+   PROCUREMENT PORTAL - THEME SYSTEM
+   ============================================ */
+
+:root {
+  /* ========== BACKGROUNDS ========== */
+  --bg-primary: #0F172A;        /* Slate-950 - fondo principal oscuro */
+  --bg-secondary: #1E293B;      /* Slate-900 - cards, panel carrito */
+  --bg-topbar: #0A0E1A;         /* Casi negro con tinte azul - barra superior */
+  --bg-card-light: #E2E8F0;     /* Slate-200 - tarjetas de producto */
+  --bg-hover: #162045;          /* Hover states */
+  
+  /* ========== ACCENTS & CTAs ========== */
+  --accent-primary: #3B82F6;    /* Blue-500 - botones principales */
+  --accent-primary-hover: #2563EB; /* Blue-600 - hover state */
+  --accent-cyan: #22D3EE;       /* Cyan-400 - tab activo, iconos */
+  --accent-green: #34D399;      /* Emerald-400 - badges "disponible" */
+  
+  /* ========== STATUS COLORS ========== */
+  --success: #10B981;           /* Green-500 - aprobado */
+  --warning: #F59E0B;           /* Amber-500 - pendiente */
+  --error: #EF4444;             /* Red-500 - rechazado */
+  --info: #3B82F6;              /* Blue-500 - informativo */
+  
+  /* ========== PRICING COLORS ========== */
+  --price-discount: #10B981;    /* Verde - precio final */
+  --price-original: #EF4444;    /* Rojo - precio tachado */
+  
+  /* ========== TEXT COLORS ========== */
+  --text-primary: #FFFFFF;      /* Blanco - títulos */
+  --text-secondary: #94A3B8;    /* Slate-400 - subtítulos */
+  --text-muted: #64748B;        /* Slate-500 - labels */
+  --text-dark: #0F172A;         /* Para texto en fondos claros (product cards) */
+  
+  /* ========== BORDERS ========== */
+  --border-subtle: #334155;     /* Slate-700 - divisores suaves */
+  --border-card: #475569;       /* Slate-600 - bordes de cards */
+  --border-focus: #3B82F6;      /* Blue-500 - focus states */
+  
+  /* ========== OVERLAYS & SHADOWS ========== */
+  --overlay-dark: rgba(15, 23, 42, 0.95);
+  --overlay-modal: rgba(10, 14, 26, 0.8);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  /* ========== TRANSITIONS ========== */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* ========== Z-INDEX LAYERS ========== */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+  
+  /* ========== SPACING SYSTEM ========== */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 1rem;      /* 16px */
+  --space-md: 1.5rem;    /* 24px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 3rem;      /* 48px */
+  --space-2xl: 4rem;     /* 64px */
+  
+  /* ========== BORDER RADIUS ========== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  
+  /* ========== FONT SYSTEM ========== */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Font Sizes */
+  --fs-xs: 0.75rem;     /* 12px */
+  --fs-sm: 0.875rem;    /* 14px */
+  --fs-base: 1rem;      /* 16px */
+  --fs-lg: 1.125rem;    /* 18px */
+  --fs-xl: 1.25rem;     /* 20px */
+  --fs-2xl: 1.5rem;     /* 24px */
+  --fs-3xl: 2rem;       /* 32px */
+  
+  /* Font Weights */
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+}
+
+/* ========== GLOBAL RESETS FOR PROCUREMENT APP ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== SCROLLBAR PERSONALIZADO ========== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-card);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-card) var(--bg-secondary);
+}
+
+/* ========== SELECTION ========== */
+::selection {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+/* ========== FOCUS VISIBLE ========== */
+*:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ========== UTILITY CLASSES ========== */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-error { color: var(--error); }
+
+.bg-primary { background: var(--bg-primary); }
+.bg-secondary { background: var(--bg-secondary); }
+
+.transition-fast { transition: all var(--transition-fast); }
+.transition-base { transition: all var(--transition-base); }
+.transition-slow { transition: all var(--transition-slow); }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useStore } from '@nanostores/react';
-import { Search, Filter, X } from 'lucide-react';
+import { Search, Filter, X, ShoppingBag } from 'lucide-react';
 import { 
   $searchQuery, 
   $selectedCategory,
@@ -63,12 +63,15 @@ const CatalogScreen = () => {
     <div className={styles.catalogScreen}>
       
       {/* Hero Section */}
-      <div className={styles.catalogHero}>
-        <div className={styles.catalogHeroContent}>
-          <h1 className={styles.catalogTitle}>Catálogo Interno</h1>
-          <p className={styles.catalogDescription}>
-            Explora productos y servicios autorizados para tu departamento
-          </p>
+      <div className={`${styles.screenHero} ${styles.catalogHeroBg}`}>
+        <div className={styles.screenHeroContent}>
+          <div className={styles.screenHeroIcon}>
+            <ShoppingBag size={28} />
+          </div>
+          <div className={styles.screenHeroText}>
+            <h1>Catálogo Interno</h1>
+            <p>Explora productos y servicios autorizados para tu departamento</p>
+          </div>
         </div>
       </div>
 

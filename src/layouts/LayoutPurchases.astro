@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import '../styles/procurement-theme.css';
 
 interface Props {
   title: string;
@@ -23,9 +24,6 @@ const {
   <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/favicon.png`} />
   <title>{title}</title>
   
-  <!-- Import Procurement Theme CSS -->
-  <link rel="stylesheet" href="/src/styles/procurement-theme.css" />
-  
   <!-- View Transitions -->
   <ViewTransitions />
 </head>
@@ -42,8 +40,14 @@ const {
   }
   
   body {
-    font-family: var(--font-primary);
-    background: var(--bg-primary);
+    font-family: var(--font-sans);
+    /* Viñeta: centro claro → bordes oscuros */
+    background: radial-gradient(ellipse at 50% 50%,
+      #3C5479 0%,
+      #2D4265 30%,
+      #1F3050 60%,
+      #192034 100%);
+    background-attachment: fixed;
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;

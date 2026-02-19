@@ -98,17 +98,21 @@ const OrdersScreen = () => {
 
   return (
     <div className={styles.screen}>
-      <div className={styles.screenContent}>
-        
-        {/* Header */}
-        <div className={styles.screenHeader}>
-          <div>
-            <h2 className={styles.screenTitle}>Órdenes de Compra</h2>
-            <p className={styles.screenDescription}>
-              Gestiona órdenes generadas desde solicitudes aprobadas
-            </p>
+
+      {/* Hero Banner */}
+      <div className={`${styles.screenHero} ${styles.ordersHeroBg}`}>
+        <div className={styles.screenHeroContent}>
+          <div className={styles.screenHeroIcon}>
+            <Package size={28} />
+          </div>
+          <div className={styles.screenHeroText}>
+            <h2>Órdenes de Compra</h2>
+            <p>Gestiona órdenes generadas desde solicitudes aprobadas</p>
           </div>
         </div>
+      </div>
+
+      <div className={styles.screenContent}>
 
         {/* Filtros y Búsqueda */}
         <div className={styles.tableControls}>

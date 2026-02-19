@@ -3,51 +3,82 @@
    ============================================ */
 
 :root {
-  /* ========== BACKGROUNDS ========== */
-  --bg-primary: #0F172A;        /* Slate-950 - fondo principal oscuro */
-  --bg-secondary: #1E293B;      /* Slate-900 - cards, panel carrito */
-  --bg-topbar: #0A0E1A;         /* Casi negro con tinte azul - barra superior */
-  --bg-card-light: #E2E8F0;     /* Slate-200 - tarjetas de producto */
-  --bg-hover: #162045;          /* Hover states */
+  /* ========== BACKGROUNDS — Deep Teal-Navy Premium ========== */
+  --bg-primary: #0F1B2D;        /* Deep teal-navy — fondo base zona izquierda */
+  --bg-secondary: #16283F;      /* Teal-navy centro — cards, paneles, sidebars */
+  --bg-tertiary: #1D3552;       /* Teal-navy luminoso — hover suave, superficies elevadas */
+  --bg-topbar: #0B1624;         /* Sombra profunda — barra superior */
+  --bg-card-light: #E2E8F0;     /* Slate-200 — tarjetas de producto (fondo claro) */
+  --bg-hover: #1A2F47;          /* Rich Teal Hover */
+  --bg-glass: rgba(11, 22, 36, 0.80); /* Glass teal-navy para overlays */
+  --bg-surface-highlight: rgba(255, 255, 255, 0.05); /* Capa blanca translúcida para tops de card */
   
-  /* ========== ACCENTS & CTAs ========== */
-  --accent-primary: #3B82F6;    /* Blue-500 - botones principales */
-  --accent-primary-hover: #2563EB; /* Blue-600 - hover state */
-  --accent-cyan: #22D3EE;       /* Cyan-400 - tab activo, iconos */
-  --accent-green: #34D399;      /* Emerald-400 - badges "disponible" */
+  /* ========== ACCENTS PRINCIPALES — Blue Family ========== */
+  --accent-primary: #3B82F6;        /* Blue-500 — botones principales */
+  --accent-primary-hover: #2563EB;  /* Blue-600 — hover state */
+  --accent-primary-20: rgba(59, 130, 246, 0.15); /* Tint suave para fondos */
+  --accent-primary-30: rgba(59, 130, 246, 0.30); /* Tint medio para bordes hover */
+  --accent-sky: #93C5FD;            /* Blue-300 — texto acento, destacados ligeros */
+  
+  /* ========== ACCENTS SECUNDARIOS ========== */
+  --accent-violet: #818CF8;     /* Indigo-400 — degradados secundarios con el azul */
+  --accent-cyan: #38BDF8;       /* Sky-400 — suave, no el cyan duro anterior */
+  --accent-teal: #14B8A6;       /* Teal-500 — métricas, indicadores */
+  --accent-green: #34D399;      /* Emerald-400 — badges "disponible" */
+  --accent-amber: #F59E0B;      /* Amber-500 — urgente, alertas */
+  --accent-rose: #F43F5E;       /* Rose-500 — rechazo, errores críticos */
   
   /* ========== STATUS COLORS ========== */
-  --success: #10B981;           /* Green-500 - aprobado */
-  --warning: #F59E0B;           /* Amber-500 - pendiente */
-  --error: #EF4444;             /* Red-500 - rechazado */
-  --info: #3B82F6;              /* Blue-500 - informativo */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  
+  --status-success: #10B981;
+  --status-success-20: rgba(16, 185, 129, 0.15);
+  --status-warning: #F59E0B;
+  --status-warning-20: rgba(245, 158, 11, 0.15);
+  --status-error: #EF4444;
+  --status-error-20: rgba(239, 68, 68, 0.15);
+  --status-info: #3B82F6;
+  --status-info-20: rgba(59, 130, 246, 0.15);
   
   /* ========== PRICING COLORS ========== */
-  --price-discount: #10B981;    /* Verde - precio final */
-  --price-original: #EF4444;    /* Rojo - precio tachado */
+  --price-discount: #10B981;
+  --price-original: #EF4444;
   
-  /* ========== TEXT COLORS ========== */
-  --text-primary: #FFFFFF;      /* Blanco - títulos */
-  --text-secondary: #94A3B8;    /* Slate-400 - subtítulos */
-  --text-muted: #64748B;        /* Slate-500 - labels */
-  --text-dark: #0F172A;         /* Para texto en fondos claros (product cards) */
+  /* ========== TEXT COLORS — Más blancos, más brillo ========== */
+  --text-primary: #EEF4FF;      /* Blanco con leve tinte azul — crisp sobre navy */
+  --text-secondary: #94A3B8;    /* Slate-400 — subtítulos */
+  --text-tertiary: #60758A;     /* Slate-500 oscurecido — labels */
+  --text-muted: #475569;        /* Slate-600 — texto sutil */
+  --text-dark: #0F172A;         /* Para texto en fondos claros */
+  --text-accent: #93C5FD;       /* Blue-300 — texto con acento azul claro */
   
-  /* ========== BORDERS ========== */
-  --border-subtle: #334155;     /* Slate-700 - divisores suaves */
-  --border-card: #475569;       /* Slate-600 - bordes de cards */
-  --border-focus: #3B82F6;      /* Blue-500 - focus states */
+  /* ========== BORDERS — Más visibles, con tinte azul-blanco ========== */
+  --border-primary: rgba(59, 130, 246, 0.22);   /* Azul visible, el borde estándar */
+  --border-subtle: rgba(255, 255, 255, 0.055);  /* Blanco sutil — divisores, top-highlights */
+  --border-card: rgba(59, 130, 246, 0.14);      /* Para bordes de card */
+  --border-light: rgba(147, 197, 253, 0.18);    /* Blue-300 al 18% — borde luminoso */
+  --border-focus: #3B82F6;                       /* Focus state */
+  --border-hover: rgba(59, 130, 246, 0.5);       /* Hover state */
   
   /* ========== OVERLAYS & SHADOWS ========== */
-  --overlay-dark: rgba(15, 23, 42, 0.95);
-  --overlay-modal: rgba(10, 14, 26, 0.8);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
-  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --overlay-dark: rgba(6, 13, 31, 0.95);
+  --overlay-modal: rgba(4, 9, 26, 0.88);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 20, 0.5);
+  --shadow-md: 0 4px 8px -1px rgba(0, 0, 20, 0.6);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 20, 0.6);
+  --shadow-xl: 0 20px 32px -5px rgba(0, 0, 20, 0.7);
+  --shadow-2xl: 0 28px 56px -12px rgba(0, 0, 20, 0.85);
+  --shadow-card: 0 4px 16px rgba(0, 0, 20, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.055);
+  --shadow-glow: 0 0 24px rgba(59, 130, 246, 0.2);
+  --shadow-glow-blue: 0 0 32px rgba(59, 130, 246, 0.25);
+  --shadow-glow-cyan: 0 0 20px rgba(56, 189, 248, 0.15);
   
   /* ========== TRANSITIONS ========== */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   
@@ -58,10 +89,10 @@
   --z-fixed: 300;
   --z-modal-backdrop: 400;
   --z-modal: 500;
-  --z-drawer: 600;            /* Drawer lateral */
+  --z-drawer: 600;
   --z-popover: 600;
   --z-tooltip: 700;
-  --z-header: 1000;           /* TopBar siempre encima de todo */
+  --z-header: 1000;
   
   /* ========== SPACING SYSTEM ========== */
   --space-xs: 0.5rem;    /* 8px */
@@ -76,6 +107,7 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
+  --radius-2xl: 20px;
   --radius-full: 9999px;
   
   /* ========== FONT SYSTEM ========== */
@@ -107,7 +139,13 @@
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg-primary);
+  /* Viñeta: centro claro → bordes oscuros */
+  background: radial-gradient(ellipse at 50% 50%,
+    #3C5479 0%,
+    #2D4265 30%,
+    #1F3050 60%,
+    #192034 100%);
+  background-attachment: fixed;
   color: var(--text-primary);
   font-size: var(--fs-base);
   line-height: 1.6;

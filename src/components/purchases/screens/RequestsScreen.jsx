@@ -99,17 +99,21 @@ const RequestsScreen = () => {
 
   return (
     <div className={styles.screen}>
-      <div className={styles.screenContent}>
-        
-        {/* Header */}
-        <div className={styles.screenHeader}>
-          <div>
-            <h2 className={styles.screenTitle}>Solicitudes de Compra</h2>
-            <p className={styles.screenDescription}>
-              Gestiona y aprueba solicitudes de tu departamento
-            </p>
+
+      {/* Hero Banner */}
+      <div className={`${styles.screenHero} ${styles.requestsHeroBg}`}>
+        <div className={styles.screenHeroContent}>
+          <div className={styles.screenHeroIcon}>
+            <FileText size={28} />
+          </div>
+          <div className={styles.screenHeroText}>
+            <h2>Solicitudes de Compra</h2>
+            <p>Gestiona y aprueba solicitudes de tu departamento</p>
           </div>
         </div>
+      </div>
+
+      <div className={styles.screenContent}>
 
         {/* Filtros y Búsqueda */}
         <div className={styles.tableControls}>

@@ -46,20 +46,23 @@ const Modal = ({
     }
   };
 
+  const sizeMaxWidth = { sm: '400px', md: '600px', lg: '800px', xl: '1000px' };
+
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
+        <motion.div 
+          className={styles.modalOverlay}
+          onClick={handleOverlayClick}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
           <motion.div 
-            className={styles.modalOverlay}
-            onClick={handleOverlayClick}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          />
-          <motion.div 
-            className={`${styles.modalContainer} ${styles[`modalSize-${size}`]}`}
+            className={styles.modalContainer}
+            style={{ maxWidth: sizeMaxWidth[size] || '600px' }}
+            onClick={e => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -86,7 +89,7 @@ const Modal = ({
               </div>
             )}
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );

@@ -4,6 +4,18 @@ import { getBudgetByCostCenter } from '../data/purchases/budgets';
 import { generateRequestId, generateOrderId, generateMockDate } from '../data/purchases/seed';
 
 // ========================================
+// HELPERS INTERNOS
+// ========================================
+
+const DEMO_USER_NAMES = {
+  employee: 'Ana García',
+  approver: 'Carlos López',
+  finance: 'María Rodríguez'
+};
+
+const getUserName = () => DEMO_USER_NAMES[$selectedRole.get()] || 'Usuario Demo';
+
+// ========================================
 // ATOMS (fuente de verdad)
 // ========================================
 

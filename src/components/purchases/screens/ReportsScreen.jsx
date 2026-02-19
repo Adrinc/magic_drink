@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useStore } from "@nanostores/react";
 import { 
   DollarSign, TrendingUp, TrendingDown, Package, 
@@ -52,16 +52,21 @@ const ReportsScreen = () => {
 
   return (
     <div className={styles.screen}>
-      <div className={styles.screenContent}>
-        {/* Header */}
-        <div className={styles.reportsHeader}>
-          <div className={styles.reportsHeaderLeft}>
-            <h1 className={styles.reportsTitle}>Reportes y Analítica</h1>
-            <p className={styles.reportsDescription}>
-              Monitorea el desempeño de compras y presupuesto
-            </p>
+
+      {/* Hero Banner */}
+      <div className={`${styles.screenHero} ${styles.reportsHeroBg}`}>
+        <div className={styles.screenHeroContent}>
+          <div className={styles.screenHeroIcon}>
+            <BarChart3 size={28} />
+          </div>
+          <div className={styles.screenHeroText}>
+            <h1>Reportes y Analítica</h1>
+            <p>Monitorea el desempeño de compras y presupuesto</p>
           </div>
         </div>
+      </div>
+
+      <div className={styles.screenContent}>
 
         {/* KPIs Financieros */}
         <div className={styles.reportsSection}>
@@ -199,14 +204,14 @@ const ReportsScreen = () => {
             </h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={categoryChartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#0C1830" />
                 <XAxis dataKey="name" stroke="#94A3B8" tick={{ fill: '#94A3B8', fontSize: 12 }} />
                 <YAxis stroke="#94A3B8" tick={{ fill: '#94A3B8', fontSize: 12 }} />
                 <Tooltip 
                   formatter={(value) => formatCurrency(value)}
                   contentStyle={{ 
-                    background: '#1E293B', 
-                    border: '1px solid #334155', 
+                    background: '#0C1830', 
+                    border: '1px solid #1E3A60', 
                     borderRadius: '8px',
                     color: '#F1F5F9'
                   }}
@@ -224,7 +229,7 @@ const ReportsScreen = () => {
             </h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={supplierChartData} layout="vertical">
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#0C1830" />
                 <XAxis type="number" stroke="#94A3B8" tick={{ fill: '#94A3B8', fontSize: 12 }} />
                 <YAxis 
                   type="category" 
@@ -236,8 +241,8 @@ const ReportsScreen = () => {
                 <Tooltip 
                   formatter={(value) => formatCurrency(value)}
                   contentStyle={{ 
-                    background: '#1E293B', 
-                    border: '1px solid #334155', 
+                    background: '#0C1830', 
+                    border: '1px solid #1E3A60', 
                     borderRadius: '8px',
                     color: '#F1F5F9'
                   }}

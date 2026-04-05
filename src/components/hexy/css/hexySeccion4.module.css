@@ -1,0 +1,195 @@
+/* ============================================
+   HexySeccion4 — CTA Final
+   ============================================ */
+
+.section {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+  color: var(--md-white);
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(170, 55, 242, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(255, 106, 215, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(130, 210, 255, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #1a1225 0%, var(--em-bg-primary) 100%);
+  z-index: 0;
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: min(900px, calc(100% - 2rem));
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Decorative image */
+.imageWrap {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.chibi {
+  width: min(200px, 40vw);
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.3));
+  animation: floatChibi 4s ease-in-out infinite;
+}
+
+@keyframes floatChibi {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Text */
+.heading {
+  font-family: var(--em-font-headline);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.08;
+  margin: 0 0 1rem;
+}
+
+.headingAccent {
+  background: var(--md-gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.description {
+  font-size: 1.05rem;
+  color: var(--em-text-secondary);
+  line-height: 1.75;
+  max-width: 580px;
+  margin: 0 auto 2rem;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btnPrimary,
+.btnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.8rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s var(--em-ease-smooth);
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.btnPrimary {
+  background: var(--md-gradient-main);
+  color: var(--md-white);
+  border: none;
+  box-shadow: 0 4px 20px rgba(255, 106, 215, 0.3);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255, 106, 215, 0.5);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: var(--md-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+}
+
+.btnSecondary:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Decorative sparkles */
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  animation: sparkleFloat 6s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) {
+  top: 15%; left: 10%;
+  background: var(--md-pink);
+  animation-delay: 0s;
+}
+.sparkle:nth-child(2) {
+  top: 25%; right: 15%;
+  background: var(--md-yellow);
+  animation-delay: 1.5s;
+}
+.sparkle:nth-child(3) {
+  bottom: 20%; left: 20%;
+  background: var(--md-blue);
+  animation-delay: 3s;
+}
+.sparkle:nth-child(4) {
+  top: 60%; right: 10%;
+  background: var(--md-purple);
+  animation-delay: 0.8s;
+}
+.sparkle:nth-child(5) {
+  bottom: 30%; left: 45%;
+  background: var(--md-pink);
+  animation-delay: 2.2s;
+}
+
+@keyframes sparkleFloat {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+  20% { opacity: 1; }
+  50% { opacity: 0.6; transform: translateY(-20px) scale(1.5); }
+  80% { opacity: 1; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .chibi {
+    width: min(160px, 35vw);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}

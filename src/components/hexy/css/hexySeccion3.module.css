@@ -1,0 +1,247 @@
+/* ============================================
+   HexySeccion3 — DJ Sweet Hex Mystery
+   ============================================ */
+
+.section {
+  padding: 6rem 0;
+  background:
+    radial-gradient(ellipse at 70% 20%, rgba(104, 34, 168, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 80%, rgba(130, 210, 255, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, var(--em-bg-primary) 0%, #1a1225 100%);
+  color: var(--md-white);
+  overflow: hidden;
+}
+
+.shell {
+  width: min(1140px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--md-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-family: var(--em-font-headline);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+
+.titleAccent {
+  background: linear-gradient(135deg, var(--md-yellow), var(--md-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionSubtitle {
+  color: var(--em-text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Mystery layout */
+.mysteryGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+
+.mysteryText h3 {
+  font-family: var(--em-font-headline);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0 0 1.25rem;
+  line-height: 1.15;
+}
+
+.mysteryText p {
+  color: var(--em-text-secondary);
+  line-height: 1.8;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+
+/* Rumor quote */
+.rumor {
+  position: relative;
+  padding: 1.5rem 1.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 106, 215, 0.15);
+  background: rgba(170, 55, 242, 0.06);
+  margin-top: 1.5rem;
+}
+
+.rumor::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.2rem;
+  left: 1rem;
+  font-size: 3.5rem;
+  font-family: Georgia, serif;
+  color: var(--md-pink);
+  opacity: 0.4;
+  line-height: 1;
+}
+
+.rumorText {
+  font-size: 1rem;
+  color: var(--md-white);
+  font-style: italic;
+  line-height: 1.7;
+  margin: 0 0 0.75rem;
+}
+
+.rumorSource {
+  font-size: 0.8rem;
+  color: var(--em-text-secondary);
+}
+
+/* Album grid */
+.albumGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.album {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: transform 0.3s var(--em-ease-smooth);
+}
+
+.album:hover {
+  transform: scale(1.04);
+}
+
+.album:hover .albumOverlay {
+  opacity: 1;
+}
+
+.albumImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.albumOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12, 6, 24, 0.9) 0%, transparent 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.albumTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--md-white);
+}
+
+.albumArtist {
+  font-size: 0.75rem;
+  color: var(--em-text-secondary);
+}
+
+/* Bottom detail cards */
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.detail {
+  padding: 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s var(--em-ease-smooth);
+}
+
+.detail:hover {
+  border-color: rgba(130, 210, 255, 0.2);
+  background: rgba(130, 210, 255, 0.04);
+  transform: translateY(-3px);
+}
+
+.detail h4 {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+  color: var(--md-white);
+}
+
+.detail p {
+  font-size: 0.85rem;
+  color: var(--em-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .mysteryGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .albumGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .albumGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .detail {
+    padding: 1.2rem;
+  }
+}

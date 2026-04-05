@@ -5,5 +5,10 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://Adrinc.github.io',
-  integrations: [tailwind(), react()]
+  integrations: [tailwind(), react()],
+  vite: {
+    optimizeDeps: {
+      include: ['framer-motion'],
+    },
+  },
 });

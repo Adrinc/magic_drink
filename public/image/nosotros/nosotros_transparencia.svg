@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#1e1826" rx="12"/>
+  <rect x="2" y="2" width="1276" height="716" fill="none" stroke="#AA37F2" stroke-width="2" stroke-dasharray="8 4" rx="10" opacity="0.3"/>
+  <text x="640" y="340" text-anchor="middle" fill="#AA37F2" font-family="sans-serif" font-size="28" opacity="0.6">PLACEHOLDER</text>
+  <text x="640" y="380" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="16" opacity="0.35">nosotros_transparencia.png — 1280×720 (16:9)</text>
+  <text x="640" y="410" text-anchor="middle" fill="#FF6AD7" font-family="sans-serif" font-size="14" opacity="0.4">Laboratorio/fábrica Magic Drink: instalaciones modernas, limpias, con luz púrpura</text>
+</svg>

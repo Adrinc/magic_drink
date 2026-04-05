@@ -158,11 +158,11 @@
 .navLink.activeLink::after {
   content: '⭐';
   position: absolute;
-  left: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.5rem;
+  left: -4px;
+  top: -4px;
+  font-size: 0.45rem;
   animation: starTwinkle 2s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes starTwinkle {

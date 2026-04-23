@@ -1,15 +1,40 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@nanostores/react';
-import { isEnglish, isDarkMode } from '../../../data/variables';
+import { isEnglish } from '../../../data/variables';
 import { magicDrinkFlavors } from '../../../data/magicDrinkFlavors';
+import useFlavorAudio from '../../global/useFlavorAudio';
 import styles from '../css/bebidasSeccion1.module.css';
 
 const getText = (v, eng) => (typeof v === 'string' ? v : eng ? v.en : v.es);
 
 const content = {
-  es: { badge: '6 sabores oficiales', cta: 'Conoce este sabor' },
-  en: { badge: '6 official flavors', cta: 'Meet this flavor' },
+  es: {
+    badge: '6 sabores oficiales',
+    discoverMore: 'Conoce este sabor',
+    back: 'Volver',
+    playNow: 'Escuchar loop',
+    stopNow: 'Pausar',
+    ritual: 'Ritual',
+    energy: 'Energía',
+    taste: 'Sabor',
+    vibe: 'Vibe',
+    loopSuffix: 'Loop',
+    clickHint: 'Toca la lata para saber más',
+  },
+  en: {
+    badge: '6 official flavors',
+    discoverMore: 'Meet this flavor',
+    back: 'Back',
+    playNow: 'Play loop',
+    stopNow: 'Pause',
+    ritual: 'Ritual',
+    energy: 'Energy',
+    taste: 'Taste',
+    vibe: 'Vibe',
+    loopSuffix: 'Loop',
+    clickHint: 'Tap the can to learn more',
+  },
 };
 
 /* ═══════════════════════════════════════════
@@ -120,38 +145,87 @@ const genParticles = (slug) => {
 };
 
 /* ═══════════════════════════════════════════
-   CAN ANIMATION VARIANTS
+   ANIMATION VARIANTS
    ═══════════════════════════════════════════ */
 const canVariants = {
-  enter: (d) => ({ x: d > 0 ? 100 : -100, opacity: 0, scale: 0.8, rotateZ: d > 0 ? 6 : -6 }),
+  enter: (d) => ({ x: d > 0 ? 120 : -120, opacity: 0, scale: 0.82, rotateZ: d > 0 ? 8 : -8 }),
   center: { x: 0, opacity: 1, scale: 1, rotateZ: 0 },
-  exit: (d) => ({ x: d > 0 ? -100 : 100, opacity: 0, scale: 0.8, rotateZ: d > 0 ? -6 : 6 }),
+  exit: (d) => ({ x: d > 0 ? -80 : 80, opacity: 0, scale: 0.88, rotateZ: d > 0 ? -5 : 5 }),
 };
 
-const textVariants = {
-  enter: { opacity: 0, y: 18 },
+// Text that animates with flavor change in the centered header
+const nameVariants = {
+  enter: (d) => ({ opacity: 0, y: d > 0 ? 22 : -22 }),
   center: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -14 },
+  exit: (d) => ({ opacity: 0, y: d > 0 ? -16 : 16 }),
+};
+
+// Info panel content (right panel) — animates per flavor change
+const panelInfoVariants = {
+  enter: (d) => ({ opacity: 0, y: d > 0 ? 28 : -28 }),
+  center: { opacity: 1, y: 0 },
+  exit: (d) => ({ opacity: 0, y: d > 0 ? -18 : 18 }),
 };
 
 /* ═══════════════════════════════════════════
-   MAIN COMPONENT
+   WAVEFORM BARS
    ═══════════════════════════════════════════ */
-const BebidasSeccion1 = () => {
+function WaveformBars({ isActive, seeds }) {
+  return (
+    <div className={styles.waveformBars}>
+      {seeds.map((seed, i) => (
+        <div
+          key={i}
+          className={`${styles.waveBar} ${isActive ? styles.waveBarActive : ''}`}
+          style={{ '--seed': seed, '--idx': i }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   MAIN COMPONENT — TWO-STATE HERO
+   ═══════════════════════════════════════════ */
+export default function BebidasSeccion1() {
   const ingles = useStore(isEnglish);
-  const dark = useStore(isDarkMode);
   const t = ingles ? content.en : content.es;
 
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [expanded, setExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth <= 900
+  );
   const timerRef = useRef(null);
+  const prevCurrentRef = useRef(0);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 900);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  // Audio hook (singleton global with crossfade)
+  const { isPlaying, currentFlavor, toggleFlavor } = useFlavorAudio();
+
+  // Stable waveform seeds
+  const waveSeeds = useMemo(
+    () => Array.from({ length: 28 }, () => 0.15 + Math.random() * 0.85),
+    []
+  );
 
   const flavor = magicDrinkFlavors[current];
   const config = FC[flavor.slug] || FC['magic-original'];
   const flavorName = flavor.slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   const tc = config.tc || '#fff';
   const particles = useMemo(() => genParticles(flavor.slug), [flavor.slug]);
+  const notes = flavor.notes ? (ingles ? flavor.notes.en : flavor.notes.es) : [];
 
+  // Is audio playing for the currently displayed flavor?
+  const audioIsActive = isPlaying && currentFlavor === (flavor.audioId || flavor.slug);
+
+  // ── Navigation ──
   const go = useCallback((dir) => {
     setDirection(dir === 'next' ? 1 : -1);
     setCurrent((prev) =>
@@ -161,140 +235,173 @@ const BebidasSeccion1 = () => {
     );
   }, []);
 
-  // Auto-advance
+  // Auto-advance — pauses when expanded
   useEffect(() => {
-    timerRef.current = setInterval(() => go('next'), 5000);
+    if (expanded) {
+      clearInterval(timerRef.current);
+      return;
+    }
+    timerRef.current = setInterval(() => go('next'), 10000);
     return () => clearInterval(timerRef.current);
-  }, [go]);
+  }, [go, expanded]);
 
   const handleNav = (dir) => {
     clearInterval(timerRef.current);
     go(dir);
-    timerRef.current = setInterval(() => go('next'), 5000);
+    if (!expanded) {
+      timerRef.current = setInterval(() => go('next'), 10000);
+    }
   };
 
-  const handleDot = (i) => {
+  const handleSelect = (i) => {
     if (i === current) return;
     clearInterval(timerRef.current);
     setDirection(i > current ? 1 : -1);
     setCurrent(i);
-    timerRef.current = setInterval(() => go('next'), 5000);
+    if (!expanded) {
+      timerRef.current = setInterval(() => go('next'), 10000);
+    }
   };
 
-  const handleCta = () => {
-    const el = document.getElementById(`flavor-${flavor.slug}`);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Auto-crossfade audio when flavor changes while playing
+  useEffect(() => {
+    if (prevCurrentRef.current !== current && isPlaying) {
+      const next = magicDrinkFlavors[current];
+      toggleFlavor(next.audioId || next.slug);
+    }
+    prevCurrentRef.current = current;
+  }, [current]); // eslint-disable-line
+
+  const handleTogglePlay = () => {
+    toggleFlavor(flavor.audioId || flavor.slug);
   };
 
-  // Wave fill
-  const waveFill = dark ? 'var(--md-gray-dark)' : 'var(--md-gray)';
+  // CSS custom properties for theme
+  const heroVars = {
+    '--tc': tc,
+    '--tc2': tc === '#fff' ? 'rgba(255,255,255,0.85)' : `${tc}bb`,
+    '--ub': tc === '#fff' ? 'rgba(255,255,255,0.5)' : `${tc}55`,
+    '--ubg': tc === '#fff' ? 'rgba(255,255,255,0.15)' : `${tc}18`,
+    '--uhov': tc === '#fff' ? 'rgba(255,255,255,0.35)' : `${tc}30`,
+    '--accent': flavor.accentColor,
+  };
 
   return (
-    <>
-      <section
-        className={styles.hero}
-        style={{
-          '--tc': tc,
-          '--tc2': tc === '#fff' ? 'rgba(255,255,255,0.85)' : `${tc}bb`,
-          '--ub': tc === '#fff' ? 'rgba(255,255,255,0.5)' : `${tc}55`,
-          '--ubg': tc === '#fff' ? 'rgba(255,255,255,0.15)' : `${tc}18`,
-          '--uhov': tc === '#fff' ? 'rgba(255,255,255,0.35)' : `${tc}30`,
-        }}
+    <section
+      className={`${styles.hero} ${audioIsActive ? styles.heroPlaying : ''}`}
+      style={heroVars}
+    >
+      {/* ── Background layers (crossfade) ── */}
+      {magicDrinkFlavors.map((f, i) => (
+        <motion.div
+          key={f.slug}
+          className={`${styles.bgLayer} ${audioIsActive && i === current ? styles.bgLayerPlaying : ''}`}
+          style={{ background: (FC[f.slug] || FC['magic-original']).bg }}
+          animate={{ opacity: i === current ? 1 : 0 }}
+          transition={{ duration: 0.85, ease: 'easeInOut' }}
+        />
+      ))}
+
+      {/* ── Particles ── */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={flavor.slug + '-particles'}
+          className={`${styles.particlesWrap} ${audioIsActive ? styles.particlesPlaying : ''}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {particles.map((p, i) => (
+            <motion.div
+              key={p.id}
+              className={`${styles.particle} ${audioIsActive ? styles.particlePlaying : ''}`}
+              style={{
+                left: `${p.x}%`,
+                top: `${p.y}%`,
+                '--pdur': `${p.dur}s`,
+                '--pdel': `${p.delay}s`,
+              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: audioIsActive ? 0.9 : 0.62, scale: 1 }}
+              transition={{ duration: 0.35, delay: i * 0.025 }}
+            >
+              <svg width={p.size} height={p.size} viewBox="0 0 24 24" fill="none" stroke="none">
+                {S[p.type](p.color)}
+              </svg>
+            </motion.div>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── MAIN COLUMN (shifts left when expanded) ── */}
+      <motion.div
+        className={styles.mainColumn}
+        animate={{ x: expanded && !isMobile ? '-25%' : '0%' }}
+        transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
       >
-        {/* ── Background layers (crossfade) ── */}
-        {magicDrinkFlavors.map((f, i) => (
-          <motion.div
-            key={f.slug}
-            className={styles.bgLayer}
-            style={{ background: (FC[f.slug] || FC['magic-original']).bg }}
-            animate={{ opacity: i === current ? 1 : 0 }}
-            transition={{ duration: 0.8, ease: 'easeInOut' }}
-          />
-        ))}
-
-        {/* ── Particles ── */}
+        {/* ── Collapsed Header (badge + name + tagline) — hidden when expanded ── */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={flavor.slug + '-particles'}
-            className={styles.particlesWrap}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {particles.map((p, i) => (
-              <motion.div
-                key={p.id}
-                className={styles.particle}
-                style={{
-                  left: `${p.x}%`,
-                  top: `${p.y}%`,
-                  '--pdur': `${p.dur}s`,
-                  '--pdel': `${p.delay}s`,
-                }}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 0.65, scale: 1 }}
-                transition={{ duration: 0.35, delay: i * 0.025 }}
-              >
-                <svg width={p.size} height={p.size} viewBox="0 0 24 24" fill="none" stroke="none">
-                  {S[p.type](p.color)}
-                </svg>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+          {!expanded && (
+            <motion.div
+              key="collapsed-header"
+              className={styles.collapsedHeader}
+              initial={{ opacity: 0, y: -14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35 }}
+            >
+              <div className={styles.badge}>
+                <span className={styles.badgeStar}>&#10022;</span>
+                {t.badge}
+              </div>
 
-        {/* ── Badge ── */}
-        <div className={styles.badge}>
-          <span className={styles.badgeStar}>&#10022;</span>
-          {t.badge}
-        </div>
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.h2
+                  key={flavor.slug + '-name'}
+                  className={styles.flavorName}
+                  custom={direction}
+                  variants={nameVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <span className={styles.titleIcon}>
+                    <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="none">
+                      {S[config.ti[0][0]](config.ti[0][1])}
+                    </svg>
+                  </span>
+                  {flavorName}
+                  <span className={styles.titleIcon}>
+                    <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="none">
+                      {S[config.ti[1][0]](config.ti[1][1])}
+                    </svg>
+                  </span>
+                </motion.h2>
+              </AnimatePresence>
 
-        {/* ── Flavor Name with title icons ── */}
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.h1
-            key={flavor.slug + '-name'}
-            className={styles.flavorName}
-            custom={direction}
-            variants={textVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <span className={styles.titleIcon}>
-              <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="none">
-                {S[config.ti[0][0]](config.ti[0][1])}
-              </svg>
-            </span>
-            {flavorName}
-            <span className={styles.titleIcon}>
-              <svg width={32} height={32} viewBox="0 0 24 24" fill="none" stroke="none">
-                {S[config.ti[1][0]](config.ti[1][1])}
-              </svg>
-            </span>
-          </motion.h1>
-        </AnimatePresence>
-
-        {/* ── Tagline ── */}
-        <AnimatePresence mode="wait" custom={direction}>
-          <motion.p
-            key={flavor.slug + '-tag'}
-            className={styles.tagline}
-            custom={direction}
-            variants={textVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.3, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
-          >
-            {getText(flavor.tagline, ingles)}
-          </motion.p>
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.p
+                  key={flavor.slug + '-tagline'}
+                  className={styles.tagline}
+                  custom={direction}
+                  variants={nameVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.38, delay: 0.04, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  {getText(flavor.tagline, ingles)}
+                </motion.p>
+              </AnimatePresence>
+            </motion.div>
+          )}
         </AnimatePresence>
 
         {/* ── Can stage ── */}
-        <div className={styles.canStage}>
-          <button className={styles.arrow} onClick={() => handleNav('prev')} aria-label="Previous">
+        <div className={styles.canSection}>
+          <button className={styles.arrow} onClick={() => handleNav('prev')} aria-label="Previous flavor">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="15 18 9 12 15 6" />
             </svg>
@@ -304,61 +411,217 @@ const BebidasSeccion1 = () => {
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={flavor.slug + '-can'}
-                className={styles.canWrapper}
+                className={`${styles.canWrapper} ${!expanded ? styles.canClickable : ''}`}
                 custom={direction}
                 variants={canVariants}
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+                onClick={!expanded ? () => setExpanded(true) : undefined}
+                whileHover={!expanded ? { scale: 1.06, y: -8 } : undefined}
               >
-                <img src={flavor.image} alt={flavorName} className={styles.canImage} draggable={false} />
-                <div className={styles.canGlow} style={{ background: `radial-gradient(circle, ${flavor.accentColor} 0%, transparent 70%)` }} />
+                <img
+                  src={flavor.image}
+                  alt={flavorName}
+                  className={`${styles.canImage} ${audioIsActive ? styles.canImagePlaying : ''}`}
+                  draggable={false}
+                />
+                <div
+                  className={`${styles.canGlow} ${audioIsActive ? styles.canGlowPlaying : ''}`}
+                  style={{ background: `radial-gradient(circle, ${flavor.accentColor} 0%, transparent 70%)` }}
+                />
+                {!expanded && (
+                  <motion.div
+                    className={styles.clickHint}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2 }}
+                  >
+                    {t.clickHint}
+                  </motion.div>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <button className={styles.arrow} onClick={() => handleNav('next')} aria-label="Next">
+          <button className={styles.arrow} onClick={() => handleNav('next')} aria-label="Next flavor">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="9 18 15 12 9 6" />
             </svg>
           </button>
         </div>
 
-        {/* ── Dots ── */}
-        <div className={styles.dots}>
-          {magicDrinkFlavors.map((f, i) => (
+        {/* ── Bottom: dots + CTA (collapsed) OR thumbnails (expanded) ── */}
+        <AnimatePresence mode="wait">
+          {!expanded ? (
+            <motion.div
+              key="bottom-collapsed"
+              className={styles.bottomCollapsed}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className={styles.dots}>
+                {magicDrinkFlavors.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
+                    onClick={() => handleSelect(i)}
+                    aria-label={`Flavor ${i + 1}`}
+                  />
+                ))}
+              </div>
+              <button
+                className={styles.ctaButton}
+                onClick={() => setExpanded(true)}
+              >
+                {t.discoverMore}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="bottom-expanded"
+              className={styles.thumbnails}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.35 }}
+            >
+              {magicDrinkFlavors.map((f, i) => {
+                const fCfg = FC[f.slug] || FC['magic-original'];
+                const thumbBg = fCfg.bg.startsWith('linear') ? f.accentColor : fCfg.bg;
+                return (
+                  <button
+                    key={f.slug}
+                    className={`${styles.thumb} ${i === current ? styles.thumbActive : ''}`}
+                    onClick={() => handleSelect(i)}
+                    aria-label={f.slug}
+                    style={{ '--thumb-bg': thumbBg }}
+                  >
+                    <img src={f.image} alt={f.slug} className={styles.thumbImg} draggable={false} />
+                  </button>
+                );
+              })}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+
+      {/* ── INFO PANEL (slides in from right) ── */}
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            className={`${styles.infoPanel} ${isMobile ? styles.infoPanelMobile : ''}`}
+            initial={isMobile ? { y: '100%', opacity: 0 } : { x: '100%', opacity: 0 }}
+            animate={isMobile ? { y: '0%', opacity: 1 } : { x: '0%', opacity: 1 }}
+            exit={isMobile ? { y: '100%', opacity: 0 } : { x: '100%', opacity: 0 }}
+            transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+          >
             <button
-              key={f.slug}
-              className={`${styles.dotIndicator} ${i === current ? styles.dotActive : ''}`}
-              onClick={() => handleDot(i)}
-              aria-label={f.slug}
-            />
-          ))}
-        </div>
+              className={styles.backBtn}
+              onClick={() => setExpanded(false)}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              {t.back}
+            </button>
 
-        {/* ── CTA ── */}
-        <button className={styles.ctaButton} onClick={handleCta}>
-          {t.cta}
-          <span className={styles.ctaArrow}>&#8595;</span>
-        </button>
-      </section>
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={flavor.slug + '-panel'}
+                className={styles.infoContent}
+                custom={direction}
+                variants={panelInfoVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <h2 className={styles.panelName}>
+                  <span className={styles.titleIcon}>
+                    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="none">
+                      {S[config.ti[0][0]](config.ti[0][1])}
+                    </svg>
+                  </span>
+                  {flavorName}
+                </h2>
 
-      {/* ── Wave transition to next section ── */}
-      <div className={styles.waveTransition}>
-        <svg viewBox="0 0 1200 150" preserveAspectRatio="none" className={`${styles.waveSvg} ${styles.waveSvgDesktop}`}>
-          <path d="M0,50 Q30,90 60,50 T120,50 T180,50 T240,50 T300,50 T360,50 T420,50 T480,50 T540,50 T600,50 T660,50 T720,50 T780,50 T840,50 T900,50 T960,50 T1020,50 T1080,50 T1140,50 T1200,50 L1200,150 L0,150 Z" fill={waveFill} opacity="0.6" />
-          <path d="M0,70 Q30,105 60,70 T120,70 T180,70 T240,70 T300,70 T360,70 T420,70 T480,70 T540,70 T600,70 T660,70 T720,70 T780,70 T840,70 T900,70 T960,70 T1020,70 T1080,70 T1140,70 T1200,70 L1200,150 L0,150 Z" fill={waveFill} opacity="0.8" />
-          <path d="M0,85 Q30,115 60,85 T120,85 T180,85 T240,85 T300,85 T360,85 T420,85 T480,85 T540,85 T600,85 T660,85 T720,85 T780,85 T840,85 T900,85 T960,85 T1020,85 T1080,85 T1140,85 T1200,85 L1200,150 L0,150 Z" fill={waveFill} opacity="1" />
-        </svg>
-        <svg viewBox="0 0 1200 150" preserveAspectRatio="none" className={`${styles.waveSvg} ${styles.waveSvgMobile}`}>
-          <path d="M0,50 Q75,90 150,50 T300,50 T450,50 T600,50 T750,50 T900,50 T1050,50 T1200,50 L1200,150 L0,150 Z" fill={waveFill} opacity="0.6" />
-          <path d="M0,70 Q75,105 150,70 T300,70 T450,70 T600,70 T750,70 T900,70 T1050,70 T1200,70 L1200,150 L0,150 Z" fill={waveFill} opacity="0.8" />
-          <path d="M0,85 Q75,115 150,85 T300,85 T450,85 T600,85 T750,85 T900,85 T1050,85 T1200,85 L1200,150 L0,150 Z" fill={waveFill} opacity="1" />
-        </svg>
-      </div>
-    </>
+                <p className={styles.panelTagline}>{getText(flavor.tagline, ingles)}</p>
+
+                <p className={styles.description}>{getText(flavor.description, ingles)}</p>
+
+                <div className={styles.divider} />
+
+                {flavor.spotlight && (
+                  <p className={styles.spotlight}>"{getText(flavor.spotlight, ingles)}"</p>
+                )}
+
+                {flavor.ritual && (
+                  <p className={styles.ritual}>
+                    <span className={styles.ritualLabel}>{t.ritual}:</span>{' '}
+                    {getText(flavor.ritual, ingles)}
+                  </p>
+                )}
+
+                {notes.length > 0 && (
+                  <div className={styles.noteTags}>
+                    {notes.map((n) => (
+                      <span key={n} className={styles.noteTag}>{n}</span>
+                    ))}
+                  </div>
+                )}
+
+                <div className={styles.statsRow}>
+                  <div className={styles.stat}>
+                    <span className={styles.statLabel}>{t.energy}</span>
+                    <span className={styles.statValue}>{flavor.stats.energy}</span>
+                  </div>
+                  <div className={styles.stat}>
+                    <span className={styles.statLabel}>{t.taste}</span>
+                    <span className={styles.statValue}>{getText(flavor.stats.taste, ingles)}</span>
+                  </div>
+                  <div className={styles.stat}>
+                    <span className={styles.statLabel}>{t.vibe}</span>
+                    <span className={styles.statValue}>{getText(flavor.stats.vibe, ingles)}</span>
+                  </div>
+                </div>
+
+                <div className={`${styles.player} ${audioIsActive ? styles.playerActive : ''}`}>
+                  <button
+                    className={`${styles.playBtn} ${audioIsActive ? styles.playBtnActive : ''}`}
+                    onClick={handleTogglePlay}
+                    aria-label={audioIsActive ? t.stopNow : t.playNow}
+                  >
+                    {audioIsActive ? (
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <rect x="6" y="5" width="4" height="14" rx="1.5" />
+                        <rect x="14" y="5" width="4" height="14" rx="1.5" />
+                      </svg>
+                    ) : (
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <polygon points="5,3 20,12 5,21" />
+                      </svg>
+                    )}
+                  </button>
+
+                  <WaveformBars isActive={audioIsActive} seeds={waveSeeds} />
+
+                  <span className={styles.trackName}>
+                    {flavorName} {t.loopSuffix}
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
-};
-
-export default BebidasSeccion1;
+}

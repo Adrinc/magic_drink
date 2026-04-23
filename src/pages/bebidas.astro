@@ -1,12 +1,10 @@
 ---
 import LayoutBasic from '../layouts/LayoutBasic.astro';
 import BebidasSeccion1 from '../components/bebidas/Secciones/BebidasSeccion1.jsx';
-import BebidasSeccion2 from '../components/bebidas/Secciones/BebidasSeccion2.jsx';
 import BebidasSeccion3 from '../components/bebidas/Secciones/BebidasSeccion3.jsx';
 ---
 
 <LayoutBasic title="Magic Drink | Bebidas" showFooter={true}>
   <BebidasSeccion1 client:only="react" />
-  <BebidasSeccion2 client:only="react" />
   <BebidasSeccion3 client:only="react" />
 </LayoutBasic>

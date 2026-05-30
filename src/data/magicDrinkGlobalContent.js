@@ -10,10 +10,10 @@ export const magicDrinkGlobalContent = {
     },
     footer: {
       quickLinks: [
-        { text: 'Bebidas', href: '/bebidas', icon: '/icons/icono_lata.png' },
-        { text: 'Hexy Music', href: '/hexy', icon: '/icons/icono_hexy.png' },
-        { text: 'Wonderpop Plaza', href: '/wonderpop-plaza', icon: '/icons/icono_plaza.png' },
-        { text: 'Nosotros', href: '/nosotros', icon: '/icons/icono_gorro.png' },
+        { text: 'Bebidas', href: '/bebidas', icon: '/icons/icono_lata.webp' },
+        { text: 'Hexy Music', href: '/hexy', icon: '/icons/icono_hexy.webp' },
+        { text: 'Wonderpop Plaza', href: '/wonderpop-plaza', icon: '/icons/icono_plaza.webp' },
+        { text: 'Nosotros', href: '/nosotros', icon: '/icons/icono_gorro.webp' },
         { text: 'Contacto', href: '/contacto', icon: '/icons/email.svg' },
       ],
     },
@@ -29,10 +29,10 @@ export const magicDrinkGlobalContent = {
     },
     footer: {
       quickLinks: [
-        { text: 'Drinks', href: '/bebidas', icon: '/icons/icono_lata.png' },
-        { text: 'Hexy Music', href: '/hexy', icon: '/icons/icono_hexy.png' },
-        { text: 'Wonderpop Plaza', href: '/wonderpop-plaza', icon: '/icons/icono_plaza.png' },
-        { text: 'About', href: '/nosotros', icon: '/icons/icono_gorro.png' },
+        { text: 'Drinks', href: '/bebidas', icon: '/icons/icono_lata.webp' },
+        { text: 'Hexy Music', href: '/hexy', icon: '/icons/icono_hexy.webp' },
+        { text: 'Wonderpop Plaza', href: '/wonderpop-plaza', icon: '/icons/icono_plaza.webp' },
+        { text: 'About', href: '/nosotros', icon: '/icons/icono_gorro.webp' },
         { text: 'Contact', href: '/contacto', icon: '/icons/email.svg' },
       ],
     },

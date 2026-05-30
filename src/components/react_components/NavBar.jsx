@@ -83,7 +83,7 @@ const NavBar = () => {
         <div className={styles.logoSection}>
           <a href="/" onClick={handleLogoClick} className={styles.logoLink}>
             <img 
-              src="/logo.png" 
+              src="/logo.webp" 
               alt="Magic Drink" 
               className={`${styles.logoImage} ${isScrolled ? styles.logoCompact : ''}`}
             />
@@ -163,7 +163,7 @@ const NavBar = () => {
             
             {/* Logo en menú móvil */}
             <div className={styles.mobileLogo}>
-              <img src="/logo.png" alt="Magic Drink" />
+              <img src="/logo.webp" alt="Magic Drink" />
             </div>
 
             {/* Links móvil */}

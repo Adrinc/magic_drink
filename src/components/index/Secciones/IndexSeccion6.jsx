@@ -26,10 +26,10 @@ const IndexSeccion6 = () => {
       description: "Wonderpop Plaza es el centro comercial oficial de Magic Drink. Un espacio donde la bebida, la música y la creatividad se encuentran. Aquí nacen ediciones especiales, eventos exclusivos y experiencias únicas.",
       highlightsTitle: "Todo lo que encontrarás",
       highlights: [
-        { icon: '/icons/icono_lata.png', text: 'Tienda oficial Magic Drink' },
-        { icon: '/icons/icono_gorro.png', text: 'Música y experiencias de Hexy' },
-        { icon: '/icons/icono_bolsa.png', text: 'Merch exclusivo y ediciones limitadas' },
-        { icon: '/icons/icono_globo.png', text: 'Eventos especiales durante el Magic Drink Day' }
+        { icon: '/icons/icono_lata.webp', text: 'Tienda oficial Magic Drink' },
+        { icon: '/icons/icono_gorro.webp', text: 'Música y experiencias de Hexy' },
+        { icon: '/icons/icono_bolsa.webp', text: 'Merch exclusivo y ediciones limitadas' },
+        { icon: '/icons/icono_globo.webp', text: 'Eventos especiales durante el Magic Drink Day' }
       ],
       cta: "Explorar Wonderpop Plaza",
       statsTitle: "Nuestro Impacto Global",
@@ -47,10 +47,10 @@ const IndexSeccion6 = () => {
       description: "Wonderpop Plaza is the official shopping center of Magic Drink. A space where the drink, music and creativity meet in one place. Here special editions are born, exclusive events and unique experiences.",
       highlightsTitle: "Everything you'll find",
       highlights: [
-        { icon: '/icons/icono_lata.png', text: 'Official Magic Drink Store' },
-        { icon: '/icons/icono_gorro.png', text: 'Music and Hexy experiences' },
-        { icon: '/icons/icono_bolsa.png', text: 'Exclusive merch and limited editions' },
-        { icon: '/icons/icono_globo.png', text: 'Special events during Magic Drink Day' }
+        { icon: '/icons/icono_lata.webp', text: 'Official Magic Drink Store' },
+        { icon: '/icons/icono_gorro.webp', text: 'Music and Hexy experiences' },
+        { icon: '/icons/icono_bolsa.webp', text: 'Exclusive merch and limited editions' },
+        { icon: '/icons/icono_globo.webp', text: 'Special events during Magic Drink Day' }
       ],
       cta: "Explore Wonderpop Plaza",
       statsTitle: "Our Global Impact",
@@ -343,7 +343,7 @@ const IndexSeccion6 = () => {
             loop
             playsInline
             preload="auto"
-            poster="/image/wonderpop/wonderpop-poster.png"
+            poster="/image/wonderpop/wonderpop-poster.webp"
           >
             <source src="/videos/wonderpop.mp4" type="video/mp4" />
           </video>
@@ -354,8 +354,8 @@ const IndexSeccion6 = () => {
           <h3 className={styles.subtitle}>{t.subtitle}</h3>
           <p className={styles.description}>{t.description}</p>
           <div className={styles.wonderpopImgGallery}>
-            <img src="/image/wonderpop/wonderpop-exterior.png" alt="" className={styles.wonderpopImg} onError={(e) => { e.target.style.display = 'none'; }} />
-            <img src="/image/wonderpop/wonderpop-interior.png" alt="" className={styles.wonderpopImg} onError={(e) => { e.target.style.display = 'none'; }} />
+            <img src="/image/wonderpop/wonderpop-exterior.webp" alt="" className={styles.wonderpopImg} onError={(e) => { e.target.style.display = 'none'; }} />
+            <img src="/image/wonderpop/wonderpop-interior.webp" alt="" className={styles.wonderpopImg} onError={(e) => { e.target.style.display = 'none'; }} />
           </div>
         </div>
 
@@ -452,7 +452,7 @@ const IndexSeccion6 = () => {
             muted
             playsInline
             preload="auto"
-            poster="/image/wonderpop/wonderpop-poster.png"
+            poster="/image/wonderpop/wonderpop-poster.webp"
           >
             <source src="/videos/wonderpop.mp4" type="video/mp4" />
           </video>
@@ -466,13 +466,13 @@ const IndexSeccion6 = () => {
           {/* Galería atmosférica de Wonderpop Plaza */}
           <div className={styles.wonderpopImgGallery}>
             <img
-              src="/image/wonderpop/wonderpop-exterior.png"
+              src="/image/wonderpop/wonderpop-exterior.webp"
               alt=""
               className={styles.wonderpopImg}
               onError={(e) => { e.target.style.display = 'none'; }}
             />
             <img
-              src="/image/wonderpop/wonderpop-interior.png"
+              src="/image/wonderpop/wonderpop-interior.webp"
               alt=""
               className={styles.wonderpopImg}
               onError={(e) => { e.target.style.display = 'none'; }}

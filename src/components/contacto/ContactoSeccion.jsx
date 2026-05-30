@@ -101,7 +101,7 @@ const ContactoSeccion = () => {
       <div className={styles.infoColumn}>
         <div className={styles.containerInfo}>
           <div className={styles.logoContainer}>
-            <img src="./favicon.png" alt="Logo" className={styles.logo} />
+            <img src="./favicon.webp" alt="Logo" className={styles.logo} />
             <div className={styles.logoGlow}></div>
           </div>
           

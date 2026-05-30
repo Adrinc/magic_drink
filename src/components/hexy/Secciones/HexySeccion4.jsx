@@ -44,7 +44,7 @@ export default function HexySeccion4() {
       <div className={styles.shell}>
         <div className={styles.imageWrap}>
           <img
-            src="/image/hexy/hexy-anime-chibi.png"
+            src="/image/hexy/hexy-anime-chibi.webp"
             alt="Hexy chibi"
             className={styles.chibi}
           />

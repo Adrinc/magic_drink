@@ -35,7 +35,7 @@ export default function WonderpopSeccion6() {
         <div className={styles.card}>
           <img
             className={styles.icon}
-            src="/icons/icono_plaza.png"
+            src="/icons/icono_plaza.webp"
             alt="Wonderpop Plaza"
           />
           <h2 className={styles.heading}>

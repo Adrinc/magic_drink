@@ -265,13 +265,13 @@ const IndexSeccion5 = () => {
       {/* Imágenes decorativas del desfile — capa atmosférica, sin GSAP */}
       <div className={styles.paradeImgCollage} aria-hidden="true">
         <img
-          src="/image/parade/parade-float.png"
+          src="/image/parade/parade-float.webp"
           alt=""
           className={`${styles.paradeImg} ${styles.paradeImgLeft}`}
           onError={(e) => { e.target.parentElement.style.display = 'none'; }}
         />
         <img
-          src="/image/parade/parade-crowd.png"
+          src="/image/parade/parade-crowd.webp"
           alt=""
           className={`${styles.paradeImg} ${styles.paradeImgRight}`}
           onError={(e) => { e.target.style.display = 'none'; }}

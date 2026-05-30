@@ -82,7 +82,7 @@ export default function NosotrosSeccion3() {
               ref={videoRef}
               className={styles.video}
               src="/videos/Hexy_real_1.mp4"
-              poster="/image/hexy/hexy-live-corporate.png"
+              poster="/image/hexy/hexy-live-corporate.webp"
               playsInline
               onEnded={handleVideoEnd}
               onClick={handlePlayToggle}

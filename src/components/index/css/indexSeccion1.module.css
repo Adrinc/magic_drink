@@ -63,7 +63,7 @@
 .backgroundImage {
   position: absolute;
   inset: 0;
-  background-image: url('/image/backgrounds/bg_magic.png');
+  background-image: url('/image/backgrounds/bg_magic.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -81,7 +81,7 @@
 .spotlightReveal {
   position: absolute;
   inset: 0;
-  background-image: url('/image/backgrounds/bg_temp_2.png');
+  background-image: url('/image/backgrounds/bg_temp_2.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

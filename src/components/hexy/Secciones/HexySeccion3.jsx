@@ -4,12 +4,12 @@ import { isEnglish } from '../../../data/variables';
 import styles from '../css/hexySeccion3.module.css';
 
 const albums = [
-  { title: 'Starlight Addiction', artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-poster.png' },
-  { title: 'Sparkle Dreams',     artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-chibi.png' },
-  { title: 'Bubble Pop Magic',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-banner.png' },
-  { title: 'Banana Overdrive',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-live-can.png' },
-  { title: 'Dragon Beat Fury',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-live-corporate.png' },
-  { title: 'Kiwi Hex Ritual',    artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy1.png' },
+  { title: 'Starlight Addiction', artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-poster.webp' },
+  { title: 'Sparkle Dreams',     artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-chibi.webp' },
+  { title: 'Bubble Pop Magic',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-banner.webp' },
+  { title: 'Banana Overdrive',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-live-can.webp' },
+  { title: 'Dragon Beat Fury',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-live-corporate.webp' },
+  { title: 'Kiwi Hex Ritual',    artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy1.webp' },
 ];
 
 const content = {

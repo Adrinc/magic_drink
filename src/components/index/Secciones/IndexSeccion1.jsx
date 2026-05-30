@@ -168,7 +168,7 @@ const IndexSeccion1 = () => {
         <div className={styles.scrollIndicator}>
           <span className={styles.scrollText}>{t.scrollText}</span>
           <div className={styles.iconicStar}>
-            <img src="/favicon.png" alt="Magic Drink Star" />
+            <img src="/favicon.webp" alt="Magic Drink Star" />
           </div>
         </div>
       </div>

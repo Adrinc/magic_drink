@@ -84,7 +84,7 @@ export default function HexySeccion2() {
           <div className={styles.imageWrap}>
             <div className={styles.glowOrb} />
             <img
-              src="/image/hexy/hexy-highlight.png"
+              src="/image/hexy/hexy-highlight.webp"
               alt="Hexy — Magic Drink Idol"
               className={styles.characterImage}
             />

@@ -16,7 +16,7 @@
 .bg {
   position: absolute;
   inset: 0;
-  background: url('/image/backgrounds/hexy_bg1.png') center center / cover no-repeat;
+  background: url('/image/backgrounds/hexy_bg1.webp') center center / cover no-repeat;
   z-index: 0;
 }
 

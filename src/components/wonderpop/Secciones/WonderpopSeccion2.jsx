@@ -57,7 +57,7 @@ export default function WonderpopSeccion2() {
 
         <div className={styles.visual}>
           <img
-            src="/image/wonderpop/wonderpop-exterior.png"
+            src="/image/wonderpop/wonderpop-exterior.webp"
             alt="Wonderpop Plaza exterior"
             loading="lazy"
           />

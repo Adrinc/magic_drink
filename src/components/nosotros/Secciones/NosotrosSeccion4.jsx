@@ -13,17 +13,17 @@ const content = {
     title: 'Cómo se integra Magic Drink',
     pillars: [
       {
-        icon: '/icons/icono_lata.png',
+        icon: '/icons/icono_lata.webp',
         title: 'Sabor que se vuelve recuerdo',
         body: 'Cada perfil fue diseñado para activar sensaciones claras: alegría, enfoque, ligereza y un pequeño exceso de brillo. No es solo una bebida, es un estado que reconoces al primer sorbo.',
       },
       {
-        icon: '/icons/icono_hexy.png',
+        icon: '/icons/icono_hexy.webp',
         title: 'Música que acompaña el sistema',
         body: 'Hexy y DJ Sweet Hex traducen el sabor en una capa sonora. No venden una campaña: venden continuidad emocional. Y una vez que la escuchas, no puedes dejar de asociarla.',
       },
       {
-        icon: '/icons/icono_plaza.png',
+        icon: '/icons/icono_plaza.webp',
         title: 'Comunidad que se siente inmediata',
         body: 'Wonderpop Plaza, eventos y cultura visual convierten la marca en un lugar al que las personas quieren volver. Incluso antes de comprar algo, ya te sientes parte.',
       },
@@ -39,17 +39,17 @@ const content = {
     title: 'How Magic Drink integrates',
     pillars: [
       {
-        icon: '/icons/icono_lata.png',
+        icon: '/icons/icono_lata.webp',
         title: 'Flavor that becomes memory',
         body: 'Every profile was designed to trigger clear sensations: joy, focus, lightness, and a subtle excess of brightness. It\'s not just a drink — it\'s a state you recognize from the first sip.',
       },
       {
-        icon: '/icons/icono_hexy.png',
+        icon: '/icons/icono_hexy.webp',
         title: 'Music that supports the system',
         body: 'Hexy and DJ Sweet Hex translate flavor into sound. They are not selling a campaign — they are selling emotional continuity. And once you hear it, you can\'t stop associating it.',
       },
       {
-        icon: '/icons/icono_plaza.png',
+        icon: '/icons/icono_plaza.webp',
         title: 'Community that feels immediate',
         body: 'Wonderpop Plaza, events, and visual culture turn the brand into a place people want to return to. Even before buying anything, you already feel like you belong.',
       },

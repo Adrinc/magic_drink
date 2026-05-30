@@ -58,7 +58,7 @@ export default function NosotrosSeccion1() {
     <section ref={sectionRef} className={styles.hero}>
       <div className={styles.bgLayer} aria-hidden="true">
         <img
-          src="/image/backgrounds/team1.png"
+          src="/image/backgrounds/team1.webp"
           alt=""
           className={styles.bgImage}
           loading="eager"

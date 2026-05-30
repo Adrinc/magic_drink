@@ -26,7 +26,7 @@ export default function WonderpopSeccion1() {
     <section className={styles.hero}>
       <img
         className={styles.bgImage}
-        src="/image/wonderpop/wonderpop-poster.png"
+        src="/image/wonderpop/wonderpop-poster.webp"
         alt="Wonderpop Plaza"
         loading="eager"
       />
@@ -34,7 +34,7 @@ export default function WonderpopSeccion1() {
 
       <div className={styles.content}>
         <span className={styles.badge}>
-          <img className={styles.badgeIcon} src="/icons/icono_plaza.png" alt="" />
+          <img className={styles.badgeIcon} src="/icons/icono_plaza.webp" alt="" />
           {t.badge}
         </span>
         <h1 className={styles.title}>{t.title}</h1>

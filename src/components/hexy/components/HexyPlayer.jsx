@@ -9,7 +9,7 @@ const playlist = [
     title: 'Starlight Addiction',
     artist: 'Hexy \u00B7 DJ Sweet Hex',
     src: '/audio/loops/loop_original.mp3',
-    cover: '/image/hexy/hexy-anime-poster.png',
+    cover: '/image/hexy/hexy-anime-poster.webp',
     badge: 'TOP 1 Global',
   },
   {
@@ -17,7 +17,7 @@ const playlist = [
     title: 'Sparkle Dreams',
     artist: 'Hexy \u00B7 DJ Sweet Hex',
     src: '/audio/loops/loop_sparkle.mp3',
-    cover: '/image/hexy/hexy-anime-chibi.png',
+    cover: '/image/hexy/hexy-anime-chibi.webp',
     badge: null,
   },
   {
@@ -25,7 +25,7 @@ const playlist = [
     title: 'Bubble Pop Magic',
     artist: 'Hexy \u00B7 DJ Sweet Hex',
     src: '/audio/loops/loop_bubble.mp3',
-    cover: '/image/hexy/hexy-anime-banner.png',
+    cover: '/image/hexy/hexy-anime-banner.webp',
     badge: null,
   },
   {
@@ -33,7 +33,7 @@ const playlist = [
     title: 'Banana Overdrive',
     artist: 'Hexy \u00B7 DJ Sweet Hex',
     src: '/audio/loops/loop_banana.mp3',
-    cover: '/image/hexy/hexy-live-can.png',
+    cover: '/image/hexy/hexy-live-can.webp',
     badge: null,
   },
   {
@@ -41,7 +41,7 @@ const playlist = [
     title: 'Dragon Beat Fury',
     artist: 'Hexy \u00B7 DJ Sweet Hex',
     src: '/audio/loops/loop_dragon.mp3',
-    cover: '/image/hexy/hexy-live-corporate.png',
+    cover: '/image/hexy/hexy-live-corporate.webp',
     badge: null,
   },
   {
@@ -49,7 +49,7 @@ const playlist = [
     title: 'Kiwi Hex Ritual',
     artist: 'Hexy \u00B7 DJ Sweet Hex',
     src: '/audio/loops/loop_kiwi.mp3',
-    cover: '/image/hexy/hexy1.png',
+    cover: '/image/hexy/hexy1.webp',
     badge: null,
   },
 ];

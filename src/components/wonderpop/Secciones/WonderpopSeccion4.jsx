@@ -18,13 +18,13 @@ const content = {
 
 const gallery = [
   {
-    src: '/image/wonderpop/wonderpop-exterior.png',
+    src: '/image/wonderpop/wonderpop-exterior.webp',
     alt: { es: 'Fachada principal Wonderpop Plaza', en: 'Wonderpop Plaza main facade' },
     size: 'sizeLarge',
     caption: { es: 'Fachada Wonderpop Tokyo', en: 'Wonderpop Tokyo Facade' },
   },
   {
-    src: '/image/wonderpop/wonderpop-interior.png',
+    src: '/image/wonderpop/wonderpop-interior.webp',
     alt: { es: 'Interior Wonderpop Plaza', en: 'Wonderpop Plaza Interior' },
     size: 'sizeMedium',
     caption: { es: 'Atrio central', en: 'Central Atrium' },

@@ -22,7 +22,7 @@ const CtaCard = () => {
     <div className={`${styles.ctaCard} ${!darkMode ? styles.ctaCardLight : ''}`}>
       <div className={styles.imageSection}>
         <img 
-          src="/favicon.png" 
+          src="/favicon.webp" 
           alt="Energy Media Isotipo" 
           className={styles.image}
         />

@@ -11,7 +11,7 @@ const content = {
     subtitle: 'Cada rincón de Wonderpop Plaza está diseñado para convertir tu visita en un recuerdo. Estas son las zonas principales.',
     zones: [
       {
-        icon: '/icons/icono_lata.png',
+        icon: '/icons/icono_lata.webp',
         title: 'Tienda Oficial de Sabores',
         desc: 'Todos los sabores de Magic Drink disponibles, incluyendo ediciones limitadas exclusivas de cada sucursal. Prueba antes de comprar en las estaciones de degustación.',
         tag: 'Flagship',
@@ -19,7 +19,7 @@ const content = {
         featured: false,
       },
       {
-        icon: '/icons/icono_hexy.png',
+        icon: '/icons/icono_hexy.webp',
         title: 'Hexy Stage',
         desc: 'Escenario equipado con proyecciones holográficas donde Hexy realiza presentaciones musicales en vivo. Eventos especiales cada fin de semana.',
         tag: 'Live Music',
@@ -27,7 +27,7 @@ const content = {
         featured: false,
       },
       {
-        icon: '/icons/icono_bolsa.png',
+        icon: '/icons/icono_bolsa.webp',
         title: 'Merch Zone',
         desc: 'Peluches, ropa, accesorios, llaveros, stickers y ediciones coleccionables. Todo el merch kawaii oficial de Magic Drink y Hexy en un solo espacio.',
         tag: 'Coleccionable',
@@ -35,16 +35,16 @@ const content = {
         featured: false,
       },
       {
-        icon: '/icons/icono_globo.png',
+        icon: '/icons/icono_globo.webp',
         title: 'Eventos & Activaciones',
         desc: 'Lanzamientos de nuevos sabores, meet & greets virtuales con Hexy, pop-ups temáticos y colaboraciones con artistas locales. Siempre hay algo nuevo.',
         tag: 'Temporal',
         color: '#F9F871',
         featured: true,
-        image: '/image/wonderpop/wonderpop-interior.png',
+        image: '/image/wonderpop/wonderpop-interior.webp',
       },
       {
-        icon: '/icons/icono_gorro.png',
+        icon: '/icons/icono_gorro.webp',
         title: 'Espacios Instagrameables',
         desc: 'Zonas de foto con escenografías kawaii rotativas, iluminación perfecta y props oficiales. El lugar más compartido de la Plaza.',
         tag: 'Social',
@@ -60,7 +60,7 @@ const content = {
     subtitle: 'Every corner of Wonderpop Plaza is designed to turn your visit into a memory. These are the main zones.',
     zones: [
       {
-        icon: '/icons/icono_lata.png',
+        icon: '/icons/icono_lata.webp',
         title: 'Official Flavor Store',
         desc: 'Every Magic Drink flavor available, including limited editions exclusive to each branch. Try before you buy at tasting stations.',
         tag: 'Flagship',
@@ -68,7 +68,7 @@ const content = {
         featured: false,
       },
       {
-        icon: '/icons/icono_hexy.png',
+        icon: '/icons/icono_hexy.webp',
         title: 'Hexy Stage',
         desc: 'Stage equipped with holographic projections where Hexy performs live musical shows. Special events every weekend.',
         tag: 'Live Music',
@@ -76,7 +76,7 @@ const content = {
         featured: false,
       },
       {
-        icon: '/icons/icono_bolsa.png',
+        icon: '/icons/icono_bolsa.webp',
         title: 'Merch Zone',
         desc: 'Plushies, clothing, accessories, keychains, stickers, and collectible editions. All official Magic Drink and Hexy kawaii merch in one space.',
         tag: 'Collectible',
@@ -84,16 +84,16 @@ const content = {
         featured: false,
       },
       {
-        icon: '/icons/icono_globo.png',
+        icon: '/icons/icono_globo.webp',
         title: 'Events & Activations',
         desc: 'New flavor launches, virtual meet & greets with Hexy, themed pop-ups, and collaborations with local artists. There\'s always something new.',
         tag: 'Temporary',
         color: '#F9F871',
         featured: true,
-        image: '/image/wonderpop/wonderpop-interior.png',
+        image: '/image/wonderpop/wonderpop-interior.webp',
       },
       {
-        icon: '/icons/icono_gorro.png',
+        icon: '/icons/icono_gorro.webp',
         title: 'Instagrammable Spaces',
         desc: 'Photo zones with rotating kawaii sets, perfect lighting, and official props. The most shared spot in the Plaza.',
         tag: 'Social',

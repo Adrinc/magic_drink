@@ -49,7 +49,7 @@ export default function HexySeccion1() {
       <div className={styles.content}>
         <span className={styles.eyebrow}>
           <img
-            src="/icons/icono_hexy.png"
+            src="/icons/icono_hexy.webp"
             alt=""
             className={styles.eyebrowIcon}
           />

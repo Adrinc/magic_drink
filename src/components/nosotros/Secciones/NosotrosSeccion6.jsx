@@ -9,14 +9,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const brands = [
-  { src: '/image/brands/google.png', alt: 'Google' },
-  { src: '/image/brands/meta.jfif', alt: 'Meta' },
-  { src: '/image/brands/microsoft.png', alt: 'Microsoft' },
-  { src: '/image/brands/disneyland.avif', alt: 'Disneyland' },
-  { src: '/image/brands/nissan.avif', alt: 'Nissan' },
-  { src: '/image/brands/televisa.avif', alt: 'Televisa' },
-  { src: '/image/brands/shopyfy.png', alt: 'Shopify' },
-  { src: '/image/brands/sharp.avif', alt: 'Sharp' },
+  { src: '/image/brands/google.webp', alt: 'Google' },
+  { src: '/image/brands/meta.webp', alt: 'Meta' },
+  { src: '/image/brands/microsoft.webp', alt: 'Microsoft' },
+  { src: '/image/brands/disneyland.webp', alt: 'Disneyland' },
+  { src: '/image/brands/nissan.webp', alt: 'Nissan' },
+  { src: '/image/brands/televisa.webp', alt: 'Televisa' },
+  { src: '/image/brands/shopyfy.webp', alt: 'Shopify' },
+  { src: '/image/brands/sharp.webp', alt: 'Sharp' },
 ];
 
 const content = {

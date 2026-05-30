@@ -2,7 +2,7 @@ export const magicDrinkFlavors = [
   {
     slug: 'magic-original',
     audioId: 'magic-original',
-    image: '/image/drinks/lata_original.png',
+    image: '/image/drinks/lata_original.webp',
     color: '#AA37F2',
     accentColor: '#FF6AD7',
     tagline: {
@@ -34,7 +34,7 @@ export const magicDrinkFlavors = [
   {
     slug: 'banana-drama',
     audioId: 'banana-drama',
-    image: '/image/drinks/lata_banana.png',
+    image: '/image/drinks/lata_banana.webp',
     color: '#FFE066',
     accentColor: '#FF6AD7',
     tagline: {
@@ -66,7 +66,7 @@ export const magicDrinkFlavors = [
   {
     slug: 'bubble-tape',
     audioId: 'bubble-tape',
-    image: '/image/drinks/lata_bubble.png',
+    image: '/image/drinks/lata_bubble.webp',
     color: '#FF6AD7',
     accentColor: '#82D2FF',
     tagline: {
@@ -98,7 +98,7 @@ export const magicDrinkFlavors = [
   {
     slug: 'dragon-grape',
     audioId: 'dragon-grape',
-    image: '/image/drinks/lata_dragon.png',
+    image: '/image/drinks/lata_dragon.webp',
     color: '#9B4DCA',
     accentColor: '#FF6AD7',
     tagline: {
@@ -130,7 +130,7 @@ export const magicDrinkFlavors = [
   {
     slug: 'sparkle-soda',
     audioId: 'sparkle-soda',
-    image: '/image/drinks/lata_sparkle.png',
+    image: '/image/drinks/lata_sparkle.webp',
     color: '#82D2FF',
     accentColor: '#F9F871',
     tagline: {
@@ -162,7 +162,7 @@ export const magicDrinkFlavors = [
   {
     slug: 'witchy-kiwi',
     audioId: 'witchy-kiwi',
-    image: '/image/drinks/lata_kiwi.png',
+    image: '/image/drinks/lata_kiwi.webp',
     color: '#7ED957',
     accentColor: '#98FFDE',
     tagline: {

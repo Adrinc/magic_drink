@@ -23,7 +23,7 @@ const IndexSeccion7 = () => {
       name: "Andrea L.",
       country: "México",
       countryEn: "Mexico",
-      image: "/image/testimonials/luna.png",
+      image: "/image/testimonials/luna.webp",
       quote: "No tiene cafeína, pero me siento con energía todo el día. Ya es parte de mi rutina.",
       quoteEn: "It has no caffeine, but I feel energized all day. It's already part of my routine."
     },
@@ -32,7 +32,7 @@ const IndexSeccion7 = () => {
       name: "Lucas M.",
       country: "Argentina",
       countryEn: "Argentina",
-      image: "/image/testimonials/lucas.png",
+      image: "/image/testimonials/lucas.webp",
       quote: "La probé por curiosidad y ahora siempre tengo una en mi mochila. Me pone de buen humor.",
       quoteEn: "I tried it out of curiosity and now I always have one in my backpack. It puts me in a good mood."
     },
@@ -41,7 +41,7 @@ const IndexSeccion7 = () => {
       name: "Emily R.",
       country: "España",
       countryEn: "Spain",
-      image: "/image/testimonials/emily.png",
+      image: "/image/testimonials/emily.webp",
       quote: "Me encanta el sabor y la estética. Es como una pausa feliz en medio del día.",
       quoteEn: "I love the taste and aesthetics. It's like a happy break in the middle of the day."
     },
@@ -50,7 +50,7 @@ const IndexSeccion7 = () => {
       name: "Daniel K.",
       country: "Estados Unidos",
       countryEn: "United States",
-      image: "/image/testimonials/daniel.png",
+      image: "/image/testimonials/daniel.webp",
       quote: "Trabajo muchas horas frente a la computadora y Magic Drink me ayuda a mantenerme enfocado sin nervios.",
       quoteEn: "I work long hours in front of the computer and Magic Drink helps me stay focused without jitters."
     },
@@ -59,7 +59,7 @@ const IndexSeccion7 = () => {
       name: "Yuki A.",
       country: "Japón",
       countryEn: "Japan",
-      image: "/image/testimonials/yuki.png",
+      image: "/image/testimonials/yuki.webp",
       quote: "Me gusta porque es divertida y diferente. Me inspira cuando dibujo o escucho música.",
       quoteEn: "I like it because it's fun and different. It inspires me when I draw or listen to music."
     },
@@ -68,7 +68,7 @@ const IndexSeccion7 = () => {
       name: "Malik S.",
       country: "Colombia",
       countryEn: "Colombia",
-      image: "/image/testimonials/malik.png",
+      image: "/image/testimonials/malik.webp",
       quote: "Me sube el ánimo al instante. La siento ligera, pero con un punch que me activa.",
       quoteEn: "It lifts my mood instantly. I feel it light, but with a punch that activates me."
     }

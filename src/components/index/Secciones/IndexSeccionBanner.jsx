@@ -15,21 +15,21 @@ const IndexSeccionBanner = () => {
   const t = ingles ? content : content;
 
   const brands = [
-    { name: 'Alvarado Hospital', logo: '/image/brands/alvaradohospital.png' },
-    { name: 'Cox', logo: '/image/brands/cox.png' },
-   /*  { name: 'Disneyland', logo: '/image/brands/disneyland.png' }, */
-    { name: 'Health Coalition', logo: '/image/brands/healthcoali.png' },
-    { name: 'McDonalds', logo: '/image/brands/macdonals.png' },
-  /*   { name: 'Meta', logo: '/image/brands/meta.png' }, */
-    { name: 'Nissan', logo: '/image/brands/nissan.png' },
-     { name: 'Sharp', logo: '/image/brands/sharp.png' },
-   { name: 'SWC', logo: '/image/brands/swc.jpg' },
-    { name: 'Televisa', logo: '/image/brands/televisa.png' },
-/*     { name: 'Google', logo: '/image/brands/google.png' },
-    { name: 'HubSpot', logo: '/image/brands/hubspot.png' },
-    { name: 'LinkedIn', logo: '/image/brands/linkelin.png' },
-    { name: 'Microsoft', logo: '/image/brands/microsoft.png' },
-    { name: 'Shopify', logo: '/image/brands/shopyfy.png' } */
+    { name: 'Alvarado Hospital', logo: '/image/brands/alvaradohospital.webp' },
+    { name: 'Cox', logo: '/image/brands/cox.webp' },
+   /*  { name: 'Disneyland', logo: '/image/brands/disneyland.webp' }, */
+    { name: 'Health Coalition', logo: '/image/brands/healthcoali.webp' },
+    { name: 'McDonalds', logo: '/image/brands/macdonals.webp' },
+  /*   { name: 'Meta', logo: '/image/brands/meta.webp' }, */
+    { name: 'Nissan', logo: '/image/brands/nissan.webp' },
+     { name: 'Sharp', logo: '/image/brands/sharp.webp' },
+   { name: 'SWC', logo: '/image/brands/swc.webp' },
+    { name: 'Televisa', logo: '/image/brands/televisa.webp' },
+/*     { name: 'Google', logo: '/image/brands/google.webp' },
+    { name: 'HubSpot', logo: '/image/brands/hubspot.webp' },
+    { name: 'LinkedIn', logo: '/image/brands/linkelin.webp' },
+    { name: 'Microsoft', logo: '/image/brands/microsoft.webp' },
+    { name: 'Shopify', logo: '/image/brands/shopyfy.webp' } */
   ];
 
   const duplicatedBrands = [...brands, ...brands];

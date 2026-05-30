@@ -182,7 +182,7 @@ const IndexSeccion2 = () => {
             <div className={styles.ring3}></div>
           </div>
           <img 
-            src="/image/drinks/lata_original.png" 
+            src="/image/drinks/lata_original.webp" 
             alt="Magic Drink Original"
             className={styles.canImage}
           />

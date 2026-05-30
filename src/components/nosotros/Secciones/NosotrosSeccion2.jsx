@@ -81,7 +81,7 @@ export default function NosotrosSeccion2() {
               <p>{t.cardText}</p>
             </div>
             <img
-              src="/image/hexy/hexy-live-corporate.png"
+              src="/image/hexy/hexy-live-corporate.webp"
               alt="Hexy - Magic Drink Corporate"
               className={styles.hexyImage}
               loading="lazy"

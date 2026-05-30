@@ -353,13 +353,13 @@
 .magic .ornLeft,
 .magic [data-side="left"] {
   left: -35px;
-  background-image: url('/image/sticks/button-orn-left.png') !important;
+  background-image: url('/image/sticks/button-orn-left.webp') !important;
 }
 
 .magic .ornRight,
 .magic [data-side="right"] {
   right: -35px;
-  background-image: url('/image/sticks/button-orn-right.png') !important;
+  background-image: url('/image/sticks/button-orn-right.webp') !important;
 }
 
 /* Efecto de sparkles (opcional, usando pseudo-elemento) */

@@ -211,16 +211,16 @@ const IndexSeccion4 = () => {
             
             {/* Imagen principal de Hexy — Anime Banner */}
             <img
-              src="/image/hexy/hexy-anime-banner.png"
+              src="/image/hexy/hexy-anime-banner.webp"
               alt="Hexy - La idol de Magic Drink"
               className={styles.hexyImage}
-              onError={(e) => { e.target.src = '/image/hexy/hexy-highlight.png'; }}
+              onError={(e) => { e.target.src = '/image/hexy/hexy-highlight.webp'; }}
             />
             
             {/* Badge flotante — Anime/Real duality hint */}
             <div className={styles.hexyDualBadge}>
               <img 
-                src="/image/hexy/hexy-live-can.png" 
+                src="/image/hexy/hexy-live-can.webp" 
                 alt={ingles ? "Hexy in real life" : "Hexy en la vida real"}
                 className={styles.dualBadgeImg}
                 onError={(e) => { e.target.parentElement.style.display = 'none'; }}
@@ -284,7 +284,7 @@ const IndexSeccion4 = () => {
               {/* Hexy Anime Poster */}
               <div className={`${styles.hexyPosterWrapper} ${styles.animateIn}`}>
                 <img
-                  src="/image/hexy/hexy-anime-poster.png"
+                  src="/image/hexy/hexy-anime-poster.webp"
                   alt={ingles ? "Hexy official poster" : "Póster oficial de Hexy"}
                   className={styles.hexyPosterImg}
                   onError={(e) => { e.target.parentElement.style.display = 'none'; }}
@@ -312,7 +312,7 @@ const IndexSeccion4 = () => {
             
               <blockquote className={`${styles.hexyQuote} ${styles.animateIn}`}>
                 <img 
-                  src="/image/hexy/hexy-anime-chibi.png" 
+                  src="/image/hexy/hexy-anime-chibi.webp" 
                   alt="Hexy" 
                   className={styles.hexyQuoteAvatar}
                   onError={(e) => { e.target.style.display = 'none'; }}
@@ -416,7 +416,7 @@ const IndexSeccion4 = () => {
               {/* Hexy IRL Corporate Image */}
               <div className={`${styles.hexyCorporateWrapper} ${styles.animateIn}`}>
                 <img
-                  src="/image/hexy/hexy-live-corporate.png"
+                  src="/image/hexy/hexy-live-corporate.webp"
                   alt={ingles ? "Hexy at a Magic Drink event" : "Hexy en evento Magic Drink"}
                   className={styles.hexyCorporateImg}
                   onError={(e) => { e.target.parentElement.style.display = 'none'; }}

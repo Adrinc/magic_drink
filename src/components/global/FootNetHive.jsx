@@ -100,7 +100,7 @@ const FootNetHive = () => {
       {/* Hero section */}
       <div className={styles.heroSection}>
         <div className={styles.logoContainer}>
-          <img src="/logo.png" alt="Magic Drink" className={styles.logo} />
+          <img src="/logo.webp" alt="Magic Drink" className={styles.logo} />
         </div>
         <p className={styles.tagline}>{t.heroTagline}</p>
       </div>

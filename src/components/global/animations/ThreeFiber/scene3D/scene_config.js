@@ -5,12 +5,12 @@ import * as THREE from 'three'
  export const enviromentConfig = {
     encoding:THREE.SRGBColorSpace,
     files: [
-        './enviroments/px.png',
-        './enviroments/nx.png',
-        './enviroments/py.png',
-        './enviroments/ny.png',
-        './enviroments/pz.png',
-        './enviroments/nz.png'
+        './enviroments/px.webp',
+        './enviroments/nx.webp',
+        './enviroments/py.webp',
+        './enviroments/ny.webp',
+        './enviroments/pz.webp',
+        './enviroments/nz.webp'
     ]
     };
 

@@ -3,63 +3,81 @@ import { useStore } from '@nanostores/react';
 import { isEnglish } from '../../../data/variables';
 import styles from '../css/hexySeccion3.module.css';
 
-const albums = [
-  { title: 'Starlight Addiction', artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-poster.webp' },
-  { title: 'Sparkle Dreams',     artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-chibi.webp' },
-  { title: 'Bubble Pop Magic',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-anime-banner.webp' },
-  { title: 'Banana Overdrive',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-live-can.webp' },
-  { title: 'Dragon Beat Fury',   artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy-live-corporate.webp' },
-  { title: 'Kiwi Hex Ritual',    artist: 'DJ Sweet Hex', cover: '/image/hexy/hexy1.webp' },
+const tracks = [
+  { title: 'No Brain, Just Vibes!', credit: 'Hexy + Magic Bunnies', cover: '/image/music_covers/nobrain_just_vibes.webp' },
+  { title: 'Hexy Wow', credit: 'Hexy + Magic Bunnies', cover: '/image/music_covers/hexy_wow.webp' },
+  { title: 'Dancing Re-Re', credit: 'Hexy + Magic Bunnies', cover: '/image/music_covers/dancing_rere.webp' },
+  { title: 'Munchi-Sip Snacka-Pop', credit: 'Hexy', cover: '/image/music_covers/munchisip.webp' },
+  { title: 'Not Today Okay', credit: 'Hexy', cover: '/image/music_covers/not_today_okay.webp' },
+  { title: 'Roundy-Round', credit: 'Hexy + Magic Bunnies', cover: '/image/music_covers/roundy_round.webp' },
 ];
 
 const content = {
   es: {
-    eyebrow: 'El Misterio',
-    title: 'DJ ',
-    titleAccent: 'Sweet Hex',
+    eyebrow: 'El Sonido',
+    title: 'Coros de ',
+    titleAccent: 'Magic Bunnies',
     subtitle:
-      'Nadie sabe qui\u00E9n est\u00E1 detr\u00E1s de la m\u00FAsica. Solo que funciona. Solo que se queda en tu cabeza.',
-    heading: 'La firma invisible',
+      'Esas voces peque\u00F1as, dulces y casi imposibles de separar del beat aparecen en varias canciones de Hexy.',
+    heading: 'Las voces que saltan entre el beat',
     paragraphs: [
-      'Las canciones que Hexy interpreta est\u00E1n firmadas por un nombre que aparece en cr\u00E9ditos, posters y plataformas digitales: DJ Sweet Hex. Sobre esta identidad no existe informaci\u00F3n oficial.',
-      'No se sabe si es una persona real, un estudio musical o una inteligencia artificial. No hay entrevistas, no hay rostro, no hay historia p\u00FAblica. Solo un nombre que aparece como una firma fantasma y desaparece.',
+      'Los Magic Bunnies son el coro juguet\u00F3n de Hexy: voces agudas, suaves y brillantes, como ni\u00F1os cantando dentro de un filtro de conejito digital.',
+      'No ocupan el centro de la canci\u00F3n. Responden a Hexy, repiten s\u00EDlabas, hacen peque\u00F1os ecos y convierten cada hook en algo m\u00E1s f\u00E1cil de tararear.',
     ],
+    studioBadge: 'Chorus take 03',
+    studioCaption: 'Grabaci\u00F3n nocturna con los Magic Bunnies',
     rumorText:
-      'Cuando bebes una Magic Drink, la m\u00FAsica de DJ Sweet Hex se vuelve m\u00E1s adictiva. Las canciones se pegan con m\u00E1s fuerza. Se repiten involuntariamente en la cabeza.',
-    rumorSource: '\u2014 Rumor persistente entre fans de Magic Drink',
+      'Algunos fans dicen que los coros se sienten m\u00E1s n\u00EDtidos despu\u00E9s de una Magic Drink. La empresa lo llama producci\u00F3n pop bien hecha.',
+    rumorSource: '\u2014 Comentario recurrente en comunidades de Hexy',
+    signatureHeading: 'La firma que aparece y desaparece',
+    signatureCopy:
+      'De vez en cuando, en cr\u00E9ditos peque\u00F1os, posters o publicaciones oficiales, aparece una firma: DJ Sweet Hex. No hay rostro, entrevistas ni explicaci\u00F3n p\u00FAblica. Solo ese nombre, como una nota al margen que los fans coleccionan.',
     details: [
       {
-        title: 'Sincronia Inexplicable',
-        body: 'Los fans reportan que la m\u00FAsica de DJ Sweet Hex "se siente mejor" cuando se consume Magic Drink. La empresa lo llama coincidencia y marketing exitoso.',
+        title: 'Magic Bunnies',
+        body: 'Sus coros suenan tiernos, r\u00E1pidos y ligeramente sint\u00E9ticos. Entran como respuesta, eco o peque\u00F1a risa mel\u00F3dica dentro del beat.',
       },
       {
-        title: 'Energ\u00EDa Emocional',
-        body: 'Magic Drink no da energ\u00EDa con cafe\u00EDna. La m\u00FAsica de Hexy no es solo entretenimiento. Juntas, crean algo que nadie puede explicar del todo.',
+        title: 'Hook pegajoso',
+        body: 'Las frases cortas se repiten con variaciones peque\u00F1as, suficientes para sentirse nuevas sin dejar de quedarse en la cabeza.',
+      },
+      {
+        title: 'Cr\u00E9ditos borrosos',
+        body: 'La firma misteriosa no se anuncia como protagonista. Aparece peque\u00F1a, casi escondida, y eso la vuelve m\u00E1s comentada.',
       },
     ],
   },
   en: {
-    eyebrow: 'The Mystery',
-    title: 'DJ ',
-    titleAccent: 'Sweet Hex',
+    eyebrow: 'The Sound',
+    title: 'Magic Bunnies ',
+    titleAccent: 'Chorus',
     subtitle:
-      'Nobody knows who\u2019s behind the music. Only that it works. Only that it stays in your head.',
-    heading: 'The invisible signature',
+      'Those tiny, sweet voices that feel almost inseparable from the beat appear in several Hexy songs.',
+    heading: 'The voices bouncing through the beat',
     paragraphs: [
-      'The songs Hexy performs are signed by a name that appears in credits, posters, and digital platforms: DJ Sweet Hex. There is no official information about this identity.',
-      'Nobody knows if it\u2019s a real person, a music studio, or an artificial intelligence. No interviews, no face, no public history. Just a name that appears as a phantom signature and vanishes.',
+      'The Magic Bunnies are Hexy\u2019s playful chorus: bright, high little voices, like children singing through a digital bunny filter.',
+      'They do not take the center of the song. They answer Hexy, repeat syllables, create tiny echoes, and make every hook easier to hum.',
     ],
+    studioBadge: 'Chorus take 03',
+    studioCaption: 'Late-night recording with the Magic Bunnies',
     rumorText:
-      'When you drink a Magic Drink, DJ Sweet Hex\u2019s music becomes more addictive. The songs stick harder. They repeat involuntarily in your head.',
-    rumorSource: '\u2014 Persistent rumor among Magic Drink fans',
+      'Some fans say the choruses feel sharper after a Magic Drink. The company calls it polished pop production.',
+    rumorSource: '\u2014 Recurring comment in Hexy fan communities',
+    signatureHeading: 'The signature that appears and vanishes',
+    signatureCopy:
+      'Every now and then, in tiny credits, posters, or official posts, a signature appears: DJ Sweet Hex. No face, no interviews, no public explanation. Just that name, like a margin note fans keep collecting.',
     details: [
       {
-        title: 'Unexplainable Synergy',
-        body: 'Fans report that DJ Sweet Hex\u2019s music "feels better" when consuming Magic Drink. The company calls it coincidence and successful marketing.',
+        title: 'Magic Bunnies',
+        body: 'Their backing vocals sound tender, quick, and slightly synthetic. They enter as responses, echoes, or tiny melodic laughs inside the beat.',
       },
       {
-        title: 'Emotional Energy',
-        body: 'Magic Drink doesn\u2019t give energy with caffeine. Hexy\u2019s music isn\u2019t just entertainment. Together, they create something no one can fully explain.',
+        title: 'Sticky hook',
+        body: 'Short phrases repeat with small variations, enough to feel new while still staying in your head.',
+      },
+      {
+        title: 'Blurred credits',
+        body: 'The mysterious signature is not announced as the star. It appears small, almost hidden, which makes fans talk about it more.',
       },
     ],
   },
@@ -71,6 +89,8 @@ export default function HexySeccion3() {
 
   return (
     <section className={styles.section}>
+      <div className={styles.backdrop} />
+
       <div className={styles.shell}>
         <div className={styles.header}>
           <span className={styles.eyebrow}>{t.eyebrow}</span>
@@ -81,11 +101,23 @@ export default function HexySeccion3() {
           <p className={styles.sectionSubtitle}>{t.subtitle}</p>
         </div>
 
-        <div className={styles.mysteryGrid}>
-          <div className={styles.mysteryText}>
+        <div className={styles.soundGrid}>
+          <figure className={styles.studioFrame}>
+            <img
+              src="/image/hexy/hexy-magic-bunnies-studio.webp"
+              alt={t.studioCaption}
+              className={styles.studioImage}
+            />
+            <figcaption className={styles.studioCaption}>
+              <span>{t.studioBadge}</span>
+              {t.studioCaption}
+            </figcaption>
+          </figure>
+
+          <div className={styles.soundCopy}>
             <h3>{t.heading}</h3>
-            {t.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
+            {t.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
             ))}
 
             <div className={styles.rumor}>
@@ -93,22 +125,30 @@ export default function HexySeccion3() {
               <span className={styles.rumorSource}>{t.rumorSource}</span>
             </div>
           </div>
+        </div>
 
-          <div className={styles.albumGrid}>
-            {albums.map((album) => (
-              <div key={album.title} className={styles.album}>
-                <img
-                  src={album.cover}
-                  alt={album.title}
-                  className={styles.albumImage}
-                />
-                <div className={styles.albumOverlay}>
-                  <span className={styles.albumTitle}>{album.title}</span>
-                  <span className={styles.albumArtist}>{album.artist}</span>
-                </div>
-              </div>
-            ))}
+        <div className={styles.signatureBand}>
+          <div>
+            <span className={styles.signatureKicker}>{ingles ? 'Tiny credit' : 'Cr\u00E9dito m\u00EDnimo'}</span>
+            <h3>{t.signatureHeading}</h3>
           </div>
+          <p>{t.signatureCopy}</p>
+        </div>
+
+        <div className={styles.trackGrid} aria-label={ingles ? 'Hexy song cards' : 'Tarjetas de canciones de Hexy'}>
+          {tracks.map((track) => (
+            <div key={track.title} className={styles.trackCard}>
+              <img
+                src={track.cover}
+                alt={track.title}
+                className={styles.trackImage}
+              />
+              <div className={styles.trackOverlay}>
+                <span className={styles.trackTitle}>{track.title}</span>
+                <span className={styles.trackCredit}>{track.credit}</span>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className={styles.details}>

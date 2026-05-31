@@ -43,7 +43,18 @@ export default function HexySeccion1() {
 
   return (
     <section className={styles.hero}>
-      <div className={styles.bg} />
+      <video
+        className={styles.bgVideo}
+        poster="/image/backgrounds/hexy_bg1.webp"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/videos/hexy_hero.mp4" type="video/mp4" />
+      </video>
       <div className={styles.overlay} />
 
       <div className={styles.content}>

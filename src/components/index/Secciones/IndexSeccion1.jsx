@@ -9,6 +9,34 @@ import SplashCursor from '../../global/SplashCursor';
 // ReactBits Animations
 import BlurText from '../../global/animations/BlurText/BlurText';
 
+const createParticleStyle = (index, variant) => {
+  const seed = (index + 1) * (variant * 37);
+  const left = (seed * 29) % 100;
+  const top = (seed * 47) % 100;
+  const delay = ((seed * 13) % 60) / 10;
+  const duration = 3 + ((seed * 17) % 40) / 10;
+
+  return {
+    left: `${left}%`,
+    top: `${top}%`,
+    animationDelay: `${delay}s`,
+    animationDuration: `${duration}s`
+  };
+};
+
+const starParticles = Array.from({ length: 12 }, (_, i) => createParticleStyle(i, 1));
+const bubbleParticles = Array.from({ length: 8 }, (_, i) => {
+  const style = createParticleStyle(i, 2);
+  return {
+    left: style.left,
+    animationDelay: style.animationDelay,
+    animationDuration: `${4 + i * 0.28}s`
+  };
+});
+const noteParticles = Array.from({ length: 6 }, (_, i) => ({
+  ...createParticleStyle(i, 3),
+  animationDuration: `${5 + i * 0.42}s`
+}));
 
 const IndexSeccion1 = () => {
   const ingles = useStore(isEnglish);
@@ -76,32 +104,18 @@ const IndexSeccion1 = () => {
         {/* Partículas Flotantes Kawaii */}
         <div className={styles.particlesContainer}>
           {/* Estrellas */}
-          {[...Array(12)].map((_, i) => (
-            <div key={`star-${i}`} className={`${styles.particle} ${styles.star}`} style={{ 
-              left: `${Math.random() * 100}%`, 
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
-            }}>✦</div>
+          {starParticles.map((style, i) => (
+            <div key={`star-${i}`} className={`${styles.particle} ${styles.star}`} style={style}>✦</div>
           ))}
           
           {/* Burbujas */}
-          {[...Array(8)].map((_, i) => (
-            <div key={`bubble-${i}`} className={`${styles.particle} ${styles.bubble}`} style={{ 
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${4 + Math.random() * 3}s`
-            }}></div>
+          {bubbleParticles.map((style, i) => (
+            <div key={`bubble-${i}`} className={`${styles.particle} ${styles.bubble}`} style={style}></div>
           ))}
           
           {/* Notas Musicales */}
-          {[...Array(6)].map((_, i) => (
-            <div key={`note-${i}`} className={`${styles.particle} ${styles.musicNote}`} style={{ 
-              left: `${Math.random() * 100}%`, 
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 6}s`,
-              animationDuration: `${5 + Math.random() * 4}s`
-            }}>♪</div>
+          {noteParticles.map((style, i) => (
+            <div key={`note-${i}`} className={`${styles.particle} ${styles.musicNote}`} style={style}>♪</div>
           ))}
         </div>
 

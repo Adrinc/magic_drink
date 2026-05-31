@@ -5,20 +5,20 @@ import styles from '../css/hexySeccion4.module.css';
 
 const content = {
   es: {
-    heading: 'Tu pr\u00F3xima ',
-    headingAccent: 'experiencia m\u00E1gica',
-    headingSuffix: ' te espera',
+    heading: 'Que el coro ',
+    headingAccent: 'vuelva a sonar',
+    headingSuffix: '',
     description:
-      'Descubre todos los sabores de Magic Drink o explora la Wonderpop Plaza. Hexy estar\u00E1 ah\u00ED, en cada canci\u00F3n, en cada sorbo, en cada momento.',
+      'Explora los sabores de Magic Drink o entra a Wonderpop Plaza, donde Hexy, las luces y los Magic Bunnies convierten cada momento en algo que se queda tarareando.',
     ctaPrimary: 'Ver todos los sabores',
     ctaSecondary: 'Entrar a Wonderpop Plaza',
   },
   en: {
-    heading: 'Your next ',
-    headingAccent: 'magical experience',
-    headingSuffix: ' awaits',
+    heading: 'Let the chorus ',
+    headingAccent: 'play again',
+    headingSuffix: '',
     description:
-      'Discover every Magic Drink flavor or explore the Wonderpop Plaza. Hexy will be there\u2014in every song, every sip, every moment.',
+      'Explore every Magic Drink flavor or enter Wonderpop Plaza, where Hexy, the lights, and the Magic Bunnies turn each moment into something you keep humming.',
     ctaPrimary: 'See every flavor',
     ctaSecondary: 'Enter Wonderpop Plaza',
   },
@@ -42,14 +42,6 @@ export default function HexySeccion4() {
       </div>
 
       <div className={styles.shell}>
-        <div className={styles.imageWrap}>
-          <img
-            src="/image/hexy/hexy-anime-chibi.webp"
-            alt="Hexy chibi"
-            className={styles.chibi}
-          />
-        </div>
-
         <h2 className={styles.heading}>
           {t.heading}
           <span className={styles.headingAccent}>{t.headingAccent}</span>

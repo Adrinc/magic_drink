@@ -20,7 +20,7 @@ const content = {
       {
         icon: '/icons/icono_hexy.webp',
         title: 'Música que acompaña el sistema',
-        body: 'Hexy y DJ Sweet Hex traducen el sabor en una capa sonora. No venden una campaña: venden continuidad emocional. Y una vez que la escuchas, no puedes dejar de asociarla.',
+        body: 'Hexy, sus coros y esos créditos casi escondidos traducen el sabor en una capa sonora. No venden una campaña: venden continuidad emocional. Y una vez que la escuchas, no puedes dejar de asociarla.',
       },
       {
         icon: '/icons/icono_plaza.webp',
@@ -46,7 +46,7 @@ const content = {
       {
         icon: '/icons/icono_hexy.webp',
         title: 'Music that supports the system',
-        body: 'Hexy and DJ Sweet Hex translate flavor into sound. They are not selling a campaign — they are selling emotional continuity. And once you hear it, you can\'t stop associating it.',
+        body: 'Hexy, her choruses, and those almost-hidden credits translate flavor into sound. They are not selling a campaign — they are selling emotional continuity. And once you hear it, you can\'t stop associating it.',
       },
       {
         icon: '/icons/icono_plaza.webp',

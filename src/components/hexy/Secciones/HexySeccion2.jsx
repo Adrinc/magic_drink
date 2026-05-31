@@ -1,64 +1,68 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useStore } from '@nanostores/react';
 import { isEnglish } from '../../../data/variables';
 import styles from '../css/hexySeccion2.module.css';
 
+const coverHighlights = [
+  { src: '/image/music_covers/nobrain_just_vibes.webp', alt: 'No Brain Just Vibes' },
+  { src: '/image/music_covers/hexy_wow.webp', alt: 'Hexy Wow' },
+  { src: '/image/music_covers/roundy_round.webp', alt: 'Roundy Round' },
+];
+
 const content = {
   es: {
-    eyebrow: 'Idol Global',
+    eyebrow: 'La se\u00F1al de Hexy',
     title: '\u00BFQui\u00E9n es ',
     titleAccent: 'Hexy?',
     subtitle:
-      'La brujita DJ que conquist\u00F3 al mundo entero con su magia musical y su energ\u00EDa imposible de ignorar.',
-    heading: 'La chispa que le da vida a Magic Drink',
+      'La idol virtual de Magic Drink no solo se mira: su mundo se escucha en hooks, portadas, coros y latas que parecen tener su propia luz.',
+    heading: 'La chispa que convierte una bebida en un ritual pop',
     paragraphs: [
-      'Hexy es la idol oficial de Magic Drink. Con su cabello rosa, su sombrero de bruja ic\u00F3nico y sus ojos fucsia brillantes, se convirti\u00F3 en un fen\u00F3meno cultural reconocido en todo el mundo.',
-      'No es solo una mascota: es una presencia musical que transforma cada momento cotidiano en algo m\u00E1s vibrante. Sus canciones acompa\u00F1an a millones de fans cada d\u00EDa, convirtiendo la experiencia de beber Magic Drink en algo que se siente, se escucha y se vive.',
+      'Hexy es el rostro emocional de Magic Drink: cabello rosa, sombrero de bruja, estrella amarilla y una energ\u00EDa que convierte cualquier escena en un momento cantable.',
+      'Su presencia vive entre conciertos, clips, empaques, stickers y canciones cortas que se sienten como peque\u00F1os hechizos pop. Cuando entra el coro de los Magic Bunnies, el universo deja de ser solo visual y se vuelve sonido.',
     ],
-    traits: [
+    visualKicker: 'Ahora suena',
+    visualTitle: 'Magic Drink frequency',
+    signals: [
       {
-        icon: '\u2728',
-        title: 'Estilo Kawaii-Pop',
-        body: 'Su est\u00E9tica combina lo adorable con lo futurista: estrellas, notas musicales y efectos luminosos la acompa\u00F1an siempre.',
+        title: 'Rostro de la sensaci\u00F3n',
+        body: 'No aparece como una mascota quieta. Hexy funciona como una idol: canta, posa, salta entre portadas y empuja el tono emocional de la marca.',
       },
       {
-        icon: '\u266B',
-        title: 'Energ\u00EDa Musical',
-        body: 'Cada canci\u00F3n de Hexy est\u00E1 dise\u00F1ada para quedarse en tu cabeza: ritmos pegajosos, coros juguetones y pura vibra positiva.',
+        title: 'Hooks con burbujas',
+        body: 'Las canciones mezclan brillo kawaii, frases repetibles y beats ligeros. La lata deja de ser producto y se vuelve parte del escenario.',
       },
       {
-        icon: '\u2605',
-        title: '\u00CDcono Cultural',
-        body: 'Aparece en conciertos, campa\u00F1as globales, empaques y eventos. Hexy es el rostro emocional de Magic Drink en todo el mundo.',
+        title: 'Fandom que responde',
+        body: 'Los Magic Bunnies aparecen como coros, ecos y voces peque\u00F1as que contestan a Hexy, como si cada track tuviera p\u00FAblico propio.',
       },
     ],
   },
   en: {
-    eyebrow: 'Global Idol',
+    eyebrow: 'Hexy Signal',
     title: 'Who is ',
     titleAccent: 'Hexy?',
     subtitle:
-      'The witch DJ who conquered the entire world with her musical magic and her impossible-to-ignore energy.',
-    heading: 'The spark that brings Magic Drink to life',
+      'Magic Drink\u2019s virtual idol is not just something you see: her world is heard through hooks, covers, choruses, and cans that feel lit from within.',
+    heading: 'The spark that turns a drink into a pop ritual',
     paragraphs: [
-      'Hexy is the official idol of Magic Drink. With her pink hair, iconic witch hat, and bright fuchsia eyes, she became a worldwide cultural phenomenon.',
-      'She\u2019s not just a mascot: she\u2019s a musical presence that transforms everyday moments into something more vibrant. Her songs accompany millions of fans every day, turning the Magic Drink experience into something you feel, hear, and live.',
+      'Hexy is the emotional face of Magic Drink: pink hair, witch hat, yellow star, and the kind of energy that turns any scene into something singable.',
+      'Her presence lives across concerts, clips, packaging, stickers, and short songs that feel like tiny pop spells. When the Magic Bunnies chorus enters, the universe stops being only visual and becomes sound.',
     ],
-    traits: [
+    visualKicker: 'Now playing',
+    visualTitle: 'Magic Drink frequency',
+    signals: [
       {
-        icon: '\u2728',
-        title: 'Kawaii-Pop Style',
-        body: 'Her aesthetic blends adorable with futuristic: stars, musical notes, and luminous effects always accompany her.',
+        title: 'Face of the feeling',
+        body: 'She does not behave like a static mascot. Hexy works like an idol: singing, posing, jumping between covers, and steering the brand\u2019s emotion.',
       },
       {
-        icon: '\u266B',
-        title: 'Musical Energy',
-        body: 'Every Hexy song is designed to stick in your head: catchy rhythms, playful choruses, and pure positive vibes.',
+        title: 'Bubble-bright hooks',
+        body: 'The songs blend kawaii shine, repeatable phrases, and light beats. The can stops being a product and becomes part of the stage.',
       },
       {
-        icon: '\u2605',
-        title: 'Cultural Icon',
-        body: 'She appears in concerts, global campaigns, packaging, and events. Hexy is the emotional face of Magic Drink worldwide.',
+        title: 'A fandom that answers',
+        body: 'The Magic Bunnies appear as choruses, echoes, and tiny voices answering Hexy, as if every track carried its own crowd.',
       },
     ],
   },
@@ -67,9 +71,91 @@ const content = {
 export default function HexySeccion2() {
   const ingles = useStore(isEnglish);
   const t = ingles ? content.en : content.es;
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (
+      !section ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      !window.matchMedia('(min-width: 900px)').matches
+    ) {
+      return;
+    }
+
+    let ctx;
+    let cancelled = false;
+
+    Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+    ]).then(([gsapModule, scrollTriggerModule]) => {
+      if (cancelled) return;
+
+      const gsap = gsapModule.default;
+      const { ScrollTrigger } = scrollTriggerModule;
+      gsap.registerPlugin(ScrollTrigger);
+
+      ctx = gsap.context(() => {
+        gsap.fromTo(
+          '[data-hexy-copy]',
+          { y: 36, opacity: 0.72 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 68%',
+            },
+          }
+        );
+
+        gsap.fromTo(
+          '[data-hexy-stage]',
+          { y: 72, rotate: -1.2, scale: 0.96 },
+          {
+            y: -22,
+            rotate: 0,
+            scale: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 0.8,
+            },
+          }
+        );
+
+        gsap.fromTo(
+          '[data-hexy-card]',
+          { y: 24 },
+          {
+            y: 0,
+            duration: 0.65,
+            ease: 'power2.out',
+            stagger: 0.08,
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 55%',
+            },
+          }
+        );
+      }, section);
+    });
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, []);
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} ref={sectionRef}>
+      <div className={styles.sectionMist} />
+
       <div className={styles.shell}>
         <div className={styles.header}>
           <span className={styles.eyebrow}>{t.eyebrow}</span>
@@ -80,32 +166,44 @@ export default function HexySeccion2() {
           <p className={styles.sectionSubtitle}>{t.subtitle}</p>
         </div>
 
-        <div className={styles.grid}>
-          <div className={styles.imageWrap}>
-            <div className={styles.glowOrb} />
+        <div className={styles.storyGrid}>
+          <figure className={styles.visualPanel} data-hexy-stage>
+            <div className={styles.stageHalo} />
             <img
-              src="/image/hexy/hexy-highlight.webp"
-              alt="Hexy — Magic Drink Idol"
-              className={styles.characterImage}
+              src="/image/hexy/hexy-anime-banner.webp"
+              alt="Hexy mixing the Magic Drink sound"
+              className={styles.mainVisual}
             />
-          </div>
-
-          <div className={styles.textContent}>
-            <h3>{t.heading}</h3>
-            {t.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.traits}>
-          {t.traits.map((trait) => (
-            <div key={trait.title} className={styles.trait}>
-              <div className={styles.traitIcon}>{trait.icon}</div>
-              <h4>{trait.title}</h4>
-              <p>{trait.body}</p>
+            <div className={styles.visualShade} />
+            <figcaption className={styles.nowPlaying}>
+              <span>{t.visualKicker}</span>
+              <strong>{t.visualTitle}</strong>
+            </figcaption>
+            <div className={styles.coverStrip} aria-hidden="true">
+              {coverHighlights.map((cover) => (
+                <img key={cover.src} src={cover.src} alt="" className={styles.coverThumb} />
+              ))}
             </div>
-          ))}
+          </figure>
+
+          <div className={styles.textContent} data-hexy-copy>
+            <h3>{t.heading}</h3>
+            {t.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+
+            <div className={styles.signalList}>
+              {t.signals.map((signal, index) => (
+                <article key={signal.title} className={styles.signalItem} data-hexy-card>
+                  <span className={styles.signalNumber}>{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h4>{signal.title}</h4>
+                    <p>{signal.body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

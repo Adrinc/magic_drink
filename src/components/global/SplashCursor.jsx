@@ -16,7 +16,9 @@ function SplashCursor({
   COLOR_UPDATE_SPEED = 10,
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
   TRANSPARENT = true,
-  zIndex = -1
+  zIndex = -1,
+  opacity = 1,
+  mixBlendMode = 'normal'
 }) {
   const canvasRef = useRef(null);
 
@@ -1065,7 +1067,9 @@ function SplashCursor({
         style={{
           width: '100vw',
           height: '100vh',
-          display: 'block'
+          display: 'block',
+          opacity,
+          mixBlendMode
         }}
       />
     </div>

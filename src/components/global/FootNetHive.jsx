@@ -68,17 +68,6 @@ const FootNetHive = () => {
 
   return (
     <footer ref={sectionRef} className={`${styles.footer} ${!darkMode ? styles.footerLight : ''}`}>
-      {/* Wavy top border */}
-      <div className={styles.wavyTop}>
-        {/* Desktop version - muchas olitas */}
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className={`${styles.wavySvg} ${styles.wavySvgDesktop}`}>
-          <path d="M0,60 Q30,100 60,60 T120,60 T180,60 T240,60 T300,60 T360,60 T420,60 T480,60 T540,60 T600,60 T660,60 T720,60 T780,60 T840,60 T900,60 T960,60 T1020,60 T1080,60 T1140,60 T1200,60 L1200,120 L0,120 Z" fill={darkMode ? "#2C2633" : "#F8F4FB"}/>
-        </svg>
-        {/* Mobile version - pocas olitas */}
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className={`${styles.wavySvg} ${styles.wavySvgMobile}`}>
-          <path d="M0,60 Q75,100 150,60 T300,60 T450,60 T600,60 T750,60 T900,60 T1050,60 T1200,60 L1200,120 L0,120 Z" fill={darkMode ? "#2C2633" : "#F8F4FB"}/>
-        </svg>
-      </div>
 
       {/* Decorative stars background */}
       <div className={styles.starsContainer}>

@@ -2,6 +2,8 @@
 /* Sistema "Kawaii Cosmic Refresh" */
 
 .heroSection {
+  --hero-wave-height: 96px;
+  --hero-bottom-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 96' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 0 H1200 V56 C1180 32 1160 32 1140 56 C1120 80 1100 80 1080 56 C1060 32 1040 32 1020 56 C1000 80 980 80 960 56 C940 32 920 32 900 56 C880 80 860 80 840 56 C820 32 800 32 780 56 C760 80 740 80 720 56 C700 32 680 32 660 56 C640 80 620 80 600 56 C580 32 560 32 540 56 C520 80 500 80 480 56 C460 32 440 32 420 56 C400 80 380 80 360 56 C340 32 320 32 300 56 C280 80 260 80 240 56 C220 32 200 32 180 56 C160 80 140 80 120 56 C100 32 80 32 60 56 C40 80 20 80 0 56 Z'/%3E%3C/svg%3E");
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -11,8 +13,35 @@
   z-index: 1;
 }
 
+.heroClip {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  -webkit-mask-image:
+    linear-gradient(#000 0 0),
+    var(--hero-bottom-wave-mask);
+  mask-image:
+    linear-gradient(#000 0 0),
+    var(--hero-bottom-wave-mask);
+  -webkit-mask-size:
+    100% calc(100% - var(--hero-wave-height) + 2px),
+    100% var(--hero-wave-height);
+  mask-size:
+    100% calc(100% - var(--hero-wave-height) + 2px),
+    100% var(--hero-wave-height);
+  -webkit-mask-position:
+    top center,
+    bottom center;
+  mask-position:
+    top center,
+    bottom center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
 /* ========== SPLASHCURSOR CANVAS LAYER ========== */
-.heroSection canvas {
+.heroSection :global(canvas#fluid) {
   width: 100% !important;
   height: 100% !important;
   pointer-events: none !important;
@@ -20,7 +49,7 @@
   opacity: 0.72;
 }
 
-.heroSectionLight canvas {
+.heroSectionLight :global(canvas#fluid) {
   mix-blend-mode: multiply;
   opacity: 0.5;
 }
@@ -424,71 +453,6 @@
   z-index: 100;
 }
 
-/* ========== ONDAS SVG DE TRANSICIÓN (Múltiples Capas Realistas) ========== */
-.waveTransition {
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  z-index: 30;
-  pointer-events: none;
-  line-height: 0;
-  margin-top: -150px;
-}
-
-.waveSvg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.waveSvgDesktop {
-  display: block;
-}
-
-.waveSvgMobile {
-  display: none;
-}
-
-.wavePath {
-  transition: fill 0.3s var(--em-ease-smooth);
-}
-
-/* Capa 1 - Más profunda (más opaca) */
-.wave1 {
-  fill: var(--md-gray-dark);
-  opacity: 0.6;
-}
-
-/* Capa 2 - Media */
-.wave2 {
-  fill: var(--md-gray-dark);
-  opacity: 0.8;
-}
-
-/* Capa 3 - Superior (más sólida) */
-.wave3 {
-  fill: var(--md-gray-dark);
-  opacity: 1;
-}
-
-/* MODO CLARO */
-.heroSectionLight .wave1 {
-  fill: var(--em-bg-primary);
-  opacity: 0.6;
-}
-
-.heroSectionLight .wave2 {
-  fill: var(--em-bg-primary);
-  opacity: 0.8;
-}
-
-.heroSectionLight .wave3 {
-  fill: var(--em-bg-primary);
-  opacity: 1;
-}
-
 /* ========== SCROLL INDICATOR KAWAII ========== */
 .scrollIndicator {
   position: absolute;
@@ -538,6 +502,11 @@
 }
 
 @media (max-width: 768px) {
+  .heroSection {
+    --hero-wave-height: 68px;
+    --hero-bottom-wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 96' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 0 H1200 V56 C1200 78 1162.5 78 1125 56 C1087.5 34 1050 34 1012.5 56 C975 78 937.5 78 900 56 C862.5 34 825 34 787.5 56 C750 78 712.5 78 675 56 C637.5 34 600 34 562.5 56 C525 78 487.5 78 450 56 C412.5 34 375 34 337.5 56 C300 78 262.5 78 225 56 C187.5 34 150 34 112.5 56 C75 78 37.5 78 0 56 Z'/%3E%3C/svg%3E");
+  }
+
   .heroContent {
     gap: var(--em-space-md);
   }
@@ -585,18 +554,6 @@
     );
   }
 
-  .waveTransition {
-    height: 80px;
-    margin-top: -80px;
-  }
-
-  .waveSvgDesktop {
-    display: none;
-  }
-
-  .waveSvgMobile {
-    display: block;
-  }
 }
 
 @media (max-width: 480px) {

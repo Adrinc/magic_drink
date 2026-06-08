@@ -1,0 +1,20 @@
+
+> users-adrinc-documents-adrinc-proyectos-astro-ui-web@0.0.1 dev
+> astro dev --host 127.0.0.1 --port 4331
+
+22:37:30 [types] Generated 1ms
+22:37:30 [content] Syncing content
+22:37:30 [content] Astro config changed
+22:37:31 [content] Clearing content store
+22:37:31 [content] Synced content
+22:37:31 [vite] Re-optimizing dependencies because vite config has changed
+
+ astro  v5.10.0 ready in 3298 ms
+
+┃ Local    http://127.0.0.1:4331/
+
+22:37:31 watching for file changes...
+22:40:46 [200] / 614ms
+22:46:19 [200] / 4ms
+22:50:50 [watch] src/components/hexy/components/HexyPlayer.jsx
+22:50:50 [watch] src/components/hexy/components/HexyPlayer.jsx

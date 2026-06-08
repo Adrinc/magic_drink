@@ -78,21 +78,23 @@ const IndexSeccion1 = () => {
   }, []);
 
   return (
-    <section className={`${styles.heroSection} ${!darkMode ? styles.heroSectionLight : ''}`}>
-      <div className={styles.heroContainer}>
-        {/* SplashCursor - Líquido Mágico Interactivo */}
-   
-   <SplashCursor 
-          splatRadius={80}
-          trailLength={30}
-          fadeSpeed={0.96}
-          colorChangeSpeed={15}
-          blurAmount={20}
-          glowIntensity={0.6}
-          zIndex={0}
-          opacity={0.72}
-          mixBlendMode="screen"
-        />
+    <>
+      {/* SplashCursor global: fuera de la máscara del hero para que no se corte. */}
+      <SplashCursor
+        SPLAT_RADIUS={0.18}
+        DENSITY_DISSIPATION={2.15}
+        VELOCITY_DISSIPATION={1.55}
+        COLOR_UPDATE_SPEED={15}
+        CURL={5}
+        SPLAT_FORCE={7200}
+        zIndex={2}
+        opacity={0.68}
+        mixBlendMode="screen"
+      />
+
+      <section className={`${styles.heroSection} ${!darkMode ? styles.heroSectionLight : ''}`}>
+        <div className={styles.heroClip}>
+          <div className={styles.heroContainer}>
 
         {/* Imagen de Fondo con Efecto Spotlight */}
         <div className={styles.backgroundImageLayer}>
@@ -187,49 +189,10 @@ const IndexSeccion1 = () => {
             <img src="/favicon.webp" alt="Magic Drink Star" />
           </div>
         </div>
-      </div>
-
-      {/* Ondas SVG de Transición Kawaii (Múltiples Olitas) */}
-      <div className={styles.waveTransition}>
-        {/* Desktop: 20 olas por capa */}
-        <svg viewBox="0 0 1200 150" preserveAspectRatio="none" className={`${styles.waveSvg} ${styles.waveSvgDesktop}`}>
-          {/* Ola 1 - Capa profunda (muchas olitas) */}
-          <path 
-            d="M0,50 Q30,90 60,50 T120,50 T180,50 T240,50 T300,50 T360,50 T420,50 T480,50 T540,50 T600,50 T660,50 T720,50 T780,50 T840,50 T900,50 T960,50 T1020,50 T1080,50 T1140,50 T1200,50 L1200,150 L0,150 Z" 
-            className={`${styles.wavePath} ${styles.wave1}`} 
-          />
-          {/* Ola 2 - Capa media (olitas medianas) */}
-          <path 
-            d="M0,70 Q30,105 60,70 T120,70 T180,70 T240,70 T300,70 T360,70 T420,70 T480,70 T540,70 T600,70 T660,70 T720,70 T780,70 T840,70 T900,70 T960,70 T1020,70 T1080,70 T1140,70 T1200,70 L1200,150 L0,150 Z" 
-            className={`${styles.wavePath} ${styles.wave2}`} 
-          />
-          {/* Ola 3 - Capa superior (olitas suaves) */}
-          <path 
-            d="M0,85 Q30,115 60,85 T120,85 T180,85 T240,85 T300,85 T360,85 T420,85 T480,85 T540,85 T600,85 T660,85 T720,85 T780,85 T840,85 T900,85 T960,85 T1020,85 T1080,85 T1140,85 T1200,85 L1200,150 L0,150 Z" 
-            className={`${styles.wavePath} ${styles.wave3}`} 
-          />
-        </svg>
-        
-        {/* Mobile: 8 olas por capa */}
-        <svg viewBox="0 0 1200 150" preserveAspectRatio="none" className={`${styles.waveSvg} ${styles.waveSvgMobile}`}>
-          {/* Ola 1 - Capa profunda */}
-          <path 
-            d="M0,50 Q75,90 150,50 T300,50 T450,50 T600,50 T750,50 T900,50 T1050,50 T1200,50 L1200,150 L0,150 Z" 
-            className={`${styles.wavePath} ${styles.wave1}`} 
-          />
-          {/* Ola 2 - Capa media */}
-          <path 
-            d="M0,70 Q75,105 150,70 T300,70 T450,70 T600,70 T750,70 T900,70 T1050,70 T1200,70 L1200,150 L0,150 Z" 
-            className={`${styles.wavePath} ${styles.wave2}`} 
-          />
-          {/* Ola 3 - Capa superior */}
-          <path 
-            d="M0,85 Q75,115 150,85 T300,85 T450,85 T600,85 T750,85 T900,85 T1050,85 T1200,85 L1200,150 L0,150 Z" 
-            className={`${styles.wavePath} ${styles.wave3}`} 
-          />
-        </svg>
+          </div>
       </div>
     </section>
+    </>
   );
 };
 

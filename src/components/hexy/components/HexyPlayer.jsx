@@ -24,7 +24,7 @@ const playlist = [
     id: 3,
     title: 'Dancing Re-Re',
     artist: 'Hexy + Magic Bunnies',
-    src: '/audio/demos/zap_your_mid_demo.mp3',
+    src: '/audio/demos/dancing_rere_demo.mp3',
     cover: '/image/music_covers/dancing_rere.webp',
     badge: null,
   },
@@ -66,6 +66,7 @@ export default function HexyPlayer() {
   const audioRef = useRef(null);
   const progressRef = useRef(null);
   const rafRef = useRef(null);
+  const playIntentRef = useRef(false); // persiste intención de play sin stale closure
 
   const [trackIndex, setTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -105,6 +106,8 @@ export default function HexyPlayer() {
         audio.currentTime = 0;
         audio.play();
       } else {
+        // Marcar intención de autoplay ANTES de cambiar pista
+        playIntentRef.current = true;
         setTrackIndex((prev) => {
           if (shuffle) {
             let next;
@@ -123,6 +126,8 @@ export default function HexyPlayer() {
       startRAF();
     };
     const onPause = () => {
+      // Ignorar el pause que algunos navegadores disparan justo después de ended
+      if (audio.ended) return;
       setIsPlaying(false);
       isHexyPlaying.set(false);
       stopRAF();
@@ -146,10 +151,19 @@ export default function HexyPlayer() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    const wasPlaying = isPlaying;
+
+    // Resetear progreso inmediatamente para que la barra no muestre datos viejos
+    setCurrentTime(0);
+    setDuration(0);
+    stopRAF();
+
+    const shouldPlay = playIntentRef.current;
+    playIntentRef.current = false;
+
     audio.src = track.src;
     audio.loop = repeat;
-    if (wasPlaying) {
+
+    if (shouldPlay) {
       audio.play().catch(() => {});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -170,6 +184,8 @@ export default function HexyPlayer() {
   }, []);
 
   const handleNext = useCallback(() => {
+    const audio = audioRef.current;
+    playIntentRef.current = !!(audio && !audio.paused);
     setTrackIndex((prev) => {
       if (shuffle) {
         let next;
@@ -187,6 +203,7 @@ export default function HexyPlayer() {
     if (audio && audio.currentTime > 3) {
       audio.currentTime = 0;
     } else {
+      playIntentRef.current = !!(audio && !audio.paused);
       setTrackIndex((prev) => (prev - 1 + playlist.length) % playlist.length);
     }
   }, []);
@@ -202,12 +219,9 @@ export default function HexyPlayer() {
   }, []);
 
   const selectTrack = useCallback((index) => {
+    playIntentRef.current = true;
     setTrackIndex(index);
     setShowPlaylist(false);
-    const audio = audioRef.current;
-    if (audio) {
-      setTimeout(() => audio.play().catch(() => {}), 50);
-    }
   }, []);
 
   const progress = duration ? (currentTime / duration) * 100 : 0;

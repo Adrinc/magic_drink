@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useStore } from '@nanostores/react';
-import { isEnglish } from '../../../data/variables';
+import { isEnglish, isHexyPlaying } from '../../../data/variables';
 import styles from '../css/hexyPlayer.module.css';
 
 const playlist = [
@@ -119,10 +119,12 @@ export default function HexyPlayer() {
     };
     const onPlay = () => {
       setIsPlaying(true);
+      isHexyPlaying.set(true);
       startRAF();
     };
     const onPause = () => {
       setIsPlaying(false);
+      isHexyPlaying.set(false);
       stopRAF();
     };
 
@@ -211,7 +213,7 @@ export default function HexyPlayer() {
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={styles.playerWrapper}>
+    <div className={`${styles.playerWrapper} ${isPlaying ? styles.playerPlaying : ''}`}>
       <audio ref={audioRef} preload="metadata" />
 
       <div className={styles.player}>

@@ -3,6 +3,9 @@ import { atom } from 'nanostores';
 export const isEnglish = atom(true); // Cambio: true = inglés por defecto
 export let defaultLang = 'en'; // Cambio: 'en' por defecto
 
+// Estado global del reproductor de Hexy
+export const isHexyPlaying = atom(false);
+
 // Theme Management (Dark Mode por defecto)
 export const isDarkMode = atom(
   typeof window !== 'undefined' && localStorage.getItem('theme')
